@@ -28,17 +28,17 @@ The rewrite drops a number, URL, date, quote or qualification. Mitigation: prote
 
 ### Proxy gaming
 
-The adaptive method lowers phrase overlap by producing unnatural language. Mitigation: Pareto results remain visible, readability is only one signal and human quality decides.
+A candidate lowers phrase overlap by producing unnatural language. Mitigation: no draft is recommended automatically, reading-ease drift remains visible and human semantic review decides. The pseudo-adaptive loop and automatic batch were removed after their complexity failed to buy a real steering benefit.
 
 ### Privacy loss
 
-Sensitive text is sent to an endpoint the user did not understand. Mitigation: offline preparation is the default, provider calls are explicit and local Ollama is documented first.
+Sensitive text is pasted into a service the user did not understand. Mitigation: preparation and comparison stay local, the external writing step remains reader-controlled, and the guides state the privacy trade-off before the prompt is copied.
 
 The static Rewrite Room makes no provider request, stores no source by default and renders user input with text nodes rather than executable HTML. Closing or reloading the tab clears its in-memory state.
 
 ### Vendor boundary drift
 
-An adapter, base URL or local model name routes work back to Anthropic. Mitigation: provider and model strings fail closed on Anthropic and Claude identifiers, with tests.
+The reader pastes the prompt into Claude and asks the same system to rewrite its own marked output. Mitigation: every practical route says to use a non-Anthropic writer, and the automated runtime contains no provider call that can silently cross this boundary.
 
 ### Enforcement misuse
 
@@ -46,4 +46,4 @@ Someone uses the toolkit to misrepresent work they did not author. Mitigation: t
 
 ## Security boundary
 
-No source file is overwritten. No key is stored by the tool. API keys come from process environment or an explicit command option and are sent only to the chosen base URL. Results are ordinary files controlled by the user.
+No source or candidate file is overwritten. The browser page and CLI contain no model-provider call, accept no API key and upload no text. The reader chooses the separate writing environment and accepts its privacy, credit and provenance terms directly. Toolkit results are ordinary browser state or files controlled by the user.

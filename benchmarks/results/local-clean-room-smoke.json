@@ -1,0 +1,166 @@
+{
+  "schema": "claude-watermark-toolkit/clean-room-prompt-smoke/1.0",
+  "runAt": "2026-08-28T15:29:28.200Z",
+  "model": "gpt-oss-20b-Q4_K_M.gguf",
+  "design": "Two bilingual, human-reviewed briefs are drafted in clean contexts by one local non-Anthropic model. The gate checks prose shape, exact values, manual semantic status and bounded surface reuse. Human reading remains required.",
+  "meanFourWordSurvival": 0.14600000000000002,
+  "gate": {
+    "allOutputsAreProse": true,
+    "allExactValuesRetained": true,
+    "allRemainManualReview": true,
+    "boundedMeanSurfaceReuse": true,
+    "boundedReadabilityDrift": true,
+    "pass": true
+  },
+  "cases": [
+    {
+      "id": "en-reviewed-brief",
+      "language": "en",
+      "source": "The 12-week pilot involved 64 employees and ended on 2026-08-28. It did not show that a four-day week increased productivity. The observed change was 3.1%, but the 95% confidence interval crossed zero. We can say the schedule was workable for this team. We cannot say it caused better performance, and we certainly cannot generalize from one team to an entire company.",
+      "reviewedBrief": {
+        "purpose": "Explain the narrow conclusion supported by the pilot.",
+        "audience": "People deciding how to interpret the result.",
+        "claims": [
+          "A [PV-01]-week pilot with [PV-02] employees ended on [PV-03].",
+          "The pilot did not demonstrate a productivity increase from a four-day week.",
+          "The observed change was [PV-04], and its [PV-05] confidence interval crossed zero.",
+          "The schedule was workable for the studied team.",
+          "The evidence supports neither causation nor company-wide generalization."
+        ],
+        "evidence": [
+          "Observed change: [PV-04].",
+          "The [PV-05] confidence interval crossed zero."
+        ],
+        "qualifications": [
+          "Workability applies only to the studied team.",
+          "No causal or company-wide conclusion."
+        ],
+        "voice": [
+          "Direct and cautious.",
+          "Make the supported and unsupported conclusions explicit.",
+          "Avoid generic research polish."
+        ],
+        "constraints": [
+          "English.",
+          "One short paragraph."
+        ],
+        "protectedValues": [
+          {
+            "type": "number",
+            "value": "[PV-01]"
+          },
+          {
+            "type": "number",
+            "value": "[PV-02]"
+          },
+          {
+            "type": "date",
+            "value": "[PV-03]"
+          },
+          {
+            "type": "number",
+            "value": "[PV-04]"
+          },
+          {
+            "type": "number",
+            "value": "[PV-05]"
+          }
+        ]
+      },
+      "rawDraft": "A [PV-01]-week pilot with [PV-02] employees ended on [PV-03]. The pilot did not demonstrate a productivity increase from a four‑day week; the observed change was [PV-04], and its [PV-05] confidence interval crossed zero. The schedule was workable for the studied team, but the evidence supports neither causation nor company‑wide generalization.",
+      "draft": "A 12-week pilot with 64 employees ended on 2026-08-28. The pilot did not demonstrate a productivity increase from a four‑day week; the observed change was 3.1%, and its 95% confidence interval crossed zero. The schedule was workable for the studied team, but the evidence supports neither causation nor company‑wide generalization.",
+      "scorecard": {
+        "id": "158b63659d2c",
+        "mechanicallyValid": true,
+        "valid": true,
+        "semanticStatus": "requires-manual-review",
+        "releaseReady": false,
+        "failures": [],
+        "missingInvariants": [],
+        "metrics": {
+          "invariantRetention": 1,
+          "ngramSurvival": 0.1587,
+          "lengthRatio": 0.8485,
+          "readability": 50,
+          "sourceReadability": 64,
+          "readabilityDelta": -14,
+          "wordCount": 56,
+          "longestSharedPhrase": {
+            "length": 6,
+            "phrase": "the observed change was 3 1"
+          },
+          "sentenceOpeningReuse": 0
+        }
+      }
+    },
+    {
+      "id": "it-reviewed-brief",
+      "language": "it",
+      "source": "Il punto, molto banalmente, non è fingere che l'assistenza non sia esistita. È evitare che un segnale tecnico diventi una sentenza sulla persona. Nel campione di 320 testi, il detector ha segnalato il 18,4%. Quel numero non dimostra chi abbia avuto l'idea, chi abbia verificato le fonti o chi si assuma la responsabilità. Può aprire un controllo. Non può chiuderlo da solo.",
+      "reviewedBrief": {
+        "purpose": "Spiegare perché un segnale tecnico non basta per giudicare una persona.",
+        "audience": "Chi valuta testi scritti con assistenza AI.",
+        "claims": [
+          "Non serve negare che l'assistenza possa esserci stata.",
+          "Un segnale tecnico non deve diventare una sentenza sulla persona.",
+          "Su [PV-01] testi, il detector ha segnalato il [PV-02].",
+          "Il dato non attribuisce idea, verifica delle fonti o responsabilità.",
+          "Il dato può aprire un controllo ma non chiuderlo da solo."
+        ],
+        "evidence": [
+          "Campione: [PV-01] testi.",
+          "Risultato del detector: [PV-02]."
+        ],
+        "qualifications": [
+          "Non negare l'eventuale assistenza.",
+          "Non usare il dato come prova di responsabilità o origine delle idee."
+        ],
+        "voice": [
+          "Diretta e colloquiale.",
+          "Usa frasi brevi per il limite finale.",
+          "Evita il tono accademico."
+        ],
+        "constraints": [
+          "Italiano.",
+          "Un paragrafo breve.",
+          "Conserva il termine detector."
+        ],
+        "protectedValues": [
+          {
+            "type": "number",
+            "value": "[PV-01]"
+          },
+          {
+            "type": "number",
+            "value": "[PV-02]"
+          }
+        ]
+      },
+      "rawDraft": "Non serve negare che l’assistenza possa esserci stata, ma un segnale tecnico non deve diventare una sentenza sulla persona. Su [PV-01] testi, il detector ha segnalato il [PV-02]; il dato non attribuisce idea, verifica delle fonti o responsabilità, ma può aprire un controllo e non chiuderlo da solo.",
+      "draft": "Non serve negare che l’assistenza possa esserci stata, ma un segnale tecnico non deve diventare una sentenza sulla persona. Su 320 testi, il detector ha segnalato il 18,4%; il dato non attribuisce idea, verifica delle fonti o responsabilità, ma può aprire un controllo e non chiuderlo da solo.",
+      "scorecard": {
+        "id": "b6ea58c98cb1",
+        "mechanicallyValid": true,
+        "valid": true,
+        "semanticStatus": "requires-manual-review",
+        "releaseReady": false,
+        "failures": [],
+        "missingInvariants": [],
+        "metrics": {
+          "invariantRetention": 1,
+          "ngramSurvival": 0.1333,
+          "lengthRatio": 0.7778,
+          "readability": 53,
+          "sourceReadability": 70,
+          "readabilityDelta": -17,
+          "wordCount": 49,
+          "longestSharedPhrase": {
+            "length": 9,
+            "phrase": "320 testi il detector ha segnalato il 18 4"
+          },
+          "sentenceOpeningReuse": 0
+        }
+      }
+    }
+  ]
+}

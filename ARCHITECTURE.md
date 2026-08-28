@@ -1,127 +1,68 @@
-# ARCHITECTURE: Claude Watermark Toolkit
+# Architecture
 
-Living reference. Read before each build stage and update when a contract changes.
+Living reference for the current public product. A removed experiment does not remain here as an active organ.
 
-Origin: `_context/product-spec-2026-08-28.md` and `_context/product-interrogation-2026-08-28.md`.
-Status: ACTIVE. Features approved by Danilo on 2026-08-28.
+## Product boundary
 
-## 1. Organs and single responsibilities
+The repository prepares structured prompts and evaluates returned drafts. It does not call a writing model, upload text, choose a final draft or reproduce Anthropic's detector.
 
-| Organ | One responsibility | Location | Exposes | Does not do |
-|---|---|---|---|---|
-| Rewrite case | Define the immutable data exchanged by the pipeline | `src/contracts.js` | Case constructors and validation | Generate prose |
-| Invariant extractor | Find facts and spans that must survive | `src/invariants.js` | Protected span list | Decide writing style |
-| Reconstruction brief | Convert source material into a wording-independent brief | `src/reconstruction.js` | Brief builder and prompt | Call a provider |
-| Provider boundary | Send an approved request to a non-Anthropic endpoint | `src/providers.js` | Ollama and OpenAI-compatible adapters | Score candidates |
-| Target selector | Identify passages with high rewrite value | `src/targeting.js` | Ranked rewrite targets | Claim detector knowledge |
-| Candidate generator | Produce independent drafts through a provider | `src/generation.js` | Candidate list | Select the winner |
-| Validator | Check invariants, overlap and readability | `src/validators.js` | Candidate scorecards | Make external calls |
-| Selector | Rank valid candidates across several objectives | `src/selection.js` | Pareto set and recommended candidate | Hide trade-offs |
-| CLI | Turn user commands into pipeline calls | `bin/claude-watermark-toolkit.js` | Human and JSON output | Own business logic |
-| Browser workbench core | Prepare a source-free brief and compare drafts locally | `docs/core.js` | Deterministic browser-safe functions | Render the page or call a provider |
-| Browser workbench UI | Guide a non-technical reader through source separation and comparison | `docs/index.html`, `docs/app.js`, `docs/styles.css` | Static bilingual interface | Upload, persist or generate text |
-| Prose gate | Enforce the public writing rules | `scripts/check-prose.mjs` | Pass or precise failures | Judge factual truth |
-| Research dossier | Own evidence, uncertainty and experiment protocol | `research/`, `CLAIMS.md` | Claim ladder and methods | Pretend to be a detector |
+## Components
 
-## 2. Systems
+| Component | One job | Location | Does not do |
+|---|---|---|---|
+| Rewrite case | Define the immutable source record | `src/contracts.js` | generate prose |
+| Invariant extractor | Find exact values and user-supplied phrases | `src/invariants.js` | infer every important idea |
+| Prompt builder | Build the primary and source-separated prompts | `src/reconstruction.js` | call a model |
+| Validator | Measure exact-value retention, surface overlap, openings, length and readability drift | `src/validators.js` | approve meaning |
+| Selector | Keep mechanically sound trade-offs visible | `src/selection.js` | recommend a winner |
+| CLI | Connect local files to preparation and evaluation | `bin/watermark-toolkit.js` | make network requests |
+| Browser core | Prepare prompts, restore values and compare drafts in the current tab | `docs/core.js` | render the page or persist text |
+| Browser UI | Guide a non-technical reader through the workflow | `docs/index.html`, `docs/app.js`, `docs/styles.css` | upload or generate text |
+| Public gates | Check prose, links, tests and static privacy contracts | `scripts/`, `test/` | certify detector success |
+| Research dossier | Separate official facts, inferences, unknowns and experiments | `research/`, `CLAIMS.md` | market a hypothesis as a result |
 
-| System | Organs | Responsibility | Input | Output |
-|---|---|---|---|---|
-| Preparation | Rewrite case, invariant extractor, reconstruction brief | Prepare a safe, wording-independent drafting task | Source text and language | Protected rewrite case |
-| Generation | Provider boundary, target selector, candidate generator | Produce candidate drafts without Anthropic | Protected rewrite case and method | Candidate drafts |
-| Evaluation | Validator, selector | Reject broken candidates and explain the remaining trade-offs | Case and candidates | Scorecards and recommendation |
-| Interface | CLI | Make the systems usable from a terminal or another agent | Command and files | Plain text or JSON |
-| Browser interface | Browser workbench core and UI | Make the central clean-room method usable with no account or installation | Source, author brief and candidate draft | Source-free prompt and local comparison |
-| Knowledge | Prose gate, research dossier | Keep public writing and claims honest | Docs, sources and tests | Gate result and evidence record |
-
-## 3. Interaction map
+## Data flow
 
 ```mermaid
 flowchart LR
-  A[CLI] -->|C1 prepare| B[Preparation]
-  B -->|C2 rewrite case| C[Generation]
-  C -->|C3 candidates| D[Evaluation]
-  D -->|C4 result| A
-  E[Research dossier] -->|C5 method status| A
-  F[Prose gate] -->|C6 editorial check| E
-  G[Browser UI] -->|C7 prepare| H[Browser core]
-  H -->|C8 compare| G
-  G -->|C9 export| I[User-controlled clipboard or file]
+  A["Source file or browser text"] --> B["Protected-value extraction"]
+  B --> C["Structured prompt"]
+  C --> D["Reader-controlled non-Anthropic writer"]
+  D --> E["Returned candidate"]
+  E --> F["Local restoration and mechanical checks"]
+  F --> G["Human semantic and voice review"]
 ```
 
-## 4. Data flow
+The external writing step is intentionally outside the runtime. Rewrite Room and the CLI prepare the prompt. The reader chooses where to run it and brings the result back. The toolkit restores recognized `[PV-XX]` values locally, reports bounded surface evidence and leaves semantic approval to a person.
 
-The source enters from a file, standard input or the browser form. Preparation detects protected facts and creates a rewrite case. Semantic reconstitution turns the source into claims, constraints and voice notes before drafting. The generation system either exports a prompt or calls an approved non-Anthropic provider. Evaluation first rejects candidates that lose protected information. It then measures phrase and n-gram survival, readability and edit distance, and returns the non-dominated candidates plus a plain-language recommendation. In the browser, the author writes the meaning card, seals the source and exports a prompt that never contains the source wording. The browser compares a returned draft locally. The original source remains unchanged.
+## Contracts
 
-## 5. SSOT registry
+| Boundary | Input | Output | Fails when | Permanent limit |
+|---|---|---|---|---|
+| Preparation | non-empty source, language, optional protected values | immutable rewrite case | input is empty or language unsupported | automatic extraction misses some meaningful phrases |
+| Prompt export | valid rewrite case | structured prompt or two-step clean-room pair | case is malformed | an external model can ignore instructions |
+| Candidate check | source and exactly one candidate | restored draft and mechanical report | file missing, empty or output would overwrite an input | cannot verify semantic fidelity |
+| Candidate comparison | source and at least two candidates | equal scorecards and mechanical shortlist | fewer than two candidates | cannot choose the author's voice |
+| Browser workflow | source and returned candidate | prompt, restored draft and local comparison | required field empty or clipboard denied | no detector access |
+| Public claim | cited evidence and status | fact, inference or unknown | support is missing or stale | private configuration remains unknown |
 
-| Data | Authoritative home | Derived copies | Never authoritative in |
-|---|---|---|---|
-| Pipeline shape | `src/contracts.js` | CLI JSON output | Docs examples |
-| Provider policy | `src/providers.js` | Setup guides | Environment files |
-| Method implementation state | `STATUS.md` | README tables | Website copy |
-| Research claim state | `CLAIMS.md` | Guide summaries | Social posts |
-| Public roadmap and receipts | `EXECUTION-PLAN.md` | README progress link | Private notes |
-| Public prose rules | `scripts/check-prose.mjs` | Contributing guide | Reviewer memory |
+## Source separation
 
-## 6. Boundary contracts
+The primary prompt sees a locally masked source because it is the simplest serious route and has a real paired benchmark. The advanced route has two contexts: a research context sees the source and produces a checked brief; a genuinely separate writing context receives only that brief. Two messages in one conversation do not satisfy this contract.
 
-| Boundary | Input | Output | Errors | Invariants | Version |
-|---|---|---|---|---|---|
-| C1 CLI to Preparation | file path, language, options | valid rewrite case | input, encoding, size | source immutable | v1 |
-| C2 Preparation to Generation | rewrite case | prompt or request | missing brief, blocked provider | protected spans attached | v1 |
-| C3 Generation to Evaluation | candidate strings | candidate list | timeout, empty response | source not overwritten | v1 |
-| C4 Evaluation to CLI | scorecards and Pareto set | human or JSON report | no valid candidate | failures remain visible | v1 |
-| C5 Knowledge to CLI | method identifier | state and limits | unknown method | research-only is labeled | v1 |
-| C6 Prose gate to Knowledge | public files | pass or findings | unreadable file | no em dash, no banned stock phrases | v1 |
-| C7 Browser UI to browser preparation | source string, manual protected values | protected values and editable meaning card | empty input | source stays in the current tab | v1 |
-| C8 Browser UI to browser evaluation | sealed source, candidate, protected values | separate local comparison signals | empty candidate | no detector verdict | v1 |
-| C9 Browser UI to export | meaning card and protected values | clipboard text or downloaded brief | denied clipboard access | original source is never included | v1 |
+## Why there is no automatic writer
 
-Contract changes require a version bump, a documented delta here, updates to every listed consumer and a contract test. No silent contract changes.
+Provider adapters and a candidate batch were implemented and tested with a local gpt-oss 20B model. The trials exposed research-prompt constraints inside the brief, JSON returned instead of prose, close copying and a false `BRIEF_ERROR` on a valid reviewed brief. The extra setup did not beat the admitted primary route reliably, so the runtime model calls were removed.
 
-## 6-bis. Build versus adopt
+## Single sources of truth
 
-Engine question: provider transport and text utilities are commodity and use the Node standard library. The project edge is reconstruction, protected-fact validation, target selection, multi-objective comparison and unusually clear public explanation.
+| Subject | Authoritative file |
+|---|---|
+| Component and boundary contracts | `ARCHITECTURE.md` |
+| Current implementation state | `STATUS.md` |
+| Research claims | `CLAIMS.md` |
+| Public execution and release sequence | `EXECUTION-PLAN.md` |
+| Tool admission decisions | `REDTEAM.md` |
+| Public writing rules | `scripts/check-prose.mjs` |
 
-| Organ | Verdict | Source, license or cost | Reason |
-|---|---|---|---|
-| Runtime and CLI | build | Node.js standard library | A small zero-dependency surface is easier to audit and install |
-| Public SynthID surrogate | adopt as optional research reference | `google-deepmind/synthid-text`, Apache-2.0 | Official public implementation, unsuitable as a Claude detector claim |
-| Attack patterns | extract pattern | SIRA and TSAPA papers | Research informs clean-room methods without importing unlicensed code |
-| Rewrite engine | build | project code, MIT | This is the product edge and needs the project's contracts |
-| Provider adapters | build | native `fetch` | Two small adapters avoid a large SDK and keep Anthropic out |
-| Website rendering | adopt existing | `danilolapegna-new` guide registry | The site already owns bilingual guides, SEO and schema |
-| No-install browser inference | reject as a required dependency | WebLLM, Transformers.js, wllama and browser built-in AI reviewed | Model downloads, device limits and browser support would break the universal first-use promise |
-| Static Rewrite Room | build | browser standard library, MIT | Source separation, protected facts and transparent comparison are the project edge and work without a model download |
-
-License pressure: the only optional code reference is Apache-2.0 with a clear exit path. Research repositories without a license are not copied. Runtime maintenance is limited to current Node LTS behavior and endpoint contract tests.
-
-## 7. Incremental build order
-
-1. Contracts, invariant extraction and tests. Coherent state: source can be prepared and checked offline.
-2. Reconstruction brief and prompt export. Coherent state: a beginner can complete the manual workflow.
-3. Provider boundary and mock end-to-end test. Coherent state: local and compatible endpoints can generate a candidate.
-4. Validators and candidate selection. Coherent state: weak candidates are rejected with reasons.
-5. Targeted and adaptive methods. Coherent state: advanced workflows run under explicit budgets.
-6. Bilingual documentation, manifesto, skill and research dossier. Coherent state: every audience has a usable entry.
-7. Website guides, profile links and public verification. Coherent state: discovery paths work in both directions.
-8. Static Rewrite Room, complete method ladder and guided local comparison. Coherent state: a non-technical reader can perform the strongest default workflow without installation.
-
-## 8. Health and self-repair
-
-| Health organ | Function | Owner |
-|---|---|---|
-| Contract tests | Exercise every boundary above | Node test suite |
-| Prose gate | Blocks banned public-writing patterns | `scripts/check-prose.mjs` |
-| CI | Runs tests and public-file checks | GitHub Actions |
-| Link and source check | Detects dead public claims and guide links | release checklist |
-| Claim review | Reclassifies facts when evidence changes | `CLAIMS.md` maintainers |
-
-## 9. Deterministic self-check
-
-- PASS: each key datum has one authoritative home.
-- PASS: every organ has one responsibility.
-- PASS: every arrow in the interaction map has a contract.
-- PASS: each organ belongs to a system and is reached by the data flow.
-- PASS: each approved feature appears in the incremental build order.
+Contract changes require tests, updated consumer documentation and an explicit red-team verdict. A feature removed for product-quality reasons cannot return under a new label without new evidence.

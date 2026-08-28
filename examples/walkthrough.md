@@ -1,5 +1,9 @@
 # Worked example
 
+This page shows what the local comparison tool can and cannot decide. It follows one source through protected values, a checked brief and two valid drafts so you can see why “less copied wording” is not the same as “better writing.”
+
+The ideas and evidence in a real case must be yours to use. Here the source is an invented fixture, and the point is deliberately narrow: repeat the check, inspect the evidence, then make the semantic decision yourself.
+
 Source fixture: `examples/fixtures/source-en.txt`.
 
 ## Protected values
@@ -47,4 +51,4 @@ node bin/watermark-toolkit.js compare \
   --json
 ```
 
-Both scorecards return `valid: true` and `missingInvariants: []`. The exact readability number can move if the formula changes, so the repository does not freeze it into this page. The useful comparison is stable: Candidate B changes the structure more, while Candidate A stays closer to the source tone.
+Both scorecards return `mechanicallyValid: true`, `semanticStatus: "requires-manual-review"` and `missingInvariants: []`. The tool also leaves `recommended` empty. Candidate B changes the structure more sharply. Candidate A stays closer to the source tone. Only a reader can verify which one keeps every qualification and sounds like the author.

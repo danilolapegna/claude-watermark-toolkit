@@ -18,6 +18,46 @@ function ngramSet(tokens, size) {
   return result;
 }
 
+export function longestSharedPhrase(source, candidate) {
+  const sourceWords = words(source);
+  const candidateWords = words(candidate);
+  let previous = new Array(candidateWords.length + 1).fill(0);
+  let bestLength = 0;
+  let bestEnd = 0;
+
+  for (let sourceIndex = 1; sourceIndex <= sourceWords.length; sourceIndex += 1) {
+    const current = new Array(candidateWords.length + 1).fill(0);
+    for (let candidateIndex = 1; candidateIndex <= candidateWords.length; candidateIndex += 1) {
+      if (sourceWords[sourceIndex - 1] === candidateWords[candidateIndex - 1]) {
+        current[candidateIndex] = previous[candidateIndex - 1] + 1;
+        if (current[candidateIndex] > bestLength) {
+          bestLength = current[candidateIndex];
+          bestEnd = sourceIndex;
+        }
+      }
+    }
+    previous = current;
+  }
+
+  return { length: bestLength, phrase: sourceWords.slice(bestEnd - bestLength, bestEnd).join(" ") };
+}
+
+function sentenceList(text) {
+  return String(text).split(/(?<=[.!?])\s+|\n+/u).map((part) => part.trim()).filter(Boolean);
+}
+
+export function sentenceOpeningReuse(source, candidate, openingSize = 3) {
+  const openings = (text) => new Set(sentenceList(text)
+    .map((sentence) => words(sentence).slice(0, openingSize).join(" "))
+    .filter((opening) => opening.split(" ").length === openingSize));
+  const sourceOpenings = openings(source);
+  if (sourceOpenings.size === 0) return 0;
+  const candidateOpenings = openings(candidate);
+  let shared = 0;
+  for (const opening of sourceOpenings) if (candidateOpenings.has(opening)) shared += 1;
+  return shared / sourceOpenings.size;
+}
+
 export function ngramSurvival(source, candidate, size = 4) {
   const sourceSet = ngramSet(words(source), size);
   if (sourceSet.size === 0) return 0;
@@ -58,14 +98,22 @@ export function scoreCandidate(rewriteCase, candidate, { ngramSize = 4 } = {}) {
   const lengthRatio = candidateWords / sourceWords;
   const overlap = ngramSurvival(rewriteCase.source, candidate, ngramSize);
   const ease = readability(candidate, rewriteCase.language);
+  const sourceEase = readability(rewriteCase.source, rewriteCase.language);
+  const sharedPhrase = longestSharedPhrase(rewriteCase.source, candidate);
+  const openingReuse = sentenceOpeningReuse(rewriteCase.source, candidate);
   const failures = [];
   if (missing.length > 0) failures.push(`Missing ${missing.length} protected value${missing.length === 1 ? "" : "s"}.`);
   if (candidateWords === 0) failures.push("Candidate is empty.");
   if (lengthRatio < 0.45 || lengthRatio > 1.8) failures.push(`Length ratio ${lengthRatio.toFixed(2)} is outside the default 0.45 to 1.80 range.`);
 
+  const mechanicallyValid = failures.length === 0;
   return {
     id: hashText(candidate).slice(0, 12),
-    valid: failures.length === 0,
+    mechanicallyValid,
+    // Kept for rewrite-case 1.0 consumers. It means mechanical checks only.
+    valid: mechanicallyValid,
+    semanticStatus: "requires-manual-review",
+    releaseReady: false,
     failures,
     missingInvariants: missing.map(({ type, value }) => ({ type, value })),
     metrics: {
@@ -73,7 +121,11 @@ export function scoreCandidate(rewriteCase, candidate, { ngramSize = 4 } = {}) {
       ngramSurvival: Number(overlap.toFixed(4)),
       lengthRatio: Number(lengthRatio.toFixed(4)),
       readability: ease,
+      sourceReadability: sourceEase,
+      readabilityDelta: ease - sourceEase,
       wordCount: candidateWords,
+      longestSharedPhrase: sharedPhrase,
+      sentenceOpeningReuse: Number(openingReuse.toFixed(4)),
     },
   };
 }
@@ -81,7 +133,7 @@ export function scoreCandidate(rewriteCase, candidate, { ngramSize = 4 } = {}) {
 export function explainScore(scorecard, language = "en") {
   const m = scorecard.metrics;
   if (language === "it") {
-    return `${scorecard.valid ? "Valido" : "Respinto"}. Fatti protetti: ${Math.round(m.invariantRetention * 100)}%. Frasi di quattro parole sopravvissute: ${Math.round(m.ngramSurvival * 100)}%. Lunghezza rispetto alla fonte: ${Math.round(m.lengthRatio * 100)}%. Leggibilità: ${m.readability}/100.`;
+    return `${scorecard.mechanicallyValid ? "Controlli meccanici superati" : "Controlli meccanici non superati"}. Valori protetti: ${Math.round(m.invariantRetention * 100)}%. Sequenze di quattro parole rimaste: ${Math.round(m.ngramSurvival * 100)}%. Sequenza identica più lunga: ${m.longestSharedPhrase.length} parole. Lunghezza rispetto alla fonte: ${Math.round(m.lengthRatio * 100)}%. Il controllo umano del significato è ancora obbligatorio.`;
   }
-  return `${scorecard.valid ? "Valid" : "Rejected"}. Protected facts: ${Math.round(m.invariantRetention * 100)}%. Surviving four-word phrases: ${Math.round(m.ngramSurvival * 100)}%. Length versus source: ${Math.round(m.lengthRatio * 100)}%. Readability: ${m.readability}/100.`;
+  return `${scorecard.mechanicallyValid ? "Mechanical checks passed" : "Mechanical checks failed"}. Protected values: ${Math.round(m.invariantRetention * 100)}%. Surviving four-word sequences: ${Math.round(m.ngramSurvival * 100)}%. Longest identical run: ${m.longestSharedPhrase.length} words. Length versus source: ${Math.round(m.lengthRatio * 100)}%. Human meaning review is still required.`;
 }

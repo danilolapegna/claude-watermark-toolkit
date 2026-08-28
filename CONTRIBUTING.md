@@ -15,10 +15,12 @@ Good contributions make the project more accurate, more usable or easier to chal
 ## Before opening a pull request
 
 ```bash
-npm test
-npm run check:prose
-python -m py_compile scripts/token-surprisal.py
+npm run check
 ```
+
+That command runs the unit and CLI suite, Rewrite Room's static privacy and accessibility contract, the public-prose gate and the internal-link check.
+
+If you change the primary rewrite prompt, also run the optional local model benchmark documented in [`benchmarks/README.md`](benchmarks/README.md). A prompt change is not ready because it sounds clever. It needs to keep every protected value and earn its added complexity against the plain paraphrase baseline.
 
 Describe:
 
@@ -41,4 +43,3 @@ Write English and Italian natively. Use direct sentences. Do not use em dashes, 
 ## Provider boundary
 
 Provider adapters must reject Anthropic hosts and Claude model identifiers. A contribution that routes rewriting through Anthropic will not be accepted.
-

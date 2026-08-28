@@ -1,20 +1,38 @@
-# Claude ha scritto la prima bozza. Ora falla davvero tua.
+# Le idee non dovrebbero portare watermark
 
 <p align="center">
-  <strong>Uno strumento senza installazione, una guida completa e un toolkit open source per ricostruire i testi assistiti dall'AI partendo dalle idee.</strong>
+  <strong>Claude ha scritto la prima bozza. Ora falla davvero tua.</strong><br />
+  Un prompt builder senza installazione con controlli locali, una guida completa e un toolkit open source per ricostruire i testi assistiti dall'AI partendo dalle idee.
 </p>
+
+<table>
+  <tr>
+    <td><strong>01</strong></td>
+    <td><strong>La provenienza non può diventare una caccia alle streghe.</strong><br />Un detector può segnalare un'influenza statistica. Usare quel segnale come prova automatica di paternità, frode o pigrizia intellettuale non è analisi della provenienza. È un giudizio appaltato a un punteggio.</td>
+  </tr>
+  <tr>
+    <td><strong>02</strong></td>
+    <td><strong>L'enforcement punisce proprio chi gli strumenti di scrittura aiutano di più.</strong><br />Dislessia, disgrafia, difficoltà motorie e scrittura in una seconda lingua possono separare la qualità di un'idea dalla facilità di metterla su pagina. L'assistenza rilevabile non misura il contributo intellettuale.</td>
+  </tr>
+  <tr>
+    <td><strong>03</strong></td>
+    <td><strong>Marchiamo le prove sintetiche. Non le idee.</strong><br />Un'immagine può sembrare la registrazione fotografica di un evento, quindi la provenienza risponde a una domanda concreta su un'apparente prova. Le parole sono simboli che trasportano idee. Un testo può contenere un'affermazione falsa, ma il danno sta nell'affermazione, nella frode o nell'impersonificazione, non nel software che ha aiutato a formulare una frase.</td>
+  </tr>
+</table>
+
+Questo è il perché del repository. Tutto ciò che segue ne è la conseguenza pratica: che cosa sappiamo davvero, quale strada scegliere in base a tempo e privacy e come usarla senza distruggere il testo.
 
 Parto dalla domanda che con ogni probabilità ti ha portato qui: **come si rimuove un possibile watermark da un testo Claude senza massacrare il testo?**
 
 La risposta breve è che non conviene travestire la vecchia formulazione. Tiri fuori ciò che deve restare, metti la fonte fuori vista e scrivi una versione nuova da una scheda controllata.
 
-Se speravi nel pulsante unico con scritto “watermark sparito”, ti capisco pure. Il problema è che quel pulsante, finché detector, chiave e soglia di Anthropic restano privati, non può esistere onestamente. Quello che possiamo fare è offrirti un percorso molto più solido, dalla pagina bianca allo strumento nel browser fino alla ricerca fra più candidati, proteggendo i fatti prima di cambiare anche solo una frase.
+Se speravi nel pulsante unico con scritto “watermark sparito”, ti capisco pure. Il problema è che quel pulsante, finché detector, chiave e soglia di Anthropic restano privati, non può esistere onestamente. Quello che possiamo fare è offrirti un percorso molto più solido, dalla pagina bianca allo strumento nel browser fino ai controlli locali, proteggendo i fatti prima di cambiare anche solo una frase.
 
 Questa guida serve per testi nei quali idee, giudizio e responsabilità finale sono tuoi. Cambiare la superficie del lavoro di qualcun altro non lo rende tuo.
 
 <p align="center">
-  <a href="https://danilolapegna.github.io/claude-watermark-toolkit/"><img src="https://img.shields.io/badge/APRI-REWRITE_ROOM-B63B26?style=for-the-badge" alt="Apri Rewrite Room nel browser" /></a>
-  <a href="start-here/it/README.md"><img src="https://img.shields.io/badge/PARTI_DA-ZERO-164C6E?style=for-the-badge" alt="Parti da zero" /></a>
+  <a href="https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it"><img src="https://img.shields.io/badge/APRI-REWRITE_ROOM-C9A84C?style=for-the-badge&labelColor=09090F" alt="Apri Rewrite Room nel browser" /></a>
+  <a href="start-here/it/README.md"><img src="https://img.shields.io/badge/PARTI_DA-ZERO-F8F6EE?style=for-the-badge&labelColor=09090F" alt="Parti da zero" /></a>
   <a href="README.md"><img src="https://img.shields.io/badge/READ_IN-ENGLISH-C9A84C?style=for-the-badge&labelColor=171714" alt="Read in English" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/licenza-MIT-356346?style=for-the-badge" alt="Licenza MIT" /></a>
 </p>
@@ -31,11 +49,11 @@ Questa guida serve per testi nei quali idee, giudizio e responsabilità finale s
 
 ## Vuoi la risposta utile in cinque minuti?
 
-Apri [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/).
+Apri [Rewrite Room in italiano](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it).
 
-Funziona nel browser senza account, senza upload e senza installazione. Incolli la fonte, proteggi nomi e valori esatti, prepari due piccole buste per significato e voce, poi sigilli la fonte prima di scrivere.
+Rewrite Room è un prompt builder semplice e diretto, con un confronto locale alla fine. Non è un writer AI. Incolli il testo una volta e la pagina prepara un prompt strutturato per un modello non Anthropic, senza account, upload o installazione. Date, cifre, link, citazioni e altri valori esatti diventano segnaposto locali come `[PV-01]`, riducendo il rischio che il modello normalizzi un trattino, un decimale o una virgoletta. Se i segnaposto sopravvivono, la pagina rimette gli originali carattere per carattere quando riporti la bozza.
 
-Puoi fare la nuova stesura tu, oppure copiare il prompt senza fonte in qualunque sistema non Anthropic del quale ti fidi. Quando riporti qui la bozza, la pagina controlla:
+Copi tutto il prompt, lo incolli nel modello che preferisci e poi riporti qui la sua bozza. La pagina controlla:
 
 - nomi, date, numeri, link, citazioni e valori aggiunti da te che sono spariti;
 - la sequenza di parole identica più lunga;
@@ -43,7 +61,11 @@ Puoi fare la nuova stesura tu, oppure copiare il prompt senza fonte in qualunque
 - gli inizi di frase ripetuti;
 - una somiglianza approssimativa della forma di paragrafi e frasi.
 
-Succede tutto in locale. Il risultato è un confronto, non il responso del detector Anthropic.
+Preparazione del prompt e confronto avvengono in locale. La pagina non usa un modello e non consuma crediti AI. Tutta la scrittura avviene nel modello esterno, che può usare il suo normale abbonamento, piano gratuito o sistema di crediti. Il risultato riguarda soltanto la superficie. Non è un controllo semantico né il responso del detector Anthropic.
+
+Non abbiamo promosso il prompt soltanto perché sembrava intelligente. In un benchmark offline su quattro casi italiani e inglesi con gpt-oss 20B, il prompt strutturato ha conservato tutti i gruppi di valori esatti. La parafrasi banale ci è riuscita in un caso su quattro. Ha anche ridotto la media delle sequenze di quattro parole rimaste dal 27,4% al 23,7% e la sequenza identica media più lunga da 10 a 9 parole. È un solo modello locale su un corpus piccolo, non una garanzia universale. Bozze e punteggi completi sono in [`benchmarks/results/local-gpt-oss-20b.json`](benchmarks/results/local-gpt-oss-20b.json).
+
+Se vuoi una separazione ancora più forte delle vecchie frasi e accetti un po' di lavoro in più, apri il percorso a camera stagna dentro Rewrite Room. È lì che vive il metodo delle due buste. Adesso è un'opzione avanzata, non un esame d'ingresso. Nel suo smoke test bilingue separato ha conservato tutti i valori esatti, restituito prosa in entrambi i casi, mantenuto la leggibilità nel limite configurato e ridotto al 14,6% la media delle sequenze di quattro parole rimaste. Due casi dimostrano che il flusso funziona, non che funzionerà sempre allo stesso modo.
 
 ---
 
@@ -61,7 +83,7 @@ La parte che sembra banale ma viene saltata continuamente è questa:
 4. Scrivi da quello che vuoi dire, non dalle frasi che esistono già.
 5. Riapri la fonte soltanto per controllare i fatti.
 
-Se la tieni davanti, in realtà è facilissimo conservare la stessa logica dei paragrafi anche dopo aver cambiato tutte le parole più vistose. [Usa il metodo manuale](methods/human-redraft/README.md).
+Se la tieni davanti, in realtà è facilissimo conservare la stessa logica dei paragrafi anche dopo aver cambiato tutte le parole più vistose. [Usa il metodo manuale](methods/human-redraft/README.it.md).
 
 ---
 
@@ -70,14 +92,11 @@ Se la tieni davanti, in realtà è facilissimo conservare la stessa logica dei p
 | La tua situazione | Parti da qui | Fatica | Compromesso principale |
 |---|---|---:|---|
 | La policy permette la scrittura assistita | Non cambiare nulla o dichiarala | nessuna | non aiuta dove è la rilevabilità stessa a far scattare l'enforcement |
-| Testo breve, privacy massima | [Riscrittura manuale](methods/human-redraft/README.md) | 10-60 min | il tuo tempo |
-| Niente installazione e guida passo passo | [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/) | 10-30 min | guida e controlla, ma non genera il testo |
+| Testo breve, privacy massima | [Riscrittura manuale](methods/human-redraft/README.it.md) | 10-60 min | il tuo tempo |
+| Niente installazione e guida passo passo | [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it) | 2-5 min per preparare, più il tempo del modello | il modello esterno può costare o applicare un proprio sistema di provenienza |
 | Vuoi l'aiuto di un altro sistema | [Metodo delle due buste](methods/two-envelope-clean-room/README.it.md) | 15-40 min | privacy del provider e qualità della scheda |
 | Vuoi un flusso già pronto per un agente | [Copia il prompt](prompts/it/research-pass.md) o [la skill](skills/non-anthropic-text-rewrite/SKILL.md) | 10-30 min | gli errori fattuali vanno comunque controllati |
-| Lavoro ripetuto o riservato | [CLI locale](start-here/it/README.md#voglio-la-cli-locale) | preparazione più 10-60 min | installazione e capacità del computer |
-| Riscrivere tutto è impraticabile | [Microchirurgia guidata](methods/information-targeted/README.md) | 20-90 min | può prendere di mira per errore proprio i fatti rari |
-| Vuoi più compromessi visibili | [Torneo fra candidati](methods/adaptive-search/README.md) | 30-120 min | più calcolo e rischio di ottimizzare i proxy |
-| Un solo passaggio resta troppo vicino | [Catena indipendente](methods/independent-rewrite-chain/README.it.md) | 30-120 min | la deriva del significato si accumula |
+| Preparazione e controlli locali ripetibili | [CLI locale](methods/semantic-reconstitution/README.it.md) | preparazione più pochi minuti per testo | prepara e misura, ma non scrive |
 | Testo ad alta posta e un budget | Editor umano dalla scheda controllata | tempo pagato | soldi, disponibilità e riservatezza |
 
 Questa è la versione rapida. [La guida completa ai metodi](METHODS.it.md) dice che cosa compra davvero ogni percorso, dove si rompe e perché doppia traduzione, trucchi Unicode e sinonimi leggeri non meritano lo stesso peso delle soluzioni forti.
@@ -100,7 +119,7 @@ Anthropic descrive il watermark come un pattern statistico nelle scelte dei toke
 
 ## Vuoi lo strumento locale?
 
-Per il metodo centrale non devi usare il Terminale. Se però vuoi esportare prompt in modo ripetibile, usare un modello locale e confrontare più candidati, la CLI richiede Node.js 20 o successivo e non ha pacchetti runtime obbligatori.
+Per il metodo centrale non devi usare il Terminale. Se però vuoi esportare prompt e confrontare bozze in modo ripetibile, la CLI richiede Node.js 20 o successivo e non ha pacchetti runtime obbligatori.
 
 ```bash
 git clone https://github.com/danilolapegna/claude-watermark-toolkit.git
@@ -109,35 +128,29 @@ npm test
 node bin/watermark-toolkit.js start examples/fixtures/source-it.txt --lang it
 ```
 
-Per fare tutto con un modello locale non Anthropic tramite Ollama:
+Prepara lo stesso prompt strutturato partendo da un file locale:
 
 ```bash
-node bin/watermark-toolkit.js rewrite sorgente.txt \
-  --lang it \
-  --provider ollama \
-  --model IL_TUO_MODELLO_LOCALE \
-  --method adaptive \
-  --count 4 \
-  --generations 2 \
-  --out risultato.json
+node bin/watermark-toolkit.js prompt sorgente.txt --lang it --out prompt.json
 ```
 
-Il toolkit rifiuta gli host Anthropic e i nomi dei modelli Claude prima che una richiesta parta. E non sovrascrive mai la fonte.
+Passa il prompt salvato al sistema non Anthropic che scegli, salva la risposta in `candidato.txt`, poi ripristina i valori esatti e controllala in locale:
+
+```bash
+node bin/watermark-toolkit.js check sorgente.txt candidato.txt --lang it
+```
+
+La CLI non chiama nessun modello e non sovrascrive la fonte o il candidato. Questo contratto più stretto ha retto i test. Il batch locale automatico no, quindi è stato tolto.
 
 ---
 
-## I metodi avanzati non sono lì per fare scena
+## Perché adesso il toolkit è più piccolo
 
-Se “usiamo un algoritmo genetico” ti sembra un modo meraviglioso per produrre dodici paragrafi brutti, l'obiezione è più che sensata.
+Forse ti aspettavi targeting sulla confidenza, torneo adattivo e varie catene di riscrittura. Li abbiamo studiati, costruiti e poi tolti dal toolkit pratico.
 
-Per questo i percorsi avanzati non si fidano della sola bassa somiglianza. Proteggono i fatti, scartano le bozze rotte e tengono visibili obiettivi che possono entrare in conflitto:
+Il proxy di targeting non poteva identificare le posizioni private del segnale Claude e tendeva a premiare proprio il linguaggio fattuale più raro. Il torneo produceva più bozze, ma il suo feedback non guidava davvero le generazioni successive. Chiamare queste cose “avanzate” sarebbe stato teatro.
 
-- [riscrittura mirata](methods/information-targeted/README.md), informata da SIRA e Watermark Smoothing;
-- [ricerca adattiva fra candidati](methods/adaptive-search/README.md), informata da B4 e TSAPA;
-- [catene di riscritture indipendenti](methods/independent-rewrite-chain/README.it.md), lasciate sperimentali perché Chainwash studia una famiglia di modelli più stretta;
-- [esperimenti su surrogati](research/experiment-protocol.md), nei quali SynthID pubblico viene chiamato surrogato e mai spacciato per detector Claude.
-
-La ricerca serve a rendere migliore il metodo. Non ad attaccare parole scientifiche a un parafrasatore semplice.
+La parte utile rimasta è più stretta: esportazione del prompt strutturato, ripristino dei valori esatti, controllo di una bozza e confronto fra più bozze senza vincitore automatico. [La guida completa ai metodi](METHODS.it.md) pubblica contratto, test e limite di ogni strumento rimasto. Il [protocollo di ricerca](research/experiment-protocol.md) resta disponibile per esperimenti veri su surrogati, separato chiaramente dalla soluzione pubblica.
 
 ---
 

@@ -8,9 +8,18 @@ Se non sei una persona tecnica, questa pagina è per te. Parti dal browser. Il T
 
 ## La strada guidata più semplice
 
-Apri [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/).
+Apri [Rewrite Room in italiano](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it).
 
-La prima obiezione è probabilmente: “Non so chi ospita quella pagina e dove finisca il mio testo.” Giusto. La pagina non ha un server che riceve il testo. Il JavaScript lavora nella scheda del browser. Se vuoi togliere di mezzo pure il dubbio sull'hosting, scarica il repository e apri `docs/index.html` mentre sei offline.
+Rewrite Room non è un writer AI. È un prompt builder semplice e diretto, con un confronto locale alla fine. Tutta la scrittura avviene nel modello non Anthropic che scegli tu.
+
+La prima obiezione è probabilmente: “Non so chi ospita quella pagina, dove finisce il mio testo e che cosa dovrei fare una volta aperta.” Giusto. Ecco tutto il percorso prima ancora del clic:
+
+1. Incolla il testo.
+2. Premi **Prepara il mio prompt di riscrittura**.
+3. Copia il prompt in un modello di scrittura non Anthropic.
+4. Riporta qui la bozza e premi **Controlla la nuova bozza**.
+
+La pagina non usa AI e non consuma crediti AI. Il suo JavaScript prepara il prompt, protegge i valori esatti e confronta proprietà visibili della superficie dentro la scheda del browser. Non controlla il significato. Il modello di scrittura esterno può usare il suo piano gratuito, abbonamento o sistema di crediti. Se vuoi togliere di mezzo pure il dubbio sull'hosting, scarica questo repository e apri `docs/index.html` mentre sei offline.
 
 ### Passaggio 1: incolla la fonte
 
@@ -18,38 +27,27 @@ Usa un testo del quale idee e responsabilità finale sono tuoi. La pagina trova 
 
 Se manca un nome o un termine che deve restare identico, aggiungilo tu. L'estrazione automatica è una lista di partenza, non l'oracolo.
 
-### Passaggio 2: prepara le due buste
+### Passaggio 2: prepara e copia il prompt
 
-Nella Busta 1 vanno fatti e significato:
+Premi **Prepara il mio prompt di riscrittura**. La pagina produce un solo prompt completo, con testo e valori protetti già inseriti.
 
-- che cosa deve capire o fare chi legge;
-- un'idea o un'affermazione per riga;
-- il pubblico;
-- i valori esatti che devono sopravvivere.
+È più serio di “parafrasa questo”. Chiede all'altro modello di conservare affermazioni, precisazioni, tono e lunghezza approssimativa, ricostruendo però formulazione ordinaria, inizi di frase e passaggi. Copia tutto il prompt. Non copiare soltanto la parte con il testo.
 
-Nella Busta 2 va la tua voce:
+### Passaggio 3: usa un modello non Anthropic
 
-- ritmo delle frasi;
-- livello di formalità;
-- connettivi che usi naturalmente;
-- parole e formule che non useresti mai;
-- vincoli di formato e lunghezza.
+Apri il modello che preferisci, incolla il prompt come un solo messaggio e invialo. Un altro provider ospitato potrebbe applicare un proprio watermark o sistema di provenienza. Se vuoi zero crediti ospitati e nessun watermark del provider, usa un modello open locale. Richiede installazione e lo trovi spiegato più sotto.
 
-Può sembrare più lento di chiedere una parafrasi. Lo è. Quei pochi minuti servono proprio a impedire che il passaggio di scrittura copi alla cieca la vecchia struttura.
-
-### Passaggio 3: sigilla la fonte
-
-La pagina nasconde il testo originale e crea un prompt senza fonte. Non lo cancella dalla scheda aperta, quindi puoi riaprirlo e correggere la scheda quando serve.
-
-Scrivi tu partendo dalle due buste, oppure copia il prompt in un sistema non Anthropic. Il sistema che scrive non dovrebbe mai ricevere la fonte.
-
-### Passaggio 4: confronta la bozza
+### Passaggio 4: confronta la nuova bozza
 
 Riporta la nuova bozza in Rewrite Room. Vedrai controlli separati per fatti protetti, frasi condivise, inizi delle frasi, struttura e lunghezza.
 
 Se manca un fatto, sistema quello per primo. Se è rimasta una lunga sequenza identica, riscrivi tutto il passaggio invece di cambiare tre parole. Se la struttura è troppo vicina, rimetti le idee in un ordine diverso.
 
 La pagina non può dirti che il detector privato di Anthropic accetterà il risultato. Ti dice quello che può misurare davvero.
+
+### Vuoi una separazione più forte?
+
+Apri la sezione avanzata a camera stagna dentro Rewrite Room. Ti chiede due buste, una per fatti e significato, una per voce e limiti. Il modello di scrittura riceve quelle buste senza le vecchie frasi. Richiede più tempo, che è esattamente il motivo per cui non è più il percorso predefinito.
 
 ## La strada manuale, se anche il form ti sembra di troppo
 
@@ -141,44 +139,39 @@ Crea `sorgente.txt` nella cartella del toolkit, incolla il testo e salva. Poi es
 node bin/watermark-toolkit.js start sorgente.txt --lang it
 ```
 
-Crea i due prompt:
+Crea il prompt principale:
 
 ```bash
 node bin/watermark-toolkit.js prompt sorgente.txt --lang it --out prompt.json
 ```
 
-### 6. Tieni in locale anche la riscrittura
-
-Installa [Ollama](https://ollama.com/) e scegli un modello locale che non sia di Anthropic. Controlla che funzioni dentro Ollama, poi usa il nome esatto:
+Se invece vuoi la coppia avanzata separata dalla fonte:
 
 ```bash
-node bin/watermark-toolkit.js rewrite sorgente.txt \
-  --lang it \
-  --provider ollama \
-  --model IL_TUO_MODELLO_LOCALE \
-  --out risultato.json
+node bin/watermark-toolkit.js prompt sorgente.txt --lang it --clean-room --out prompts.json
 ```
 
-La fonte va al processo Ollama sul tuo computer. Non va a questo repository e non va ad Anthropic.
+### 6. Controlla in locale la bozza ricevuta
 
-## Voglio i metodi avanzati
+Passa il prompt esportato al sistema non Anthropic che scegli. Salva la risposta come `candidato.txt`, poi esegui:
 
-La domanda legittima qui è: “Se il metodo semplice è forte, perché ci sono targeting e insieme Pareto?” Perché su lavori lunghi o ripetuti cambia il costo.
+```bash
+node bin/watermark-toolkit.js check sorgente.txt candidato.txt --lang it
+```
 
-- La [microchirurgia guidata dalla confidenza](../../methods/information-targeted/README.md) spende un budget limitato di modifiche su passaggi selezionati, dopo aver protetto i fatti.
-- Il [torneo fra candidati](../../methods/adaptive-search/README.md) genera più strutture e mantiene visibili i compromessi non dominati.
-- Le [catene indipendenti](../../methods/independent-rewrite-chain/README.it.md) ripartono sempre dalla stessa scheda controllata, mai dalla bozza precedente.
-
-Sono strade sperimentali o costose. Prima di usarle leggi bene il confine dell'evidenza.
+Per due o più alternative, usa `compare`. La CLI non chiama modelli, non carica nulla e non sceglie un vincitore. Il batch locale automatico è stato testato e tolto perché i risultati non giustificavano la preparazione.
 
 ## Leggi il risultato della CLI senza tirare a indovinare
 
-- `valid: true` significa che la bozza conserva i valori protetti automaticamente e resta nel margine di lunghezza predefinito.
+- `mechanicallyValid: true` significa che la bozza conserva i valori protetti automaticamente e resta nel margine di lunghezza predefinito. Non dice nulla su causalità, precisazioni o tono.
+- `semanticStatus: "requires-manual-review"` resta in ogni resoconto perché una metrica locale non può approvare il significato.
 - `ngramSurvival` misura le sequenze di quattro parole rimaste. Più basso significa più cambiamento della forma, non testo migliore.
-- `readability` è un segnale approssimativo di facilità di lettura, non un voto.
-- `recommended` è la scelta prodotta dai pesi pubblici sull'insieme Pareto. Puoi leggere e scegliere un altro candidato.
+- `longestSharedPhrase` mostra la sequenza ordinaria più lunga condivisa con la fonte.
+- `mechanicalShortlist` conserva le bozze che superano i controlli configurati. `recommended` resta vuoto. Scegli tu dopo aver letto.
 
 Nessun punteggio locale dimostra un risultato contro il detector privato di Anthropic.
+
+Se ti aspettavi targeting o un torneo adattivo, li abbiamo tolti dopo il red-team. Il proxy poteva privilegiare fatti rari senza localizzare il segnale privato di Claude. Il torneo non adattava davvero la generazione. [La guida ai metodi](../../METHODS.it.md) spiega la decisione e i contratti più stretti rimasti.
 
 ## Se qualcosa non funziona
 

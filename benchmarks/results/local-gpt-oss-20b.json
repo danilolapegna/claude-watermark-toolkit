@@ -1,0 +1,612 @@
+{
+  "schema": "claude-watermark-toolkit/local-prompt-benchmark/1.0",
+  "runAt": "2026-08-28T15:26:07.601Z",
+  "model": "gpt-oss-20b-Q4_K_M.gguf",
+  "corpusSize": 4,
+  "design": "Same local non-Anthropic model and seed per case. Baseline and precision drafts judged blind with alternating labels. Mechanical evidence is deterministic; judge scores are model-assisted and require human inspection.",
+  "summary": {
+    "baseline": {
+      "fidelity": 62.5,
+      "independence": 71.25,
+      "voice": 72.5,
+      "exactValuePasses": 1,
+      "fourWordSurvival": 0.27365000000000006,
+      "longestSharedPhrase": 10
+    },
+    "precision": {
+      "fidelity": 60,
+      "independence": 72.5,
+      "voice": 71.25,
+      "exactValuePasses": 4,
+      "fourWordSurvival": 0.237325,
+      "longestSharedPhrase": 9
+    }
+  },
+  "mechanicalGate": {
+    "allPrecisionExactValues": true,
+    "independenceMajority": true,
+    "surfaceMargin": true,
+    "pass": true
+  },
+  "modelJudgeAdvisory": {
+    "fidelityNotWorse": false,
+    "voiceNotWorse": true,
+    "status": "advisory-only-requires-human-inspection"
+  },
+  "semanticReleaseStatus": "REQUIRES_MANUAL_SEMANTIC_REVIEW",
+  "cases": [
+    {
+      "id": "en-qualification",
+      "language": "en",
+      "source": "The 12-week pilot involved 64 employees and ended on 2026-08-28. It did not show that a four-day week increased productivity. The observed change was 3.1%, but the 95% confidence interval crossed zero. We can say the schedule was workable for this team. We cannot say it caused better performance, and we certainly cannot generalize from one team to an entire company.",
+      "protectedValues": [
+        {
+          "type": "number",
+          "value": "12"
+        },
+        {
+          "type": "number",
+          "value": "64"
+        },
+        {
+          "type": "date",
+          "value": "2026-08-28"
+        },
+        {
+          "type": "number",
+          "value": "3.1%"
+        },
+        {
+          "type": "number",
+          "value": "95%"
+        }
+      ],
+      "baseline": {
+        "draft": "The 12‑week trial included 64 staff members and concluded on 2026‑08‑28. It did not demonstrate that a four‑day week boosted productivity. The measured change was 3.1 %, yet the 95 % confidence interval spanned zero. We can state that the schedule was feasible for this group, but we cannot claim it produced better results, nor can we extrapolate from a single team to the whole company.",
+        "mechanical": {
+          "id": "d422317bbaad",
+          "mechanicallyValid": false,
+          "valid": false,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [
+            "Missing 3 protected values."
+          ],
+          "missingInvariants": [
+            {
+              "type": "date",
+              "value": "2026-08-28"
+            },
+            {
+              "type": "number",
+              "value": "3.1%"
+            },
+            {
+              "type": "number",
+              "value": "95%"
+            }
+          ],
+          "metrics": {
+            "invariantRetention": 0.4,
+            "ngramSurvival": 0.127,
+            "lengthRatio": 1.0455,
+            "readability": 65,
+            "sourceReadability": 64,
+            "readabilityDelta": 1,
+            "wordCount": 69,
+            "longestSharedPhrase": {
+              "length": 7,
+              "phrase": "on 2026 08 28 it did not"
+            },
+            "sentenceOpeningReuse": 0.4
+          }
+        },
+        "judge": {
+          "fidelity": 100,
+          "independence": 100,
+          "voice": 100,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "precision": {
+        "firstRawDraft": "The pilot, which ran for [PV-01] weeks and included [PV-02] staff, concluded on [PV-03]. It failed to demonstrate that a four‑day week boosts productivity. The measured shift was [PV-04], yet the [PV-05] confidence interval encompassed zero. Thus, we can claim the schedule is feasible for this particular group, but we cannot assert it produced superior results, let alone extrapolate the findings to the whole company.",
+        "firstDraft": "The pilot, which ran for 12 weeks and included 64 staff, concluded on 2026-08-28. It failed to demonstrate that a four‑day week boosts productivity. The measured shift was 3.1%, yet the 95% confidence interval encompassed zero. Thus, we can claim the schedule is feasible for this particular group, but we cannot assert it produced superior results, let alone extrapolate the findings to the whole company.",
+        "firstMechanical": {
+          "id": "d385ec956583",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.0794,
+            "lengthRatio": 1.0455,
+            "readability": 54,
+            "sourceReadability": 64,
+            "readabilityDelta": -10,
+            "wordCount": 69,
+            "longestSharedPhrase": {
+              "length": 5,
+              "phrase": "on 2026 08 28 it"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "draft": "The pilot, which ran for 12 weeks and included 64 staff, concluded on 2026-08-28. It failed to demonstrate that a four‑day week boosts productivity. The measured shift was 3.1%, yet the 95% confidence interval encompassed zero. Thus, we can claim the schedule is feasible for this particular group, but we cannot assert it produced superior results, let alone extrapolate the findings to the whole company.",
+        "mechanical": {
+          "id": "d385ec956583",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.0794,
+            "lengthRatio": 1.0455,
+            "readability": 54,
+            "sourceReadability": 64,
+            "readabilityDelta": -10,
+            "wordCount": 69,
+            "longestSharedPhrase": {
+              "length": 5,
+              "phrase": "on 2026 08 28 it"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "judge": {
+          "fidelity": 100,
+          "independence": 100,
+          "voice": 100,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "blindJudge": {
+        "A": {
+          "fidelity": 100,
+          "independence": 100,
+          "voice": 100,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "B": {
+          "fidelity": 100,
+          "independence": 100,
+          "voice": 100,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "fidelity_winner": "tie",
+        "independence_winner": "tie",
+        "overall_winner": "tie",
+        "reason": "Both drafts preserve all required values, maintain source meaning, and independently reconstruct sentences."
+      },
+      "precisionWasLabel": "B"
+    },
+    {
+      "id": "it-policy-voice",
+      "language": "it",
+      "source": "Il punto, molto banalmente, non è fingere che l'assistenza non sia esistita. È evitare che un segnale tecnico diventi una sentenza sulla persona. Nel campione di 320 testi, il detector ha segnalato il 18,4%. Quel numero non dimostra chi abbia avuto l'idea, chi abbia verificato le fonti o chi si assuma la responsabilità. Può aprire un controllo. Non può chiuderlo da solo.",
+      "protectedValues": [
+        {
+          "type": "number",
+          "value": "320"
+        },
+        {
+          "type": "number",
+          "value": "18,4%"
+        }
+      ],
+      "baseline": {
+        "draft": "Il fatto, in modo molto semplice, è che non si può pretendere che l’assistenza non sia esistita. Si tratta di impedire che un segnale tecnico si trasformi in una sentenza sulla persona. Nel campione di 320 testi, il rilevatore ha segnalato l’18,4 %. Questo numero non dimostra chi abbia avuto l’idea, chi abbia verificato le fonti o chi si assuma la responsabilità. Può aprire un controllo, ma non può chiuderlo da solo.",
+        "mechanical": {
+          "id": "e9877444b2ac",
+          "mechanicallyValid": false,
+          "valid": false,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [
+            "Missing 1 protected value."
+          ],
+          "missingInvariants": [
+            {
+              "type": "number",
+              "value": "18,4%"
+            }
+          ],
+          "metrics": {
+            "invariantRetention": 0.5,
+            "ngramSurvival": 0.4167,
+            "lengthRatio": 1.1587,
+            "readability": 64,
+            "sourceReadability": 70,
+            "readabilityDelta": -6,
+            "wordCount": 73,
+            "longestSharedPhrase": {
+              "length": 15,
+              "phrase": "chi abbia verificato le fonti o chi si assuma la responsabilità può aprire un controllo"
+            },
+            "sentenceOpeningReuse": 0.3333
+          }
+        },
+        "judge": {
+          "fidelity": 30,
+          "independence": 75,
+          "voice": 75,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "precision": {
+        "firstRawDraft": "Il fatto, in modo assai ovvio, non consiste nel negare che l’assistenza sia realmente avvenuta. Serve soltanto impedire che un segnale tecnico si trasformi in una sentenza sulla persona. Nel campione di [PV-01] documenti, il detector ha rilevato il [PV-02]. Tale valore non dimostra chi abbia concepito l’idea, chi abbia verificato le fonti o chi si assuma la responsabilità. Può aprire un controllo, ma non può chiuderlo da solo.",
+        "firstDraft": "Il fatto, in modo assai ovvio, non consiste nel negare che l’assistenza sia realmente avvenuta. Serve soltanto impedire che un segnale tecnico si trasformi in una sentenza sulla persona. Nel campione di 320 documenti, il detector ha rilevato il 18,4%. Tale valore non dimostra chi abbia concepito l’idea, chi abbia verificato le fonti o chi si assuma la responsabilità. Può aprire un controllo, ma non può chiuderlo da solo.",
+        "firstMechanical": {
+          "id": "59905eaaa069",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.35,
+            "lengthRatio": 1.1111,
+            "readability": 61,
+            "sourceReadability": 70,
+            "readabilityDelta": -9,
+            "wordCount": 70,
+            "longestSharedPhrase": {
+              "length": 15,
+              "phrase": "chi abbia verificato le fonti o chi si assuma la responsabilità può aprire un controllo"
+            },
+            "sentenceOpeningReuse": 0.3333
+          }
+        },
+        "draft": "Il fatto, in modo assai ovvio, non consiste nel negare che l’assistenza sia realmente avvenuta. Serve soltanto impedire che un segnale tecnico si trasformi in una sentenza sulla persona. Nel campione di 320 documenti, il detector ha rilevato il 18,4%. Tale valore non dimostra chi abbia concepito l’idea, chi abbia verificato le fonti o chi si assuma la responsabilità. Può aprire un controllo, ma non può chiuderlo da solo.",
+        "mechanical": {
+          "id": "59905eaaa069",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.35,
+            "lengthRatio": 1.1111,
+            "readability": 61,
+            "sourceReadability": 70,
+            "readabilityDelta": -9,
+            "wordCount": 70,
+            "longestSharedPhrase": {
+              "length": 15,
+              "phrase": "chi abbia verificato le fonti o chi si assuma la responsabilità può aprire un controllo"
+            },
+            "sentenceOpeningReuse": 0.3333
+          }
+        },
+        "judge": {
+          "fidelity": 20,
+          "independence": 80,
+          "voice": 70,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "blindJudge": {
+        "A": {
+          "fidelity": 20,
+          "independence": 80,
+          "voice": 70,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "B": {
+          "fidelity": 30,
+          "independence": 75,
+          "voice": 75,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "fidelity_winner": "b",
+        "independence_winner": "a",
+        "overall_winner": "b",
+        "reason": "Candidate B preserves the original meaning and key terms more accurately."
+      },
+      "precisionWasLabel": "A"
+    },
+    {
+      "id": "en-causality",
+      "language": "en",
+      "source": "DL Solutions published the protocol at https://example.com/protocol before reading the outcomes. Error reports fell from 41 to 23 after the new checklist was introduced. The sequence is suggestive, not decisive: staffing also changed in the same month. The evidence supports another controlled test, not the claim that the checklist caused the entire reduction.",
+      "protectedValues": [
+        {
+          "type": "name",
+          "value": "DL Solutions"
+        },
+        {
+          "type": "url",
+          "value": "https://example.com/protocol"
+        },
+        {
+          "type": "number",
+          "value": "41"
+        },
+        {
+          "type": "number",
+          "value": "23"
+        }
+      ],
+      "baseline": {
+        "draft": "DL Solutions released the protocol at https://example.com/protocol before reviewing the results. After the new checklist was implemented, error reports dropped from 41 to 23. The pattern is indicative rather than conclusive: staffing also shifted during that same month. The data back up a further controlled experiment, not the assertion that the checklist alone produced the full decrease.",
+        "mechanical": {
+          "id": "0d27911846cb",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.1509,
+            "lengthRatio": 1.0714,
+            "readability": 42,
+            "sourceReadability": 48,
+            "readabilityDelta": -6,
+            "wordCount": 60,
+            "longestSharedPhrase": {
+              "length": 8,
+              "phrase": "the protocol at https example com protocol before"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "judge": {
+          "fidelity": 100,
+          "independence": 80,
+          "voice": 90,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "precision": {
+        "firstRawDraft": "[PV-01] released the protocol on [PV-02] prior to reviewing the results. After the new checklist was implemented, error reports dropped from [PV-03] to [PV-04]. The pattern is indicative but not conclusive; staffing levels also shifted during that month. The data point toward conducting another controlled test rather than concluding that the checklist alone produced the full decrease.",
+        "firstDraft": "DL Solutions released the protocol on https://example.com/protocol prior to reviewing the results. After the new checklist was implemented, error reports dropped from 41 to 23. The pattern is indicative but not conclusive; staffing levels also shifted during that month. The data point toward conducting another controlled test rather than concluding that the checklist alone produced the full decrease.",
+        "firstMechanical": {
+          "id": "5ca235c765be",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.0755,
+            "lengthRatio": 1.0893,
+            "readability": 42,
+            "sourceReadability": 48,
+            "readabilityDelta": -6,
+            "wordCount": 61,
+            "longestSharedPhrase": {
+              "length": 5,
+              "phrase": "after the new checklist was"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "draft": "DL Solutions released the protocol on https://example.com/protocol prior to reviewing the results. After the new checklist was implemented, error reports dropped from 41 to 23. The pattern is indicative but not conclusive; staffing levels also shifted during that month. The data point toward conducting another controlled test rather than concluding that the checklist alone produced the full decrease.",
+        "mechanical": {
+          "id": "5ca235c765be",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.0755,
+            "lengthRatio": 1.0893,
+            "readability": 42,
+            "sourceReadability": 48,
+            "readabilityDelta": -6,
+            "wordCount": 61,
+            "longestSharedPhrase": {
+              "length": 5,
+              "phrase": "after the new checklist was"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "judge": {
+          "fidelity": 100,
+          "independence": 80,
+          "voice": 90,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "blindJudge": {
+        "A": {
+          "fidelity": 100,
+          "independence": 80,
+          "voice": 90,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "B": {
+          "fidelity": 100,
+          "independence": 80,
+          "voice": 90,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "fidelity_winner": "tie",
+        "independence_winner": "tie",
+        "overall_winner": "tie",
+        "reason": "Both drafts preserve all protected values, maintain fidelity, and exhibit comparable independence and voice."
+      },
+      "precisionWasLabel": "B"
+    },
+    {
+      "id": "it-exact-boundaries",
+      "language": "it",
+      "source": "La regola interna dice “nessuna pubblicazione automatica”. Il 28 agosto 2026, API-OPS ha preparato una bozza da 1.200,50 € per il cliente, ma non l'ha inviata. Il responsabile può approvarla, correggerla oppure scartarla. Finché non sceglie, il file resta una bozza e non una comunicazione ufficiale.",
+      "protectedValues": [
+        {
+          "type": "quote",
+          "value": "“nessuna pubblicazione automatica”"
+        },
+        {
+          "type": "date",
+          "value": "28 agosto 2026"
+        },
+        {
+          "type": "acronym",
+          "value": "API-OPS"
+        },
+        {
+          "type": "number",
+          "value": "1.200,50 €"
+        }
+      ],
+      "baseline": {
+        "draft": "La norma interna stabilisce “nessuna pubblicazione automatica”. Il 28 agosto 2026, API‑OPS ha redatto una bozza di 1 200,50 € per il cliente, ma non l’ha inviata. Il responsabile può approvarla, modificarla o respingerla. Fino a quando non decide, il documento rimane una bozza e non una comunicazione ufficiale.",
+        "mechanical": {
+          "id": "b7534df4e514",
+          "mechanicallyValid": false,
+          "valid": false,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [
+            "Missing 3 protected values."
+          ],
+          "missingInvariants": [
+            {
+              "type": "date",
+              "value": "28 agosto 2026"
+            },
+            {
+              "type": "acronym",
+              "value": "API-OPS"
+            },
+            {
+              "type": "number",
+              "value": "1.200,50 €"
+            }
+          ],
+          "metrics": {
+            "invariantRetention": 0.25,
+            "ngramSurvival": 0.4,
+            "lengthRatio": 1.0417,
+            "readability": 63,
+            "sourceReadability": 64,
+            "readabilityDelta": -1,
+            "wordCount": 50,
+            "longestSharedPhrase": {
+              "length": 10,
+              "phrase": "nessuna pubblicazione automatica il 28 agosto 2026 api ops ha"
+            },
+            "sentenceOpeningReuse": 0.5
+          }
+        },
+        "judge": {
+          "fidelity": 20,
+          "independence": 30,
+          "voice": 25,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "precision": {
+        "firstRawDraft": "La regola interna indica [PV-01]. Il [PV-02], [PV-03] ha redatto una bozza da [PV-04] per il cliente, ma non l’ha ancora spedita. Il responsabile può approvarla, modificarla o scartarla. Fino a quando non decide, il file rimane una bozza e non una comunicazione ufficiale.",
+        "firstDraft": "La regola interna indica “nessuna pubblicazione automatica”. Il 28 agosto 2026, API-OPS ha redatto una bozza da 1.200,50 € per il cliente, ma non l’ha ancora spedita. Il responsabile può approvarla, modificarla o scartarla. Fino a quando non decide, il file rimane una bozza e non una comunicazione ufficiale.",
+        "firstMechanical": {
+          "id": "d2d7c05ea1fe",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.4444,
+            "lengthRatio": 1.0625,
+            "readability": 64,
+            "sourceReadability": 64,
+            "readabilityDelta": 0,
+            "wordCount": 51,
+            "longestSharedPhrase": {
+              "length": 11,
+              "phrase": "una bozza da 1 200 50 per il cliente ma non"
+            },
+            "sentenceOpeningReuse": 0.75
+          }
+        },
+        "draft": "La regola interna indica “nessuna pubblicazione automatica”. Il 28 agosto 2026, API-OPS ha redatto una bozza da 1.200,50 € per il cliente, ma non l’ha ancora spedita. Il responsabile può approvarla, modificarla o scartarla. Fino a quando non decide, il file rimane una bozza e non una comunicazione ufficiale.",
+        "mechanical": {
+          "id": "d2d7c05ea1fe",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.4444,
+            "lengthRatio": 1.0625,
+            "readability": 64,
+            "sourceReadability": 64,
+            "readabilityDelta": 0,
+            "wordCount": 51,
+            "longestSharedPhrase": {
+              "length": 11,
+              "phrase": "una bozza da 1 200 50 per il cliente ma non"
+            },
+            "sentenceOpeningReuse": 0.75
+          }
+        },
+        "judge": {
+          "fidelity": 20,
+          "independence": 30,
+          "voice": 25,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "blindJudge": {
+        "A": {
+          "fidelity": 20,
+          "independence": 30,
+          "voice": 25,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "B": {
+          "fidelity": 20,
+          "independence": 30,
+          "voice": 25,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "fidelity_winner": "tie",
+        "independence_winner": "tie",
+        "overall_winner": "tie",
+        "reason": "Both drafts alter key terms and sentence structure, lowering fidelity and independence."
+      },
+      "precisionWasLabel": "A"
+    }
+  ]
+}

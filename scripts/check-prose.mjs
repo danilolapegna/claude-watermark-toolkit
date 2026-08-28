@@ -35,6 +35,8 @@ const BANNED = [
   { label: "stock transition", pattern: /\bwithout further ado\b/giu },
   { label: "stock adjective", pattern: /\bgroundbreaking\b/giu },
   { label: "stock filler", pattern: /\bit is worth noting that\b/giu },
+  { label: "Rewrite Room overclaim", pattern: /\bRewrite Room (?:rebuilds|rewrites|writes|ricostruisce|riscrive|scrive)\b/giu },
+  { label: "unsupported fidelity label", pattern: /\bhigh[- ]fidelity (?:rewrite )?prompt\b|\bprompt (?:di riscrittura )?ad alta fedeltà\b/giu },
 ];
 
 async function publicTextFiles(path) {

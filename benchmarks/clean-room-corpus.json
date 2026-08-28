@@ -1,0 +1,63 @@
+[
+  {
+    "id": "en-reviewed-brief",
+    "language": "en",
+    "source": "The 12-week pilot involved 64 employees and ended on 2026-08-28. It did not show that a four-day week increased productivity. The observed change was 3.1%, but the 95% confidence interval crossed zero. We can say the schedule was workable for this team. We cannot say it caused better performance, and we certainly cannot generalize from one team to an entire company.",
+    "reviewedBrief": {
+      "purpose": "Explain the narrow conclusion supported by the pilot.",
+      "audience": "People deciding how to interpret the result.",
+      "claims": [
+        "A [PV-01]-week pilot with [PV-02] employees ended on [PV-03].",
+        "The pilot did not demonstrate a productivity increase from a four-day week.",
+        "The observed change was [PV-04], and its [PV-05] confidence interval crossed zero.",
+        "The schedule was workable for the studied team.",
+        "The evidence supports neither causation nor company-wide generalization."
+      ],
+      "evidence": [
+        "Observed change: [PV-04].",
+        "The [PV-05] confidence interval crossed zero."
+      ],
+      "qualifications": [
+        "Workability applies only to the studied team.",
+        "No causal or company-wide conclusion."
+      ],
+      "voice": [
+        "Direct and cautious.",
+        "Make the supported and unsupported conclusions explicit.",
+        "Avoid generic research polish."
+      ],
+      "constraints": ["English.", "One short paragraph."],
+      "protectedValues": [
+        { "type": "number", "value": "[PV-01]" },
+        { "type": "number", "value": "[PV-02]" },
+        { "type": "date", "value": "[PV-03]" },
+        { "type": "number", "value": "[PV-04]" },
+        { "type": "number", "value": "[PV-05]" }
+      ]
+    }
+  },
+  {
+    "id": "it-reviewed-brief",
+    "language": "it",
+    "source": "Il punto, molto banalmente, non è fingere che l'assistenza non sia esistita. È evitare che un segnale tecnico diventi una sentenza sulla persona. Nel campione di 320 testi, il detector ha segnalato il 18,4%. Quel numero non dimostra chi abbia avuto l'idea, chi abbia verificato le fonti o chi si assuma la responsabilità. Può aprire un controllo. Non può chiuderlo da solo.",
+    "reviewedBrief": {
+      "purpose": "Spiegare perché un segnale tecnico non basta per giudicare una persona.",
+      "audience": "Chi valuta testi scritti con assistenza AI.",
+      "claims": [
+        "Non serve negare che l'assistenza possa esserci stata.",
+        "Un segnale tecnico non deve diventare una sentenza sulla persona.",
+        "Su [PV-01] testi, il detector ha segnalato il [PV-02].",
+        "Il dato non attribuisce idea, verifica delle fonti o responsabilità.",
+        "Il dato può aprire un controllo ma non chiuderlo da solo."
+      ],
+      "evidence": ["Campione: [PV-01] testi.", "Risultato del detector: [PV-02]."],
+      "qualifications": ["Non negare l'eventuale assistenza.", "Non usare il dato come prova di responsabilità o origine delle idee."],
+      "voice": ["Diretta e colloquiale.", "Usa frasi brevi per il limite finale.", "Evita il tono accademico."],
+      "constraints": ["Italiano.", "Un paragrafo breve.", "Conserva il termine detector."],
+      "protectedValues": [
+        { "type": "number", "value": "[PV-01]" },
+        { "type": "number", "value": "[PV-02]" }
+      ]
+    }
+  }
+]

@@ -24,12 +24,11 @@ Last updated: 2026-08-28.
 
 - [x] Build the immutable rewrite case and invariant extractor.
 - [x] Build semantic reconstitution and offline prompt export.
-- [x] Add Ollama and generic OpenAI-compatible providers.
-- [x] Reject Anthropic endpoints and Claude model identifiers.
+- [x] Build and test local provider adapters, then remove them after the real candidate batch failed the practical-value gate.
 - [x] Build candidate validation and plain-language scorecards.
-- [x] Build information-targeted rewriting.
-- [x] Build adaptive candidate search and Pareto selection.
-- [x] Test one full mock workflow and offline edge cases.
+- [x] Build and red-team information-targeted rewriting, then remove it after the proxy failed the practical-value gate.
+- [x] Build and red-team adaptive candidate search, reduce it to an honest independent batch, then remove the batch when real-model results failed the practical-value gate.
+- [x] Test the retained prompt, restoration, check and comparison workflow plus offline edge cases.
 
 ## 3. Human entry points
 
@@ -76,17 +75,34 @@ Last updated: 2026-08-28.
 
 ## 8. Rewrite Room and definitive guide expansion
 
-- [x] Replace the short method list with a complete route ladder from disclosure to human editing.
+- [x] Replace the short method list with a five-route ladder whose remaining entries each publish a contract, test and limit.
 - [x] Add the two-envelope clean-room method in native English and Italian.
-- [x] Add the independent rewrite chain with its narrower evidence boundary.
+- [x] Test and remove draft-to-draft chains because they compound drift; retain only independent drafts from one checked brief.
 - [x] Build a bilingual, no-install Rewrite Room with no backend, provider or text upload.
-- [x] Protect exact values, seal and restore the source, export a source-free prompt and compare a candidate locally.
+- [x] Protect exact values with local PV placeholders, export a tested structured prompt and retain the source-free clean-room route as the higher-effort option.
 - [x] Require a deliberate second click before clearing the current session.
 - [x] Rewrite the repository entry points around likely reader objections and actual next actions.
-- [x] Rewrite only the Italian website guide in Danilo's native style and prove that the English body is unchanged.
-- [x] Pass unit, static, prose, link, journey, accessibility, desktop and mobile browser checks.
+- [x] Rewrite the Italian website guide in Danilo's native style and align the English guide to the same admitted methods without machine translation.
+- [x] Remove targeting, the pseudo-adaptive tournament and automatic recommendations after red-team failure.
+- [x] Remove the automated local batch after real gpt-oss trials produced JSON, close copying and false stops.
+- [x] Benchmark the primary prompt against a banal paraphrase on a local non-Anthropic model and retain the raw evidence.
+- [x] Replace the stale website methods 6 and 7 with one explicit research post-mortem that tells the reader there is no action to take.
+- [x] Add a shared explanation contract: reader situation, exact next action, expected result, cost or privacy trade-off, limit and stop condition before research jargon.
+- [x] Add regression tests that reject removed CLI commands, targeting-as-instruction, tournament-as-instruction and inflated Rewrite Room claims across both languages.
+- [x] Re-run unit, static, prose, link, journey, accessibility, desktop and mobile browser checks on the final v2 surface.
 - [ ] Merge and verify Rewrite Room on GitHub Pages.
 - [ ] Merge and verify the definitive Italian guide on danilolapegna.com.
+
+## 9. Unified explanation and article draft
+
+- [x] Reconcile README, manifesto, Rewrite Room, method guides, website guides and persistent product documents against one reader-first explanation contract.
+- [x] State everywhere that Rewrite Room is a local prompt builder with checks, not an AI writer or detector.
+- [x] Remove Methods 6 and 7 from both website guides and explain the rejected research prototypes only as a no-action post-mortem.
+- [x] Align the image-versus-text argument: visual media may masquerade as sensory evidence; a text claim is judged by the claim, evidence and responsibility, not by the software that helped phrase it.
+- [x] Write the private Substack draft `Le idee non hanno watermark` in Danilo's voice.
+- [x] Replace generic editorial art with two original illustrations in the established Kintsugi / 5 Hacks visual system and one real Rewrite Room screenshot.
+- [x] Pass the workspace deliverable gate and the no-em-dash check on the article.
+- [ ] Publish or send the article. This remains deliberately outside the automated sequence.
 
 ## Release receipts
 
@@ -102,3 +118,7 @@ Last updated: 2026-08-28.
 | Repository discovery | updated | English guide set as homepage; six public topics verified through GitHub |
 | R&D report correction | corrected locally | the workspace report now distinguishes models launched from 2 August from the incomplete earlier-model rollout |
 | Recurring verification | active | automation `verifica-repo-anti-watermark`, every 15 days |
+| Toolkit v2 branch | ready locally, not merged | `codex/dl-solutions-rewrite-room` at `b49da56`; 37 tests plus workbench, prose and links passed |
+| Website guide v2 branch | ready locally, not merged | `codex/watermark-guide-reader-first` at `77ce43e`; 358 tests passed, 4 environment-gated skipped; TypeScript, changed-file lint and production build passed |
+| Public Italian guide | still old v1 | live page still contains the removed Methods 6 and 7; the corrected v2 is verified only in the local preview until merge and deploy |
+| Substack article | private local draft | `Personal brand/deliverables/substack-le-idee-non-hanno-watermark-2026-08-28.md`; gate passed; not sent or published |
