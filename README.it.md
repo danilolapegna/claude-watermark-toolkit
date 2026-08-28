@@ -1,46 +1,75 @@
-# Le idee non hanno filigrana
+# Rendi davvero tuo un testo scritto con l'aiuto dell'AI
 
-Claude Watermark Toolkit è una guida open source per ricostruire un testo assistito dall'AI nella propria voce. Parte da un metodo manuale di cinque minuti e arriva a strumenti locali testati per ricostruzione semantica, tutela dei fatti, riscrittura mirata e confronto fra più versioni.
+<p align="center">
+  <strong>Una guida open source per ricostruire un testo assistito da Claude partendo dalle idee, non dai sinonimi.</strong>
+</p>
 
-Il runtime non usa modelli, API, SDK o strumenti di coding Anthropic.
+Se stai cercando un modo pratico per rimuovere un possibile watermark dai testi Claude, parti da qui. Probabilmente hai un testo che dice ciò che pensi ma sembra ancora legato al modo in cui Claude l'ha formulato. Le idee sono tue. I fatti sono corretti. Vuoi una versione davvero nuova, senza trucchi cosmetici o detector che promettono certezze che non possono dare.
 
-[Read in English](README.md) · [Leggi il manifesto](MANIFESTO.it.md) · [Parti da zero](start-here/it/README.md) · [Segui un esempio completo](examples/walkthrough.it.md) · [Apri la guida completa](https://danilolapegna.com/guides/guida-watermark-testi-claude?utm_source=github&utm_medium=opensource&utm_campaign=claude-watermark-guide)
+**Il metodo in una frase:** estrai ciò che deve restare, metti da parte la formulazione originale e scrivi una nuova versione partendo dalla scheda verificata.
 
-## Che cosa trovi qui
+Non devi capire come funziona SynthID. Per il primo percorso non devi installare nulla.
 
-Cinque strade, in ordine di impegno:
+Questa guida serve per testi tuoi, dei quali sei disposto a prenderti la responsabilità. Non serve a prendersi la paternità del lavoro di qualcun altro.
 
-| Metodo | Tempo | Livello tecnico | Privacy | Quando conviene |
-|---|---:|---|---|---|
-| Riscrittura umana da zero | 10-30 min | nessuno | resta con te | testi brevi e importanti |
-| Nuova bozza da una scaletta | 10 min | nessuno | dipende dallo strumento scelto | scrittura quotidiana |
-| Ricostruzione semantica | 5-20 min | base | locale o endpoint scelto | scelta solida per testi lunghi |
-| Riscrittura mirata per informazione | 15-45 min | avanzato | locale | ricerca e passaggi ostinati |
-| Ricerca adattiva fra candidati | 10-60 min | tecnico | locale o endpoint scelto | più versioni con pro e contro visibili |
+<p align="center">
+  <a href="start-here/it/README.md"><img src="https://img.shields.io/badge/PARTI_DA_QUI-niente_installazione-2F855A?style=for-the-badge" alt="Parti da qui senza installare nulla" /></a>
+  <a href="README.md"><img src="https://img.shields.io/badge/READ_IN-ENGLISH-C9A84C?style=for-the-badge&labelColor=1A1A2E" alt="Read in English" /></a>
+  <a href="https://github.com/danilolapegna/claude-watermark-toolkit/actions/workflows/ci.yml"><img src="https://github.com/danilolapegna/claude-watermark-toolkit/actions/workflows/ci.yml/badge.svg" alt="Test e controlli della documentazione" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/licenza-MIT-1A1A2E?style=for-the-badge" alt="Licenza MIT" /></a>
+</p>
 
-Ogni metodo spiega che cosa conserva, che cosa cambia, dove può fallire e come controllare il risultato. [Vai al confronto completo](LIMITS.md).
+<p align="center">
+  <a href="https://danilolapegna.com/guides/guida-watermark-testi-claude?utm_source=github&utm_medium=opensource&utm_campaign=claude-watermark-guide">Leggi la guida sul sito</a>
+  ·
+  <a href="examples/walkthrough.it.md">Guarda un esempio completo</a>
+</p>
 
-## Il punto da chiarire su Claude
+---
 
-Il 14 agosto 2026 Anthropic ha annunciato che i futuri modelli Claude avrebbero usato una variante di SynthID Text. Nello stesso annuncio ha scritto che l'estensione ai modelli precedenti sarebbe avvenuta nei mesi successivi. La pagina di assistenza attuale dice che i modelli supportati lanciati dal 2 agosto in poi includono la marcatura al lancio, mentre l'estensione ai modelli esistenti è ancora in corso.
+## 🧭 Scegli il percorso adatto a oggi
 
-Questo non dimostra che ogni output Claude sia marcato dal 14 agosto. Non dimostra neppure il contrario. Anthropic non pubblica una tabella modello per modello e il detector pubblico non è ancora disponibile. Lo stato corretto è: copertura incerta al livello del singolo modello. [Il registro dei claim separa i fatti dalle inferenze](CLAIMS.md).
+| Che cosa vuoi | Usa questo percorso | Tempo | Che cosa serve |
+|---|---|---:|---|
+| La soluzione più semplice | [Nuova stesura manuale](methods/human-redraft/README.md) | 10-30 min | Una pagina vuota |
+| L'aiuto di un altro sistema AI | [Due conversazioni separate](methods/independent-draft/README.md) | 10-20 min | Un sistema non Anthropic |
+| Un flusso locale e ripetibile | [Nuova stesura da una scheda verificata](methods/semantic-reconstitution/README.md) | 10-30 min | Node.js, Ollama facoltativo |
+| Più versioni con pro e contro visibili | [Ricerca adattiva](methods/adaptive-search/README.md) | 10-60 min | Un modello locale o compatibile |
 
-## Parti in cinque minuti
+Se sei indeciso, scegli il primo. Una vera nuova stesura è un punto di partenza più forte di una serie di piccoli ritocchi e lascia a te il controllo delle parole finali.
 
-Non devi installare nulla.
+---
 
-1. Chiudi il testo originale.
-2. Scrivi una scheda con idee, numeri, nomi, URL, citazioni e vincoli.
-3. Scegli un ordine diverso.
-4. Riscrivi usando la tua voce normale.
-5. Confronta i fatti, non le frasi.
+## ✍️ Fallo adesso, senza installare nulla
 
-Una nuova stesura sostituisce le scelte linguistiche su cui dovrebbe poggiare una filigrana statistica. Produce anche un testo che puoi difendere come lavoro editoriale tuo. [Segui la procedura manuale completa](methods/human-redraft/README.md).
+1. Leggi il testo originale una volta.
+2. Su una pagina vuota, elenca soltanto idee, fatti, numeri, nomi, link, citazioni e vincoli che devono restare.
+3. Chiudi l'originale.
+4. Metti i punti nell'ordine utile per chi leggerà, anche se è diverso da quello iniziale.
+5. Scrivi il testo da capo senza guardare indietro.
+6. Riapri l'originale e confronta i fatti, non le frasi.
 
-## Installa lo strumento locale
+Il metodo è tutto qui. Non sostituire una parola alla volta. Non mantenere lo stesso ordine dei paragrafi soltanto perché esiste già.
 
-Serve Node.js 20 o successivo. Non ci sono pacchetti runtime obbligatori.
+[Apri il metodo manuale dettagliato](methods/human-redraft/README.md) oppure [segui la guida da zero](start-here/it/README.md).
+
+---
+
+## 📋 Preferisci due prompt da copiare?
+
+Usa due conversazioni separate in un sistema non Anthropic:
+
+1. Nella prima, usa il [prompt di ricerca](prompts/it/research-pass.md) per trasformare il testo in una scheda fattuale.
+2. Controlla tu la scheda.
+3. Apri una nuova conversazione e usa il [prompt di scrittura](prompts/it/drafting-pass.md). Incolla la scheda, mai il testo originale.
+
+La separazione conta. Se la conversazione che scrive può ancora vedere la fonte, può trascinare nella nuova bozza più frasi e più struttura del necessario.
+
+---
+
+## 💻 Vuoi usare lo strumento locale?
+
+Lo strumento da riga di comando non tocca il file originale, protegge i valori esatti e confronta più versioni. Richiede Node.js 20 o successivo e non ha pacchetti runtime obbligatori.
 
 ```bash
 git clone https://github.com/danilolapegna/claude-watermark-toolkit.git
@@ -49,25 +78,14 @@ npm test
 node bin/watermark-toolkit.js start examples/fixtures/source-it.txt --lang it
 ```
 
-Prepara un caso e proteggi i fatti:
+Per un tuo file:
 
 ```bash
 node bin/watermark-toolkit.js prepare bozza.txt --lang it --out caso.json
-```
-
-Crea due prompt separati per un sistema non Anthropic:
-
-```bash
 node bin/watermark-toolkit.js prompt bozza.txt --lang it --out prompt.json
 ```
 
-Confronta più versioni:
-
-```bash
-node bin/watermark-toolkit.js compare bozza.txt candidato-a.txt candidato-b.txt --lang it --json
-```
-
-Usa un modello locale con Ollama:
+Se vuoi che tutto resti sul tuo computer, collega un modello locale non Anthropic tramite Ollama:
 
 ```bash
 node bin/watermark-toolkit.js rewrite bozza.txt \
@@ -80,41 +98,40 @@ node bin/watermark-toolkit.js rewrite bozza.txt \
   --out risultato.json
 ```
 
-Lo strumento blocca gli host Anthropic e i nomi di modello Claude prima di inviare una richiesta.
+Lo strumento blocca gli host Anthropic e i nomi dei modelli Claude prima di inviare una richiesta. La [guida da zero](start-here/it/README.md) spiega come scaricare lo ZIP, aprire il Terminale e risolvere gli errori più comuni.
 
-## Come funziona il percorso più forte
+---
 
-Il testo attraversa due passaggi separati:
+## 🔎 Che cosa può promettere con onestà
 
-1. La fase di ricerca estrae idee, prove, vincoli, valori protetti e indicazioni sulla voce.
-2. La fase di scrittura vede quella scheda, non le frasi originali.
+Anthropic descrive il watermark come un pattern statistico nelle scelte delle parole, non come una serie di caratteri nascosti. Afferma inoltre che piccoli ritocchi probabilmente non bastano, mentre una riscrittura completa che sostituisce ogni parola rimuove il segnale.
 
-Una versione che perde un numero, un URL o un'altra informazione protetta viene respinta. Fra le versioni valide, il selettore mostra quante sequenze restano uguali, quanto cambia la lunghezza e quanto è leggibile il risultato. Non nasconde tutto dietro un numero che sembra un detector.
+Nessuno fuori da Anthropic può però promettere oggi un risultato contro il suo detector privato. Non esistono una tabella pubblica modello per modello, una soglia pubblica o un detector capace di certificare il tuo testo.
 
-Questo progetto non è un detector Claude. È un flusso controllato di ricostruzione, costruito intorno al funzionamento probabile delle filigrane statistiche.
+Per questo il progetto non vende un punteggio magico. Offre metodi di ricostruzione più o meno forti, protegge i fatti prima di cambiare la forma e presenta ogni inferenza di ricerca come tale. Leggi [il registro delle affermazioni](CLAIMS.md) e [i pro e contro reali](LIMITS.md).
 
-## Che cosa sappiamo davvero
+---
 
-- Fatto ufficiale: Anthropic parla di una variante di SynthID Text senza caratteri nascosti.
-- Fatto ufficiale: secondo Anthropic, piccoli ritocchi probabilmente non bastano, mentre una riscrittura completa che sostituisce ogni parola rimuove il segnale.
-- Risultato osservato nella ricerca pubblica: gli attacchi di parafrasi devono fare i conti con la qualità del testo.
-- Inferenza plausibile: i passaggi con molte scelte possibili sono più utili per la marcatura rispetto a fatti fissi e formule obbligate.
-- Ignoto: chiave, finestra, copertura dei modelli, soglia del detector e tassi di errore di Claude.
+## 💡 Perché esiste
 
-Leggi [il funzionamento probabile](research/probable-mechanics.md), [gli ignoti](research/known-unknowns.md) e [il protocollo sperimentale](research/experiment-protocol.md).
+L'uso rilevabile dell'AI non equivale a una falsa paternità.
 
-## Perché esiste
+Una persona può possedere l'idea, le prove e il giudizio, ma usare un software per superare dislessia, disgrafia, difficoltà motorie, affaticamento cognitivo o una barriera linguistica. Se una scuola, un datore di lavoro o un editore tratta la presenza dell'AI come prova di disonestà, può punire proprio chi aveva bisogno di aiuto per mettere un'idea in forma leggibile.
 
-L'uso dell'AI non decide la paternità di un testo. Una persona può avere l'idea, controllare le fonti e prendere le decisioni, ma usare un software per compensare dislessia, disgrafia, difficoltà motorie, affaticamento cognitivo o una barriera linguistica. Trasformare un segnale tecnico nascosto in una presunzione di frode può colpire proprio chi aveva bisogno di un supporto alla scrittura.
+La provenienza di un'immagine può rispondere a una domanda utile quando una scena sintetica rischia di essere scambiata per la foto di un fatto reale. Il testo è diverso. Un segnale statistico non stabilisce chi ha avuto l'idea, controllato i fatti o accettato la responsabilità del risultato.
 
-La provenienza delle immagini può tutelare il pubblico quando un'immagine sintetica rischia di essere scambiata per un fatto o una persona reale. Il testo è diverso. Una marcatura sulle scelte statistiche delle parole non stabilisce chi ha avuto l'idea, verificato i fatti o preso la decisione finale. [Il manifesto sviluppa questa posizione](MANIFESTO.it.md).
+[Leggi il manifesto completo](MANIFESTO.it.md).
 
-## Stato del progetto
+---
 
-Analisi offline, coppia di prompt, blocco Anthropic, protezione dei fatti, targeting informativo e selezione adattiva sono implementati e testati. Il laboratorio basato sul SynthID pubblico è un protocollo di ricerca riproducibile, non un detector di produzione. Controlla [STATUS.md](STATUS.md) prima di usare un metodo avanzato.
+## 🧪 Approfondisci solo se ti serve
 
-## Contribuire
+- [Funzionamento probabile](research/probable-mechanics.md), che cosa suggerisce la ricerca pubblica su SynthID e dove finisce l'analogia.
+- [Riscrittura mirata](methods/information-targeted/README.md), per i passaggi con più scelte linguistiche, dopo aver protetto i fatti.
+- [Ricerca adattiva](methods/adaptive-search/README.md), per generare più versioni e vedere l'insieme Pareto.
+- [Protocollo sperimentale](research/experiment-protocol.md), per test riproducibili su un surrogato senza fingere che sia il detector Claude.
+- [Stato del progetto](STATUS.md), con ciò che è stabile, sperimentale, di sola ricerca o non disponibile.
 
-Servono esempi in nuove lingue, casi falliti, revisioni di qualità, fonti primarie e adapter che rispettino il confine non Anthropic. Leggi [CONTRIBUTING.md](CONTRIBUTING.md).
+Sono utili nuovi esempi linguistici, casi falliti, revisioni di qualità e fonti primarie. Leggi [come contribuire](CONTRIBUTING.md).
 
-Licenza MIT. Progetto di [Danilo Lapegna](https://danilolapegna.com/?utm_source=github&utm_medium=opensource&utm_campaign=claude-watermark-guide).
+Il file originale non viene mai sovrascritto. Licenza MIT. Progetto di [Danilo Lapegna](https://danilolapegna.com/?utm_source=github&utm_medium=opensource&utm_campaign=claude-watermark-guide).

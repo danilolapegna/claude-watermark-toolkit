@@ -1,46 +1,75 @@
-# Ideas Don't Carry Watermarks
+# Make an AI-assisted text yours again
 
-Claude Watermark Toolkit is a practical, open-source guide to reconstructing AI-assisted text in your own voice. It starts with a five-minute manual method and ends with tested local tools for semantic reconstitution, protected-fact checks, information targeting and bounded candidate search.
+<p align="center">
+  <strong>A practical, open-source guide to rebuilding Claude-assisted writing from the ideas up.</strong>
+</p>
 
-No Anthropic model, API, SDK or coding tool is part of the runtime.
+If you are looking for a practical way to remove a possible Claude text watermark, start here. You may have a text that says what you mean, but still feels tied to the way Claude phrased it. The ideas are yours. The facts are right. You just want a genuinely new version, without random synonym swaps or a detector score pretending to be certainty.
 
-[Leggi in italiano](README.it.md) · [Read the manifesto](MANIFESTO.md) · [Start from zero](start-here/en/README.md) · [See a worked example](examples/walkthrough.md) · [Open the full guide](https://danilolapegna.com/guides/claude-text-watermark-guide?utm_source=github&utm_medium=opensource&utm_campaign=claude-watermark-guide)
+**The method in one sentence:** extract what must remain, put the original wording aside, then write a fresh draft from the checked brief.
 
-## What this project does
+You do not need to understand SynthID. You do not need to install anything for the first route.
 
-It gives you five routes, ordered by effort:
+This is for text you own and are willing to stand behind. It is not a way to borrow somebody else's authorship.
 
-| Route | Time | Technical level | Privacy | Best use |
-|---|---:|---|---|---|
-| Fresh human redraft | 10 to 30 min | none | stays with you | short, important text |
-| Independent draft from an outline | 10 min | none | depends on your chosen tool | everyday writing |
-| Semantic reconstitution | 5 to 20 min | beginner | local or chosen endpoint | strong default for longer text |
-| Information-targeted rewrite | 15 to 45 min | advanced | local | research and stubborn passages |
-| Adaptive candidate search | 10 to 60 min | technical | local or chosen endpoint | several candidates with explicit trade-offs |
+<p align="center">
+  <a href="start-here/en/README.md"><img src="https://img.shields.io/badge/START_HERE-no_installation-2F855A?style=for-the-badge" alt="Start here without installing anything" /></a>
+  <a href="README.it.md"><img src="https://img.shields.io/badge/LEGGI_IN-ITALIANO-C9A84C?style=for-the-badge&labelColor=1A1A2E" alt="Leggi in italiano" /></a>
+  <a href="https://github.com/danilolapegna/claude-watermark-toolkit/actions/workflows/ci.yml"><img src="https://github.com/danilolapegna/claude-watermark-toolkit/actions/workflows/ci.yml/badge.svg" alt="Tests and documentation checks" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-1A1A2E?style=for-the-badge" alt="MIT license" /></a>
+</p>
 
-Every route tells you what it preserves, what it changes, where it can fail and how to check the result. [See the method comparison](LIMITS.md).
+<p align="center">
+  <a href="https://danilolapegna.com/guides/claude-text-watermark-guide?utm_source=github&utm_medium=opensource&utm_campaign=claude-watermark-guide">Read the friendly web guide</a>
+  ·
+  <a href="examples/walkthrough.md">See one complete example</a>
+</p>
 
-## The important fact about Claude
+---
 
-Anthropic announced on 14 August 2026 that future Claude models would use a variant of SynthID Text. Its own announcement also said that rollout to older models would happen over the following months. Anthropic's current help page says supported models launched on or after 2 August carry the mark at launch, while rollout to existing models is still in progress.
+## 🧭 Choose the route that fits today
 
-That does not prove that every Claude output has been marked since 14 August. It also does not prove the opposite. Anthropic has not published a model-by-model coverage table or a public detector. The honest status is model-level uncertainty. [The claim ledger records the exact distinction](CLAIMS.md).
+| What you want | Use this | Time | What you need |
+|---|---|---:|---|
+| The simplest answer | [Fresh redraft](methods/human-redraft/README.md) | 10 to 30 min | A blank page |
+| Help from another AI system | [Two separate conversations](methods/independent-draft/README.md) | 10 to 20 min | Any non-Anthropic system |
+| A repeatable local workflow | [Fresh draft from a checked brief](methods/semantic-reconstitution/README.md) | 10 to 30 min | Node.js, optionally Ollama |
+| Several drafts and visible trade-offs | [Adaptive search](methods/adaptive-search/README.md) | 10 to 60 min | A local or compatible model |
 
-## Five-minute start
+Not sure? Pick the first route. A true fresh draft is a stronger starting point than light editing, and it keeps you in charge of the final words.
 
-You do not need to install anything.
+---
 
-1. Put the original text away.
-2. Write a fact sheet containing only claims, numbers, names, URLs, quotes and constraints.
-3. Choose a new order for those claims.
-4. Draft from the fact sheet in your normal voice.
-5. Compare facts, not sentences.
+## ✍️ Do this now, no installation required
 
-This works because a fresh draft replaces the sampling choices that a statistical text watermark would need to detect. It also produces a result you can defend as your own editorial work. [Follow the complete manual walkthrough](methods/human-redraft/README.md).
+1. Read the original once.
+2. On a blank page, list only the ideas, facts, numbers, names, links, quotes and constraints that must survive.
+3. Close the original.
+4. Put the points in the order your reader needs, even if that order is different.
+5. Write the text again without looking back.
+6. Reopen the original and compare facts, not sentences.
 
-## Install the local tool
+That is the whole method. Do not replace words one by one. Do not keep the same paragraph structure just because it is already there.
 
-You need Node.js 20 or newer. The toolkit has no required runtime packages.
+[Open the detailed manual method](methods/human-redraft/README.md) or [follow the beginner guide from zero](start-here/en/README.md).
+
+---
+
+## 📋 Prefer two copy-and-paste prompts?
+
+Use two separate conversations in a non-Anthropic system:
+
+1. In the first conversation, use the [research prompt](prompts/en/research-pass.md) to turn the source into a factual brief.
+2. Check that brief yourself.
+3. Start a new conversation and use the [drafting prompt](prompts/en/drafting-pass.md). Give it the brief, never the original.
+
+The separation matters. If the writing conversation can still see the source, it can carry more of the original phrasing and structure into the new draft.
+
+---
+
+## 💻 Want the local tool?
+
+The command-line tool keeps the source untouched, protects exact values and compares several drafts. It needs Node.js 20 or newer and has no required runtime packages.
 
 ```bash
 git clone https://github.com/danilolapegna/claude-watermark-toolkit.git
@@ -49,25 +78,14 @@ npm test
 node bin/watermark-toolkit.js start examples/fixtures/source-en.txt
 ```
 
-Prepare a case and protect facts:
+For your own file:
 
 ```bash
 node bin/watermark-toolkit.js prepare draft.txt --lang en --out case.json
-```
-
-Create a two-pass prompt pair for any non-Anthropic system:
-
-```bash
 node bin/watermark-toolkit.js prompt draft.txt --lang en --out prompts.json
 ```
 
-Compare several drafts:
-
-```bash
-node bin/watermark-toolkit.js compare draft.txt candidate-a.txt candidate-b.txt --json
-```
-
-Use a local Ollama model:
+If you want everything to stay on your computer, connect a non-Anthropic local model through Ollama:
 
 ```bash
 node bin/watermark-toolkit.js rewrite draft.txt \
@@ -79,41 +97,40 @@ node bin/watermark-toolkit.js rewrite draft.txt \
   --out result.json
 ```
 
-The tool rejects Anthropic hosts and Claude model identifiers before making a request.
+The tool blocks Anthropic hosts and Claude model names before sending a request. The [from-zero guide](start-here/en/README.md) explains downloading the ZIP, opening a terminal and fixing common errors.
 
-## How the stronger workflow works
+---
 
-The source goes through two separate passes:
+## 🔎 What this can honestly promise
 
-1. The research pass extracts claims, evidence, constraints, protected values and voice notes.
-2. The drafting pass sees that brief, not the source wording.
+Anthropic describes its watermark as a statistical pattern in token choices, not hidden characters. It also says light edits are unlikely to remove the signal, while a complete rewrite that replaces every word does.
 
-Candidates must keep protected facts before they can be ranked. The selector then shows trade-offs across phrase survival, length fit and readability. It returns a Pareto set rather than hiding everything behind one detector-like score.
+What nobody outside Anthropic can currently promise is a result against its private detector. There is no public model-by-model coverage table, public threshold or detector that can certify your text.
 
-This is not a Claude detector. It is a quality-controlled reconstruction workflow built around the probable mechanics of statistical text watermarking.
+So this project does not sell a magic score. It gives you stronger and weaker reconstruction methods, protects facts before changing prose and labels every research inference as an inference. [Read the claim ledger](CLAIMS.md) and [the honest trade-offs](LIMITS.md).
 
-## What we know and what we do not
+---
 
-- Official fact: Anthropic describes its approach as a SynthID Text variant with no hidden characters.
-- Official fact: Anthropic says light edits are unlikely to remove the signal and a complete rewrite that replaces every word does.
-- Reproduced elsewhere: public research shows that paraphrasing attacks trade detection strength against text quality.
-- Plausible inference: high-choice parts of a text are more useful marking sites than fixed facts or low-entropy passages.
-- Unknown: Claude's exact keying, window size, model coverage, detector threshold and error rates.
+## 💡 Why this project exists
 
-Read [probable mechanics](research/probable-mechanics.md), [known unknowns](research/known-unknowns.md) and the [experiment protocol](research/experiment-protocol.md).
+Detectable AI involvement is not the same thing as false authorship.
 
-## Why this exists
+A person may own the idea, evidence and judgment while using software to bridge dyslexia, dysgraphia, motor limitations, cognitive fatigue or a language barrier. If a school, employer or publisher treats the presence of AI as proof of dishonesty, it may punish the person who needed help putting an idea into readable form.
 
-AI involvement is not a verdict on authorship. A person may own the idea, the evidence and the judgment while using software to overcome dyslexia, dysgraphia, motor limitations, cognitive fatigue or a language barrier. Turning a hidden technical signal into a presumption of fraud can punish the person who needed an assistive writing layer.
+Image provenance can answer a useful question when a synthetic image may be mistaken for a photograph of a real event. Text is different. A statistical mark cannot tell us who had the idea, checked the facts or accepted responsibility for the result.
 
-Image provenance can protect people when a synthetic image is likely to be mistaken for a real event or person. Text is different. A mark on statistical word choices cannot settle who had the idea, checked the facts or made the final decision. [The manifesto makes that case in full](MANIFESTO.md).
+[Read the full manifesto](MANIFESTO.md).
 
-## Project status
+---
 
-The offline analyzer, prompt pair, provider guard, protected-fact validation, information targeting and adaptive selection are implemented and tested. The public SynthID surrogate lab is a reproducible research protocol, not a production detector. See [STATUS.md](STATUS.md) before relying on an advanced method.
+## 🧪 Go deeper only if you need to
 
-## Contributing
+- [Probable mechanics](research/probable-mechanics.md), what public SynthID research suggests and where the analogy stops.
+- [Information-targeted rewriting](methods/information-targeted/README.md), for choice-rich passages with fact protection first.
+- [Adaptive candidate search](methods/adaptive-search/README.md), for several drafts and a visible Pareto set.
+- [Experiment protocol](research/experiment-protocol.md), for reproducible surrogate testing without pretending it is Claude's detector.
+- [Project status](STATUS.md), what is stable, experimental, research-only or unavailable.
 
-Useful contributions include new language fixtures, failed cases, quality reviews, primary sources and provider adapters that respect the non-Anthropic boundary. Read [CONTRIBUTING.md](CONTRIBUTING.md).
+Useful contributions include new language fixtures, failed cases, quality reviews and primary sources. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-MIT licensed. Built and maintained by [Danilo Lapegna](https://danilolapegna.com/?utm_source=github&utm_medium=opensource&utm_campaign=claude-watermark-guide).
+No source file is ever overwritten. MIT licensed. Built and maintained by [Danilo Lapegna](https://danilolapegna.com/?utm_source=github&utm_medium=opensource&utm_campaign=claude-watermark-guide).

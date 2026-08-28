@@ -1,75 +1,164 @@
-# Parti da qui: non serve essere tecnici
+# Parti da qui: scegli un percorso e portalo fino in fondo
 
-Hai un testo che potrebbe contenere la filigrana statistica di Claude. Vuoi una versione nuova che conservi idee e fatti.
+Hai un testo scritto con l'aiuto di Claude e vuoi una versione davvero nuova, senza perdere idee e fatti.
 
-Scegli la situazione più vicina alla tua.
+**Se hai fretta, usa il Percorso 1.** Non devi prima leggere tutto il repository. Non ti serve un detector.
 
-## Ho dieci minuti e non voglio installare nulla
+[Torna alla pagina principale](../../README.it.md) · [English version](../en/README.md)
 
-Usa la [riscrittura umana da zero](../../methods/human-redraft/README.md). Prepara una scheda dei fatti, chiudi il testo e riscrivi partendo dalla scheda.
+---
 
-## Voglio farmi aiutare da un altro sistema AI
+## Percorso 1: voglio il metodo più semplice
 
-Usa due conversazioni separate in un sistema non Anthropic.
+- **Tempo:** 10-30 minuti
+- **Software:** nessuno
+- **Privacy:** il testo resta con te
 
-1. La prima conversazione legge il testo e produce una scheda fattuale.
-2. Tu controlli la scheda.
-3. La seconda conversazione vede solo la scheda e scrive una nuova versione.
+### 1. Prepara una scheda
 
-Copia [il prompt di ricerca](../../prompts/it/research-pass.md), poi [il prompt di scrittura](../../prompts/it/drafting-pass.md).
+Leggi la fonte una volta. Su una pagina vuota, compila questo piccolo schema:
 
-## Voglio usare lo strumento locale
+```text
+SCOPO:
+Che cosa deve capire o fare chi legge?
 
-### Passo 1: controlla Node.js
+DA CONSERVARE:
+- Idea principale
+- Fatto, numero, nome, data o URL
+- Citazione esatta o fonte
+- Condizione o eccezione importante
 
-Apri Terminale su macOS o Linux, oppure PowerShell su Windows. Esegui:
-
-```bash
-node --version
+LA MIA VOCE:
+- Una frase su come scrivo di solito
+- Una cosa che non direi mai
 ```
 
-Se il numero inizia con 20 o più, puoi continuare. Altrimenti installa la versione LTS attuale da [nodejs.org](https://nodejs.org/).
+Usa appunti brevi. Non copiare frasi intere, salvo le citazioni che devono restare esatte.
 
-### Passo 2: scarica il repository
+### 2. Chiudi la fonte
 
-Se hai Git:
+È il passaggio importante. Non tenerla accanto alla pagina vuota.
+
+### 3. Scegli un ordine nuovo
+
+Chiediti che cosa serve prima a chi leggerà. Metti i punti in quell'ordine, invece di seguire i vecchi paragrafi.
+
+### 4. Scrivi da capo
+
+Parti dalla scheda e usa parole che diresti davvero. Se una frase ti sembra troppo levigata per essere tua, semplificala.
+
+### 5. Controlla i fatti, non lo stile
+
+Riapri la fonte. Verifica ogni numero, nome, link, citazione e precisazione. Poi leggi il nuovo testo ad alta voce.
+
+Hai finito. Apri il [metodo manuale completo](../../methods/human-redraft/README.md) se vuoi vedere anche gli errori più comuni e i controlli finali.
+
+---
+
+## Percorso 2: voglio farmi aiutare da un altro sistema AI
+
+- **Tempo:** 10-20 minuti
+- **Software:** un sistema AI non Anthropic
+- **Privacy:** dipende dallo strumento che scegli
+
+Servono due conversazioni separate, non due messaggi nella stessa chat.
+
+### Conversazione 1: crea la scheda
+
+1. Apri il [prompt di ricerca](../../prompts/it/research-pass.md).
+2. Copia tutto il prompt.
+3. Incollalo in un sistema non Anthropic insieme al testo originale.
+4. Confronta la scheda ottenuta con la fonte. Correggi fatti mancanti o sbagliati.
+
+### Conversazione 2: scrivi la nuova versione
+
+1. Apri una conversazione completamente nuova.
+2. Apri e copia il [prompt di scrittura](../../prompts/it/drafting-pass.md).
+3. Incolla la scheda controllata nel punto indicato.
+4. Non incollare il testo originale.
+5. Chiedi due strutture diverse se la prima versione sembra ancora troppo vicina alla fonte.
+
+Alla fine controlla ogni fatto e leggi il risultato ad alta voce. Una frase scorrevole può comunque essere falsa.
+
+---
+
+## Percorso 3: voglio usare lo strumento locale
+
+- **Tempo:** circa 15 minuti per prepararlo
+- **Software:** Node.js 20 o successivo
+- **Privacy:** analisi e creazione dei prompt restano sul tuo computer
+
+Se il Terminale ti sembra una complicazione inutile, usa il Percorso 1 o 2. Il metodo centrale non cambia.
+
+### 1. Scarica il toolkit
+
+Il modo più semplice è lo ZIP di GitHub:
+
+1. Apri la [pagina del repository](https://github.com/danilolapegna/claude-watermark-toolkit).
+2. Premi il pulsante verde **Code**.
+3. Scegli **Download ZIP**.
+4. Estrai il file scaricato.
+
+Se usi già Git, puoi invece clonarlo:
 
 ```bash
 git clone https://github.com/danilolapegna/claude-watermark-toolkit.git
 cd claude-watermark-toolkit
 ```
 
-Se non hai Git, apri il repository su GitHub, scegli Code e poi Download ZIP. Estrai la cartella e apri il Terminale al suo interno.
+### 2. Apri il Terminale dentro quella cartella
 
-### Passo 3: prova lo strumento
+**Windows:** apri la cartella estratta in Esplora file, fai clic sulla barra dell'indirizzo, scrivi `powershell` e premi Invio.
+
+**macOS:** apri Terminale, scrivi `cd ` lasciando uno spazio, trascina la cartella estratta dentro la finestra del Terminale e premi Invio.
+
+**Linux:** apri la cartella estratta nel gestore file, fai clic con il tasto destro e scegli **Apri nel terminale**. Il nome può cambiare in base al sistema.
+
+### 3. Controlla Node.js
+
+Esegui:
+
+```bash
+node --version
+```
+
+Se vedi `v20` o un numero superiore, continua. Se il sistema non trova il comando o il numero è più basso, installa la versione LTS attuale da [nodejs.org](https://nodejs.org/), poi riapri il Terminale.
+
+### 4. Controlla il toolkit
 
 ```bash
 npm test
 ```
 
-Dovresti vedere almeno dodici test superati e zero errori.
+Dovresti vedere un elenco di test superati e zero errori.
 
-### Passo 4: analizza il testo
+### 5. Aggiungi il tuo testo
 
-Salva il testo come `sorgente.txt` nella cartella del repository. Esegui:
+Crea nella cartella del toolkit un file di testo normale chiamato `sorgente.txt`. Incolla il testo e salva.
+
+Poi esegui:
 
 ```bash
 node bin/watermark-toolkit.js start sorgente.txt --lang it
 ```
 
-Lo strumento consiglia un metodo e conta i valori che devono restare.
+Lo strumento consiglia un percorso e conta i valori che devono restare.
 
-### Passo 5: crea i due prompt
+### 6. Crea i due prompt
 
 ```bash
 node bin/watermark-toolkit.js prompt sorgente.txt --lang it --out prompt.json
 ```
 
-Apri `prompt.json` con un editor di testo. Troverai le istruzioni esatte per le due conversazioni separate.
+Apri `prompt.json` con un qualsiasi editor di testo. Contiene le istruzioni di ricerca e scrittura per il metodo a due conversazioni.
 
-## Voglio che il testo resti sul mio computer
+---
 
-Installa [Ollama](https://ollama.com/), scegli un modello locale non Anthropic e controlla che funzioni. Poi esegui:
+## Percorso 4: voglio tenere in locale anche la riscrittura
+
+Installa [Ollama](https://ollama.com/) e scegli un modello locale non Anthropic. Prima controlla che il modello funzioni dentro Ollama.
+
+Poi usa il nome esatto del modello in questo comando:
 
 ```bash
 node bin/watermark-toolkit.js rewrite sorgente.txt \
@@ -79,30 +168,40 @@ node bin/watermark-toolkit.js rewrite sorgente.txt \
   --out risultato.json
 ```
 
-Sostituisci `IL_TUO_MODELLO_LOCALE` con il nome esatto mostrato da Ollama.
+Sostituisci `IL_TUO_MODELLO_LOCALE` con il nome mostrato da Ollama. Il processo Ollama sul tuo computer riceve il testo. Questo repository e Anthropic no.
 
-## Come leggere il risultato
+---
+
+## Leggi il risultato senza andare a intuito
 
 - `valid: true` significa che la versione ha conservato tutti i valori protetti automaticamente ed è rimasta nel margine di lunghezza previsto.
-- `ngramSurvival` indica quante sequenze di quattro parole della fonte sono ancora presenti. Un valore basso segnala un cambiamento maggiore della forma.
-- `readability` è un indicatore approssimativo da 0 a 100. Non è un voto di qualità.
-- `recommended` indica il candidato che bilancia meglio gli obiettivi pubblici. Leggi anche gli altri candidati Pareto.
+- `ngramSurvival` mostra quante sequenze di quattro parole coincidono ancora con la fonte. Un numero basso indica un cambiamento maggiore della forma, non una qualità migliore.
+- `readability` è un indicatore approssimativo di facilità di lettura da 0 a 100. Non è un voto.
+- `recommended` è la versione che bilancia meglio gli obiettivi pubblici. Leggi anche gli altri candidati dell'insieme Pareto, cioè le bozze con compromessi diversi e senza un unico vincitore netto.
+
+Nessun punteggio dimostra che il detector privato di Anthropic accetterebbe il testo. Questi valori servono a confrontare le versioni senza perdere i fatti.
+
+---
 
 ## Se qualcosa non funziona
 
-### “Source text is empty”
+### `node` non viene riconosciuto o trovato
 
-Controlla che il file contenga testo normale e che il percorso sia corretto.
+Installa Node.js LTS da [nodejs.org](https://nodejs.org/), chiudi il Terminale, riaprilo nella cartella del toolkit e ripeti `node --version`.
 
-### “Blocked provider configuration”
+### `Source text is empty`
 
-L'URL o il nome del modello contiene Anthropic o Claude. Scegli un sistema non Anthropic.
+Apri `sorgente.txt` e controlla che contenga testo normale. Salva e ripeti il comando.
 
-### “Provider timed out”
+### `Blocked provider configuration`
 
-Il modello locale potrebbe essere ancora in caricamento. Riprova una volta. Se continua, usa il comando offline `prompt`.
+L'indirizzo del provider o il nome del modello rimanda ad Anthropic o Claude. Scegli un modello non Anthropic.
 
-### È sparito un nome
+### `Provider timed out`
+
+Il modello locale potrebbe essere ancora in caricamento. Riprova una volta. Se continua, usa il comando offline `prompt` del Percorso 3.
+
+### È sparito un nome o un valore esatto
 
 Proteggilo in modo esplicito:
 
@@ -110,7 +209,10 @@ Proteggilo in modo esplicito:
 node bin/watermark-toolkit.js prepare sorgente.txt --lang it --protect "Nome Esatto" --out caso.json
 ```
 
-## Controllo finale
+---
 
-Non pubblicare un testo solo perché il punteggio sembra buono. Controlla ogni fatto, leggilo ad alta voce e prenditi la responsabilità delle parole finali.
+## Prima di pubblicare
 
+Controlla ogni fatto. Leggi il testo ad alta voce. Elimina le frasi che non diresti mai. Prenditi la responsabilità delle parole finali.
+
+[Guarda un esempio completo](../../examples/walkthrough.it.md) · [Confronta tutti i metodi](../../LIMITS.md) · [Leggi che cosa sappiamo davvero](../../CLAIMS.md)
