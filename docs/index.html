@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#09090f" />
     <title>Rewrite Room | DL Solutions</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css?v=1.0.16" />
+    <link rel="stylesheet" href="styles.css?v=1.1.0" />
   </head>
   <body>
     <a class="skip-link" href="#workspace" data-copy="skipLink">Skip to Rewrite Room</a>
@@ -132,21 +132,41 @@
             <button class="primary-action" id="copy-button" type="button" data-copy="copyAction">Copy the entire prompt</button>
           </div>
 
+          <section class="writer-choice" aria-labelledby="writer-choice-title">
+            <p class="truth-label" data-copy="writerChoiceKicker">One choice before the model writes</p>
+            <h3 id="writer-choice-title" data-copy="writerChoiceTitle">Where do you want the writing to happen?</h3>
+            <p class="writer-choice-intro" data-copy="writerChoiceIntro">Rewrite Room has finished its job for now. Choose a writer, paste the prompt there and bring the answer back. These are two ways to perform the same step.</p>
+            <div class="writer-choice-grid">
+              <article class="writer-card">
+                <p class="writer-card-label" data-copy="hostedLabel">Easiest</p>
+                <h4 data-copy="hostedTitle">Use an online model</h4>
+                <p data-copy="hostedBody">Open a model made by a company other than Anthropic and paste the prompt. Nothing to install. The provider receives what you paste and may use its subscription, free plan or credits.</p>
+                <p class="writer-card-next" data-copy="hostedNext">Next: copy its entire answer and return to the field below.</p>
+              </article>
+              <article class="writer-card writer-card-local">
+                <p class="writer-card-label" data-copy="localLabel">Most private</p>
+                <h4 data-copy="localTitle">Use a model on your computer</h4>
+                <p data-copy="localBody">Install LM Studio for a graphical chat or Ollama for a terminal chat. After downloading a model once, writing can happen without a hosted AI service. Your computer needs enough memory.</p>
+                <a id="local-guide-link" href="https://github.com/danilolapegna/claude-watermark-toolkit/blob/main/methods/local-model/README.md" data-copy="localLink">Follow the local guide from download to returned draft</a>
+              </article>
+            </div>
+          </section>
+
           <div class="handoff" aria-labelledby="handoff-title">
-            <p class="truth-label" data-copy="handoffKicker">What you do now</p>
-            <h3 id="handoff-title" data-copy="handoffTitle">Open a non-Anthropic model and paste</h3>
+            <p class="truth-label" data-copy="handoffKicker">Same three moves in either writer</p>
+            <h3 id="handoff-title" data-copy="handoffTitle">Paste there. Copy the answer. Return here.</h3>
             <ol>
               <li data-copy="handoff1">Open the writing model you prefer.</li>
               <li data-copy="handoff2">Paste the full prompt and send it as one message.</li>
               <li data-copy="handoff3">Copy its answer and paste it below. If you see [PV-01] markers, good. Do not replace them yourself; this page will.</li>
             </ol>
-            <p class="model-boundary" data-copy="modelBoundary">One caveat worth knowing: another hosted provider may apply its own watermark or provenance mechanism. For zero hosted credits and no provider-side watermark, use a local open model.</p>
+            <p class="model-boundary" data-copy="modelBoundary">A local model avoids a hosted writing provider. It does not guarantee better prose or prove anything about Anthropic's private detector.</p>
           </div>
 
           <details class="advanced-route">
             <summary>
               <span data-copy="advancedTitle">Want more separation? Build without showing the old wording.</span>
-              <small data-copy="advancedSubtitle">More work and a cleaner boundary. This was the old default and, yes, it was too much for the entrance.</small>
+              <small data-copy="advancedSubtitle">More work and a cleaner boundary. Use it when separation matters more than speed.</small>
             </summary>
             <div class="advanced-body">
               <p data-copy="advancedIntro">Here the other model never receives the source. You give it only facts, ideas and your voice. Choose this when maximum wording separation matters more than speed.</p>
@@ -248,7 +268,7 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
-    <script src="core.js?v=1.0.16"></script>
-    <script src="app.js?v=1.0.16"></script>
+    <script src="core.js?v=1.1.0"></script>
+    <script src="app.js?v=1.1.0"></script>
   </body>
 </html>

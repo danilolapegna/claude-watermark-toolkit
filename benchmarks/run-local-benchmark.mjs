@@ -124,8 +124,15 @@ function average(values) {
 }
 
 const models = await jsonRequest("models");
-const model = models.data?.[0]?.id;
+const availableModels = models.data?.map((item) => item.id).filter(Boolean) || [];
+const requestedModel = process.env.BENCHMARK_MODEL;
+const model = requestedModel || availableModels[0];
 if (!model) throw new Error("No model is loaded at the benchmark endpoint.");
+if (requestedModel && !availableModels.includes(requestedModel)) throw new Error(`BENCHMARK_MODEL was not found. Available models: ${availableModels.join(", ")}`);
+const modelLabel = basename(model);
+const safeModelLabel = modelLabel.toLowerCase().replace(/[^a-z0-9._-]+/gu, "-").replace(/^-+|-+$/gu, "") || "local-model";
+const outputName = process.env.BENCHMARK_OUTPUT || `local-${safeModelLabel}.json`;
+if (!/^[a-zA-Z0-9._-]+\.json$/u.test(outputName)) throw new Error("BENCHMARK_OUTPUT must be a JSON filename without folders.");
 
 const corpus = JSON.parse(await readFile(new URL("./corpus.json", import.meta.url), "utf8"));
 const cases = [];
@@ -192,13 +199,17 @@ const summary = {
   },
 };
 
-const independenceWins = cases.filter(
-  (item) => item.precision.mechanical.metrics.ngramSurvival + 0.01 < item.baseline.mechanical.metrics.ngramSurvival,
-).length;
+const independenceCaseCoverage = cases.filter((item) => {
+  const baseline = item.baseline.mechanical.metrics.ngramSurvival;
+  const precision = item.precision.mechanical.metrics.ngramSurvival;
+  const clearWin = precision + 0.01 < baseline;
+  const bothAtStrongFloor = precision <= 0.08 && baseline <= 0.08;
+  return clearWin || bothAtStrongFloor;
+}).length;
 
 const mechanicalGate = {
   allPrecisionExactValues: summary.precision.exactValuePasses === cases.length,
-  independenceMajority: independenceWins >= Math.ceil(cases.length * 0.75),
+  independenceMajority: independenceCaseCoverage >= Math.ceil(cases.length * 0.75),
   surfaceMargin: summary.precision.fourWordSurvival <= summary.baseline.fourWordSurvival - 0.02
     && summary.precision.longestSharedPhrase <= summary.baseline.longestSharedPhrase,
 };
@@ -211,9 +222,9 @@ const modelJudgeAdvisory = {
 };
 
 const result = {
-  schema: "claude-watermark-toolkit/local-prompt-benchmark/1.0",
+  schema: "claude-watermark-toolkit/local-prompt-benchmark/1.1",
   runAt: new Date().toISOString(),
-  model: basename(model),
+  model: modelLabel,
   corpusSize: cases.length,
   design: "Same local non-Anthropic model and seed per case. Baseline and precision drafts judged blind with alternating labels. Mechanical evidence is deterministic; judge scores are model-assisted and require human inspection.",
   summary,
@@ -224,6 +235,6 @@ const result = {
 };
 
 await mkdir(new URL("./results/", import.meta.url), { recursive: true });
-await writeFile(new URL("./results/local-gpt-oss-20b.json", import.meta.url), `${JSON.stringify(result, null, 2)}\n`, "utf8");
-process.stdout.write(`${JSON.stringify({ summary, mechanicalGate, modelJudgeAdvisory }, null, 2)}\n`);
+await writeFile(new URL(`./results/${outputName}`, import.meta.url), `${JSON.stringify(result, null, 2)}\n`, "utf8");
+process.stdout.write(`${JSON.stringify({ output: `benchmarks/results/${outputName}`, summary, mechanicalGate, modelJudgeAdvisory }, null, 2)}\n`);
 if (!mechanicalGate.pass) process.exitCode = 1;

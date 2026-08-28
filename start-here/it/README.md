@@ -1,202 +1,121 @@
-# Parti da zero: per adesso non installare niente
+# Parti da zero
 
-Hai un testo scritto con l'aiuto di Claude. Idee e fatti sono tuoi, però vuoi una versione che non dipenda più dal modo in cui Claude li ha messi in frase.
+Hai una bozza scritta con l'aiuto di Claude. Idee e fatti sono tuoi, ma vuoi parole nuove che non dipendano dalle frasi di Claude.
 
-Se non sei una persona tecnica, questa pagina è per te. Parti dal browser. Il Terminale arriva molto più avanti e soltanto se lo vuoi.
+Non devi sapere che cosa sia un watermark, né capire di codice o Terminale. Parti da queste quattro caselle.
 
-[Torna alla pagina principale](../../README.it.md) · [English version](../en/README.md) · [Guarda tutti i metodi](../../METHODS.it.md)
+> **Il tuo testo** → **Rewrite Room prepara un prompt** → **un altro modello scrive** → **Rewrite Room controlla la bozza ricevuta**
 
-## La strada guidata più semplice
+La distinzione è fondamentale. Rewrite Room prepara il prompt e controlla il risultato. Non è un writer AI. A scrivere è il modello che scegli nel passaggio centrale.
 
-Apri [Rewrite Room in italiano](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it).
+[Apri Rewrite Room in italiano](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it) · [English version](../en/README.md) · [Torna alla pagina principale](../../README.it.md)
 
-Rewrite Room non è un writer AI. È un prompt builder semplice e diretto, con un confronto locale alla fine. Tutta la scrittura avviene nel modello non Anthropic che scegli tu.
+## La strada più semplice
 
-La prima obiezione è probabilmente: “Non so chi ospita quella pagina, dove finisce il mio testo e che cosa dovrei fare una volta aperta.” Giusto. Ecco tutto il percorso prima ancora del clic:
+### 1. Incolla il testo
 
-1. Incolla il testo.
-2. Premi **Prepara il mio prompt di riscrittura**.
-3. Copia il prompt in un modello di scrittura non Anthropic.
-4. Riporta qui la bozza e premi **Controlla la nuova bozza**.
+Apri [Rewrite Room in italiano](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it) e incolla la bozza.
 
-La pagina non usa AI e non consuma crediti AI. Il suo JavaScript prepara il prompt, protegge i valori esatti e confronta proprietà visibili della superficie dentro la scheda del browser. Non controlla il significato. Il modello di scrittura esterno può usare il suo piano gratuito, abbonamento o sistema di crediti. Se vuoi togliere di mezzo pure il dubbio sull'hosting, scarica questo repository e apri `docs/index.html` mentre sei offline.
+In questo momento non stai caricando nulla. La pagina lavora dentro il browser, costa zero e non usa crediti AI. Trova date, nomi, numeri, link e citazioni che non dovrebbero cambiare. Se manca qualcosa, puoi aggiungerlo tu.
 
-### Passaggio 1: incolla la fonte
+### 2. Copia il prompt preparato
 
-Usa un testo del quale idee e responsabilità finale sono tuoi. La pagina trova valori esatti comuni come date, numeri, URL, indirizzi email, citazioni e acronimi.
+Premi **Prepara il mio prompt di riscrittura**, poi **Copia tutto il prompt**.
 
-Se manca un nome o un termine che deve restare identico, aggiungilo tu. L'estrazione automatica è una lista di partenza, non l'oracolo.
+Il prompt chiede una vera ricostruzione, non tre sinonimi messi qua e là. Dice al modello di conservare affermazioni, precisazioni e voce, cambiando però la formulazione ordinaria e la struttura delle frasi.
 
-### Passaggio 2: prepara e copia il prompt
+### 3. Scegli dove avviene la scrittura
 
-Premi **Prepara il mio prompt di riscrittura**. La pagina produce un solo prompt completo, con testo e valori protetti già inseriti.
+Adesso ti serve un **writer**, cioè il software che riceve il prompt e restituisce la nuova bozza. Hai due possibilità.
 
-È più serio di “parafrasa questo”. Chiede all'altro modello di conservare affermazioni, precisazioni, tono e lunghezza approssimativa, ricostruendo però formulazione ordinaria, inizi di frase e passaggi. Copia tutto il prompt. Non copiare soltanto la parte con il testo.
+#### Più veloce: un modello online non Anthropic
 
-### Passaggio 3: usa un modello non Anthropic
+Apri un modello creato da un'azienda diversa da Anthropic, incolla il prompt e invialo. Non devi installare nulla. Il provider riceve ciò che incolli e può usare il suo piano gratuito, l'abbonamento o i crediti. Potrebbe anche applicare un proprio sistema di provenienza.
 
-Apri il modello che preferisci, incolla il prompt come un solo messaggio e invialo. Un altro provider ospitato potrebbe applicare un proprio watermark o sistema di provenienza. Se vuoi zero crediti ospitati e nessun watermark del provider, usa un modello open locale. Richiede installazione e lo trovi spiegato più sotto.
+#### Più privato: un modello sul tuo computer
 
-### Passaggio 4: confronta la nuova bozza
+“Modello locale” significa soltanto questo: il software che scrive gira sul tuo computer invece che sul server di un provider.
 
-Riporta la nuova bozza in Rewrite Room. Vedrai controlli separati per fatti protetti, frasi condivise, inizi delle frasi, struttura e lunghezza.
+- **LM Studio** è la strada grafica più semplice. Scarichi l'app, scarichi un modello al suo interno, apri una chat e incolli il prompt.
+- **Ollama** è la strada più leggera da Terminale. Lo installi, esegui un comando per aprire il modello e incolli il prompt.
 
-Se manca un fatto, sistema quello per primo. Se è rimasta una lunga sequenza identica, riscrivi tutto il passaggio invece di cambiare tre parole. Se la struttura è troppo vicina, rimetti le idee in un ordine diverso.
+Dopo il primo download del modello, entrambi possono scrivere senza crediti AI ospitati. Serve comunque memoria sufficiente e un piccolo modello locale può scrivere peggio di un buon modello online. Segui la [guida al modello locale, dal download alla bozza pronta](../../methods/local-model/README.it.md).
 
-La pagina non può dirti che il detector privato di Anthropic accetterà il risultato. Ti dice quello che può misurare davvero.
+### 4. Riporta qui la nuova bozza
 
-### Vuoi una separazione più forte?
+Copia la risposta del writer. Torna in Rewrite Room, incollala sotto **Incolla qui la nuova bozza del modello**, poi premi **Ripristina i valori e controlla**.
 
-Apri la sezione avanzata a camera stagna dentro Rewrite Room. Ti chiede due buste, una per fatti e significato, una per voce e limiti. Il modello di scrittura riceve quelle buste senza le vecchie frasi. Richiede più tempo, che è esattamente il motivo per cui non è più il percorso predefinito.
+La pagina ti restituisce due cose utili:
 
-## La strada manuale, se anche il form ti sembra di troppo
+1. la bozza ricevuta con date, nomi, link e numeri protetti rimessi al loro posto;
+2. un resoconto che mostra valori esatti mancanti e vecchie formulazioni ancora troppo vicine.
 
-Sì, il metodo può essere una pagina bianca.
+Rileggi personalmente significato e voce. Il resoconto non può farlo al posto tuo e non può certificare il risultato contro il detector privato di Anthropic.
 
-1. Leggi la fonte una volta.
-2. Segna con appunti brevi scopo, idee, prove e valori esatti.
-3. Aggiungi tre indicazioni concrete sulla tua voce.
-4. Chiudi la fonte.
-5. Scegli l'ordine che serve a chi legge, non quello che trovi già sulla pagina.
-6. Scrivi di nuovo.
-7. Riapri la fonte e confronta soltanto i fatti.
-8. Leggi il risultato ad alta voce e togli le frasi che non diresti mai.
+## “Ma non faccio prima a riscriverlo?”
 
-Questo è il metodo intero, non il ripiego povero. Costa il tuo tempo. [Guarda dove fallisce più spesso](../../methods/human-redraft/README.md).
+Per un testo breve, sì. Duh.
 
-## Voglio che scriva un altro sistema partendo dalla scheda
+Questa guida contiene tutte le strade utili, compresa quella ovvia:
 
-Usa due contesti separati in un sistema non Anthropic. Non due messaggi nella stessa conversazione.
+1. Scrivi in forma di appunti idee, fatti e valori esatti.
+2. Chiudi il testo di partenza.
+3. Metti le idee nell'ordine che serve a chi legge.
+4. Scrivi partendo dagli appunti.
+5. Riapri il testo soltanto per controllare fatti e sfumature perse.
 
-### Contesto di ricerca
+Costa il tuo tempo, non invia niente e non aggiunge un altro modello. [Leggi il metodo manuale completo](../../methods/human-redraft/README.it.md).
 
-1. Apri il [prompt di ricerca](../../prompts/it/research-pass.md).
-2. Incollalo con la fonte in un sistema non Anthropic.
-3. Confronta la scheda ottenuta con la fonte.
-4. Correggi fatti mancanti, aggiunte inventate e precisazioni appiattite.
+## Vuoi la separazione più forte delle vecchie frasi?
 
-### Contesto di scrittura
+Usa l'opzione **senza la fonte** dentro Rewrite Room. Prima prepari una scheda breve con significato, fatti, pubblico e voce. Il modello riceve quella scheda, non le vecchie frasi.
 
-1. Apri una conversazione completamente nuova.
-2. Apri il [prompt di scrittura](../../prompts/it/drafting-pass.md).
-3. Incolla la scheda controllata, mai la fonte.
-4. Chiedi due ordini diversi delle idee se la prima versione sembra ancora troppo vicina.
-5. Controlla personalmente ogni fatto.
+Richiede più tempo perché devi controllare la scheda prima della scrittura. Ha senso quando la separazione conta più della velocità. La versione autonoma è il [metodo a camera stagna delle due buste](../../methods/two-envelope-clean-room/README.it.md).
 
-Se lavori già con agenti, copia la [skill pronta](../../skills/non-anthropic-text-rewrite/SKILL.md). Contiene lo stesso confine sui provider e gli stessi criteri di stop.
+## Vuoi un'istruzione riutilizzabile per un agente?
 
-## Voglio la CLI locale
+La [skill pronta, spiegata in italiano](../../skills/non-anthropic-text-rewrite/README.it.md) serve a chi usa già agenti di coding o workspace per agenti. Copi la skill nel sistema e gli dai un testo. La skill spiega come proteggere i fatti, tenere la fonte fuori dal passaggio di scrittura e fermarsi quando il significato non è verificabile.
 
-Se il Terminale ti sembra una punizione non necessaria, fermati qui e usa uno dei percorsi sopra. La CLI serve per il lavoro ripetuto e per i report leggibili da altri strumenti.
+Se la parola “skill” non ti dice nulla, saltala serenamente. Rewrite Room offre lo stesso percorso pratico senza configurare un agente.
 
-### 1. Scarica il toolkit
+## La CLI locale, in italiano normale
 
-Il modo più facile è lo ZIP di GitHub:
+CLI significa **interfaccia a riga di comando**. Qui è un piccolo programma facoltativo che controlli scrivendo comandi nel Terminale o in PowerShell.
 
-1. Apri la [pagina del repository](https://github.com/danilolapegna/claude-watermark-toolkit).
-2. Premi il pulsante verde **Code**.
-3. Scegli **Download ZIP**.
-4. Estrai il file.
+Non trova posizioni segrete del watermark. Non scrive il testo. Serve soltanto se vuoi ripetere la stessa preparazione e lo stesso controllo su file, oppure conservare un resoconto.
 
-Se usi già Git:
+Il percorso completo è questo:
+
+> `sorgente.txt` → la CLI crea `prompt.txt` → il tuo writer crea `bozza.txt` → la CLI controlla `bozza.txt`
+
+### Che cosa sono questi file?
+
+- `sorgente.txt` è un normale file di testo che crei tu. Dentro incolli la bozza di partenza.
+- `prompt.txt` viene creato dalla CLI. Lo apri e copi tutto nel writer che hai scelto.
+- `bozza.txt` è un altro file di testo che crei tu. Dentro incolli la risposta del writer.
+
+### Che cosa fanno i comandi?
 
 ```bash
-git clone https://github.com/danilolapegna/claude-watermark-toolkit.git
-cd claude-watermark-toolkit
+node bin/watermark-toolkit.js prompt sorgente.txt --lang it --out prompt.txt
 ```
 
-### 2. Apri il Terminale nella cartella
-
-**Windows:** apri la cartella estratta in Esplora file, fai clic sulla barra dell'indirizzo, scrivi `powershell` e premi Invio.
-
-**macOS:** apri Terminale, scrivi `cd ` lasciando uno spazio, trascina la cartella estratta nella finestra e premi Invio.
-
-**Linux:** apri la cartella nel gestore file, fai clic con il tasto destro e scegli **Apri nel terminale**. Il nome può cambiare in base al sistema.
-
-### 3. Controlla Node.js
-
-Esegui:
+Legge `sorgente.txt` e crea il prompt da passare al writer.
 
 ```bash
-node --version
+node bin/watermark-toolkit.js check sorgente.txt bozza.txt --lang it
 ```
 
-Se vedi `v20` o un numero superiore, continua. Altrimenti installa la versione LTS attuale da [nodejs.org](https://nodejs.org/) e riapri il Terminale.
+Legge entrambi i file, ripristina i valori protetti nella bozza ricevuta e stampa il confronto locale. Non modifica nessuno dei due file.
 
-### 4. Controlla il toolkit
+`prepare` è facoltativo. Mostra soltanto nomi, date, numeri e citazioni che il toolkit proteggerà. Anche `compare` è facoltativo. Mostra gli stessi controlli affiancati quando hai già due o più bozze. Non ne sceglie una al posto tuo.
 
-```bash
-npm test
-```
+Se ti serve, segui la [guida alla CLI, dal download al testo finale](../../methods/semantic-reconstitution/README.it.md). Se ti sembra lavoro in più, lo è. Usa Rewrite Room.
 
-Dovresti vedere test superati e zero errori.
+## Quello che nessuna strada può promettere
 
-### 5. Aggiungi il testo
+Detector, chiave privata e soglia decisionale di Anthropic non sono pubblici. Il toolkit può aiutarti a ricostruire la formulazione, conservare i fatti e controllare la somiglianza visibile. Non può mostrare onestamente un bollino “watermark rimosso”.
 
-Crea `sorgente.txt` nella cartella del toolkit, incolla il testo e salva. Poi esegui:
+Prima di usare il risultato, controlla ogni affermazione, incertezza e citazione. Se la paternità potrebbe essere contestata, conserva anche la cronologia delle bozze.
 
-```bash
-node bin/watermark-toolkit.js start sorgente.txt --lang it
-```
-
-Crea il prompt principale:
-
-```bash
-node bin/watermark-toolkit.js prompt sorgente.txt --lang it --out prompt.json
-```
-
-Se invece vuoi la coppia avanzata separata dalla fonte:
-
-```bash
-node bin/watermark-toolkit.js prompt sorgente.txt --lang it --clean-room --out prompts.json
-```
-
-### 6. Controlla in locale la bozza ricevuta
-
-Passa il prompt esportato al sistema non Anthropic che scegli. Salva la risposta come `candidato.txt`, poi esegui:
-
-```bash
-node bin/watermark-toolkit.js check sorgente.txt candidato.txt --lang it
-```
-
-Per due o più alternative, usa `compare`. La CLI non chiama modelli, non carica nulla e non sceglie un vincitore. Il batch locale automatico è stato testato e tolto perché i risultati non giustificavano la preparazione.
-
-## Leggi il risultato della CLI senza tirare a indovinare
-
-- `mechanicallyValid: true` significa che la bozza conserva i valori protetti automaticamente e resta nel margine di lunghezza predefinito. Non dice nulla su causalità, precisazioni o tono.
-- `semanticStatus: "requires-manual-review"` resta in ogni resoconto perché una metrica locale non può approvare il significato.
-- `ngramSurvival` misura le sequenze di quattro parole rimaste. Più basso significa più cambiamento della forma, non testo migliore.
-- `longestSharedPhrase` mostra la sequenza ordinaria più lunga condivisa con la fonte.
-- `mechanicalShortlist` conserva le bozze che superano i controlli configurati. `recommended` resta vuoto. Scegli tu dopo aver letto.
-
-Nessun punteggio locale dimostra un risultato contro il detector privato di Anthropic.
-
-Se ti aspettavi targeting o un torneo adattivo, li abbiamo tolti dopo il red-team. Il proxy poteva privilegiare fatti rari senza localizzare il segnale privato di Claude. Il torneo non adattava davvero la generazione. [La guida ai metodi](../../METHODS.it.md) spiega la decisione e i contratti più stretti rimasti.
-
-## Se qualcosa non funziona
-
-### `node` non viene riconosciuto o trovato
-
-Installa Node.js LTS, chiudi il Terminale, riaprilo nella cartella e ripeti `node --version`.
-
-### `Source text is empty`
-
-Controlla che `sorgente.txt` contenga testo normale, salva e ripeti il comando.
-
-### `Blocked provider configuration`
-
-L'indirizzo del provider o il nome del modello rimanda ad Anthropic o Claude. Scegli un modello non Anthropic.
-
-### È sparito un nome o un valore esatto
-
-Proteggilo esplicitamente:
-
-```bash
-node bin/watermark-toolkit.js prepare sorgente.txt --lang it --protect "Nome Esatto" --out caso.json
-```
-
-## Prima di pubblicare
-
-Controlla ogni fatto. Leggi il testo ad alta voce. Togli le frasi che non ti somigliano. Poi prendi tu la decisione editoriale.
-
-[Guarda un esempio completo](../../examples/walkthrough.it.md) · [Confronta tutti i metodi](../../METHODS.it.md) · [Leggi che cosa sappiamo](../../CLAIMS.md)
+[Confronta le strade ammesse](../../METHODS.it.md) · [Guarda un esempio completo](../../examples/walkthrough.it.md) · [Leggi il registro delle prove](../../CLAIMS.md)

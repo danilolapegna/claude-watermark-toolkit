@@ -1,6 +1,6 @@
 # Esempio completo
 
-Questa pagina mostra che cosa lo strumento di confronto locale può decidere e che cosa, invece, deve restare nelle mani di chi legge. Segue una fonte, i valori protetti, una scheda controllata e due bozze valide, così diventa visibile la differenza fra “meno parole copiate” e “testo migliore”.
+Questa pagina mostra a che cosa serve il comando facoltativo `compare` della CLI. Non crea bozze. Legge una fonte e due bozze che esistono già, poi affianca gli stessi controlli meccanici. Può aiutarti a capire che cosa verificare. Non sceglie il testo finale al posto tuo.
 
 In un caso reale, idee e prove devono essere tue e utilizzabili. Qui la fonte è inventata e l'obiettivo è volutamente stretto: ripetere il controllo, guardare le prove e poi prendere personalmente la decisione sul significato.
 
@@ -39,15 +39,12 @@ Il file è [`examples/fixtures/candidate-b-it.txt`](fixtures/candidate-b-it.txt)
 
 ## Che cosa restituisce lo strumento
 
-Esegui:
+Non devi eseguire il comando per capire l'esempio. Se hai scaricato il repository e installato Node.js 20 o successivo, apri il Terminale nella cartella del toolkit ed esegui:
 
 ```bash
-node bin/watermark-toolkit.js compare \
-  examples/fixtures/source-it.txt \
-  examples/fixtures/candidate-a-it.txt \
-  examples/fixtures/candidate-b-it.txt \
-  --lang it \
-  --json
+node bin/watermark-toolkit.js compare examples/fixtures/source-it.txt examples/fixtures/candidate-a-it.txt examples/fixtures/candidate-b-it.txt --lang it
 ```
 
-Entrambe le schede restituiscono `mechanicallyValid: true`, `semanticStatus: "requires-manual-review"` e `missingInvariants: []`. Lo strumento lascia anche `recommended` vuoto. La versione B cambia la struttura in modo più netto. La A resta più vicina al tono iniziale. Soltanto chi legge può verificare quale conservi ogni precisazione e suoni davvero come l'autore.
+Il risultato nomina ogni file e mostra se i valori esatti sono sopravvissuti, la sequenza condivisa più lunga e altre somiglianze visibili. Entrambe le bozze superano i controlli meccanici configurati. La versione B cambia la struttura in modo più netto. La A resta più vicina al tono iniziale. La scelta arriva soltanto dopo aver controllato ogni precisazione e la voce.
+
+Se CLI e Terminale sono parole nuove, parti dalla [guida alla CLI da zero](../methods/semantic-reconstitution/README.it.md). Per un solo testo, [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it) è più semplice.

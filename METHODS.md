@@ -1,154 +1,92 @@
-# Five routes worth your time
+# Three writing routes, plus the helpers that earn their place
 
 [Italiano](METHODS.it.md) · [Start from zero](start-here/en/README.md) · [Open Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/)
 
-A giant toolkit can look impressive while quietly handing you ten versions of the same weak idea. This one used to be guilty of that. The list is shorter now.
-
-Every route below has to answer four questions:
-
-1. What useful result will I get?
-2. How can I repeat or check it?
-3. Where does it stop being trustworthy?
-4. Is the effort sensible for my situation?
-
-If a feature cannot answer all four, it does not get a route number.
+The useful choice is smaller than it looks. You need to know who will write the new draft, what they will see and how you will check the result.
 
 ## Choose in thirty seconds
 
-| Your situation | Use this | Time | What you actually get |
+| Your situation | Start here | Time | What you actually receive |
 |---|---|---:|---|
-| Assistance is allowed and disclosure solves the issue | Leave the text alone or disclose | none | no needless rewrite |
-| Short or private text | [Human redraft](methods/human-redraft/README.md) | 10 to 60 min | a new draft written from your own fact sheet |
-| You want the easiest serious route | [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/) | 2 to 5 min plus model time | a guided prompt builder and a local surface report |
-| Wording separation matters more than speed | [Source-separated clean room](methods/two-envelope-clean-room/README.md) | 15 to 40 min | a checked brief that the writing context receives without the source |
-| You want another non-Anthropic system to do the writing | [Two-conversation workflow](methods/independent-draft/README.md) | 10 to 30 min | a research brief plus one or more independent drafts |
-| You repeat this work or need local files and JSON | [Local CLI](methods/semantic-reconstitution/README.md) | setup plus a few minutes | prompt export, exact-value restoration and mechanical reports |
-| The text is high-stakes and you have a budget | Human editor from the checked brief | paid time | editorial judgment and accountable review |
+| Assistance is allowed and disclosure solves the policy | Leave the text alone and disclose | 2 min | no needless rewrite or new factual drift |
+| The text is short or must stay entirely private | [Write again from a fact sheet](methods/human-redraft/README.md) | 10-60 min | a draft written by you with no upload |
+| You want the easiest guided path | [Use Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/) | 2-5 min plus writing time | a prepared prompt, then local checks on the returned draft |
+| The writing model must run on your computer | [Use LM Studio or Ollama](methods/local-model/README.md) | setup plus writing time | the same prepared prompt executed without a hosted writer |
+| The writer must not see the old sentences | [Use the two-envelope clean room](methods/two-envelope-clean-room/README.md) | 15-40 min | a draft created from checked facts and voice notes only |
+| You already use a non-Anthropic agent | [Install the skill](skills/non-anthropic-text-rewrite/README.md) | 10-30 min | the source-separated workflow run by the agent, with two human approvals |
+| You repeat the work or need saved files | [Use the optional CLI](methods/semantic-reconstitution/README.md) | setup plus a few minutes | prompt files and repeatable mechanical reports |
 
-For most people, Rewrite Room is the right first stop. For confidential or high-stakes work, use the manual or source-separated route. The terminal is not a quality upgrade. It is a repeatability upgrade.
+For most people, the answer is Rewrite Room with a writing model they already use. If hosted privacy or credits are the problem, keep Rewrite Room and change only the writer step to LM Studio or Ollama.
 
-## 0. Leave it alone or disclose
+## Route 1: write again from a fact sheet
 
-“I came here to change the text and your first method is to do nothing?” Yes, because this guide is here to solve your problem, not to manufacture work for its own tools.
+You may be thinking, “Yes, obviously. Write it yourself. Duh.” It stays because this is a complete guide, not a catalogue designed to make the software look necessary.
 
-If the relevant policy clearly allows assisted writing and asks only for disclosure, disclose. A rewrite adds cost and creates new opportunities for factual drift.
+- **Use it when:** the text is short, private or important enough to deserve your direct attention.
+- **What goes in:** a fact sheet with purpose, claims, evidence, qualifications, exact values and voice notes.
+- **What happens:** you close the source and write from the sheet.
+- **What comes out:** a new draft that never passed through another model.
+- **Check:** reopen the source only after drafting and verify every claim and qualification.
+- **Stop if:** the fact sheet cannot hold the text without losing relationships. Use the clean-room route instead.
 
-**Contract:** the policy concern is resolved without altering sound prose.
+[Follow the complete manual route](methods/human-redraft/README.md).
 
-**Check:** read the actual policy, identify what must be disclosed and keep a copy.
+## Route 2: Rewrite Room, then a writer of your choice
 
-**Limit:** this does not help when an institution treats detectable assistance itself as misconduct or uses a private detector as automatic proof. That is a governance problem, not a punctuation problem.
+Rewrite Room is a prompt builder with local checks. It does not write.
 
-## 1. Rewrite it yourself from a fact sheet
+The normal loop is:
 
-“So the premium advice is: write it yourself. Duh.” Correct. It stays because it is free, private and unusually strong for a short text. The method is the separation, not the keyboard.
+1. Paste the source into Rewrite Room.
+2. Copy the prompt it builds.
+3. Paste that prompt into a non-Anthropic writer.
+4. Paste the returned draft back into Rewrite Room.
+5. Restore exact values and inspect the report.
 
-1. Extract the purpose, atomic claims, evidence, qualifications and exact values.
-2. Close the source.
-3. Choose the order your reader needs.
-4. Draft from your understanding.
-5. Reopen the source only to verify meaning and facts.
+At step 3, choose either:
 
-**Contract:** the new draft is built from a checked fact sheet, not by swapping words in visible source sentences.
+- **a hosted non-Anthropic model:** no installation, but the provider receives the prompt and may charge or apply its own provenance system;
+- **a local model in LM Studio or Ollama:** no hosted writing credits or submission, but you install a large model and quality depends on the computer and model.
 
-**Repeatable check:** the guide includes a worksheet, a claim-by-claim audit and a stop rule.
+What the browser checks is deliberately narrow: protected values, long shared phrases, four-word sequence survival, sentence openings, structure and length. It cannot approve meaning or reproduce Anthropic's private detector.
 
-**Limit:** if you keep peeking at the source, its structure tends to survive. Long or highly technical texts make the fact sheet expensive.
+[Open Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/) or [set up the local writer from zero](methods/local-model/README.md).
 
-[Follow the full human method](methods/human-redraft/README.md).
+## Route 3: the source-separated clean room
 
-## 2. Use Rewrite Room
+“Two envelopes sounds like a lot for one paragraph.” It is. Do not use this for one paragraph.
 
-“So it is a prompt builder?” Exactly. A simple, direct one with protected-value masking and local checks. It saves you from inventing the procedure and makes the weak points visible. It does not write.
+Use it when the text matters enough that the writing context should never see the old sentences. Envelope 1 contains facts, claims and qualifications. Envelope 2 contains concrete voice behavior. The writer receives both envelopes, not the source.
 
-The default journey is four actions:
+- **What you get:** stronger separation from source phrasing.
+- **What it costs:** a careful brief and a second fact check.
+- **Main failure:** a bad brief creates an independently worded but incorrect draft.
+- **Stop if:** two drafts repeat the same error. Repair the envelopes instead of generating again.
 
-1. Paste your text.
-2. Copy the prepared rewrite prompt.
-3. Run it in a non-Anthropic model.
-4. Paste the draft back for local checks.
+[Build the two envelopes](methods/two-envelope-clean-room/README.md).
 
-The prompt tells the writing model to build an internal fidelity ledger, preserve claims and qualifications, protect exact values, reconstruct ordinary sentence sequences and audit the draft before returning it. The page itself calls no model and uses no AI credits.
+## Helper 1: the agent skill
 
-**Contract:** build one copyable prompt, restore surviving protected markers and report exact values, longest shared phrase, phrase survival, repeated openings, structure and length. The external model writes the draft.
+A skill is a reusable instruction file for an agent. It is not a stronger model and not an app. It packages the clean-room route so an agent can prepare the brief, isolate drafting and show trade-offs repeatedly.
 
-**Repeatable check:** browser-core tests cover protected-value extraction, exact matching, prompt boundaries and adversarial comparison cases. The static build check rejects remote CSS and missing local assets.
+Use it only if you already have a non-Anthropic agent that can create a genuinely isolated writing context. If you do not know where your agent loads skills, you are not missing a secret route. Use Rewrite Room.
 
-**Limit:** the report reads surface properties, not meaning. It cannot certify Anthropic's private detector. The external model may charge or use its own provenance mechanism.
+[See exactly how to attach or install the skill](skills/non-anthropic-text-rewrite/README.md).
 
-[Open Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/).
+## Helper 2: the local CLI
 
-## 3. Use the source-separated clean room
+CLI means a tool controlled by terminal commands. It is useful for saved files and repeated runs, not for better prose.
 
-“Two envelopes sounds theatrical.” It is just an easy way to stop facts and voice from collapsing into one vague summary.
+Its normal loop is `source.txt -> prompt.txt -> writer -> draft.txt -> check`. The `prepare` command only previews protected values. The `compare` command only shows the same evidence for two drafts. Neither is required for the normal loop.
 
-- Envelope 1 contains purpose, reader, atomic claims, evidence, qualifications and protected values.
-- Envelope 2 contains concrete voice behavior, format and limits.
+[Follow the CLI from download to final check](methods/semantic-reconstitution/README.md).
 
-The drafting person or model receives the envelopes, never the original sentences.
+## Shortcuts that do not earn a route
 
-**Contract:** source wording is present during research, absent during drafting, while every protected value and claim has a place in the brief.
+Punctuation changes, invisible-character cleaners and a few synonyms target the wrong layer. Backtranslation and repeated rewriting can add factual drift. Public SynthID code does not possess Anthropic's private key. Research attacks called SIRA, B4 and TSAPA informed testing, but they are not actions a reader should perform here.
 
-**Repeatable check:** compare the brief against the source before drafting, then map every brief item to the draft. The copyable prompts use explicit inert-data boundaries and a fixed JSON schema.
+The targeting and tournament prototypes were removed because their local proxies could not identify Claude's private signal and could encourage changes to rare factual language. The automatic local writer was removed after real runs returned JSON, copied too closely and rejected valid briefs. That research remains public in [probable mechanics](research/probable-mechanics.md) and [the red-team report](REDTEAM.md), clearly separated from the product.
 
-**Limit:** a bad brief produces an independently worded bad draft. Two messages in the same conversation are not isolated contexts. Provider-wide memory can also defeat the separation.
+## The honest finish
 
-[Build the two envelopes](methods/two-envelope-clean-room/README.md) or [run them in another system](methods/independent-draft/README.md).
-
-## 4. Prepare and check locally with the CLI
-
-“Does the terminal make this smarter?” No. It makes the tested parts repeatable over long files and several candidates.
-
-The CLI can:
-
-- inventory exact values without modifying the source;
-- export either the primary prompt or the advanced source-separated pair;
-- restore protected placeholders after a model returns a draft;
-- show mechanical failures and compare several drafts without choosing a winner for you.
-
-```bash
-node bin/watermark-toolkit.js prompt source.txt --out prompt.json
-node bin/watermark-toolkit.js check source.txt candidate.txt
-```
-
-**Contract:** the CLI prepares or measures. It never calls a writing model. `check` restores placeholders and returns a mechanical report that remains marked `requires-manual-review`.
-
-**Repeatable check:** automated tests cover source-overwrite protection, prompt isolation, exact values, Unicode, long inputs and adversarial semantic inversions.
-
-**Limit:** the CLI does not write. You still need a non-Anthropic model or a person, and you must verify every claim before choosing.
-
-[Use the local route from zero](methods/semantic-reconstitution/README.md).
-
-## What each command is for
-
-These commands are not souvenirs. Each has one narrow job.
-
-| Command | Useful contract | What its test proves | What it never claims |
-|---|---|---|---|
-| `prepare` | inventory exact values and case metadata | common EN/IT formats, nesting, exactness, long input and no source overwrite | that every important idea was extracted |
-| `prompt` | export the primary prompt; add `--clean-room` for the two-context pair | source boundaries, inert-data instructions and no source wording in drafting pass | that the receiving model will obey perfectly |
-| `check` | restore PV markers and inspect exactly one candidate | exact restoration, missing values, phrase survival, openings and length | semantic fidelity or detector success |
-| `compare` | restore PV markers and show the same evidence for at least two candidates | no silent winner, visible failures, bounded metrics | which draft sounds like you |
-
-The removed `targets` command failed this standard. Its lexical proxy could not identify Claude's private signal positions and could prioritize rare facts. The removed adaptive tournament was not genuinely adaptive. Keeping either would have made the repository look larger and the reader less informed.
-
-## The prompt and the skill
-
-The copyable prompts and agent skill stay because they have public contracts too.
-
-- The [research prompt](prompts/en/research-pass.md) must return a fixed JSON brief or `BRIEF_ERROR`.
-- The [drafting prompt](prompts/en/drafting-pass.md) receives only that checked brief and returns a draft or `BRIEF_ERROR`.
-- The [agent skill](skills/non-anthropic-text-rewrite/README.md) must stop when it cannot create an isolated context or verify semantic mapping.
-
-Automated contract tests check their required boundaries and outputs. Those tests cannot force every third-party agent to behave. That limit is stated before installation, not buried afterward.
-
-## Shortcuts that did not earn a route
-
-- Light synonym swaps preserve most context and structure.
-- Punctuation changes touch too few token choices.
-- Unicode cleaners solve an unrelated hygiene problem. Anthropic describes a statistical token pattern, not hidden characters.
-- Backtranslation can destroy qualifications and still leave no honest guarantee.
-- Random deletion can lower overlap by making the text worse.
-- Public SynthID code does not possess Anthropic's private key or detector configuration.
-
-The honest finish is simple: these methods can produce a fact-checked draft with genuinely new wording and visible mechanical evidence. None can issue Anthropic's private verdict. That is a smaller claim than “watermark removed,” and a much more useful product than pretending otherwise.
+These routes can produce a fact-checked draft with substantially rebuilt wording. None can issue Anthropic's private verdict. Choose by fidelity, privacy, time and how much responsibility you are prepared to take for the final text.

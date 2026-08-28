@@ -22,5 +22,29 @@
     "language": "it",
     "source": "La regola interna dice “nessuna pubblicazione automatica”. Il 28 agosto 2026, API-OPS ha preparato una bozza da 1.200,50 € per il cliente, ma non l'ha inviata. Il responsabile può approvarla, correggerla oppure scartarla. Finché non sceglie, il file resta una bozza e non una comunicazione ufficiale.",
     "focus": "Preserve the exact quotation, date, acronym, amount, non-send event and three available human decisions."
+  },
+  {
+    "id": "en-conditional-scope",
+    "language": "en",
+    "source": "If the second audit confirms the first result, Northstar may extend the trial after 15 October 2026. It has not approved an extension. The €48,000 ceiling covers software and training together, not €48,000 for each category. Unless legal review finishes first, procurement must wait.",
+    "focus": "Preserve every conditional boundary: confirmation is required, extension is not approved, the budget is shared rather than duplicated, and procurement waits unless legal review finishes."
+  },
+  {
+    "id": "it-conversational-contrast",
+    "language": "it",
+    "source": "Detta proprio terra terra: 7 reclami in meno sono una buona notizia, non una teoria scientifica. Il team ha cambiato il modulo il 3 luglio 2026, certo. Nello stesso periodo, però, ha dimezzato i tempi di risposta. Quindi festeggiamo pure il risultato. Evitiamo soltanto di inventarci quale delle due cose l'abbia causato.",
+    "focus": "Keep the colloquial cadence, the cautious contrast between celebration and causal uncertainty, the count, the date and the simultaneous response-time change."
+  },
+  {
+    "id": "en-technical-fixed-terms",
+    "language": "en",
+    "source": "The service returned HTTP 429, not HTTP 500. Its `Retry-After` header was 120 seconds, so the client paused before another request. That behavior matches the published API contract at https://example.org/rate-limits. It does not show that the database failed, and changing the retry code would treat the symptom rather than the documented limit.",
+    "focus": "Keep the status-code distinction, exact header name, wait duration, URL, exclusion of database failure and the warning against changing the wrong component."
+  },
+  {
+    "id": "it-list-roles",
+    "language": "it",
+    "source": "Per il rilascio di ALFA-2 ci sono tre passaggi, in quest'ordine: sicurezza verifica il pacchetto; prodotto approva le note; operations pubblica. Il controllo di sicurezza può bloccare il rilascio. L'approvazione di prodotto non può saltarlo. La frase da conservare nei log è “rilascio sospeso in attesa di verifica”.",
+    "focus": "Preserve the ordered three-role sequence, security's blocking power, product's inability to bypass it, the acronym and the exact log phrase."
   }
 ]

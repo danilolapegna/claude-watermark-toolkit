@@ -1,6 +1,6 @@
 # Worked example
 
-This page shows what the local comparison tool can and cannot decide. It follows one source through protected values, a checked brief and two valid drafts so you can see why “less copied wording” is not the same as “better writing.”
+This page shows what the optional CLI's `compare` command is for. It does not create drafts. It reads one source and two drafts that already exist, then puts the same mechanical checks side by side. That can help you choose what to inspect. It cannot choose the final wording for you.
 
 The ideas and evidence in a real case must be yours to use. Here the source is an invented fixture, and the point is deliberately narrow: repeat the check, inspect the evidence, then make the semantic decision yourself.
 
@@ -41,14 +41,12 @@ The file is [`examples/fixtures/candidate-b-en.txt`](fixtures/candidate-b-en.txt
 
 Both candidates retain the protected values. Candidate B changes the structure more sharply. Candidate A stays closer to the source tone. Neither automated result settles which one sounds more like the author.
 
-Run the comparison:
+You do not need to run this command to understand the example. If you downloaded the repository and have Node.js 20 or later, open a terminal in the toolkit folder and run:
 
 ```bash
-node bin/watermark-toolkit.js compare \
-  examples/fixtures/source-en.txt \
-  examples/fixtures/candidate-a-en.txt \
-  examples/fixtures/candidate-b-en.txt \
-  --json
+node bin/watermark-toolkit.js compare examples/fixtures/source-en.txt examples/fixtures/candidate-a-en.txt examples/fixtures/candidate-b-en.txt
 ```
 
-Both scorecards return `mechanicallyValid: true`, `semanticStatus: "requires-manual-review"` and `missingInvariants: []`. The tool also leaves `recommended` empty. Candidate B changes the structure more sharply. Candidate A stays closer to the source tone. Only a reader can verify which one keeps every qualification and sounds like the author.
+The output names each file and shows whether exact values survived, the longest shared phrase and other visible overlap. Both drafts pass the configured mechanical checks. Candidate B changes the structure more sharply. Candidate A stays closer to the source tone. You still choose after checking every qualification and reading for voice.
+
+If “CLI” or “terminal” is new to you, start with the [from-zero CLI guide](../methods/semantic-reconstitution/README.md). For one text, [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/) is easier.

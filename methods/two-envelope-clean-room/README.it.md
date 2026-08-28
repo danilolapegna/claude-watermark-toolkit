@@ -1,4 +1,4 @@
-# Percorso 2: il metodo delle due buste
+# Percorso 3: il metodo delle due buste
 
 [English](README.md) · [Confronta tutti i percorsi](../../METHODS.it.md) · [Usa la versione guidata](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it)
 

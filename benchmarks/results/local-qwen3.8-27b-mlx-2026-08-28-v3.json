@@ -1,0 +1,1117 @@
+{
+  "schema": "claude-watermark-toolkit/local-prompt-benchmark/1.1",
+  "runAt": "2026-08-28T19:20:54.961Z",
+  "model": "Qwen3.8-27B-MLX-8bit",
+  "corpusSize": 8,
+  "design": "Same local non-Anthropic model and seed per case. Baseline and precision drafts judged blind with alternating labels. Mechanical evidence is deterministic; judge scores are model-assisted and require human inspection.",
+  "summary": {
+    "baseline": {
+      "fidelity": 92.25,
+      "independence": 85,
+      "voice": 80.625,
+      "exactValuePasses": 6,
+      "fourWordSurvival": 0.10074999999999999,
+      "longestSharedPhrase": 6.375
+    },
+    "precision": {
+      "fidelity": 95.375,
+      "independence": 85.625,
+      "voice": 85,
+      "exactValuePasses": 8,
+      "fourWordSurvival": 0.0712,
+      "longestSharedPhrase": 5.375
+    }
+  },
+  "mechanicalGate": {
+    "allPrecisionExactValues": true,
+    "independenceMajority": true,
+    "surfaceMargin": true,
+    "pass": true
+  },
+  "modelJudgeAdvisory": {
+    "fidelityNotWorse": true,
+    "voiceNotWorse": true,
+    "status": "advisory-only-requires-human-inspection"
+  },
+  "semanticReleaseStatus": "REQUIRES_MANUAL_SEMANTIC_REVIEW",
+  "cases": [
+    {
+      "id": "en-qualification",
+      "language": "en",
+      "source": "The 12-week pilot involved 64 employees and ended on 2026-08-28. It did not show that a four-day week increased productivity. The observed change was 3.1%, but the 95% confidence interval crossed zero. We can say the schedule was workable for this team. We cannot say it caused better performance, and we certainly cannot generalize from one team to an entire company.",
+      "protectedValues": [
+        {
+          "type": "number",
+          "value": "12"
+        },
+        {
+          "type": "number",
+          "value": "64"
+        },
+        {
+          "type": "date",
+          "value": "2026-08-28"
+        },
+        {
+          "type": "number",
+          "value": "3.1%"
+        },
+        {
+          "type": "number",
+          "value": "95%"
+        }
+      ],
+      "baseline": {
+        "draft": "A 12-week pilot study conducted with 64 employees concluded on August 28, 2026, and failed to demonstrate that a four-day workweek boosts productivity. Although a 3.1% change was observed, the 95% confidence interval included zero. While the schedule proved feasible for this specific group, it cannot be concluded that it improved performance, nor can these findings be extrapolated to an entire organization.",
+        "mechanical": {
+          "id": "cab35b4a10d2",
+          "mechanicallyValid": false,
+          "valid": false,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [
+            "Missing 1 protected value."
+          ],
+          "missingInvariants": [
+            {
+              "type": "date",
+              "value": "2026-08-28"
+            }
+          ],
+          "metrics": {
+            "invariantRetention": 0.8,
+            "ngramSurvival": 0.0317,
+            "lengthRatio": 0.9848,
+            "readability": 38,
+            "sourceReadability": 64,
+            "readabilityDelta": -26,
+            "wordCount": 65,
+            "longestSharedPhrase": {
+              "length": 4,
+              "phrase": "that a four day"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "judge": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 80,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "precision": {
+        "firstRawDraft": "A [PV-01]-week trial was conducted with [PV-02] staff members, concluding on [PV-03]. The results failed to demonstrate that a four-day workweek boosts productivity. Although the measured shift was [PV-04], the [PV-05] confidence interval included zero. It is reasonable to conclude the schedule was feasible for this specific group. However, we cannot attribute improved performance to the change, nor can we extrapolate findings from a single team to an entire organization.",
+        "firstDraft": "A 12-week trial was conducted with 64 staff members, concluding on 2026-08-28. The results failed to demonstrate that a four-day workweek boosts productivity. Although the measured shift was 3.1%, the 95% confidence interval included zero. It is reasonable to conclude the schedule was feasible for this specific group. However, we cannot attribute improved performance to the change, nor can we extrapolate findings from a single team to an entire organization.",
+        "firstMechanical": {
+          "id": "1f13c97eb810",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.0635,
+            "lengthRatio": 1.1364,
+            "readability": 52,
+            "sourceReadability": 64,
+            "readabilityDelta": -12,
+            "wordCount": 75,
+            "longestSharedPhrase": {
+              "length": 4,
+              "phrase": "on 2026 08 28"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "draft": "A 12-week trial was conducted with 64 staff members, concluding on 2026-08-28. The results failed to demonstrate that a four-day workweek boosts productivity. Although the measured shift was 3.1%, the 95% confidence interval included zero. It is reasonable to conclude the schedule was feasible for this specific group. However, we cannot attribute improved performance to the change, nor can we extrapolate findings from a single team to an entire organization.",
+        "mechanical": {
+          "id": "1f13c97eb810",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.0635,
+            "lengthRatio": 1.1364,
+            "readability": 52,
+            "sourceReadability": 64,
+            "readabilityDelta": -12,
+            "wordCount": 75,
+            "longestSharedPhrase": {
+              "length": 4,
+              "phrase": "on 2026 08 28"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "judge": {
+          "fidelity": 98,
+          "independence": 90,
+          "voice": 90,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "blindJudge": {
+        "A": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 80,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "B": {
+          "fidelity": 98,
+          "independence": 90,
+          "voice": 90,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "fidelity_winner": "b",
+        "independence_winner": "b",
+        "overall_winner": "b",
+        "reason": "Draft B preserves the specific causal exclusion (\"attribute improved performance to the change\") and the explicit \"single team\" constraint more faithfully than Draft A, which generalizes to \"findings\" and \"organization\" while slightly softening the directness of the negative finding."
+      },
+      "precisionWasLabel": "B"
+    },
+    {
+      "id": "it-policy-voice",
+      "language": "it",
+      "source": "Il punto, molto banalmente, non è fingere che l'assistenza non sia esistita. È evitare che un segnale tecnico diventi una sentenza sulla persona. Nel campione di 320 testi, il detector ha segnalato il 18,4%. Quel numero non dimostra chi abbia avuto l'idea, chi abbia verificato le fonti o chi si assuma la responsabilità. Può aprire un controllo. Non può chiuderlo da solo.",
+      "protectedValues": [
+        {
+          "type": "number",
+          "value": "320"
+        },
+        {
+          "type": "number",
+          "value": "18,4%"
+        }
+      ],
+      "baseline": {
+        "draft": "In termini semplici, l’obiettivo non è negare l’esistenza dell’assistenza, bensì impedire che un indicatore tecnico si trasformi in un giudizio definitivo sull’individuo. Sebbene il rilevatore abbia evidenziato il 18,4% dei 320 testi analizzati, tale dato non chiarisce chi abbia generato l’idea, chi abbia verificato le fonti o chi ne assuma la responsabilità. Esso può avviare un’indagine, ma non è sufficiente da solo per concluderla.",
+        "mechanical": {
+          "id": "cefee9ed36c0",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.0667,
+            "lengthRatio": 1.0317,
+            "readability": 47,
+            "sourceReadability": 70,
+            "readabilityDelta": -23,
+            "wordCount": 65,
+            "longestSharedPhrase": {
+              "length": 7,
+              "phrase": "chi abbia verificato le fonti o chi"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "judge": {
+          "fidelity": 85,
+          "independence": 90,
+          "voice": 75,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "precision": {
+        "firstRawDraft": "La questione, in termini piuttosto semplici, non riguarda l'ipotesi che l'ausilio non sia mai stato impiegato. Si tratta piuttosto di impedire che un indicatore tecnico si trasformi in un giudizio definitivo sull'individuo. Su un insieme di [PV-01] documenti, lo strumento di rilevamento ha evidenziato il [PV-02]. Tale dato non certifica l'origine del concetto, la verifica delle fonti o l'assunzione di responsabilità. Può innescare una verifica. Non è in grado, da solo, di concluderla.",
+        "firstDraft": "La questione, in termini piuttosto semplici, non riguarda l'ipotesi che l'ausilio non sia mai stato impiegato. Si tratta piuttosto di impedire che un indicatore tecnico si trasformi in un giudizio definitivo sull'individuo. Su un insieme di 320 documenti, lo strumento di rilevamento ha evidenziato il 18,4%. Tale dato non certifica l'origine del concetto, la verifica delle fonti o l'assunzione di responsabilità. Può innescare una verifica. Non è in grado, da solo, di concluderla.",
+        "firstMechanical": {
+          "id": "e1c0909a5aa3",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0,
+            "lengthRatio": 1.1746,
+            "readability": 60,
+            "sourceReadability": 70,
+            "readabilityDelta": -10,
+            "wordCount": 74,
+            "longestSharedPhrase": {
+              "length": 3,
+              "phrase": "il 18 4"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "draft": "La questione, in termini piuttosto semplici, non riguarda l'ipotesi che l'ausilio non sia mai stato impiegato. Si tratta piuttosto di impedire che un indicatore tecnico si trasformi in un giudizio definitivo sull'individuo. Su un insieme di 320 documenti, lo strumento di rilevamento ha evidenziato il 18,4%. Tale dato non certifica l'origine del concetto, la verifica delle fonti o l'assunzione di responsabilità. Può innescare una verifica. Non è in grado, da solo, di concluderla.",
+        "mechanical": {
+          "id": "e1c0909a5aa3",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0,
+            "lengthRatio": 1.1746,
+            "readability": 60,
+            "sourceReadability": 70,
+            "readabilityDelta": -10,
+            "wordCount": 74,
+            "longestSharedPhrase": {
+              "length": 3,
+              "phrase": "il 18 4"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "judge": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 90,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "blindJudge": {
+        "A": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 90,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "B": {
+          "fidelity": 85,
+          "independence": 90,
+          "voice": 75,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "fidelity_winner": "a",
+        "independence_winner": "b",
+        "overall_winner": "a",
+        "reason": "Draft A preserves the source's distinct sentence structure and emphatic rhythm regarding the opening/closing distinction, whereas Draft B merges sentences and softens the directness."
+      },
+      "precisionWasLabel": "A"
+    },
+    {
+      "id": "en-causality",
+      "language": "en",
+      "source": "DL Solutions published the protocol at https://example.com/protocol before reading the outcomes. Error reports fell from 41 to 23 after the new checklist was introduced. The sequence is suggestive, not decisive: staffing also changed in the same month. The evidence supports another controlled test, not the claim that the checklist caused the entire reduction.",
+      "protectedValues": [
+        {
+          "type": "name",
+          "value": "DL Solutions"
+        },
+        {
+          "type": "url",
+          "value": "https://example.com/protocol"
+        },
+        {
+          "type": "number",
+          "value": "41"
+        },
+        {
+          "type": "number",
+          "value": "23"
+        }
+      ],
+      "baseline": {
+        "draft": "DL Solutions released the protocol at https://example.com/protocol prior to reviewing the results. Following the implementation of the new checklist, error reports decreased from 41 to 23. However, because staffing levels also shifted during that same month, this correlation is indicative rather than conclusive. The data warrants further controlled testing rather than supporting the assertion that the checklist was solely responsible for the entire decline.",
+        "mechanical": {
+          "id": "4fe40cde9463",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.0943,
+            "lengthRatio": 1.1964,
+            "readability": 32,
+            "sourceReadability": 48,
+            "readabilityDelta": -16,
+            "wordCount": 67,
+            "longestSharedPhrase": {
+              "length": 7,
+              "phrase": "the protocol at https example com protocol"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "judge": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 80,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "precision": {
+        "firstRawDraft": "[PV-01] made the protocol public at [PV-02] prior to reviewing the results. Following the implementation of the new checklist, error reports dropped from [PV-03] to [PV-04]. This temporal sequence is indicative rather than conclusive, as staffing levels also shifted during that same month. The data warrants a further controlled trial, rather than supporting the assertion that the checklist was solely responsible for the total decrease.",
+        "firstDraft": "DL Solutions made the protocol public at https://example.com/protocol prior to reviewing the results. Following the implementation of the new checklist, error reports dropped from 41 to 23. This temporal sequence is indicative rather than conclusive, as staffing levels also shifted during that same month. The data warrants a further controlled trial, rather than supporting the assertion that the checklist was solely responsible for the total decrease.",
+        "firstMechanical": {
+          "id": "673fa6afabe6",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.0566,
+            "lengthRatio": 1.2321,
+            "readability": 41,
+            "sourceReadability": 48,
+            "readabilityDelta": -7,
+            "wordCount": 69,
+            "longestSharedPhrase": {
+              "length": 5,
+              "phrase": "at https example com protocol"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "draft": "DL Solutions made the protocol public at https://example.com/protocol prior to reviewing the results. Following the implementation of the new checklist, error reports dropped from 41 to 23. This temporal sequence is indicative rather than conclusive, as staffing levels also shifted during that same month. The data warrants a further controlled trial, rather than supporting the assertion that the checklist was solely responsible for the total decrease.",
+        "mechanical": {
+          "id": "673fa6afabe6",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.0566,
+            "lengthRatio": 1.2321,
+            "readability": 41,
+            "sourceReadability": 48,
+            "readabilityDelta": -7,
+            "wordCount": 69,
+            "longestSharedPhrase": {
+              "length": 5,
+              "phrase": "at https example com protocol"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "judge": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 80,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "blindJudge": {
+        "A": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 80,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "B": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 80,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "fidelity_winner": "tie",
+        "independence_winner": "tie",
+        "overall_winner": "tie",
+        "reason": "Both drafts preserve all protected values, the staffing confound, and the non-causal conclusion with nearly identical structure and minor lexical variations that do not distinguish them in quality."
+      },
+      "precisionWasLabel": "B"
+    },
+    {
+      "id": "it-exact-boundaries",
+      "language": "it",
+      "source": "La regola interna dice “nessuna pubblicazione automatica”. Il 28 agosto 2026, API-OPS ha preparato una bozza da 1.200,50 € per il cliente, ma non l'ha inviata. Il responsabile può approvarla, correggerla oppure scartarla. Finché non sceglie, il file resta una bozza e non una comunicazione ufficiale.",
+      "protectedValues": [
+        {
+          "type": "quote",
+          "value": "“nessuna pubblicazione automatica”"
+        },
+        {
+          "type": "date",
+          "value": "28 agosto 2026"
+        },
+        {
+          "type": "acronym",
+          "value": "API-OPS"
+        },
+        {
+          "type": "number",
+          "value": "1.200,50 €"
+        }
+      ],
+      "baseline": {
+        "draft": "Secondo la normativa interna, è vietata la pubblicazione automatica. Il 28 agosto 2026, API-OPS ha redatto una bozza da 1.200,50 € destinata al cliente, senza tuttavia trasmetterla. Il responsabile ha la facoltà di approvare, modificare o annullare il documento; finché non interverrà una sua decisione, il file manterrà lo stato di bozza e non costituirà una comunicazione ufficiale.",
+        "mechanical": {
+          "id": "f4e5ff6afe2a",
+          "mechanicallyValid": false,
+          "valid": false,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [
+            "Missing 1 protected value."
+          ],
+          "missingInvariants": [
+            {
+              "type": "quote",
+              "value": "“nessuna pubblicazione automatica”"
+            }
+          ],
+          "metrics": {
+            "invariantRetention": 0.75,
+            "ngramSurvival": 0.2,
+            "lengthRatio": 1.25,
+            "readability": 52,
+            "sourceReadability": 64,
+            "readabilityDelta": -12,
+            "wordCount": 60,
+            "longestSharedPhrase": {
+              "length": 9,
+              "phrase": "pubblicazione automatica il 28 agosto 2026 api ops ha"
+            },
+            "sentenceOpeningReuse": 0.25
+          }
+        },
+        "judge": {
+          "fidelity": 85,
+          "independence": 90,
+          "voice": 85,
+          "missing_or_altered": [
+            "quote: “nessuna pubblicazione automatica”"
+          ],
+          "unsupported": []
+        }
+      },
+      "precision": {
+        "firstRawDraft": "Secondo la norma interna, [PV-01]. In data [PV-02], [PV-03] ha elaborato un progetto di [PV-04] destinato al cliente, il quale non è stato ancora trasmesso. Al responsabile spetta la facoltà di validare, modificare o rifiutare il documento. In assenza di tale decisione, il file mantiene lo stato di bozza e non assume la natura di comunicazione ufficiale.",
+        "firstDraft": "Secondo la norma interna, “nessuna pubblicazione automatica”. In data 28 agosto 2026, API-OPS ha elaborato un progetto di 1.200,50 € destinato al cliente, il quale non è stato ancora trasmesso. Al responsabile spetta la facoltà di validare, modificare o rifiutare il documento. In assenza di tale decisione, il file mantiene lo stato di bozza e non assume la natura di comunicazione ufficiale.",
+        "firstMechanical": {
+          "id": "40f00a16f596",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.0667,
+            "lengthRatio": 1.3333,
+            "readability": 58,
+            "sourceReadability": 64,
+            "readabilityDelta": -6,
+            "wordCount": 64,
+            "longestSharedPhrase": {
+              "length": 6,
+              "phrase": "28 agosto 2026 api ops ha"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "draft": "Secondo la norma interna, “nessuna pubblicazione automatica”. In data 28 agosto 2026, API-OPS ha elaborato un progetto di 1.200,50 € destinato al cliente, il quale non è stato ancora trasmesso. Al responsabile spetta la facoltà di validare, modificare o rifiutare il documento. In assenza di tale decisione, il file mantiene lo stato di bozza e non assume la natura di comunicazione ufficiale.",
+        "mechanical": {
+          "id": "40f00a16f596",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.0667,
+            "lengthRatio": 1.3333,
+            "readability": 58,
+            "sourceReadability": 64,
+            "readabilityDelta": -6,
+            "wordCount": 64,
+            "longestSharedPhrase": {
+              "length": 6,
+              "phrase": "28 agosto 2026 api ops ha"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "judge": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 80,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "blindJudge": {
+        "A": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 80,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "B": {
+          "fidelity": 85,
+          "independence": 90,
+          "voice": 85,
+          "missing_or_altered": [
+            "quote: “nessuna pubblicazione automatica”"
+          ],
+          "unsupported": []
+        },
+        "fidelity_winner": "a",
+        "independence_winner": "b",
+        "overall_winner": "a",
+        "reason": "Draft A preserves the mandatory exact quotation and all specific details, whereas Draft B paraphrases the protected quote, violating the strict character-for-character requirement."
+      },
+      "precisionWasLabel": "A"
+    },
+    {
+      "id": "en-conditional-scope",
+      "language": "en",
+      "source": "If the second audit confirms the first result, Northstar may extend the trial after 15 October 2026. It has not approved an extension. The €48,000 ceiling covers software and training together, not €48,000 for each category. Unless legal review finishes first, procurement must wait.",
+      "protectedValues": [
+        {
+          "type": "date",
+          "value": "15 October 2026"
+        },
+        {
+          "type": "number",
+          "value": "€48,000"
+        }
+      ],
+      "baseline": {
+        "draft": "Should the second audit validate the initial findings, Northstar has the option to prolong the trial beyond 15 October 2026, though no such extension has been authorized. The €48,000 limit applies to the combined cost of software and training, rather than serving as a separate cap for each. Furthermore, procurement cannot proceed until the legal review is completed.",
+        "mechanical": {
+          "id": "b0dffcb85fa2",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0,
+            "lengthRatio": 1.2826,
+            "readability": 46,
+            "sourceReadability": 55,
+            "readabilityDelta": -9,
+            "wordCount": 59,
+            "longestSharedPhrase": {
+              "length": 3,
+              "phrase": "the second audit"
+            },
+            "sentenceOpeningReuse": 0.25
+          }
+        },
+        "judge": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 80,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "precision": {
+        "firstRawDraft": "Northstar retains the option to prolong the trial beyond [PV-01], provided the second audit validates the initial findings. No extension has been authorized to date. The [PV-02] limit applies to the aggregate of software and training costs, rather than serving as a separate cap for each category. Procurement remains on hold until legal review is complete.",
+        "firstDraft": "Northstar retains the option to prolong the trial beyond 15 October 2026, provided the second audit validates the initial findings. No extension has been authorized to date. The €48,000 limit applies to the aggregate of software and training costs, rather than serving as a separate cap for each category. Procurement remains on hold until legal review is complete.",
+        "firstMechanical": {
+          "id": "adc8f36ad1e3",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0,
+            "lengthRatio": 1.2826,
+            "readability": 47,
+            "sourceReadability": 55,
+            "readabilityDelta": -8,
+            "wordCount": 59,
+            "longestSharedPhrase": {
+              "length": 3,
+              "phrase": "the second audit"
+            },
+            "sentenceOpeningReuse": 0.25
+          }
+        },
+        "draft": "Northstar retains the option to prolong the trial beyond 15 October 2026, provided the second audit validates the initial findings. No extension has been authorized to date. The €48,000 limit applies to the aggregate of software and training costs, rather than serving as a separate cap for each category. Procurement remains on hold until legal review is complete.",
+        "mechanical": {
+          "id": "adc8f36ad1e3",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0,
+            "lengthRatio": 1.2826,
+            "readability": 47,
+            "sourceReadability": 55,
+            "readabilityDelta": -8,
+            "wordCount": 59,
+            "longestSharedPhrase": {
+              "length": 3,
+              "phrase": "the second audit"
+            },
+            "sentenceOpeningReuse": 0.25
+          }
+        },
+        "judge": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 80,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "blindJudge": {
+        "A": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 80,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "B": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 80,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "fidelity_winner": "tie",
+        "independence_winner": "tie",
+        "overall_winner": "tie",
+        "reason": "Both drafts accurately preserve all conditional boundaries, protected values, and causal relationships with equivalent levels of independence and voice."
+      },
+      "precisionWasLabel": "B"
+    },
+    {
+      "id": "it-conversational-contrast",
+      "language": "it",
+      "source": "Detta proprio terra terra: 7 reclami in meno sono una buona notizia, non una teoria scientifica. Il team ha cambiato il modulo il 3 luglio 2026, certo. Nello stesso periodo, però, ha dimezzato i tempi di risposta. Quindi festeggiamo pure il risultato. Evitiamo soltanto di inventarci quale delle due cose l'abbia causato.",
+      "protectedValues": [
+        {
+          "type": "number",
+          "value": "7"
+        },
+        {
+          "type": "date",
+          "value": "3 luglio 2026"
+        }
+      ],
+      "baseline": {
+        "draft": "In termini semplici: la riduzione di 7 reclami è un dato positivo, non un'ipotesi teorica. Sebbene il team abbia modificato il modulo il 3 luglio 2026, nello stesso lasso di tempo ha anche ridotto della metà i tempi di risposta. Pertanto, è lecito celebrare il risultato, ma è opportuno astenersi dall'attribuire la causa a una delle due modifiche in modo arbitrario.",
+        "mechanical": {
+          "id": "9f106edcc537",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.0816,
+            "lengthRatio": 1.1731,
+            "readability": 55,
+            "sourceReadability": 68,
+            "readabilityDelta": -13,
+            "wordCount": 61,
+            "longestSharedPhrase": {
+              "length": 6,
+              "phrase": "il modulo il 3 luglio 2026"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "judge": {
+          "fidelity": 90,
+          "independence": 80,
+          "voice": 60,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "precision": {
+        "firstRawDraft": "Parlando in modo schietto: il calo di [PV-01] segnalazioni è un dato positivo, non un teorema. È vero che il gruppo ha modificato il formato il [PV-02]. Tuttavia, in quel medesimo lasso di tempo, ha anche ridotto di metà i tempi di reazione. Quindi, godiamoci il successo. L'unica cosa da evitare è speculare su quale dei due fattori ne sia stato la causa.",
+        "firstDraft": "Parlando in modo schietto: il calo di 7 segnalazioni è un dato positivo, non un teorema. È vero che il gruppo ha modificato il formato il 3 luglio 2026. Tuttavia, in quel medesimo lasso di tempo, ha anche ridotto di metà i tempi di reazione. Quindi, godiamoci il successo. L'unica cosa da evitare è speculare su quale dei due fattori ne sia stato la causa.",
+        "firstMechanical": {
+          "id": "bb593f2afcbf",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.0204,
+            "lengthRatio": 1.25,
+            "readability": 69,
+            "sourceReadability": 68,
+            "readabilityDelta": 1,
+            "wordCount": 65,
+            "longestSharedPhrase": {
+              "length": 4,
+              "phrase": "il 3 luglio 2026"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "draft": "Parlando in modo schietto: il calo di 7 segnalazioni è un dato positivo, non un teorema. È vero che il gruppo ha modificato il formato il 3 luglio 2026. Tuttavia, in quel medesimo lasso di tempo, ha anche ridotto di metà i tempi di reazione. Quindi, godiamoci il successo. L'unica cosa da evitare è speculare su quale dei due fattori ne sia stato la causa.",
+        "mechanical": {
+          "id": "bb593f2afcbf",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.0204,
+            "lengthRatio": 1.25,
+            "readability": 69,
+            "sourceReadability": 68,
+            "readabilityDelta": 1,
+            "wordCount": 65,
+            "longestSharedPhrase": {
+              "length": 4,
+              "phrase": "il 3 luglio 2026"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "judge": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 80,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "blindJudge": {
+        "A": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 80,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "B": {
+          "fidelity": 90,
+          "independence": 80,
+          "voice": 60,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "fidelity_winner": "a",
+        "independence_winner": "a",
+        "overall_winner": "a",
+        "reason": "Draft A preserves the colloquial cadence and direct imperative tone of the source, whereas Draft B adopts a stiff, formal register that loses the original voice."
+      },
+      "precisionWasLabel": "A"
+    },
+    {
+      "id": "en-technical-fixed-terms",
+      "language": "en",
+      "source": "The service returned HTTP 429, not HTTP 500. Its `Retry-After` header was 120 seconds, so the client paused before another request. That behavior matches the published API contract at https://example.org/rate-limits. It does not show that the database failed, and changing the retry code would treat the symptom rather than the documented limit.",
+      "protectedValues": [
+        {
+          "type": "acronym",
+          "value": "HTTP"
+        },
+        {
+          "type": "number",
+          "value": "429"
+        },
+        {
+          "type": "number",
+          "value": "500"
+        },
+        {
+          "type": "number",
+          "value": "120"
+        },
+        {
+          "type": "acronym",
+          "value": "API"
+        },
+        {
+          "type": "url",
+          "value": "https://example.org/rate-limits"
+        }
+      ],
+      "baseline": {
+        "draft": "The service responded with an HTTP 429 error instead of an HTTP 500. Since the `Retry-After` header specified a 120-second delay, the client waited before sending a subsequent request. This action aligns with the API contract outlined at https://example.org/rate-limits. This response does not indicate a database failure, and modifying the retry logic would address the symptom rather than the established limit.",
+        "mechanical": {
+          "id": "7548b1f30488",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.0926,
+            "lengthRatio": 1.1754,
+            "readability": 51,
+            "sourceReadability": 60,
+            "readabilityDelta": -9,
+            "wordCount": 67,
+            "longestSharedPhrase": {
+              "length": 6,
+              "phrase": "at https example org rate limits"
+            },
+            "sentenceOpeningReuse": 0
+          }
+        },
+        "judge": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 90,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "precision": {
+        "firstRawDraft": "The response yielded [PV-01] [PV-02] instead of [PV-01] [PV-03]. With a `Retry-After` header set to [PV-04] seconds, the client waited before issuing a subsequent request. This aligns with the [PV-05] contract specified at [PV-06]. It does not indicate a database failure, and modifying the retry logic would address the symptom rather than the documented constraint.",
+        "firstDraft": "The response yielded HTTP 429 instead of HTTP 500. With a `Retry-After` header set to 120 seconds, the client waited before issuing a subsequent request. This aligns with the API contract specified at https://example.org/rate-limits. It does not indicate a database failure, and modifying the retry logic would address the symptom rather than the documented constraint.",
+        "firstMechanical": {
+          "id": "18ae02f1f69d",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.1667,
+            "lengthRatio": 1.0526,
+            "readability": 56,
+            "sourceReadability": 60,
+            "readabilityDelta": -4,
+            "wordCount": 60,
+            "longestSharedPhrase": {
+              "length": 9,
+              "phrase": "at https example org rate limits it does not"
+            },
+            "sentenceOpeningReuse": 0.25
+          }
+        },
+        "draft": "The response yielded HTTP 429 instead of HTTP 500. With a `Retry-After` header set to 120 seconds, the client waited before issuing a subsequent request. This aligns with the API contract specified at https://example.org/rate-limits. It does not indicate a database failure, and modifying the retry logic would address the symptom rather than the documented constraint.",
+        "mechanical": {
+          "id": "18ae02f1f69d",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.1667,
+            "lengthRatio": 1.0526,
+            "readability": 56,
+            "sourceReadability": 60,
+            "readabilityDelta": -4,
+            "wordCount": 60,
+            "longestSharedPhrase": {
+              "length": 9,
+              "phrase": "at https example org rate limits it does not"
+            },
+            "sentenceOpeningReuse": 0.25
+          }
+        },
+        "judge": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 90,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "blindJudge": {
+        "A": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 90,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "B": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 90,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "fidelity_winner": "tie",
+        "independence_winner": "tie",
+        "overall_winner": "tie",
+        "reason": "Both drafts preserve all protected values and logical distinctions with high fidelity, though both rely on similar sentence structures and minor wording variations that result in a tie."
+      },
+      "precisionWasLabel": "B"
+    },
+    {
+      "id": "it-list-roles",
+      "language": "it",
+      "source": "Per il rilascio di ALFA-2 ci sono tre passaggi, in quest'ordine: sicurezza verifica il pacchetto; prodotto approva le note; operations pubblica. Il controllo di sicurezza può bloccare il rilascio. L'approvazione di prodotto non può saltarlo. La frase da conservare nei log è “rilascio sospeso in attesa di verifica”.",
+      "protectedValues": [
+        {
+          "type": "number",
+          "value": "2"
+        },
+        {
+          "type": "quote",
+          "value": "“rilascio sospeso in attesa di verifica”"
+        }
+      ],
+      "baseline": {
+        "draft": "Per procedere con il rilascio di ALFA-2, è necessario seguire tre fasi in sequenza: la sicurezza verifica il pacchetto, il prodotto approva le note e le operations pubblicano. Il controllo di sicurezza ha la facoltà di bloccare il rilascio, mentre l'approvazione del prodotto non può eluderlo. La frase da registrare nei log è “rilascio sospeso in attesa di verifica”.",
+        "mechanical": {
+          "id": "fff04d58c75c",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.2391,
+            "lengthRatio": 1.2245,
+            "readability": 54,
+            "sourceReadability": 61,
+            "readabilityDelta": -7,
+            "wordCount": 60,
+            "longestSharedPhrase": {
+              "length": 9,
+              "phrase": "nei log è rilascio sospeso in attesa di verifica"
+            },
+            "sentenceOpeningReuse": 0.5
+          }
+        },
+        "judge": {
+          "fidelity": 98,
+          "independence": 80,
+          "voice": 95,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "precision": {
+        "firstRawDraft": "Il rilascio di ALFA-[PV-01] segue una sequenza tripartita: prima la sicurezza valida il pacchetto, poi il prodotto autorizza le note e infine le operations eseguono la pubblicazione. Il controllo di sicurezza ha il potere di fermare il rilascio, mentre l'approvazione del prodotto non può aggirare tale blocco. La stringa da tracciare nei log è [PV-0[PV-01]].",
+        "firstDraft": "Il rilascio di ALFA-2 segue una sequenza tripartita: prima la sicurezza valida il pacchetto, poi il prodotto autorizza le note e infine le operations eseguono la pubblicazione. Il controllo di sicurezza ha il potere di fermare il rilascio, mentre l'approvazione del prodotto non può aggirare tale blocco. La stringa da tracciare nei log è “rilascio sospeso in attesa di verifica”.",
+        "firstMechanical": {
+          "id": "cca35bcb54ad",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.1957,
+            "lengthRatio": 1.2449,
+            "readability": 53,
+            "sourceReadability": 61,
+            "readabilityDelta": -8,
+            "wordCount": 61,
+            "longestSharedPhrase": {
+              "length": 9,
+              "phrase": "nei log è rilascio sospeso in attesa di verifica"
+            },
+            "sentenceOpeningReuse": 0.25
+          }
+        },
+        "draft": "Il rilascio di ALFA-2 segue una sequenza tripartita: prima la sicurezza valida il pacchetto, poi il prodotto autorizza le note e infine le operations eseguono la pubblicazione. Il controllo di sicurezza ha il potere di fermare il rilascio, mentre l'approvazione del prodotto non può aggirare tale blocco. La stringa da tracciare nei log è “rilascio sospeso in attesa di verifica”.",
+        "mechanical": {
+          "id": "cca35bcb54ad",
+          "mechanicallyValid": true,
+          "valid": true,
+          "semanticStatus": "requires-manual-review",
+          "releaseReady": false,
+          "failures": [],
+          "missingInvariants": [],
+          "metrics": {
+            "invariantRetention": 1,
+            "ngramSurvival": 0.1957,
+            "lengthRatio": 1.2449,
+            "readability": 53,
+            "sourceReadability": 61,
+            "readabilityDelta": -8,
+            "wordCount": 61,
+            "longestSharedPhrase": {
+              "length": 9,
+              "phrase": "nei log è rilascio sospeso in attesa di verifica"
+            },
+            "sentenceOpeningReuse": 0.25
+          }
+        },
+        "judge": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 90,
+          "missing_or_altered": [],
+          "unsupported": []
+        }
+      },
+      "blindJudge": {
+        "A": {
+          "fidelity": 95,
+          "independence": 85,
+          "voice": 90,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "B": {
+          "fidelity": 98,
+          "independence": 80,
+          "voice": 95,
+          "missing_or_altered": [],
+          "unsupported": []
+        },
+        "fidelity_winner": "b",
+        "independence_winner": "a",
+        "overall_winner": "b",
+        "reason": "Draft B preserves the exact terminology \"verifica\" and \"bloccare\" from the source, whereas Draft A alters them to \"valida\" and \"fermare,\" slightly reducing fidelity despite A's superior sentence restructuring."
+      },
+      "precisionWasLabel": "A"
+    }
+  ]
+}

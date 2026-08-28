@@ -83,7 +83,7 @@ Leggilo ad alta voce. Segna ogni frase che non diresti naturalmente. Riscrivila 
 | La bozza segue ancora gli stessi paragrafi | La fonte è rimasta visibile | Chiudila e riordina gli appunti prima di un altro giro |
 | È sparito un numero o una precisazione | La scheda era troppo vaga | Aggiungilo fra PROVE o DA CONSERVARE, poi ripara la bozza |
 | Il testo è levigato ma generico | Hai corretto verso “professionale”, non verso la tua voce | Ripristina abitudini concrete e rileggi ad alta voce |
-| La fonte è troppo lunga per una sola scheda | Questo percorso ha raggiunto il suo limite utile | Passa alla [ricostituzione semantica](../semantic-reconstitution/README.it.md) |
+| La fonte è troppo lunga per una sola scheda | Questo percorso ha raggiunto il suo limite utile | Usa la [camera stagna delle due buste](../two-envelope-clean-room/README.it.md) una sezione alla volta |
 
 ## Come appare un buon risultato
 

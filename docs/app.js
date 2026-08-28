@@ -32,10 +32,14 @@
       promptDoesLabel: "What the prompt does", promptDoesBody: "It masks exact values as PV markers, asks the model to rebuild from a fact ledger and keeps those markers unchanged. When you paste the draft back, this page restores the original values character for character before checking anything.",
       protectedTitle: "Values it must keep exact", protectedEmpty: "No automatic values found. That is normal for text without dates, figures, links or quoted phrases.",
       promptLabel: "Your prepared rewrite prompt", backSource: "Edit the source", downloadAction: "Download prompt", copyAction: "Copy the entire prompt",
-      handoffKicker: "What you do now", handoffTitle: "Open a non-Anthropic model and paste",
+      writerChoiceKicker: "One choice before the model writes", writerChoiceTitle: "Where do you want the writing to happen?",
+      writerChoiceIntro: "Rewrite Room has finished its job for now. Choose a writer, paste the prompt there and bring the answer back. These are two ways to perform the same step.",
+      hostedLabel: "Easiest", hostedTitle: "Use an online model", hostedBody: "Open a model made by a company other than Anthropic and paste the prompt. Nothing to install. The provider receives what you paste and may use its subscription, free plan or credits.", hostedNext: "Next: copy its entire answer and return to the field below.",
+      localLabel: "Most private", localTitle: "Use a model on your computer", localBody: "Install LM Studio for a graphical chat or Ollama for a terminal chat. After downloading a model once, writing can happen without a hosted AI service. Your computer needs enough memory.", localLink: "Follow the local guide from download to returned draft",
+      handoffKicker: "Same three moves in either writer", handoffTitle: "Paste there. Copy the answer. Return here.",
       handoff1: "Open the writing model you prefer.", handoff2: "Paste the full prompt and send it as one message.", handoff3: "Copy its answer and paste it below. If you see [PV-01] markers, good. Do not replace them yourself; this page will.",
-      modelBoundary: "One caveat worth knowing: another hosted provider may apply its own watermark or provenance mechanism. For zero hosted credits and no provider-side watermark, use a local open model.",
-      advancedTitle: "Want more separation? Build without showing the old wording.", advancedSubtitle: "More work and a cleaner boundary. This was the old default and, yes, it was too much for the entrance.",
+      modelBoundary: "A local model avoids a hosted writing provider. It does not guarantee better prose or prove anything about Anthropic's private detector.",
+      advancedTitle: "Want more separation? Build without showing the old wording.", advancedSubtitle: "More work and a cleaner boundary. Use it when separation matters more than speed.",
       advancedIntro: "Here the other model never receives the source. You give it only facts, ideas and your voice. Choose this when maximum wording separation matters more than speed.",
       factsEnvelope: "Meaning and facts", voiceEnvelope: "Voice and limits",
       purposeLabel: "What should the reader understand or do?", claimsLabel: "Ideas and claims, one per line", audienceLabel: "Who is this for?",
@@ -92,10 +96,14 @@
       promptDoesLabel: "Che cosa fa il prompt", promptDoesBody: "Maschera i valori esatti con segnaposto PV, chiede al modello di ricostruire dal registro dei fatti e gli fa conservare quei segnaposto. Quando riporti qui la bozza, la pagina rimette i valori originali carattere per carattere prima di controllare qualsiasi cosa.",
       protectedTitle: "Valori che deve conservare identici", protectedEmpty: "Non ho rilevato valori automatici. È normale in un testo senza date, cifre, link o citazioni.",
       promptLabel: "Il tuo prompt di riscrittura pronto", backSource: "Modifica il testo", downloadAction: "Scarica il prompt", copyAction: "Copia tutto il prompt",
-      handoffKicker: "Che cosa fai adesso", handoffTitle: "Apri un modello non Anthropic e incolla",
+      writerChoiceKicker: "Una scelta prima che il modello scriva", writerChoiceTitle: "Dove vuoi far avvenire la scrittura?",
+      writerChoiceIntro: "Per adesso Rewrite Room ha finito il suo lavoro. Scegli un writer, incolla lì il prompt e riporta qui la risposta. Sono due modi per eseguire lo stesso passaggio.",
+      hostedLabel: "Più semplice", hostedTitle: "Usa un modello online", hostedBody: "Apri un modello creato da un'azienda diversa da Anthropic e incolla il prompt. Non installi nulla. Il provider riceve ciò che incolli e può usare il suo piano gratuito, abbonamento o sistema di crediti.", hostedNext: "Dopo: copia tutta la risposta e torna nel campo qui sotto.",
+      localLabel: "Più privato", localTitle: "Usa un modello sul tuo computer", localBody: "Installa LM Studio per una chat grafica oppure Ollama per una chat da Terminale. Dopo aver scaricato un modello una volta, la scrittura può avvenire senza un servizio AI ospitato. Il computer deve avere memoria sufficiente.", localLink: "Segui la guida locale dal download alla bozza pronta",
+      handoffKicker: "Le stesse tre mosse con entrambi i writer", handoffTitle: "Incolla lì. Copia la risposta. Torna qui.",
       handoff1: "Apri il modello di scrittura che preferisci.", handoff2: "Incolla il prompt completo e invialo come un solo messaggio.", handoff3: "Copia la risposta e incollala qui sotto. Se vedi segnaposto come [PV-01], va bene. Non sostituirli tu: lo farà questa pagina.",
-      modelBoundary: "Una cosa che vale la pena sapere: un altro provider ospitato potrebbe applicare il proprio watermark o un altro sistema di provenienza. Per non usare crediti ospitati e non dipendere dal watermark di un provider, serve un modello open locale.",
-      advancedTitle: "Vuoi separare ancora di più le formulazioni? Ricostruisci senza mostrare le vecchie frasi.", advancedSubtitle: "Più lavoro e un confine più netto. Prima era il percorso principale e sì, come ingresso era decisamente troppo.",
+      modelBoundary: "Un modello locale evita un provider di scrittura ospitato. Non garantisce una prosa migliore e non dimostra nulla sul detector privato di Anthropic.",
+      advancedTitle: "Vuoi separare ancora di più le formulazioni? Ricostruisci senza mostrare le vecchie frasi.", advancedSubtitle: "Più lavoro e un confine più netto. Usalo quando la separazione conta più della velocità.",
       advancedIntro: "Qui l'altro modello non riceve mai il testo di partenza. Gli dai soltanto fatti, idee e la tua voce. Scegli questa strada quando la massima separazione delle frasi conta più della velocità.",
       factsEnvelope: "Significato e fatti", voiceEnvelope: "Voce e limiti",
       purposeLabel: "Che cosa deve capire o fare chi legge?", claimsLabel: "Idee e affermazioni, una per riga", audienceLabel: "Per chi stai scrivendo?",
@@ -183,6 +191,9 @@
     byId("manifesto-link").href = language === "it"
       ? "https://github.com/danilolapegna/claude-watermark-toolkit/blob/main/MANIFESTO.it.md"
       : "https://github.com/danilolapegna/claude-watermark-toolkit/blob/main/MANIFESTO.md";
+    byId("local-guide-link").href = language === "it"
+      ? "https://github.com/danilolapegna/claude-watermark-toolkit/blob/main/methods/local-model/README.it.md"
+      : "https://github.com/danilolapegna/claude-watermark-toolkit/blob/main/methods/local-model/README.md";
     renderProtectedValues();
     if (state.source) updatePrompt();
     if (state.report) renderReport(state.report);

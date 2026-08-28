@@ -47,18 +47,18 @@ test("public front doors explain the reader's goal without inherited context", a
   const englishExample = await text("../examples/walkthrough.md");
   const italianExample = await text("../examples/walkthrough.it.md");
 
-  assert.match(englishReadme, /simple, direct prompt builder/u);
+  assert.match(englishReadme, /simple prompt builder and checker/u);
   assert.match(englishReadme, /not an AI writer/u);
-  assert.match(italianReadme, /prompt builder semplice e diretto/u);
+  assert.match(italianReadme, /prompt builder con un controllo/iu);
   assert.match(italianReadme, /Non è un writer AI/u);
   assert.match(englishStart, /ideas and facts are yours/u);
-  assert.match(englishStart, /no longer depends on Claude's wording/u);
+  assert.match(englishStart, /does not depend on Claude's sentences/u);
   assert.match(italianStart, /Idee e fatti sono tuoi/u);
-  assert.match(italianStart, /non dipenda più dal modo in cui Claude/iu);
-  assert.match(englishExample, /can and cannot decide/u);
-  assert.match(englishExample, /semantic decision yourself/u);
-  assert.match(italianExample, /può decidere e che cosa/u);
-  assert.match(italianExample, /decisione sul significato/u);
+  assert.match(italianStart, /non dipendano dalle frasi di Claude/iu);
+  assert.match(englishExample, /does not create drafts/u);
+  assert.match(englishExample, /still choose after checking/iu);
+  assert.match(italianExample, /Non crea bozze/u);
+  assert.match(italianExample, /La scelta arriva soltanto dopo/iu);
 });
 
 test("Italian practical copy does not address a generic masculine reader", async () => {
@@ -88,6 +88,10 @@ test("every practical surface guides the reader before exposing implementation d
     italianCleanRoom: await text("../methods/two-envelope-clean-room/README.it.md"),
     englishAgent: await text("../skills/non-anthropic-text-rewrite/README.md"),
     italianAgent: await text("../skills/non-anthropic-text-rewrite/README.it.md"),
+    englishLocal: await text("../methods/local-model/README.md"),
+    italianLocal: await text("../methods/local-model/README.it.md"),
+    englishCli: await text("../methods/semantic-reconstitution/README.md"),
+    italianCli: await text("../methods/semantic-reconstitution/README.it.md"),
     workbench: await text("../docs/index.html"),
     workbenchCopy: await text("../docs/app.js"),
   };
@@ -100,12 +104,32 @@ test("every practical surface guides the reader before exposing implementation d
   assert.match(surfaces.italianCleanRoom, /Sceglilo al posto del prompt rapido quando/iu);
   assert.match(surfaces.englishAgent, /What is a skill, and do I need one/iu);
   assert.match(surfaces.italianAgent, /Che cos'è una skill, e mi serve davvero/iu);
+  assert.match(surfaces.englishLocal, /what does “local model” mean/iu);
+  assert.match(surfaces.italianLocal, /che cos'è un modello locale/iu);
+  assert.match(surfaces.englishCli, /source\.txt.*prompt\.txt.*draft\.txt/isu);
+  assert.match(surfaces.italianCli, /sorgente\.txt.*prompt\.txt.*bozza\.txt/isu);
   assert.match(surfaces.workbench, /A simple, direct prompt builder/iu);
   assert.match(surfaces.workbenchCopy, /A non-Anthropic model does the writing/iu);
+  assert.match(surfaces.workbench, /Where do you want the writing to happen/iu);
+  assert.match(surfaces.workbench, /Paste there\. Copy the answer\. Return here\./iu);
 
   for (const surface of Object.values(surfaces)) {
     assert.doesNotMatch(surface, /watermark-toolkit\.js rewrite|--provider ollama|--method adaptive/iu);
   }
+});
+
+test("public instructions close every normal-path handoff", async () => {
+  const englishStart = await text("../start-here/en/README.md");
+  const italianStart = await text("../start-here/it/README.md");
+  const cli = await text("../bin/watermark-toolkit.js");
+
+  assert.match(englishStart, /Your text.*Rewrite Room builds a prompt.*a different model writes.*Rewrite Room checks/isu);
+  assert.match(italianStart, /Il tuo testo.*Rewrite Room prepara un prompt.*un altro modello scrive.*Rewrite Room controlla/isu);
+  assert.match(englishStart, /`source\.txt` is a plain text file you create/iu);
+  assert.match(italianStart, /`sorgente\.txt` è un normale file di testo che crei tu/iu);
+  assert.match(cli, /--out prompt\.txt/u);
+  assert.doesNotMatch(englishStart, /prompt\.json|candidate\.txt/u);
+  assert.doesNotMatch(italianStart, /prompt\.json|candidato\.txt/u);
 });
 
 test("removed research prototypes stay research, not implied reader instructions", async () => {
@@ -118,8 +142,8 @@ test("removed research prototypes stay research, not implied reader instructions
   assert.match(mechanics, /targets.*removed/isu);
   assert.match(mechanics, /automatic generation paths were removed/iu);
   assert.match(status, /adaptive tournament/iu);
-  assert.match(italianMethods, /comando `targets` è stato eliminato/iu);
-  assert.match(englishMethods, /removed `targets` command/iu);
+  assert.match(italianMethods, /prototipi di targeting e torneo sono stati eliminati/iu);
+  assert.match(englishMethods, /targeting and tournament prototypes were removed/iu);
   assert.doesNotMatch(mechanics, /project offers two targeting modes/iu);
   assert.doesNotMatch(mechanics, /remaining local batch/iu);
 });

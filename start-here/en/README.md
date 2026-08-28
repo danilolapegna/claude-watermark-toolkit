@@ -1,202 +1,121 @@
-# Start from zero: do not install anything yet
+# Start from zero
 
-You have a Claude-assisted text. The ideas and facts are yours, but you want a version that no longer depends on Claude's wording.
+You have a Claude-assisted draft. The ideas and facts are yours, but you want new wording that does not depend on Claude's sentences.
 
-If you are not technical, this page is for you. Start with the browser route. The terminal comes much later and only if you want it.
+You do not need to understand watermarks, code or command lines. Start with the four boxes below.
 
-[Back to the main page](../../README.md) · [Italian version](../it/README.md) · [See every method](../../METHODS.md)
+> **Your text** → **Rewrite Room builds a prompt** → **a different model writes** → **Rewrite Room checks the returned draft**
 
-## The easiest guided route
+That distinction matters. Rewrite Room is a prompt builder and checker. It is not an AI writer. The model you choose in the middle does the writing.
 
-Open [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/).
+[Open Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/) · [Italian version](../it/README.md) · [Back to the main page](../../README.md)
 
-Rewrite Room is not an AI writer. It is a simple, direct prompt builder with a local comparison step. The non-Anthropic model you choose does all the writing.
+## The easiest route
 
-You may be thinking, “I have no idea who hosts that page, where my text goes or what I am supposed to do once it opens.” Fair. Here is the whole journey before you click anything:
+### 1. Paste your text
 
-1. Paste your source.
-2. Select **Prepare my rewrite prompt**.
-3. Copy the prompt into a non-Anthropic writing model.
-4. Bring the model's draft back and select **Check the new draft**.
+Open [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/) and paste the draft.
 
-The page itself uses no AI and no AI credits. Its JavaScript builds the prompt, protects exact values and compares visible surface properties inside your browser tab. It does not check meaning. The external writing model may use its normal free plan, subscription or credits. If you want to remove even the hosting question, download this repository and open `docs/index.html` while offline.
+Nothing is uploaded at this point. The page runs inside your browser, costs nothing and uses no AI credits. It finds dates, names, numbers, links and quotations that should not change. You can add anything it misses.
 
-### Step 1: paste the source
+### 2. Copy the prompt it builds
 
-Use text whose ideas and final responsibility are yours. The page finds common exact values such as dates, numbers, URLs, email addresses, quoted phrases and acronyms.
+Select **Prepare my rewrite prompt**, then **Copy the entire prompt**.
 
-If it misses a name or a term that must remain exact, add it manually. Automatic extraction is a starting list, not an oracle.
+The prompt asks for a real reconstruction, not a few synonym swaps. It tells the writing model to preserve claims, qualifications and voice while changing the ordinary wording and sentence structure.
 
-### Step 2: prepare and copy the prompt
+### 3. Choose where the writing happens
 
-Select **Prepare my rewrite prompt**. The page produces one complete prompt with the source and protected values already inserted.
+You now need a **writer**: the software that receives the prompt and produces the new draft. Pick one of these.
 
-This is more rigorous than “paraphrase this.” It asks the other model to preserve claims, qualifications, tone and approximate length while rebuilding ordinary wording, sentence openings and transitions throughout. Copy the whole prompt. Do not copy only the source section.
+#### Fastest: a hosted non-Anthropic model
 
-### Step 3: use a non-Anthropic model
+Open a model made by a company other than Anthropic, paste the prompt and send it. No installation is needed. The provider receives what you paste and may use its free plan, subscription or credits. It may also apply its own provenance system.
 
-Open the model you prefer, paste the prompt as one message and send it. Another hosted provider may apply its own watermark or provenance system. If you need zero hosted credits and no provider-side watermark, use a local open model. That route needs installation and is explained below.
+#### Most private: a model on your computer
 
-### Step 4: compare the new draft
+“Local model” simply means that the writing software runs on your own computer instead of a provider's server.
 
-Paste the new draft back into Rewrite Room. You will see separate checks for protected facts, shared phrases, sentence openings, structure and length.
+- **LM Studio** is the easiest graphical route. Download the app, download a model inside it, open a chat and paste the prompt.
+- **Ollama** is the lighter terminal route. Install it, run one command to open a model, then paste the prompt.
 
-If a fact is missing, fix that first. If a long phrase survives, rewrite the whole passage rather than swapping a few words. If the structure remains close, move the claims into a different order.
+After the one-time model download, both can write without hosted AI credits. Your computer still needs enough memory, and a small local model may write worse than a strong hosted one. Follow the [local-model guide from download to returned draft](../../methods/local-model/README.md).
 
-The page cannot tell you that Anthropic's private detector will accept the result. It tells you what it can actually measure.
+### 4. Bring the new draft back
 
-### Want stronger separation?
+Copy the writer's answer. Return to Rewrite Room, paste it under **Paste the model's new draft here**, then select **Restore exact values and check**.
 
-Expand the advanced clean-room section in Rewrite Room. It asks you to prepare two envelopes, one for facts and meaning, one for voice and limits. The writing model then receives those envelopes without the source wording. It takes longer, which is exactly why it is no longer the default route.
+The page gives you two useful outputs:
 
-## The manual route, if even a form feels unnecessary
+1. the returned draft with protected dates, names, links and numbers restored;
+2. a report showing missing exact values and wording that still looks too close to the source.
 
-Yes, the method can be a blank page.
+Read the restored draft for meaning and voice. The report cannot do that for you, and it cannot certify a result against Anthropic's private detector.
 
-1. Read the source once.
-2. Write short notes for its purpose, claims, evidence and exact values.
-3. Add three concrete notes about your voice.
-4. Close the source.
-5. Choose the order your reader needs, not the order already on the page.
-6. Write again.
-7. Reopen the source and compare facts only.
-8. Read the result aloud and remove sentences you would never say.
+## “Wouldn't it be easier to rewrite it myself?”
 
-This is the full method, not a weaker fallback. Its cost is your time. [See its common failure modes](../../methods/human-redraft/README.md).
+For a short text, yes. Duh.
 
-## I want another system to write from the brief
+This guide includes every useful route, including the obvious one:
 
-Use two separate contexts in a non-Anthropic system. Not two messages in the same conversation.
+1. Write the claims, facts and exact values as short notes.
+2. Close the source.
+3. Put the claims in the order your reader needs.
+4. Write from the notes.
+5. Reopen the source only to check facts and missing nuance.
 
-### Research context
+It costs time, sends nothing anywhere and avoids adding another model. [See the full manual method](../../methods/human-redraft/README.md).
 
-1. Open the [research prompt](../../prompts/en/research-pass.md).
-2. Paste it with the source into a non-Anthropic system.
-3. Check the resulting brief against the source.
-4. Correct missing facts, invented claims and flattened qualifications.
+## Want the strongest wording separation?
 
-### Writing context
+Use the **source-free** option inside Rewrite Room. You first make a short brief containing meaning, facts, audience and voice. The writing model receives that brief, not the source wording.
 
-1. Start a completely new conversation.
-2. Open the [drafting prompt](../../prompts/en/drafting-pass.md).
-3. Paste the checked brief, never the source.
-4. Ask for two different claim orders if the first draft still feels too close.
-5. Check every fact yourself.
+This takes longer because you must check the brief before writing. It is useful when separation matters more than speed. The standalone version is the [two-envelope clean-room method](../../methods/two-envelope-clean-room/README.md).
 
-If you already work with agents, copy the [ready-made skill](../../skills/non-anthropic-text-rewrite/SKILL.md). It includes the same provider boundary and stop rules.
+## Want a reusable agent instruction?
 
-## I want the local CLI
+The [ready-made skill](../../skills/non-anthropic-text-rewrite/SKILL.md) is for people who already use coding agents or agent workspaces. Copy the skill into that system and give it a text. The skill tells the agent how to protect facts, keep the source away from the writing pass and stop when meaning cannot be verified.
 
-If a terminal sounds like unnecessary punishment, stop here and use one of the routes above. The CLI exists for repeated work and machine-readable reports.
+If “skill” means nothing to you, skip it. Rewrite Room gives you the same practical route without agent setup.
 
-### 1. Download the toolkit
+## The local CLI, in plain English
 
-The easiest option is GitHub's ZIP download:
+CLI means **command-line interface**. In this repository it is a small optional program that you control by typing commands in Terminal or PowerShell.
 
-1. Open the [repository page](https://github.com/danilolapegna/claude-watermark-toolkit).
-2. Select the green **Code** button.
-3. Select **Download ZIP**.
-4. Extract the downloaded file.
+It does not find secret watermark positions. It does not write. It is useful only when you want to repeat the same preparation and check on files, or keep a report for later.
 
-If you already use Git:
+The complete loop is:
+
+> `source.txt` → CLI creates `prompt.txt` → your writer creates `draft.txt` → CLI checks `draft.txt`
+
+### What are those files?
+
+- `source.txt` is a plain text file you create. Paste the original draft into it.
+- `prompt.txt` is created by the CLI. Open it and copy everything into your chosen writer.
+- `draft.txt` is another plain text file you create. Paste the writer's answer into it.
+
+### What do the commands do?
 
 ```bash
-git clone https://github.com/danilolapegna/claude-watermark-toolkit.git
-cd claude-watermark-toolkit
+node bin/watermark-toolkit.js prompt source.txt --out prompt.txt
 ```
 
-### 2. Open a terminal in the folder
-
-**Windows:** open the extracted folder in File Explorer, click the address bar, type `powershell`, then press Enter.
-
-**macOS:** open Terminal, type `cd ` with a space after it, drag the extracted folder into the Terminal window, then press Enter.
-
-**Linux:** open the extracted folder in your file manager, right-click inside it and choose **Open in Terminal**. The wording varies by desktop.
-
-### 3. Check Node.js
-
-Run:
+Reads `source.txt` and creates the prompt you will give to the writer.
 
 ```bash
-node --version
+node bin/watermark-toolkit.js check source.txt draft.txt
 ```
 
-If you see `v20` or a higher number, continue. Otherwise install the current LTS version from [nodejs.org](https://nodejs.org/) and reopen the terminal.
+Reads both files, restores protected values in the returned draft and prints a local comparison. It does not modify either file.
 
-### 4. Check the toolkit
+`prepare` is optional. It only shows the names, dates, numbers and quotations the toolkit plans to protect. `compare` is optional too. It shows the same checks side by side when you already have two or more drafts. It never chooses one for you.
 
-```bash
-npm test
-```
+If that sounds useful, follow the [CLI guide from download to final text](../../methods/semantic-reconstitution/README.md). If it sounds like extra work, it is. Use Rewrite Room instead.
 
-You should see passing tests and zero failures.
+## What no route can promise
 
-### 5. Add your text
+Anthropic's detector, private key and decision threshold are not public. This means the toolkit can help you rebuild wording, preserve facts and inspect visible overlap. It cannot display a truthful “watermark removed” badge.
 
-Create `source.txt` in the toolkit folder, paste the source and save it. Then run:
+Before using the result, check every claim, uncertainty and quotation. Keep your draft history when authorship may be challenged.
 
-```bash
-node bin/watermark-toolkit.js start source.txt
-```
-
-Create the primary prompt:
-
-```bash
-node bin/watermark-toolkit.js prompt source.txt --out prompt.json
-```
-
-If you want the advanced source-separated pair instead:
-
-```bash
-node bin/watermark-toolkit.js prompt source.txt --clean-room --out prompts.json
-```
-
-### 6. Check the returned draft locally
-
-Give the exported prompt to the non-Anthropic system you choose. Save its response as `candidate.txt`, then run:
-
-```bash
-node bin/watermark-toolkit.js check source.txt candidate.txt
-```
-
-For two or more alternatives, use `compare` instead. The CLI makes no model call, uploads nothing and never chooses a winner. The automatic local batch was tested and removed because its results did not justify the setup.
-
-## Read the CLI result without guessing
-
-- `mechanicallyValid: true` means the candidate kept automatically protected values and stayed inside the default length range. It says nothing about causal meaning, qualifications or tone.
-- `semanticStatus: "requires-manual-review"` remains in every report because a local metric cannot approve meaning.
-- `ngramSurvival` measures surviving four-word sequences. Lower means more surface change, not better writing.
-- `longestSharedPhrase` shows the longest ordinary word run shared with the source.
-- `mechanicalShortlist` keeps candidates that passed the configured checks. `recommended` stays empty. You choose after reading.
-
-No local score proves a result against Anthropic's private detector.
-
-If you expected targeting or an adaptive tournament, those features were removed after red-team review. The targeting proxy could prioritize rare facts without locating Claude's private signal. The tournament did not truly adapt its generation. The [method guide](../../METHODS.md) explains the decision and the narrower contracts that remain.
-
-## If something goes wrong
-
-### `node` is not recognized or not found
-
-Install Node.js LTS, close the terminal, open it again in the toolkit folder and repeat `node --version`.
-
-### `Source text is empty`
-
-Check that `source.txt` contains plain text, save it and run the command again.
-
-### `Blocked provider configuration`
-
-The provider address or model name refers to Anthropic or Claude. Choose a non-Anthropic model.
-
-### A name or exact value disappeared
-
-Protect it explicitly:
-
-```bash
-node bin/watermark-toolkit.js prepare source.txt --protect "Exact Name" --out case.json
-```
-
-## Before you publish
-
-Check every fact. Read the text aloud. Remove sentences that do not sound like you. Then make the editorial decision yourself.
-
-[See a complete example](../../examples/walkthrough.md) · [Compare every method](../../METHODS.md) · [Read what is known](../../CLAIMS.md)
+[Compare the admitted routes](../../METHODS.md) · [See one complete example](../../examples/walkthrough.md) · [Read the evidence ledger](../../CLAIMS.md)

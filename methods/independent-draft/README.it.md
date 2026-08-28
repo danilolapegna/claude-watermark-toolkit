@@ -1,7 +1,8 @@
-# Percorso 4: bozza indipendente in un altro sistema non Anthropic
+# La stessa camera stagna, usando due chat separate
 
 [English](README.md) · [Copia i prompt](../../prompts/it/research-pass.md) · [Confronta tutti i percorsi](../../METHODS.it.md)
 
+> **Che cos'è:** la versione autonoma del Percorso 3, senza Rewrite Room<br>
 > **Ideale per:** chi vuole l'aiuto di un modello senza installare la CLI  
 > **Tempo:** circa 10-30 minuti  
 > **Difficoltà:** due chat e un controllo attento dei fatti  
@@ -25,7 +26,7 @@ Due messaggi nella stessa chat non valgono. La cronologia può conservare la fon
 - il [prompt di scrittura](../../prompts/it/drafting-pass.md);
 - il permesso di inviare fonte e scheda al provider scelto.
 
-Il provider può usare il suo piano o i suoi crediti AI. Può anche applicare un proprio watermark o sistema di provenienza. Per testi riservati o zero crediti ospitati, usa un modello open locale.
+Il provider può usare il suo piano o i suoi crediti AI. Può anche applicare un proprio watermark o sistema di provenienza. Per testi riservati o zero crediti ospitati, segui il [percorso locale con LM Studio oppure Ollama](../local-model/README.it.md).
 
 ## Passaggio 1: esegui la ricerca
 

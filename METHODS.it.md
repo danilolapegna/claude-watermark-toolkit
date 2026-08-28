@@ -1,154 +1,92 @@
-# Cinque strade che meritano davvero il tuo tempo
+# Tre modi per scrivere, più gli strumenti che meritano di restare
 
 [English](METHODS.md) · [Parti da zero](start-here/it/README.md) · [Apri Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it)
 
-Un toolkit gigantesco può fare molta scena e, nel frattempo, consegnarti dieci versioni della stessa idea debole. Questo prima ci cascava. Ora la lista è più corta.
-
-Ogni percorso deve rispondere a quattro domande:
-
-1. Che risultato utile ottengo?
-2. Come lo ripeto o lo controllo?
-3. Dove smette di essere affidabile?
-4. Lo sforzo ha senso per il mio caso?
-
-Se una funzione non sa rispondere a tutte e quattro, non si merita un numero.
+La scelta utile è più piccola di quanto sembri. Devi capire chi scriverà la nuova bozza, che cosa vedrà e come controllerai il risultato.
 
 ## Scegli in trenta secondi
 
-| La tua situazione | Usa questo | Tempo | Che cosa ottieni davvero |
+| La tua situazione | Parti da qui | Tempo | Che cosa ricevi davvero |
 |---|---|---:|---|
-| L'assistenza è ammessa e basta dichiararla | Lascia il testo com'è oppure dichiara l'assistenza | nessuno | nessuna riscrittura inutile |
-| Testo breve o riservato | [Riscrittura umana](methods/human-redraft/README.it.md) | 10-60 min | una nuova bozza scritta dalla tua scheda dei fatti |
-| Vuoi la strada seria più semplice | [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it) | 2-5 min più il tempo del modello | un prompt builder guidato e un resoconto locale sulla superficie |
-| La separazione delle frasi conta più della velocità | [Camera stagna](methods/two-envelope-clean-room/README.it.md) | 15-40 min | una scheda controllata che arriva alla scrittura senza la fonte |
-| Vuoi far scrivere un altro sistema non Anthropic | [Percorso in due conversazioni](methods/independent-draft/README.it.md) | 10-30 min | scheda di ricerca e una o più bozze indipendenti |
-| Lo fai spesso oppure vuoi file locali e JSON | [CLI locale](methods/semantic-reconstitution/README.it.md) | preparazione più pochi minuti | prompt, ripristino dei valori e controlli meccanici |
-| Il testo è delicato e hai un budget | Editor umano dalla scheda controllata | tempo pagato | giudizio editoriale e revisione responsabile |
+| L'assistenza è ammessa e basta dichiararla | Lascia il testo com'è e dichiara | 2 min | nessuna riscrittura inutile e nessun nuovo errore |
+| Il testo è breve o deve restare completamente privato | [Riscrivi da una scheda dei fatti](methods/human-redraft/README.it.md) | 10-60 min | una bozza scritta da te senza invii |
+| Vuoi la strada guidata più semplice | [Usa Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it) | 2-5 min più il tempo di scrittura | un prompt pronto e controlli locali sulla bozza ricevuta |
+| Vuoi far girare il modello sul tuo computer | [Usa LM Studio oppure Ollama](methods/local-model/README.it.md) | installazione più tempo di scrittura | lo stesso prompt eseguito senza un writer ospitato |
+| Chi scrive non deve vedere le vecchie frasi | [Usa la camera stagna](methods/two-envelope-clean-room/README.it.md) | 15-40 min | una bozza nata soltanto da fatti e voce controllati |
+| Usi già un agente non Anthropic | [Installa la skill](skills/non-anthropic-text-rewrite/README.it.md) | 10-30 min | il percorso separato eseguito dall'agente, con due approvazioni umane |
+| Ripeti spesso il lavoro o vuoi file salvati | [Usa la CLI facoltativa](methods/semantic-reconstitution/README.it.md) | preparazione più pochi minuti | file con i prompt e resoconti meccanici ripetibili |
 
-Per quasi tutti, Rewrite Room è la prima fermata sensata. Per testi riservati o delicati scegli il percorso manuale o quello a camera stagna. Il terminale non migliora il gusto. Migliora la ripetibilità.
+Per quasi tutti la risposta è Rewrite Room più un modello di scrittura già disponibile. Se il problema sono privacy o crediti ospitati, tieni Rewrite Room e cambia soltanto il passaggio di scrittura: usa LM Studio o Ollama.
 
-## 0. Non toccarlo, oppure dichiara l'assistenza
+## Percorso 1: riscrivi da una scheda dei fatti
 
-“Sono venuto qui per cambiare il testo e il primo metodo è non fare niente?” Sì, perché la guida deve risolvere il tuo problema. Non creare lavoro per giustificare i propri strumenti.
+Qui viene spontaneo pensare: “Grazie, basta scriverlo di nuovo. Duh.” Certo. Resta perché questa vuole essere una guida completa, non un catalogo costruito per far sembrare indispensabile il software.
 
-Se la regola ammette chiaramente la scrittura assistita e chiede soltanto una dichiarazione, dichiarala. Riscrivere un testo già corretto costa tempo e apre nuove possibilità di errore.
+- **Usalo quando:** il testo è breve, riservato o abbastanza importante da meritare la tua attenzione diretta.
+- **Che cosa entra:** una scheda con scopo, idee, prove, precisazioni, valori esatti e note sulla voce.
+- **Che cosa succede:** chiudi la fonte e scrivi dalla scheda.
+- **Che cosa esce:** una nuova bozza che non passa da un altro modello.
+- **Controllo:** riapri la fonte soltanto alla fine e verifica ogni idea e precisazione.
+- **Fermati se:** la scheda non riesce a contenere il testo senza perdere relazioni. Passa alla camera stagna.
 
-**Contratto:** la richiesta della policy viene soddisfatta senza rovinare una buona prosa.
+[Segui il percorso manuale completo](methods/human-redraft/README.it.md).
 
-**Controllo:** leggi la policy vera, identifica che cosa va dichiarato e conservane una copia.
+## Percorso 2: Rewrite Room, poi scegli chi scrive
 
-**Limite:** non serve quando un'istituzione tratta l'assistenza rilevabile come colpa automatica o usa un detector privato come prova definitiva. Quello è un problema di governance, non di punteggiatura.
+Rewrite Room è un prompt builder con controlli locali. Non scrive.
 
-## 1. Riscrivilo tu partendo da una scheda dei fatti
+Il percorso normale è questo:
 
-“Quindi il consiglio premium è: scrivitelo da solo. Duh.” Esatto. Resta perché per un testo breve è gratuito, privato e sorprendentemente forte. Il metodo è la separazione, non la tastiera.
+1. Incolla la fonte in Rewrite Room.
+2. Copia il prompt che prepara.
+3. Incolla quel prompt in un writer non Anthropic.
+4. Riporta la bozza ricevuta in Rewrite Room.
+5. Ripristina i valori esatti e guarda il resoconto.
 
-1. Estrai scopo, affermazioni atomiche, prove, precisazioni e valori esatti.
-2. Chiudi la fonte.
-3. Scegli l'ordine che serve a chi legge.
-4. Scrivi da ciò che hai capito.
-5. Riapri la fonte soltanto per controllare significato e fatti.
+Al passaggio 3 scegli fra:
 
-**Contratto:** la nuova bozza nasce da una scheda controllata, non da sinonimi infilati dentro frasi ancora visibili.
+- **un modello non Anthropic ospitato:** nessuna installazione, ma il provider riceve il prompt e può usare crediti o applicare un proprio sistema di provenienza;
+- **un modello locale con LM Studio o Ollama:** niente crediti di scrittura ospitati e niente invio al writer, ma devi installare un modello pesante e la qualità dipende dalla macchina.
 
-**Controllo ripetibile:** la guida include scheda, verifica punto per punto e regola di arresto.
+Il browser controlla soltanto ciò che può osservare: valori protetti, lunghe sequenze condivise, gruppi di quattro parole rimasti, inizi delle frasi, struttura e lunghezza. Non approva il significato e non riproduce il detector privato di Anthropic.
 
-**Limite:** se continui a sbirciare la fonte, la sua struttura tende a sopravvivere. Su testi lunghi o molto tecnici, preparare bene la scheda costa.
+[Apri Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it) oppure [prepara il modello locale partendo da zero](methods/local-model/README.it.md).
 
-[Segui il metodo umano completo](methods/human-redraft/README.it.md).
+## Percorso 3: la camera stagna
 
-## 2. Usa Rewrite Room
+“Due buste per un paragrafo sembrano decisamente troppo.” Lo sono. Per un paragrafo non usarle.
 
-“Quindi è un prompt builder?” Esatto. Semplice, diretto, con mascheramento dei valori protetti e controlli locali. Ti evita di inventare la procedura e rende visibili i punti deboli. Non scrive.
+Servono quando il testo conta abbastanza da non voler mostrare le vecchie frasi al contesto che scrive. La Busta 1 contiene fatti, idee e precisazioni. La Busta 2 contiene comportamenti concreti della voce. Chi scrive riceve le buste, non la fonte.
 
-Il percorso predefinito richiede quattro azioni:
+- **Che cosa ottieni:** una separazione più forte dalla vecchia formulazione.
+- **Che cosa costa:** una scheda accurata e un secondo controllo dei fatti.
+- **Errore principale:** una scheda sbagliata produce una bozza originale e sbagliata.
+- **Fermati se:** due bozze ripetono lo stesso errore. Ripara le buste invece di generare ancora.
 
-1. Incolla il testo.
-2. Copia il prompt di riscrittura già preparato.
-3. Usalo in un modello non Anthropic.
-4. Riporta qui la bozza per i controlli locali.
+[Costruisci le due buste](methods/two-envelope-clean-room/README.it.md).
 
-Il prompt chiede al modello di costruire un registro interno di fedeltà, conservare affermazioni e precisazioni, proteggere i valori esatti, ricostruire le frasi ordinarie e controllarsi prima di rispondere. La pagina non chiama alcun modello e non consuma crediti AI.
+## Strumento 1: la skill per agenti
 
-**Contratto:** preparare un prompt copiabile, ripristinare i segnaposto protetti sopravvissuti e restituire un resoconto su valori esatti, frase identica più lunga, sequenze rimaste, inizi ripetuti, struttura e lunghezza. La bozza la scrive il modello esterno.
+Una skill è un file di istruzioni riusabile da un agente. Non è un modello più forte e non è un'app. Confeziona il percorso a camera stagna, così l'agente può preparare la scheda, isolare la scrittura e mostrare i compromessi ogni volta.
 
-**Controllo ripetibile:** i test del browser coprono estrazione dei valori, corrispondenza esatta, confini del prompt e confronti avversariali. Il controllo statico rifiuta CSS remoti e risorse locali mancanti.
+Usala soltanto se possiedi già un agente non Anthropic capace di creare un contesto di scrittura davvero isolato. Se non sai dove il tuo agente carichi le skill, non ti stai perdendo un metodo segreto. Usa Rewrite Room.
 
-**Limite:** il resoconto legge la superficie, non il significato. Non può certificare il detector privato di Anthropic. Il modello esterno può avere un costo o un proprio sistema di provenienza.
+[Guarda esattamente come allegare o installare la skill](skills/non-anthropic-text-rewrite/README.it.md).
 
-[Apri Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it).
+## Strumento 2: la CLI locale
 
-## 3. Usa la camera stagna
+CLI significa uno strumento controllato da comandi nel Terminale. Serve per conservare file e ripetere il lavoro, non per produrre prosa migliore.
 
-“Due buste sembra un po' teatrale.” È soltanto un modo semplice per evitare che fatti e voce finiscano dentro lo stesso riassunto vago.
+Il percorso normale è `sorgente.txt -> prompt.txt -> writer -> bozza.txt -> check`. `prepare` mostra in anticipo i valori protetti. `compare` presenta le stesse prove su due bozze. Nessuno dei due è obbligatorio nel percorso normale.
 
-- La Busta 1 contiene scopo, pubblico, affermazioni atomiche, prove, precisazioni e valori protetti.
-- La Busta 2 contiene comportamenti concreti della voce, formato e limiti.
+[Segui la CLI dal download al controllo finale](methods/semantic-reconstitution/README.it.md).
 
-La persona o il modello che scrive riceve le buste, mai le frasi originali.
+## Scorciatoie che non meritano un percorso
 
-**Contratto:** le vecchie frasi esistono durante la ricerca, spariscono durante la scrittura, mentre ogni valore e ogni affermazione ha un posto nella scheda.
+Punteggiatura, pulitori di caratteri invisibili e pochi sinonimi colpiscono il livello sbagliato. Retrotraduzione e riscritture ripetute possono aggiungere errori. Il codice pubblico di SynthID non possiede la chiave privata di Anthropic. Ricerche chiamate SIRA, B4 e TSAPA hanno informato i test, ma non sono azioni che chi legge dovrebbe eseguire.
 
-**Controllo ripetibile:** confronta la scheda con la fonte prima di scrivere, poi collega ogni elemento della scheda alla bozza. I prompt copiabili usano confini espliciti e uno schema JSON fisso.
+I prototipi di targeting e torneo sono stati eliminati perché i proxy locali non sapevano individuare il segnale privato di Claude e potevano incoraggiare modifiche proprio al linguaggio fattuale più raro. Anche il writer locale automatico è stato tolto dopo esecuzioni reali che restituivano JSON, copiavano troppo e rifiutavano schede valide. La ricerca resta pubblica in [meccanica probabile](research/probable-mechanics.md) e nel [resoconto di red-team](REDTEAM.md), separata dal prodotto.
 
-**Limite:** una scheda sbagliata produce una bozza sbagliata ma molto originale. Due messaggi nella stessa conversazione non sono due contesti isolati. Anche la memoria condivisa del provider può rompere la separazione.
+## La chiusura onesta
 
-[Costruisci le due buste](methods/two-envelope-clean-room/README.it.md) oppure [usale in un altro sistema](methods/independent-draft/README.it.md).
-
-## 4. Prepara e controlla in locale con la CLI
-
-“Il terminale rende tutto più intelligente?” No. Rende ripetibili le parti testate su file lunghi e più candidati.
-
-La CLI può:
-
-- inventariare i valori esatti senza modificare la fonte;
-- esportare il prompt principale oppure la coppia avanzata a camera stagna;
-- ripristinare i segnaposto protetti dopo la risposta del modello;
-- mostrare i fallimenti meccanici e confrontare più bozze senza scegliere al posto tuo.
-
-```bash
-node bin/watermark-toolkit.js prompt fonte.txt --lang it --out prompt.json
-node bin/watermark-toolkit.js check fonte.txt candidato.txt --lang it
-```
-
-**Contratto:** la CLI prepara o misura. Non chiama mai un modello di scrittura. `check` ripristina i segnaposto e restituisce un resoconto meccanico che resta marcato `requires-manual-review`.
-
-**Controllo ripetibile:** i test coprono protezione dalla sovrascrittura, isolamento del prompt, valori esatti, Unicode, testi lunghi e inversioni semantiche avversariali.
-
-**Limite:** la CLI non scrive. Serve comunque un modello non Anthropic o una persona, e devi verificare ogni affermazione prima di scegliere.
-
-[Usa il percorso locale partendo da zero](methods/semantic-reconstitution/README.it.md).
-
-## A cosa serve ogni comando
-
-Questi comandi non sono souvenir. Ognuno ha un lavoro stretto.
-
-| Comando | Contratto utile | Che cosa prova il test | Che cosa non promette mai |
-|---|---|---|---|
-| `prepare` | inventaria valori esatti e metadati del caso | formati comuni IT/EN, annidamento, precisione, testi lunghi e nessuna sovrascrittura | di aver estratto ogni idea importante |
-| `prompt` | esporta il prompt principale; con `--clean-room` crea la coppia separata | confini della fonte, dati inerti e nessuna vecchia frase nel passaggio di scrittura | che il modello destinatario obbedisca perfettamente |
-| `check` | ripristina i segnaposto PV ed esamina una sola bozza | ripristino esatto, valori mancanti, sequenze, attacchi e lunghezza | fedeltà semantica o successo sul detector |
-| `compare` | ripristina i segnaposto PV e mostra le stesse prove su almeno due bozze | nessun vincitore silenzioso, errori visibili e metriche limitate | quale testo suona davvero tuo |
-
-Il comando `targets` è stato eliminato perché non superava questo standard. Il proxy lessicale non sapeva identificare le posizioni private di Claude e poteva privilegiare proprio i fatti rari. Anche il torneo adattivo è stato rimosso perché non era davvero adattivo. Tenerli avrebbe fatto sembrare il repository più grande senza informare meglio chi legge.
-
-## Il prompt e la skill
-
-I prompt copiabili e la skill per agenti restano perché hanno un contratto pubblico.
-
-- Il [prompt di ricerca](prompts/it/research-pass.md) deve restituire una scheda JSON fissa oppure `BRIEF_ERROR`.
-- Il [prompt di scrittura](prompts/it/drafting-pass.md) riceve soltanto la scheda controllata e restituisce una bozza oppure `BRIEF_ERROR`.
-- La [skill per agenti](skills/non-anthropic-text-rewrite/README.it.md) deve fermarsi se non può creare un contesto isolato o verificare la mappa semantica.
-
-I test automatici controllano confini e output richiesti. Non possono costringere ogni agente di terze parti a comportarsi bene. Questo limite compare prima dell'installazione, non nascosto dopo.
-
-## Scorciatoie che non si sono meritate un percorso
-
-- I sinonimi leggeri conservano gran parte di contesto e struttura.
-- Cambiare la punteggiatura tocca troppo poche scelte di token.
-- I pulitori Unicode risolvono un problema diverso. Anthropic descrive uno schema statistico nei token, non caratteri invisibili.
-- La retrotraduzione può distruggere le precisazioni senza offrire garanzie oneste.
-- Cancellare parole a caso può abbassare la somiglianza rendendo il testo peggiore.
-- Il codice pubblico di SynthID non possiede la chiave o la configurazione privata di Anthropic.
-
-La chiusura onesta è semplice: questi metodi possono produrre una bozza controllata nei fatti, con formulazione davvero nuova e prove meccaniche visibili. Nessuno può emettere il verdetto privato di Anthropic. È una promessa più piccola di “watermark rimosso” e un prodotto molto più utile della finzione contraria.
+Queste strade possono produrre una bozza controllata nei fatti e ricostruita seriamente nelle parole. Nessuna può emettere il verdetto privato di Anthropic. Scegli in base a fedeltà, privacy, tempo e responsabilità che vuoi assumerti sul testo finale.
