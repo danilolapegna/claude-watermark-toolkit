@@ -61,6 +61,23 @@ test("public front doors explain the reader's goal without inherited context", a
   assert.match(italianExample, /decisione sul significato/u);
 });
 
+test("Italian practical copy does not address a generic masculine reader", async () => {
+  const surfaces = await Promise.all([
+    text("../README.it.md"),
+    text("../METHODS.it.md"),
+    text("../docs/app.js"),
+    text("../docs/core.js"),
+    text("../src/reconstruction.js"),
+    text("../prompts/it/drafting-pass.md"),
+    text("../methods/human-redraft/README.it.md"),
+    text("../methods/independent-draft/README.it.md"),
+  ]);
+
+  for (const surface of surfaces) {
+    assert.doesNotMatch(surface, /se sei arrivat[oa]|\bil lettore\b|\ballo stesso lettore\b|\bl'autore\b/iu);
+  }
+});
+
 test("every practical surface guides the reader before exposing implementation detail", async () => {
   const surfaces = {
     englishMethods: await text("../METHODS.md"),
