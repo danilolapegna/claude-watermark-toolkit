@@ -57,7 +57,7 @@ Una bozza può essere fluida e conservare comunque una struttura prevedibile. Ch
 
 ## Passaggio 5: scegli prima in base al significato
 
-Scarta subito una bozza se perde un valore protetto, cambia una precisazione o aggiunge un'idea. Fra i candidati validi, scegli quello più adatto alla tua voce e al lettore. La bassa somiglianza delle frasi è un segnale utile, non il voto decisivo.
+Scarta subito una bozza se perde un valore protetto, cambia una precisazione o aggiunge un'idea. Fra i candidati validi, scegli quello più adatto alla tua voce e al pubblico. La bassa somiglianza delle frasi è un segnale utile, non il voto decisivo.
 
 Puoi incollare la bozza scelta in [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it) per i controlli superficiali locali.
 

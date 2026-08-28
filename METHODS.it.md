@@ -45,7 +45,7 @@ Se la regola ammette chiaramente la scrittura assistita e chiede soltanto una di
 
 1. Estrai scopo, affermazioni atomiche, prove, precisazioni e valori esatti.
 2. Chiudi la fonte.
-3. Scegli l'ordine che serve al lettore.
+3. Scegli l'ordine che serve a chi legge.
 4. Scrivi da ciò che hai capito.
 5. Riapri la fonte soltanto per controllare significato e fatti.
 
@@ -82,7 +82,7 @@ Il prompt chiede al modello di costruire un registro interno di fedeltà, conser
 
 “Due buste sembra un po' teatrale.” È soltanto un modo semplice per evitare che fatti e voce finiscano dentro lo stesso riassunto vago.
 
-- La Busta 1 contiene scopo, lettore, affermazioni atomiche, prove, precisazioni e valori protetti.
+- La Busta 1 contiene scopo, pubblico, affermazioni atomiche, prove, precisazioni e valori protetti.
 - La Busta 2 contiene comportamenti concreti della voce, formato e limiti.
 
 La persona o il modello che scrive riceve le buste, mai le frasi originali.
@@ -130,7 +130,7 @@ Questi comandi non sono souvenir. Ognuno ha un lavoro stretto.
 | `check` | ripristina i segnaposto PV ed esamina una sola bozza | ripristino esatto, valori mancanti, sequenze, attacchi e lunghezza | fedeltà semantica o successo sul detector |
 | `compare` | ripristina i segnaposto PV e mostra le stesse prove su almeno due bozze | nessun vincitore silenzioso, errori visibili e metriche limitate | quale testo suona davvero tuo |
 
-Il comando `targets` è stato eliminato perché non superava questo standard. Il proxy lessicale non sapeva identificare le posizioni private di Claude e poteva privilegiare proprio i fatti rari. Anche il torneo adattivo è stato rimosso perché non era davvero adattivo. Tenerli avrebbe fatto sembrare il repository più grande e il lettore meno informato.
+Il comando `targets` è stato eliminato perché non superava questo standard. Il proxy lessicale non sapeva identificare le posizioni private di Claude e poteva privilegiare proprio i fatti rari. Anche il torneo adattivo è stato rimosso perché non era davvero adattivo. Tenerli avrebbe fatto sembrare il repository più grande senza informare meglio chi legge.
 
 ## Il prompt e la skill
 

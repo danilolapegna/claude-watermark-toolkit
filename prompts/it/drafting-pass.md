@@ -47,7 +47,7 @@ CONTROLLO FINALE SILENZIOSO:
 - Abbina ogni idea e precisazione a una frase della bozza.
 - Controlla ogni valore protetto carattere per carattere.
 - Elimina ogni aggiunta non supportata.
-- Verifica che il testo suoni ancora come l'autore indicato per il lettore indicato.
+- Verifica che il testo rispetti ancora la voce e il pubblico indicati.
 
 Restituisci soltanto la bozza finale. Non nominare la scheda, il processo, watermark o detector.
 

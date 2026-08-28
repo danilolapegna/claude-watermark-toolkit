@@ -54,7 +54,7 @@ Se una riga della scheda sembra già una frase rifinita, accorciala. La scheda d
 
 Chiudila davvero. Non lasciarla in una scheda accanto alla pagina bianca. Tieni visibile soltanto la scheda dei fatti.
 
-Scegli l'ordine che serve a questo lettore adesso. Non deve coincidere con la fonte, salvo quando la logica dipende davvero da quella sequenza.
+Scegli l'ordine che serve a chi legge adesso. Non deve coincidere con la fonte, salvo quando la logica dipende davvero da quella sequenza.
 
 ## Passaggio 3: scrivi la nuova bozza
 
@@ -68,7 +68,7 @@ Adesso confronta fonte e bozza. Controlla in quest'ordine:
 2. Numeri, nomi, date, link e citazioni dirette sono esatti.
 3. Il grado di certezza non è diventato più forte o più debole.
 4. Non sono comparsi esempi o conclusioni nuovi.
-5. La bozza serve ancora lo stesso lettore e lo stesso scopo.
+5. La bozza serve ancora lo stesso pubblico e lo stesso scopo.
 
 Soltanto dopo guarda la somiglianza delle frasi. Un testo nuovo ma falso resta un testo rotto.
 

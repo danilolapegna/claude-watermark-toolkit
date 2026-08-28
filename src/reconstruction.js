@@ -8,7 +8,7 @@ const LABELS = {
     constraints: "Record length, format, audience and any wording that must stay exact.",
   },
   it: {
-    purpose: "Che cosa deve capire o fare il lettore dopo aver letto?",
+    purpose: "Che cosa deve capire o fare chi legge?",
     claims: "Elenca le idee con parole tue, una per riga.",
     voice: "Descrivi la tua voce naturale con tre tratti concreti.",
     constraints: "Indica lunghezza, formato, pubblico e le formule che devono restare identiche.",
@@ -59,12 +59,12 @@ METODO DI LAVORO INTERNO
 2. Metti la formulazione della fonte fuori vista e scrivi dal registro. Non modificarla frase per frase e non fare sostituzioni di sinonimi.
 3. Cambia ordine d'ingresso, confini delle frasi, attacchi e passaggi. Una sequenza ordinaria di quattro parole rimasta identica va ricostruita insieme alla sua clausola.
 4. Mantieni identico ogni [PV-XX] nella bozza. Non indovinarne il contenuto: il toolkit ripristinerà i valori esatti in locale.
-5. Evita lucidatura generica, formalità gonfiata e riempitivi che l'autore non userebbe.
+5. Evita lucidatura generica, formalità gonfiata e riempitivi estranei alla voce indicata.
 
 CONTROLLO FINALE SILENZIOSO
 1. Collega ogni voce del registro alla bozza e ripara omissioni, deformazioni o aggiunte.
 2. Verifica che ogni [PV-XX] compaia identico e che nessuna lunga frase ordinaria sia sopravvissuta.
-3. Verifica che sembri ancora lo stesso autore che parla allo stesso lettore.
+3. Verifica che conservi la stessa voce e parli allo stesso pubblico.
 
 VALORI PROTETTI
 ${values}

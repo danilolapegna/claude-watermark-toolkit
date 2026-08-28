@@ -84,7 +84,7 @@
       step1Short: "Il testo", step2Short: "Il prompt", step3Short: "Il controllo",
       step1Kicker: "Parti da qui. Sul serio.", step1Title: "Incolla il testo che vuoi ricostruire",
       step1Thought: "“Sto per caricare un testo privato?” No. Questa pagina costa €0, non chiama alcun server e non salva nulla. Se ancora non ti fidi, scarica il repository e apri questa stessa pagina offline.",
-      sourceLabel: "Testo di partenza", sourceHelp: "Usa un testo tuo, che sei disposto a difendere. Il pulsante qui sotto prepara un prompt. Non invia e non riscrive nulla.",
+      sourceLabel: "Testo di partenza", sourceHelp: "Usa un testo tuo, che puoi difendere e di cui ti assumi la responsabilità. Il pulsante qui sotto prepara un prompt. Non invia e non riscrive nulla.",
       extraSummary: "Facoltativo: aggiungi nomi o formule che devono restare identici fino all'ultima lettera", extraLabel: "Un valore protetto per riga",
       prepareAction: "Prepara il mio prompt di riscrittura",
       step2Kicker: "La parte utile è pronta", step2Title: "Copia tutto questo prompt",
