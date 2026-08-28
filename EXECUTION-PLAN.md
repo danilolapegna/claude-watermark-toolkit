@@ -123,3 +123,37 @@ Last updated: 2026-08-28.
 | Website guide v2 verification | passed | 8 targeted guide tests, TypeScript, changed-file lint, production build and prerender passed after the final neutral-copy correction |
 | Release readiness | `RELEASE_READY` | Both public front doors were inspected after deployment and match their merged source contracts |
 | Substack article | private local draft | `Personal brand/deliverables/substack-le-idee-non-hanno-watermark-2026-08-28.md`; gate passed; not sent or published |
+
+## 10. Pre-Substack handoff: reusable guide-writing standard
+
+This appended step must close before the private Substack draft is presented for approval. It does not reopen or alter Sections 0-9.
+
+- [x] Abstract the reader-guidance lessons from this project into one central, reusable guide-writing contract.
+- [x] Keep voice, narrative, factual verification and SEO in their existing owners; add only the missing comprehension and actionability layer.
+- [x] Make `monthly-guide-verificator` consume that contract and audit cold-reader comprehension, explained terminology, method actionability, promise honesty and native inclusive language.
+- [x] Synchronize the central automation contract, provider package and arming inventory without changing cadence or permissions.
+- [x] Validate the framework and verify the live provider automation before presenting the Substack draft.
+
+Receipt: `Azienda/framework-core/contracts/guide-writing.md` is the reusable contract. The active Codex heartbeat `monthly-guide-verificator` consumes it through the canonical procedure, retains its existing 30-day cadence and review-only boundary, and passed automation registry, arming inventory, registry-count, document and arming-fidelity gates.
+
+## 11. Pre-Substack hardening: automatic recall
+
+This second appended step makes the standard self-invoking instead of relying on Danilo or an agent to remember it. It does not alter Sections 0-10.
+
+- [x] Add one compact semantic trigger to the always-loaded workspace backbone for guide creation, rewriting, localization and readiness reviews.
+- [x] Add a small lazy invocation rule that reads the central contract instead of duplicating it or creating another skill.
+- [x] Route the always-active trust-quality loop to that rule for every public guide, tutorial, practical README and tool entry page.
+- [x] Require a five-check Guide quality receipt before public release or a final readiness claim.
+- [x] Keep the monthly radar directly wired to the same contract inside its canonical procedure and live provider prompt.
+
+## Guide quality receipt
+
+- contract: `Azienda/framework-core/contracts/guide-writing.md`
+- cold-reader comprehension: PASS · the trigger starts from an unfamiliar visitor and requires the why, choices and first action without inherited context
+- explained terminology: PASS · the contract includes the name-to-action test for every person, paper, acronym, model and algorithm
+- method actionability: PASS · every practical route must satisfy the full Method Contract or be labelled as research with no action required
+- promise honesty: PASS · the receipt blocks readiness when page verbs exceed tested capability, cost, privacy or provider boundaries
+- native inclusive language: PASS · Italian and English are reviewed independently and avoid unnecessary gender or prior-knowledge assumptions
+- overall: PASS
+
+Receipt: `rules/lazy/guide-writing.md` owns auto-invocation, `contracts/guide-writing.md` remains the single standard, `rules/always/trust-quality-loop.md` and the workspace backbone recall it, and `monthly-guide-verificator` remains directly wired to it for recurring review.
