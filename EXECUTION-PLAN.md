@@ -9,8 +9,8 @@ Last updated: 2026-08-28.
 - [x] Freeze the approved product scope.
 - [x] Close the product interrogation.
 - [x] Define architecture, boundaries and single sources of truth.
-- [ ] Correct the 2026-08-28 R&D report where it overstates current watermark coverage.
-- [ ] Publish the claim ladder: official fact, reproduced result, plausible inference, unknown.
+- [x] Correct the 2026-08-28 R&D report where it overstates current watermark coverage.
+- [x] Publish the claim ladder: official fact, reproduced result, plausible inference, unknown.
 
 ## 1. Repository foundation
 
@@ -18,7 +18,7 @@ Last updated: 2026-08-28.
 - [x] Initialize Git on a `codex/` feature branch.
 - [x] Add the MIT license, contribution guide, code of conduct and security policy.
 - [x] Add CI for tests, links and public prose.
-- [ ] Publish `danilolapegna/claude-watermark-toolkit` as a public repository.
+- [x] Publish `danilolapegna/claude-watermark-toolkit` as a public repository.
 
 ## 2. Working product
 
@@ -51,21 +51,21 @@ Last updated: 2026-08-28.
 
 ## 5. Website and discovery
 
-- [ ] Add a native Italian guide to danilolapegna.com.
-- [ ] Add a native English guide to danilolapegna.com.
-- [ ] Add canonical, hreflang, TechArticle, citations and only justified FAQ markup.
-- [ ] Add repo click and copy-action analytics where the action exists.
-- [ ] Add GitHub-to-site and site-to-GitHub campaign links.
-- [ ] Update the public GitHub profile after the repository is live.
+- [x] Add a native Italian guide to danilolapegna.com.
+- [x] Add a native English guide to danilolapegna.com.
+- [x] Add canonical, hreflang, TechArticle, citations and only justified FAQ markup.
+- [x] Add repository click analytics where the action exists.
+- [x] Add GitHub-to-site and site-to-GitHub campaign links.
+- [x] Update the public GitHub profile after the repository is live.
 
 ## 6. Release proof
 
 - [x] Run unit, integration, CLI and prose tests.
-- [ ] Run site lint, tests, build and prerender checks.
-- [ ] Audit keyboard, headings, links, contrast and mobile reading.
-- [ ] Verify the public repository default branch and files through GitHub.
-- [ ] Verify both guide URLs from the deployed HTML.
-- [ ] Record commit hashes and live URLs below.
+- [x] Run scoped site lint, the full test suite, TypeScript, build and prerender checks.
+- [x] Audit keyboard, headings, links, action size and mobile reading.
+- [x] Verify the public repository default branch and metadata through GitHub.
+- [x] Verify both guide URLs from the deployed HTML and a live browser audit.
+- [x] Record commit hashes and live URLs below.
 
 ## 7. Ongoing verification
 
@@ -78,9 +78,13 @@ Last updated: 2026-08-28.
 
 | Surface | State | Receipt |
 |---|---|---|
-| Toolkit repository | not published | pending |
-| English website guide | not deployed | pending |
-| Italian website guide | not deployed | pending |
-| GitHub profile | not updated | pending |
-| R&D report correction | not committed | pending |
+| Toolkit repository | public | [`danilolapegna/claude-watermark-toolkit`](https://github.com/danilolapegna/claude-watermark-toolkit), `main` at `5281bbb` before this receipt update |
+| English website guide | live | [`claude-text-watermark-guide.html`](https://danilolapegna.com/guides/claude-text-watermark-guide.html), site merge `f326fcb`, HTTP 200 |
+| Italian website guide | live | [`guida-watermark-testi-claude.html`](https://danilolapegna.com/guides/guida-watermark-testi-claude.html), site merge `f326fcb`, HTTP 200 |
+| Website runtime | verified | Lovable publish completed; public bundle `/assets/index-D6EWnncN.js`; both routes passed desktop and mobile browser smoke |
+| Website tests | passed | 346 tests passed, 4 environment-gated tests skipped; TypeScript, production build, prerender and changed-file lint passed |
+| Website lint baseline | contained | all changed TypeScript files pass; repository-wide lint still has 185 unrelated pre-existing errors |
+| GitHub profile | updated | [`danilolapegna/danilolapegna` PR 2](https://github.com/danilolapegna/danilolapegna/pull/2), merge `2927e34` |
+| Repository discovery | updated | English guide set as homepage; six public topics verified through GitHub |
+| R&D report correction | corrected locally | the workspace report now distinguishes models launched from 2 August from the incomplete earlier-model rollout |
 | Recurring verification | active | automation `verifica-repo-anti-watermark`, every 15 days |
