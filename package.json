@@ -8,9 +8,10 @@
   },
   "scripts": {
     "test": "node --test",
+    "check:workbench": "node scripts/check-workbench.mjs",
     "check:prose": "node scripts/check-prose.mjs",
     "check:links": "node scripts/check-links.mjs",
-    "check": "npm test && npm run check:prose && npm run check:links"
+    "check": "npm test && npm run check:workbench && npm run check:prose && npm run check:links"
   },
   "engines": {
     "node": ">=20"

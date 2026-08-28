@@ -18,6 +18,8 @@ Status: ACTIVE. Features approved by Danilo on 2026-08-28.
 | Validator | Check invariants, overlap and readability | `src/validators.js` | Candidate scorecards | Make external calls |
 | Selector | Rank valid candidates across several objectives | `src/selection.js` | Pareto set and recommended candidate | Hide trade-offs |
 | CLI | Turn user commands into pipeline calls | `bin/claude-watermark-toolkit.js` | Human and JSON output | Own business logic |
+| Browser workbench core | Prepare a source-free brief and compare drafts locally | `docs/core.js` | Deterministic browser-safe functions | Render the page or call a provider |
+| Browser workbench UI | Guide a non-technical reader through source separation and comparison | `docs/index.html`, `docs/app.js`, `docs/styles.css` | Static bilingual interface | Upload, persist or generate text |
 | Prose gate | Enforce the public writing rules | `scripts/check-prose.mjs` | Pass or precise failures | Judge factual truth |
 | Research dossier | Own evidence, uncertainty and experiment protocol | `research/`, `CLAIMS.md` | Claim ladder and methods | Pretend to be a detector |
 
@@ -29,6 +31,7 @@ Status: ACTIVE. Features approved by Danilo on 2026-08-28.
 | Generation | Provider boundary, target selector, candidate generator | Produce candidate drafts without Anthropic | Protected rewrite case and method | Candidate drafts |
 | Evaluation | Validator, selector | Reject broken candidates and explain the remaining trade-offs | Case and candidates | Scorecards and recommendation |
 | Interface | CLI | Make the systems usable from a terminal or another agent | Command and files | Plain text or JSON |
+| Browser interface | Browser workbench core and UI | Make the central clean-room method usable with no account or installation | Source, author brief and candidate draft | Source-free prompt and local comparison |
 | Knowledge | Prose gate, research dossier | Keep public writing and claims honest | Docs, sources and tests | Gate result and evidence record |
 
 ## 3. Interaction map
@@ -41,11 +44,14 @@ flowchart LR
   D -->|C4 result| A
   E[Research dossier] -->|C5 method status| A
   F[Prose gate] -->|C6 editorial check| E
+  G[Browser UI] -->|C7 prepare| H[Browser core]
+  H -->|C8 compare| G
+  G -->|C9 export| I[User-controlled clipboard or file]
 ```
 
 ## 4. Data flow
 
-The source enters from a file or standard input. Preparation detects protected facts and creates a rewrite case. Semantic reconstitution turns the source into claims, constraints and voice notes before drafting. The generation system either exports a prompt or calls an approved non-Anthropic provider. Evaluation first rejects candidates that lose protected information. It then measures phrase and n-gram survival, readability and edit distance, and returns the non-dominated candidates plus a plain-language recommendation. The original source remains unchanged.
+The source enters from a file, standard input or the browser form. Preparation detects protected facts and creates a rewrite case. Semantic reconstitution turns the source into claims, constraints and voice notes before drafting. The generation system either exports a prompt or calls an approved non-Anthropic provider. Evaluation first rejects candidates that lose protected information. It then measures phrase and n-gram survival, readability and edit distance, and returns the non-dominated candidates plus a plain-language recommendation. In the browser, the author writes the meaning card, seals the source and exports a prompt that never contains the source wording. The browser compares a returned draft locally. The original source remains unchanged.
 
 ## 5. SSOT registry
 
@@ -68,6 +74,9 @@ The source enters from a file or standard input. Preparation detects protected f
 | C4 Evaluation to CLI | scorecards and Pareto set | human or JSON report | no valid candidate | failures remain visible | v1 |
 | C5 Knowledge to CLI | method identifier | state and limits | unknown method | research-only is labeled | v1 |
 | C6 Prose gate to Knowledge | public files | pass or findings | unreadable file | no em dash, no banned stock phrases | v1 |
+| C7 Browser UI to browser preparation | source string, manual protected values | protected values and editable meaning card | empty input | source stays in the current tab | v1 |
+| C8 Browser UI to browser evaluation | sealed source, candidate, protected values | separate local comparison signals | empty candidate | no detector verdict | v1 |
+| C9 Browser UI to export | meaning card and protected values | clipboard text or downloaded brief | denied clipboard access | original source is never included | v1 |
 
 Contract changes require a version bump, a documented delta here, updates to every listed consumer and a contract test. No silent contract changes.
 
@@ -83,6 +92,8 @@ Engine question: provider transport and text utilities are commodity and use the
 | Rewrite engine | build | project code, MIT | This is the product edge and needs the project's contracts |
 | Provider adapters | build | native `fetch` | Two small adapters avoid a large SDK and keep Anthropic out |
 | Website rendering | adopt existing | `danilolapegna-new` guide registry | The site already owns bilingual guides, SEO and schema |
+| No-install browser inference | reject as a required dependency | WebLLM, Transformers.js, wllama and browser built-in AI reviewed | Model downloads, device limits and browser support would break the universal first-use promise |
+| Static Rewrite Room | build | browser standard library, MIT | Source separation, protected facts and transparent comparison are the project edge and work without a model download |
 
 License pressure: the only optional code reference is Apache-2.0 with a clear exit path. Research repositories without a license are not copied. Runtime maintenance is limited to current Node LTS behavior and endpoint contract tests.
 
@@ -95,6 +106,7 @@ License pressure: the only optional code reference is Apache-2.0 with a clear ex
 5. Targeted and adaptive methods. Coherent state: advanced workflows run under explicit budgets.
 6. Bilingual documentation, manifesto, skill and research dossier. Coherent state: every audience has a usable entry.
 7. Website guides, profile links and public verification. Coherent state: discovery paths work in both directions.
+8. Static Rewrite Room, complete method ladder and guided local comparison. Coherent state: a non-technical reader can perform the strongest default workflow without installation.
 
 ## 8. Health and self-repair
 

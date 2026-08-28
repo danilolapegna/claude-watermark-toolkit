@@ -9,6 +9,8 @@ const ROOT = fileURLToPath(new URL("../", import.meta.url));
 const PUBLIC_ROOTS = [
   "README.md",
   "README.it.md",
+  "METHODS.md",
+  "METHODS.it.md",
   "MANIFESTO.md",
   "MANIFESTO.it.md",
   "CLAIMS.md",
@@ -21,6 +23,7 @@ const PUBLIC_ROOTS = [
   "skills",
   "research",
   "examples",
+  "docs",
 ];
 
 const BANNED = [
@@ -34,11 +37,11 @@ const BANNED = [
   { label: "stock filler", pattern: /\bit is worth noting that\b/giu },
 ];
 
-async function markdownFiles(path) {
+async function publicTextFiles(path) {
   const entry = await stat(path);
-  if (entry.isFile()) return extname(path) === ".md" ? [path] : [];
+  if (entry.isFile()) return [".md", ".html", ".js"].includes(extname(path)) ? [path] : [];
   const children = await readdir(path, { withFileTypes: true });
-  const nested = await Promise.all(children.map((child) => markdownFiles(join(path, child.name))));
+  const nested = await Promise.all(children.map((child) => publicTextFiles(join(path, child.name))));
   return nested.flat();
 }
 
@@ -46,7 +49,7 @@ const files = [];
 for (const item of PUBLIC_ROOTS) {
   const path = join(ROOT, item);
   try {
-    files.push(...await markdownFiles(path));
+    files.push(...await publicTextFiles(path));
   } catch (error) {
     if (error.code !== "ENOENT") throw error;
   }
@@ -65,11 +68,11 @@ for (const file of files) {
 }
 
 if (files.length === 0) {
-  process.stderr.write("Public prose check failed: no Markdown files were scanned.\n");
+  process.stderr.write("Public prose check failed: no public text files were scanned.\n");
   process.exitCode = 1;
 } else if (findings.length > 0) {
   process.stderr.write(`Public prose check failed:\n${findings.map((item) => `- ${item}`).join("\n")}\n`);
   process.exitCode = 1;
 } else {
-  process.stdout.write(`Public prose check passed for ${files.length} Markdown files.\n`);
+  process.stdout.write(`Public prose check passed for ${files.length} public text files.\n`);
 }

@@ -74,6 +74,20 @@ Last updated: 2026-08-28.
 - [x] Require fresh web research, primary sources and a comparison against the repository and both website guides.
 - [x] Keep public merge and deploy outside the automation. It may prepare a local `codex/` patch when evidence requires a change.
 
+## 8. Rewrite Room and definitive guide expansion
+
+- [x] Replace the short method list with a complete route ladder from disclosure to human editing.
+- [x] Add the two-envelope clean-room method in native English and Italian.
+- [x] Add the independent rewrite chain with its narrower evidence boundary.
+- [x] Build a bilingual, no-install Rewrite Room with no backend, provider or text upload.
+- [x] Protect exact values, seal and restore the source, export a source-free prompt and compare a candidate locally.
+- [x] Require a deliberate second click before clearing the current session.
+- [x] Rewrite the repository entry points around likely reader objections and actual next actions.
+- [x] Rewrite only the Italian website guide in Danilo's native style and prove that the English body is unchanged.
+- [x] Pass unit, static, prose, link, journey, accessibility, desktop and mobile browser checks.
+- [ ] Merge and verify Rewrite Room on GitHub Pages.
+- [ ] Merge and verify the definitive Italian guide on danilolapegna.com.
+
 ## Release receipts
 
 | Surface | State | Receipt |

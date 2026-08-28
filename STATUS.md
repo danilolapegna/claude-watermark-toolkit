@@ -17,6 +17,9 @@ Last checked: 2026-08-28.
 - Bounded semantic reconstruction and adaptive candidate search.
 - Pareto selection and plain-language score explanations.
 - Mechanical public-prose check.
+- Static bilingual Rewrite Room that opens from GitHub Pages or directly from the downloaded `docs/index.html` file.
+- Browser-only protected-value extraction, source-free prompt export and candidate comparison.
+- Longest shared phrase, three-, four- and five-word survival, sentence-opening reuse and rough structural similarity reports.
 
 ## Experimental
 
@@ -39,8 +42,7 @@ Research-only means the setup can teach us something about a mechanism. It does 
 - Anthropic's detector API.
 - A verified model-by-model Claude coverage table.
 - A guarantee against a private detector.
-- A hosted service.
+- A hosted text-processing service. The static Rewrite Room has no backend and does not receive user text.
 - An Anthropic provider adapter.
 
 Follow [EXECUTION-PLAN.md](EXECUTION-PLAN.md) for release receipts and the recurring verification schedule.
-

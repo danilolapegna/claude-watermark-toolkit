@@ -16,9 +16,12 @@ Last checked: 2026-08-28.
 ## Attacks
 
 - [SIRA](https://arxiv.org/abs/2505.05190): self-information-guided rewriting.
+- [Watermark Smoothing Attacks](https://aclanthology.org/2025.findings-emnlp.264/): selective resampling of lower-confidence positions across ten studied schemes.
+- [B4](https://aclanthology.org/2025.naacl-long.460/): strict black-box watermark scrubbing framed as constrained optimization with fidelity proxies.
 - [TSAPA](https://aclanthology.org/2026.findings-acl.459/): evolutionary multi-objective paraphrase attack.
 - [Quality-aware random-walk evaluation](https://aclanthology.org/2025.acl-long.1436/): evidence that automated attack success can collapse under human quality review.
 - [Forensic reliability analysis](https://arxiv.org/abs/2607.16010): public watermark configurations and the danger of interpreting attack removal without false-negative context.
+- [Chainwash](https://arxiv.org/abs/2605.05503): repeated independent rewriting in studied diffusion language-model watermarks. Its model family is narrower than Claude, so this project treats the chain pattern as experimental.
 
 ## Accessibility and detector governance
 
@@ -34,3 +37,4 @@ Last checked: 2026-08-28.
 
 The official Google DeepMind repository is the only runtime-quality reference adopted for the optional surrogate lab. Small attack repositories with permissive licenses are useful for test ideas, not as dependencies. Repositories without a license are treated as all-rights-reserved and their code is not copied.
 
+For the no-install interface, [WebLLM](https://github.com/mlc-ai/web-llm), [Transformers.js](https://github.com/huggingface/transformers.js) and [wllama](https://github.com/ngxson/wllama) were reviewed. They prove that local browser inference is possible, but a required model download and device-dependent performance would make the first visit heavier and less universal. Rewrite Room therefore uses a zero-dependency browser core and leaves model choice outside the page.
