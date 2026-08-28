@@ -1,4 +1,4 @@
-# Ideas Don't Carry Watermarks
+# Ideas Shouldn't Carry Watermarks
 
 There is a sound case for marking a synthetic image when people could mistake it for a photograph of a real event. The mark can answer a concrete question: did a camera record this scene?
 
@@ -41,4 +41,3 @@ People should be able to reconstruct their own ideas without being trapped by th
 This project therefore publishes methods that favor fresh authorship over cosmetic scrambling. We protect facts, remove dependence on original phrasing, produce independent drafts and show the quality trade-offs. We do not promise a magic detector score. We do not ask Anthropic to rewrite Anthropic output. We do not pretend that changing punctuation or invisible Unicode solves a statistical watermark.
 
 The principle is simple: provenance can inform judgment, but it must not replace judgment. Ideas are not owned by the sampler that helped phrase them.
-
