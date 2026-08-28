@@ -90,8 +90,8 @@ Last updated: 2026-08-28.
 - [x] Add a shared explanation contract: reader situation, exact next action, expected result, cost or privacy trade-off, limit and stop condition before research jargon.
 - [x] Add regression tests that reject removed CLI commands, targeting-as-instruction, tournament-as-instruction and inflated Rewrite Room claims across both languages.
 - [x] Re-run unit, static, prose, link, journey, accessibility, desktop and mobile browser checks on the final v2 surface.
-- [ ] Merge and verify Rewrite Room on GitHub Pages.
-- [ ] Merge and verify the definitive Italian guide on danilolapegna.com.
+- [x] Merge and verify Rewrite Room on GitHub Pages.
+- [x] Merge and verify the definitive Italian guide on danilolapegna.com.
 
 ## 9. Unified explanation and article draft
 
@@ -108,17 +108,18 @@ Last updated: 2026-08-28.
 
 | Surface | State | Receipt |
 |---|---|---|
-| Toolkit repository | public | [`danilolapegna/claude-watermark-toolkit`](https://github.com/danilolapegna/claude-watermark-toolkit), `main` at `5281bbb` before this receipt update |
-| English website guide | live | [`claude-text-watermark-guide.html`](https://danilolapegna.com/guides/claude-text-watermark-guide.html), site merge `f326fcb`, HTTP 200 |
-| Italian website guide | live | [`guida-watermark-testi-claude.html`](https://danilolapegna.com/guides/guida-watermark-testi-claude.html), site merge `f326fcb`, HTTP 200 |
-| Website runtime | verified | Lovable publish completed; public bundle `/assets/index-D6EWnncN.js`; both routes passed desktop and mobile browser smoke |
-| Website tests | passed | 346 tests passed, 4 environment-gated tests skipped; TypeScript, production build, prerender and changed-file lint passed |
+| Toolkit repository | released | [`danilolapegna/claude-watermark-toolkit`](https://github.com/danilolapegna/claude-watermark-toolkit), PR 4 merged to `main` at `6e8e57f54850`; CI and GitHub Pages deploy passed |
+| Rewrite Room | live | [`danilolapegna.github.io/claude-watermark-toolkit`](https://danilolapegna.github.io/claude-watermark-toolkit/); live copy identifies it as a simple, direct local prompt builder and has no horizontal overflow |
+| English website guide | live | [`claude-text-watermark-guide.html`](https://danilolapegna.com/guides/claude-text-watermark-guide.html), site PR 24 merged at `d556136fd53d` |
+| Italian website guide | live | [`guida-watermark-testi-claude.html`](https://danilolapegna.com/guides/guida-watermark-testi-claude.html), site PR 24 merged at `d556136fd53d`; the live page starts with `Se sei qui` and contains neither removed Method 6 nor Method 7 |
+| Website runtime | verified | Lovable `Publish changes` completed with `Your website was updated`; public bundle `/assets/index-CmtPVl7X.js`; live browser audit passed with no horizontal overflow |
+| Website tests | passed | 358 tests passed and 4 environment-gated tests skipped before the final neutral-copy correction; the final delta then passed its 8 targeted tests, TypeScript, changed-file lint, production build and prerender |
 | Website lint baseline | contained | all changed TypeScript files pass; repository-wide lint still has 185 unrelated pre-existing errors |
 | GitHub profile | updated | [`danilolapegna/danilolapegna` PR 2](https://github.com/danilolapegna/danilolapegna/pull/2), merge `2927e34` |
 | Repository discovery | updated | English guide set as homepage; six public topics verified through GitHub |
 | R&D report correction | corrected locally | the workspace report now distinguishes models launched from 2 August from the incomplete earlier-model rollout |
 | Recurring verification | active | automation `verifica-repo-anti-watermark`, every 15 days |
-| Toolkit v2 branch | ready locally, not merged | `codex/dl-solutions-rewrite-room` at `b49da56`; 37 tests plus workbench, prose and links passed |
-| Website guide v2 branch | ready locally, not merged | `codex/watermark-guide-reader-first` at `77ce43e`; 358 tests passed, 4 environment-gated skipped; TypeScript, changed-file lint and production build passed |
-| Public Italian guide | still old v1 | live page still contains the removed Methods 6 and 7; the corrected v2 is verified only in the local preview until merge and deploy |
+| Toolkit v2 verification | passed | 38 tests plus workbench privacy/accessibility, prose and link checks passed; Italian practical-copy regression is now explicit |
+| Website guide v2 verification | passed | 8 targeted guide tests, TypeScript, changed-file lint, production build and prerender passed after the final neutral-copy correction |
+| Release readiness | `RELEASE_READY` | Both public front doors were inspected after deployment and match their merged source contracts |
 | Substack article | private local draft | `Personal brand/deliverables/substack-le-idee-non-hanno-watermark-2026-08-28.md`; gate passed; not sent or published |
