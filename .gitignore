@@ -1,0 +1,17 @@
+node_modules/
+coverage/
+__pycache__/
+*.pyc
+*.log
+*.tmp
+.DS_Store
+.env
+.env.*
+!.env.example
+.agent-framework/
+_context/
+_strategy/
+deliverables/
+engineering-brief-*.md
+_plan.md
+BUILD-RECEIPT.local.md

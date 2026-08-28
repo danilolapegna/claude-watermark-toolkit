@@ -1,0 +1,30 @@
+{
+  "name": "claude-watermark-toolkit",
+  "version": "1.0.0",
+  "description": "Local-first tools and clear guides for reconstructing AI-assisted text in your own voice",
+  "type": "module",
+  "bin": {
+    "watermark-toolkit": "./bin/watermark-toolkit.js"
+  },
+  "scripts": {
+    "test": "node --test",
+    "check:prose": "node scripts/check-prose.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "check": "npm test && npm run check:prose && npm run check:links"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "text-watermark",
+    "synthid",
+    "writing",
+    "accessibility",
+    "local-first"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danilolapegna/claude-watermark-toolkit.git"
+  }
+}

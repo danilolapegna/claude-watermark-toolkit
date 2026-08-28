@@ -1,0 +1,12 @@
+claim_id,claim,status,source,project_use,last_checked
+COV-01,Future Claude models use a SynthID Text variant,official,https://www.anthropic.com/news/claude-text-watermark,claim ledger,2026-08-28
+COV-02,Every Claude output has been marked since 14 August 2026,unknown,,never state as fact,2026-08-28
+MEC-01,Public SynthID uses keyed context-dependent token scores,official-public-synthid,https://www.nature.com/articles/s41586-024-08025-4,probable mechanics,2026-08-28
+MEC-02,Claude uses the public paper experimental configuration,unknown,,never assume,2026-08-28
+ROB-01,Light edits are unlikely to remove the Claude signal,official-vendor-statement,https://www.anthropic.com/news/claude-text-watermark,method comparison,2026-08-28
+ROB-02,A full rewrite replacing every word removes the signal,official-vendor-statement,https://www.anthropic.com/news/claude-text-watermark,method comparison with caveat,2026-08-28
+ATK-01,Self-information targeting was strong across seven studied schemes,reported-by-authors,https://arxiv.org/abs/2505.05190,advanced method hypothesis,2026-08-28
+ATK-02,Evolutionary Pareto search was strong across studied schemes,reported-by-authors,https://aclanthology.org/2026.findings-acl.459/,adaptive method hypothesis,2026-08-28
+QLT-01,Automated attack scores can overstate useful human-quality success,research-evidence,https://aclanthology.org/2025.acl-long.1436/,human review gate,2026-08-28
+ACC-01,AI writing support can help some adults with dyslexia,research-evidence,https://arxiv.org/abs/2207.02308,manifesto boundary,2026-08-28
+ACC-02,Generic detector bias proves Anthropic detector bias,unsupported,,never state,2026-08-28
