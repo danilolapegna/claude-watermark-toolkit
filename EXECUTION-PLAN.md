@@ -89,9 +89,20 @@ Last updated: 2026-08-28.
 - [x] Replace the stale website methods 6 and 7 with one explicit research post-mortem that tells the reader there is no action to take.
 - [x] Add a shared explanation contract: reader situation, exact next action, expected result, cost or privacy trade-off, limit and stop condition before research jargon.
 - [x] Add regression tests that reject removed CLI commands, targeting-as-instruction, tournament-as-instruction and inflated Rewrite Room claims across both languages.
-- [ ] Re-run unit, static, prose, link, journey, accessibility, desktop and mobile browser checks on the final v2 surface.
+- [x] Re-run unit, static, prose, link, journey, accessibility, desktop and mobile browser checks on the final v2 surface.
 - [ ] Merge and verify Rewrite Room on GitHub Pages.
 - [ ] Merge and verify the definitive Italian guide on danilolapegna.com.
+
+## 9. Unified explanation and article draft
+
+- [x] Reconcile README, manifesto, Rewrite Room, method guides, website guides and persistent product documents against one reader-first explanation contract.
+- [x] State everywhere that Rewrite Room is a local prompt builder with checks, not an AI writer or detector.
+- [x] Remove Methods 6 and 7 from both website guides and explain the rejected research prototypes only as a no-action post-mortem.
+- [x] Align the image-versus-text argument: visual media may masquerade as sensory evidence; a text claim is judged by the claim, evidence and responsibility, not by the software that helped phrase it.
+- [x] Write the private Substack draft `Le idee non hanno watermark` in Danilo's voice.
+- [x] Replace generic editorial art with two original illustrations in the established Kintsugi / 5 Hacks visual system and one real Rewrite Room screenshot.
+- [x] Pass the workspace deliverable gate and the no-em-dash check on the article.
+- [ ] Publish or send the article. This remains deliberately outside the automated sequence.
 
 ## Release receipts
 
@@ -107,3 +118,7 @@ Last updated: 2026-08-28.
 | Repository discovery | updated | English guide set as homepage; six public topics verified through GitHub |
 | R&D report correction | corrected locally | the workspace report now distinguishes models launched from 2 August from the incomplete earlier-model rollout |
 | Recurring verification | active | automation `verifica-repo-anti-watermark`, every 15 days |
+| Toolkit v2 branch | ready locally, not merged | `codex/dl-solutions-rewrite-room` at `b49da56`; 37 tests plus workbench, prose and links passed |
+| Website guide v2 branch | ready locally, not merged | `codex/watermark-guide-reader-first` at `77ce43e`; 358 tests passed, 4 environment-gated skipped; TypeScript, changed-file lint and production build passed |
+| Public Italian guide | still old v1 | live page still contains the removed Methods 6 and 7; the corrected v2 is verified only in the local preview until merge and deploy |
+| Substack article | private local draft | `Personal brand/deliverables/substack-le-idee-non-hanno-watermark-2026-08-28.md`; gate passed; not sent or published |
