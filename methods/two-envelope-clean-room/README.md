@@ -1,4 +1,4 @@
-# Route 2: the two-envelope clean room
+# Route 3: the two-envelope clean room
 
 [Italiano](README.it.md) · [Compare every route](../../METHODS.md) · [Use the guided version](https://danilolapegna.github.io/claude-watermark-toolkit/)
 

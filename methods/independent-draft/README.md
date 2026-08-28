@@ -1,7 +1,8 @@
-# Route 4: an independent draft in another non-Anthropic system
+# The same clean room, using two separate chats
 
 [Italiano](README.it.md) · [Copy the prompts](../../prompts/en/research-pass.md) · [Compare every route](../../METHODS.md)
 
+> **What it is:** the standalone version of Route 3, without Rewrite Room<br>
 > **Best for:** people who want model help without installing the CLI<br>
 > **Time:** roughly 10 to 30 minutes<br>
 > **Difficulty:** two chats and one careful fact check<br>
@@ -25,7 +26,7 @@ Two messages in the same chat do not count. Conversation history can preserve th
 - the [drafting prompt](../../prompts/en/drafting-pass.md);
 - permission to send the source and brief to the provider you choose.
 
-The provider may use its normal plan or AI credits. It may also apply its own watermark or provenance mechanism. For confidential text or zero hosted credits, use a local open model.
+The provider may use its normal plan or AI credits. It may also apply its own watermark or provenance mechanism. For confidential text or zero hosted credits, follow the [local-model route with LM Studio or Ollama](../local-model/README.md).
 
 ## Step 1: run the research pass
 

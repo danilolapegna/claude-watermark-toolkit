@@ -16,7 +16,7 @@ A tool, prompt, guide or skill ships only when it has:
 
 | Surface | Contract | Repeatable evidence | Limit shown to reader | Verdict |
 |---|---|---|---|---|
-| Rewrite Room | prepare prompt, restore exact values, compare returned draft | browser core, static privacy gate, paired local benchmark | surface report only, external model varies | keep |
+| Rewrite Room | prepare prompt, restore exact values, compare returned draft | browser core, static privacy gate, eight-case paired local benchmark and manual semantic review | surface report only, external model varies and may flatten voice | keep as prompt builder |
 | `prepare` | exact-value and case inventory without source mutation | multilingual, nesting, large-input and overwrite tests | misses some proper names and ideas | keep |
 | `prompt` | primary or source-separated prompt export | injection, masking and isolation tests | receiving model can ignore instructions | keep |
 | `check` | one restored candidate and one mechanical report | contract, overwrite and adversarial semantic tests | never approves meaning | keep |
@@ -41,6 +41,12 @@ A tool, prompt, guide or skill ships only when it has:
 - a long multilingual source;
 - a third-party agent that cannot create a separate drafting context;
 - a reviewed brief rejected by the local automatic drafting path.
+
+## A stricter prompt that lost
+
+An intermediate prompt tried to control voice and structure more aggressively. On the same eight-case local corpus it retained every exact-value set in only seven drafts, increased mean four-word survival from 10.1% to 13.1% and lengthened the mean shared run from 6.4 to 8.4 words. It failed every mechanical admission gate and was reverted.
+
+That failed run matters because it rules out a tempting product shortcut: adding more instructions is not the same thing as improving the rewrite. The admitted prompt is the smaller version that passed the repeatable gate. Its remaining voice and rigid-text failures are recorded in [`benchmarks/MANUAL-REVIEW-2026-08-28.md`](benchmarks/MANUAL-REVIEW-2026-08-28.md).
 
 ## Release boundary
 

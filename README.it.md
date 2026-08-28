@@ -51,7 +51,9 @@ Questa guida serve per testi nei quali idee, giudizio e responsabilità finale s
 
 Apri [Rewrite Room in italiano](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it).
 
-Rewrite Room è un prompt builder semplice e diretto, con un confronto locale alla fine. Non è un writer AI. Incolli il testo una volta e la pagina prepara un prompt strutturato per un modello non Anthropic, senza account, upload o installazione. Date, cifre, link, citazioni e altri valori esatti diventano segnaposto locali come `[PV-01]`, riducendo il rischio che il modello normalizzi un trattino, un decimale o una virgoletta. Se i segnaposto sopravvivono, la pagina rimette gli originali carattere per carattere quando riporti la bozza.
+Rewrite Room è un prompt builder con un controllo alla fine. Non è un writer AI. Il percorso completo è: **incolla il testo → copia il prompt → fai scrivere un altro modello → riporta qui la risposta → rileggi la bozza controllata**.
+
+La pagina prepara il prompt senza account, caricamenti o installazione. Date, cifre, link, citazioni e altri valori esatti diventano segnaposto locali come `[PV-01]`, riducendo il rischio che il modello cambi un trattino, un decimale o una virgoletta. Se i segnaposto sopravvivono, la pagina rimette gli originali carattere per carattere quando riporti la bozza.
 
 Copi tutto il prompt, lo incolli nel modello che preferisci e poi riporti qui la sua bozza. La pagina controlla:
 
@@ -61,9 +63,11 @@ Copi tutto il prompt, lo incolli nel modello che preferisci e poi riporti qui la
 - gli inizi di frase ripetuti;
 - una somiglianza approssimativa della forma di paragrafi e frasi.
 
-Preparazione del prompt e confronto avvengono in locale. La pagina non usa un modello e non consuma crediti AI. Tutta la scrittura avviene nel modello esterno, che può usare il suo normale abbonamento, piano gratuito o sistema di crediti. Il risultato riguarda soltanto la superficie. Non è un controllo semantico né il responso del detector Anthropic.
+Preparazione del prompt e confronto avvengono in locale. La pagina non usa un modello e non consuma crediti AI. Per la scrittura puoi scegliere un modello online creato da un'azienda diversa da Anthropic oppure un modello open che gira sul tuo computer. Il primo è più semplice ma riceve il prompt e può consumare crediti. Il secondo richiede un'installazione iniziale e memoria sufficiente, però dopo il download non usa un servizio di scrittura ospitato. [La guida locale spiega LM Studio e Ollama davvero da zero](methods/local-model/README.it.md).
 
-Non abbiamo promosso il prompt soltanto perché sembrava intelligente. In un benchmark offline su quattro casi italiani e inglesi con gpt-oss 20B, il prompt strutturato ha conservato tutti i gruppi di valori esatti. La parafrasi banale ci è riuscita in un caso su quattro. Ha anche ridotto la media delle sequenze di quattro parole rimaste dal 27,4% al 23,7% e la sequenza identica media più lunga da 10 a 9 parole. È un solo modello locale su un corpus piccolo, non una garanzia universale. Bozze e punteggi completi sono in [`benchmarks/results/local-gpt-oss-20b.json`](benchmarks/results/local-gpt-oss-20b.json).
+Il resoconto riguarda soltanto la superficie. Non è un controllo semantico né il responso del detector Anthropic.
+
+Non abbiamo promosso il prompt soltanto perché sembrava intelligente. In un benchmark offline su otto casi italiani e inglesi con Qwen3.8 27B, il prompt strutturato ha conservato tutti i gruppi di valori esatti. La parafrasi banale ci è riuscita in sei casi su otto. Ha ridotto la media delle sequenze di quattro parole rimaste dal 10,1% al 7,1% e la sequenza identica media più lunga da 6,4 a 5,4 parole. In un caso tecnico molto rigido, però, la sovrapposizione è peggiorata; in un testo italiano la voce è diventata più formale della fonte. Quindi il prompt si è guadagnato il suo posto, ma la sua bozza va ancora letta da una persona. Puoi aprire la [revisione semantica manuale](benchmarks/MANUAL-REVIEW-2026-08-28.md) oppure il [risultato grezzo completo](benchmarks/results/local-qwen3.8-27b-mlx-2026-08-28-v3.json).
 
 Se vuoi una separazione ancora più forte delle vecchie frasi e accetti un po' di lavoro in più, apri il percorso a camera stagna dentro Rewrite Room. È lì che vive il metodo delle due buste. Adesso è un'opzione avanzata, non un esame d'ingresso. Nel suo smoke test bilingue separato ha conservato tutti i valori esatti, restituito prosa in entrambi i casi, mantenuto la leggibilità nel limite configurato e ridotto al 14,6% la media delle sequenze di quattro parole rimaste. Due casi dimostrano che il flusso funziona, non che funzionerà sempre allo stesso modo.
 
@@ -94,8 +98,9 @@ Se la tieni davanti, in realtà è facilissimo conservare la stessa logica dei p
 | La policy permette la scrittura assistita | Non cambiare nulla o dichiarala | nessuna | non aiuta dove è la rilevabilità stessa a far scattare l'enforcement |
 | Testo breve, privacy massima | [Riscrittura manuale](methods/human-redraft/README.it.md) | 10-60 min | il tuo tempo |
 | Niente installazione e guida passo passo | [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it) | 2-5 min per preparare, più il tempo del modello | il modello esterno può costare o applicare un proprio sistema di provenienza |
+| Nessun writer o credito ospitato | [Rewrite Room con LM Studio o Ollama](methods/local-model/README.it.md) | un download iniziale, poi il tempo del modello | serve memoria sufficiente; la qualità dipende dal modello |
 | Vuoi l'aiuto di un altro sistema | [Metodo delle due buste](methods/two-envelope-clean-room/README.it.md) | 15-40 min | privacy del provider e qualità della scheda |
-| Vuoi un flusso già pronto per un agente | [Copia il prompt](prompts/it/research-pass.md) o [la skill](skills/non-anthropic-text-rewrite/SKILL.md) | 10-30 min | gli errori fattuali vanno comunque controllati |
+| Vuoi un flusso già pronto per un agente | [Copia il prompt](prompts/it/research-pass.md) o [la skill spiegata in italiano](skills/non-anthropic-text-rewrite/README.it.md) | 10-30 min | gli errori fattuali vanno comunque controllati |
 | Preparazione e controlli locali ripetibili | [CLI locale](methods/semantic-reconstitution/README.it.md) | preparazione più pochi minuti per testo | prepara e misura, ma non scrive |
 | Testo ad alta posta e un budget | Editor umano dalla scheda controllata | tempo pagato | soldi, disponibilità e riservatezza |
 
@@ -117,9 +122,11 @@ Anthropic descrive il watermark come un pattern statistico nelle scelte dei toke
 
 ---
 
-## Vuoi lo strumento locale?
+## Vuoi lo strumento facoltativo da Terminale?
 
-Per il metodo centrale non devi usare il Terminale. Se però vuoi esportare prompt e confrontare bozze in modo ripetibile, la CLI richiede Node.js 20 o successivo e non ha pacchetti runtime obbligatori.
+“CLI” significa interfaccia a riga di comando: un piccolo programma controllato dal Terminale o da PowerShell. Per il metodo centrale non ti serve. Ha senso soltanto se vuoi ripetere il lavoro su file o conservare un resoconto locale. Prepara e controlla, ma non scrive.
+
+Il percorso è `sorgente.txt` → `prompt.txt` → il writer che scegli → `bozza.txt` → controllo locale. La [guida alla CLI da zero](methods/semantic-reconstitution/README.it.md) spiega come creare ogni file e che cosa significa ogni risultato.
 
 ```bash
 git clone https://github.com/danilolapegna/claude-watermark-toolkit.git
@@ -131,16 +138,16 @@ node bin/watermark-toolkit.js start examples/fixtures/source-it.txt --lang it
 Prepara lo stesso prompt strutturato partendo da un file locale:
 
 ```bash
-node bin/watermark-toolkit.js prompt sorgente.txt --lang it --out prompt.json
+node bin/watermark-toolkit.js prompt sorgente.txt --lang it --out prompt.txt
 ```
 
-Passa il prompt salvato al sistema non Anthropic che scegli, salva la risposta in `candidato.txt`, poi ripristina i valori esatti e controllala in locale:
+Apri `prompt.txt` e copia tutto nel writer online o locale che scegli. Crea `bozza.txt`, incolla dentro la risposta del writer, poi ripristina i valori esatti e controlla la bozza in locale:
 
 ```bash
-node bin/watermark-toolkit.js check sorgente.txt candidato.txt --lang it
+node bin/watermark-toolkit.js check sorgente.txt bozza.txt --lang it
 ```
 
-La CLI non chiama nessun modello e non sovrascrive la fonte o il candidato. Questo contratto più stretto ha retto i test. Il batch locale automatico no, quindi è stato tolto.
+La CLI non chiama nessun modello e non sovrascrive la fonte o la bozza. `prepare` mostra soltanto i valori esatti che proteggerà. `compare` mette affiancate due o più bozze già esistenti. Sono controlli facoltativi, non altri passaggi obbligatori.
 
 ---
 

@@ -157,3 +157,23 @@ This second appended step makes the standard self-invoking instead of relying on
 - overall: PASS
 
 Receipt: `rules/lazy/guide-writing.md` owns auto-invocation, `contracts/guide-writing.md` remains the single standard, `rules/always/trust-quality-loop.md` and the workspace backbone recall it, and `monthly-guide-verificator` remains directly wired to it for recurring review.
+
+## 12. From-zero product rebuild and mobile wayfinding
+
+This appended step does not alter Sections 0-11. It closes the gaps found when Danilo tried to use the public toolkit without carrying the implementation context.
+
+- [x] Reduce the product to one explicit loop: source, prompt builder, chosen writer, returned draft, local check.
+- [x] Explain the hosted non-Anthropic and local LM Studio or Ollama writer choices at the exact handoff point.
+- [x] Rewrite the optional CLI around named files, their creator, their contents, the command output and its next destination.
+- [x] Re-audit every retained method, prompt and skill against usefulness, setup friction, failure recovery and reader knowledge required.
+- [x] Extend the paired local prompt benchmark from four to eight bilingual boundary cases.
+- [x] Reject a stricter prompt iteration that lost an exact-value set and worsened surface independence.
+- [x] Publish the admitted raw benchmark and a case-by-case human semantic review, including the failures.
+- [x] Rewrite both website guides and discovery copy against the same route map.
+- [x] Add immediate mobile wayfinding on the guides landing and a persistent return-plus-index bar on guide articles.
+- [x] Add geometry checks that prove sticky navigation remains visible and hash destinations do not drift after layout settles.
+- [x] Correct the accessibility smoke so a deliberately decorative cover with `alt=""` passes only when the asset loads and the attribute exists.
+- [x] Complete the final unified editorial, functional, accessibility, SEO and repository-state audit.
+- [ ] Merge both repositories, publish through GitHub Pages and Lovable, then verify the live routes against merged source.
+
+Rollback remains the previous public main commit in each repository. The local model server used for evidence is not part of the product and must be stopped after verification.

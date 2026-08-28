@@ -1,6 +1,6 @@
 {
   "name": "claude-watermark-toolkit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Local-first tools and clear guides for reconstructing AI-assisted text in your own voice",
   "type": "module",
   "bin": {

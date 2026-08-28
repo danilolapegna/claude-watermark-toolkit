@@ -16,7 +16,11 @@ assert.match(html, /<label for="prepared-prompt"/u, "Prepared prompt needs a vis
 assert.match(html, /<label class="sr-only" for="restored-draft"/u, "Restored draft needs an accessible label.");
 assert.match(html, /id="restored-draft"[^>]*readonly/u, "Restored draft must be an explicit read-only output.");
 assert.match(html, /costs €0/u, "Workbench must explain why the local page uses no AI credits.");
-assert.match(html, /Open a non-Anthropic model and paste/u, "Workbench must make the external handoff explicit.");
+assert.match(html, /Where do you want the writing to happen/u, "Workbench must explain the writer choice at the handoff.");
+assert.match(html, /Use an online model/u, "Workbench must expose the zero-install writer choice.");
+assert.match(html, /Use a model on your computer/u, "Workbench must expose the local writer choice.");
+assert.match(html, /methods\/local-model\/README\.md/u, "Workbench must resolve the local-model explanation instead of promising it later.");
+assert.match(html, /Paste there\. Copy the answer\. Return here\./u, "Workbench must close the external writer loop.");
 assert.match(html, /PV-01/u, "Workbench must explain the exact-value placeholder handoff.");
 assert.match(html, /simple, direct prompt builder/u, "Workbench must describe itself as a prompt builder.");
 assert.match(html, /A non-Anthropic model does the writing/u, "Workbench must say that the external model writes the draft.");

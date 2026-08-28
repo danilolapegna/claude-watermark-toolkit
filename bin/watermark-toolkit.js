@@ -15,7 +15,7 @@ import {
   restoreProtectedPlaceholders,
 } from "../src/index.js";
 
-const VERSION = "1.0.0";
+const VERSION = "1.1.0";
 
 function output(value, json = false) {
   process.stdout.write(json ? `${JSON.stringify(value, null, 2)}\n` : `${value}\n`);
@@ -35,7 +35,7 @@ Non scrive e non chiama alcun modello: prepara prompt, protegge valori esatti e 
 Uso:
   watermark-toolkit start <source.txt> [--lang en|it] [--json]
   watermark-toolkit prepare <source.txt> [--lang en|it] [--protect VALUE] [--out case.json]
-  watermark-toolkit prompt <source.txt> [--lang en|it] [--clean-room] [--out prompt.json]
+  watermark-toolkit prompt <source.txt> [--lang en|it] [--clean-room] [--out prompt.txt]
   watermark-toolkit check <source.txt> <candidate.txt> [--lang en|it] [--json]
   watermark-toolkit compare <source.txt> <candidate-a.txt> <candidate-b.txt...> [--lang en|it] [--json]
 
@@ -56,7 +56,7 @@ It does not write or call a model: it prepares prompts, protects exact values an
 Usage:
   watermark-toolkit start <source.txt> [--lang en|it] [--json]
   watermark-toolkit prepare <source.txt> [--lang en|it] [--protect VALUE] [--out case.json]
-  watermark-toolkit prompt <source.txt> [--lang en|it] [--clean-room] [--out prompt.json]
+  watermark-toolkit prompt <source.txt> [--lang en|it] [--clean-room] [--out prompt.txt]
   watermark-toolkit check <source.txt> <candidate.txt> [--lang en|it] [--json]
   watermark-toolkit compare <source.txt> <candidate-a.txt> <candidate-b.txt...> [--lang en|it] [--json]
 
@@ -128,6 +128,21 @@ async function saveOrPrint(value, options, human, protectedFiles = []) {
   output(options.json ? value : human, Boolean(options.json));
 }
 
+async function savePlainTextOrPrint(value, options, protectedFiles = []) {
+  if (options.out) {
+    const outputPath = await pathIdentity(options.out);
+    for (const file of protectedFiles) {
+      if (outputPath === await pathIdentity(file)) {
+        throw new Error(`Refusing to overwrite input file: ${file}. Choose a different --out path.`);
+      }
+    }
+    await writeFile(options.out, `${value.trim()}\n`, "utf8");
+    output(`Wrote ${options.out}`);
+    return;
+  }
+  output(value);
+}
+
 async function run() {
   const { command, options } = parse(process.argv.slice(2));
   if (!command || command === "help" || command === "--help") return output(help(options.lang));
@@ -147,13 +162,13 @@ async function run() {
       choices: {
         fastest: `watermark-toolkit prompt ${sourceFile}`,
         strongestSeparation: `watermark-toolkit prompt ${sourceFile} --clean-room`,
-        repeatedLocalWork: `watermark-toolkit prompt ${sourceFile} --out prompt.json`,
+        repeatedLocalWork: `watermark-toolkit prompt ${sourceFile} --out prompt.txt`,
       },
       note: "No command can certify a private detector result. Choose by time, privacy and review effort.",
     };
     const human = rewriteCase.language === "it"
-      ? `Ho trovato ${rewriteCase.invariants.length} valori da conservare identici in ${wordCount} parole. Strada più rapida: "prompt ${sourceFile}". Separazione più forte: aggiungi "--clean-room". Per lavoro ripetuto puoi salvare il prompt e controllare ogni bozza con "check". Nessuna strada certifica il responso di un detector privato.`
-      : `I found ${rewriteCase.invariants.length} exact values to protect in ${wordCount} words. Fastest route: "prompt ${sourceFile}". Stronger separation: add "--clean-room". For repeated work, save the prompt and inspect every draft with check. No route certifies a private detector result.`;
+      ? `Questa è la CLI facoltativa del toolkit. Non scrive la bozza: prepara il prompt e controlla ciò che ricevi da una persona o da un modello non Anthropic.\n\nInput letto: ${sourceFile}\nParole: ${wordCount}\nValori esatti trovati: ${rewriteCase.invariants.length}\n\nIL PERCORSO NORMALE\n1. Crea un file facile da copiare:\n   node bin/watermark-toolkit.js prompt ${sourceFile} --lang it --out prompt.txt\n2. Apri prompt.txt. Copia tutto in un modello non Anthropic, ospitato oppure locale.\n3. Salva la risposta del modello come bozza.txt nella stessa cartella.\n4. Controlla e ripristina i valori protetti:\n   node bin/watermark-toolkit.js check ${sourceFile} bozza.txt --lang it\n\n"prepare" serve soltanto per ispezionare prima l'elenco dei valori protetti. "compare" serve soltanto quando possiedi almeno due bozze. Nessun comando certifica il responso di un detector privato.`
+      : `This is the toolkit's optional CLI. It does not write the draft. It prepares the prompt and checks text returned by a person or a non-Anthropic model.\n\nInput read: ${sourceFile}\nWords: ${wordCount}\nExact values found: ${rewriteCase.invariants.length}\n\nTHE NORMAL PATH\n1. Create a prompt file that is easy to copy:\n   node bin/watermark-toolkit.js prompt ${sourceFile} --out prompt.txt\n2. Open prompt.txt. Copy all of it into a hosted or local non-Anthropic model.\n3. Save the model's answer as draft.txt in the same folder.\n4. Restore protected values and check the draft:\n   node bin/watermark-toolkit.js check ${sourceFile} draft.txt\n\nUse "prepare" only when you want to inspect the protected-value list first. Use "compare" only when you already have at least two drafts. No command certifies a private detector result.`;
     return saveOrPrint(result, options, human, options._);
   }
 
@@ -175,7 +190,8 @@ async function run() {
       return saveOrPrint(pair, options, human, options._);
     }
     const prompt = buildPrecisionRewritePrompt(rewriteCase);
-    return saveOrPrint({ mode: "precision", prompt }, options, prompt, options._);
+    if (options.json) return saveOrPrint({ mode: "precision", prompt }, options, prompt, options._);
+    return savePlainTextOrPrint(prompt, options, options._);
   }
 
   if (command === "check" || command === "compare") {
@@ -188,10 +204,10 @@ async function run() {
     const result = { finalizedCandidates: candidates, scorecards, selection: selectCandidates(scorecards) };
     const summaries = scorecards.map((scorecard, index) => `Candidate ${index + 1}: ${explainScore(scorecard, rewriteCase.language)}`).join("\n");
     const restored = rawCandidates.some((candidate, index) => candidate !== candidates[index]);
-    const human = command === "check" && restored
+    const human = command === "check"
       ? (rewriteCase.language === "it"
-        ? `Valori esatti ripristinati in locale. Il file originale non è stato modificato.\n\nBOZZA FINALIZZATA\n${candidates[0]}\n\nCONTROLLO\n${summaries}`
-        : `Exact values restored locally. The original file was not modified.\n\nFINALIZED DRAFT\n${candidates[0]}\n\nCHECK\n${summaries}`)
+        ? `${restored ? "I segnaposto trovati sono stati sostituiti con i valori esatti della fonte." : "La bozza non conteneva segnaposto da sostituire."} Nessun file è stato modificato.\n\nBOZZA CONTROLLATA\n${candidates[0]}\n\nCHE COSA HA CONTROLLATO LA CLI\n${summaries}\n\nCHE COSA DEVI CONTROLLARE TU\nConfronta fonte e bozza per idee, negazioni, precisazioni, tono e fatti inventati. La CLI non sa approvare il significato.`
+        : `${restored ? "Protected markers were replaced with the exact source values." : "The draft contained no protected markers to replace."} No file was modified.\n\nCHECKED DRAFT\n${candidates[0]}\n\nWHAT THE CLI CHECKED\n${summaries}\n\nWHAT YOU MUST CHECK\nCompare source and draft for claims, negations, qualifications, voice and invented facts. The CLI cannot approve meaning.`)
       : summaries;
     return saveOrPrint(result, options, human, options._);
   }

@@ -83,7 +83,7 @@ Read the result aloud. Mark every sentence you would not naturally say. Rewrite 
 | The draft still follows the same paragraphs | The source stayed visible | Close it and reorder the claim notes before another pass |
 | A number or qualification disappeared | The fact sheet was too loose | Add it to KEEP EXACT or EVIDENCE, then repair the draft |
 | The text sounds polished but generic | You edited toward “professional” instead of your voice | Restore concrete voice habits and read aloud again |
-| The source is too long to hold in one sheet | This route has reached its useful limit | Move to [semantic reconstitution](../semantic-reconstitution/README.md) |
+| The source is too long to hold in one sheet | This route has reached its useful limit | Use the [two-envelope clean room](../two-envelope-clean-room/README.md) section by section |
 
 ## What success looks like
 

@@ -51,7 +51,9 @@ This is for text whose ideas, judgment and final responsibility are yours. Chang
 
 Open [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/).
 
-Rewrite Room is a simple, direct prompt builder with a local comparison step. It is not an AI writer. Paste the source once and it prepares a structured rewrite prompt for a non-Anthropic model without an account, upload or installation. Dates, figures, links, quoted phrases and other exact values become local `[PV-01]` placeholders, reducing the risk that the writing model normalizes a hyphen, decimal or quotation mark. If those markers survive, the page restores the originals character for character when you paste the draft back.
+Rewrite Room is a simple prompt builder and checker. It is not an AI writer. The full route is: **paste your text → copy the prompt → let a different model write → paste its answer back → read the checked draft**.
+
+The page prepares the prompt without an account, upload or installation. Dates, figures, links, quoted phrases and other exact values become local `[PV-01]` markers, reducing the risk that the writing model changes a hyphen, decimal or quotation mark. If those markers survive, the page restores the originals character for character when you paste the draft back.
 
 Copy the entire prompt, paste it into the model you prefer, then bring its draft back. The page checks:
 
@@ -61,9 +63,11 @@ Copy the entire prompt, paste it into the model you prefer, then bring its draft
 - repeated sentence openings;
 - rough paragraph and sentence-shape similarity.
 
-Prompt preparation and comparison happen locally. The page uses no model and no AI credits. The external model does all the writing and may use its normal subscription, free plan or credits. The report covers surface evidence only. It is not a semantic review or an Anthropic detector result.
+Prompt preparation and comparison happen locally. The page uses no model and no AI credits. For the writing step, choose either a hosted model made by a company other than Anthropic or an open model running on your own computer. A hosted model is easier but receives the prompt and may use credits. A local model needs a one-time setup and enough memory, but uses no hosted writing service after download. [The local guide explains LM Studio and Ollama from zero](methods/local-model/README.md).
 
-This was not admitted on prompt theory alone. On a four-case English and Italian offline benchmark with gpt-oss 20B, the structured prompt preserved every exact-value set, versus one of four for a banal paraphrase. It also reduced mean surviving four-word sequences from 27.4% to 23.7% and shortened the average longest shared run from 10 to 9 words. That is one local model and a small corpus, not a universal guarantee. The complete raw drafts and scores are in [`benchmarks/results/local-gpt-oss-20b.json`](benchmarks/results/local-gpt-oss-20b.json).
+The report covers surface evidence only. It is not a semantic review or an Anthropic detector result.
+
+This was not admitted on prompt theory alone. On an eight-case English and Italian offline benchmark with Qwen3.8 27B, the structured prompt preserved every exact-value set, versus six of eight for a banal paraphrase. It reduced mean surviving four-word sequences from 10.1% to 7.1% and shortened the average longest shared run from 6.4 to 5.4 words. One rigid technical case moved in the wrong direction, and an Italian policy draft became more formal than the source. That matters: the prompt earned its place, but its output still needs a person. Read the [manual semantic review](benchmarks/MANUAL-REVIEW-2026-08-28.md) or inspect the [complete raw run](benchmarks/results/local-qwen3.8-27b-mlx-2026-08-28-v3.json).
 
 If you want stronger wording separation and accept more work, expand the source-free clean-room route inside Rewrite Room. That is where the two-envelope method now lives. It is an advanced option, not an entrance exam. Its separate bilingual live smoke retained every exact value, returned prose in both cases, kept readability within the configured bound and reduced mean four-word survival to 14.6%. Two cases are evidence of function, not a universal performance claim.
 
@@ -94,6 +98,7 @@ The part people often skip is what makes it work:
 | The policy allows assisted writing | Leave it alone or disclose it | none | does not help where detection itself triggers enforcement |
 | Short text, maximum privacy | [Manual redraft](methods/human-redraft/README.md) | 10 to 60 min | your time |
 | No installation, guided workflow | [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/) | 2 to 5 min to prepare, plus model time | the external model may charge or apply its own provenance mechanism |
+| No hosted writer or hosted credits | [Rewrite Room with LM Studio or Ollama](methods/local-model/README.md) | one-time model download, then model time | needs enough computer memory; quality depends on the model |
 | Help from another system | [Two-envelope clean room](methods/two-envelope-clean-room/README.md) | 15 to 40 min | provider privacy and brief quality |
 | A ready-made agent workflow | [Copy the prompt](prompts/en/research-pass.md) or [the skill](skills/non-anthropic-text-rewrite/SKILL.md) | 10 to 30 min | model fact errors still need review |
 | Repeatable local preparation and checks | [Local CLI](methods/semantic-reconstitution/README.md) | setup plus a few minutes per text | it prepares and measures, but does not write |
@@ -117,9 +122,11 @@ Anthropic describes the mark as a statistical pattern in token choices, not hidd
 
 ---
 
-## Want the local tool?
+## Want the optional command-line tool?
 
-You do not need the terminal for the main method. If you want repeatable prompt export and local comparison, the CLI requires Node.js 20 or newer and no runtime packages.
+“CLI” means command-line interface: a small program controlled from Terminal or PowerShell. You do not need it for the main method. It is useful only if you want to repeat the workflow on files or keep a local report. It prepares and checks. It never writes.
+
+The loop is `source.txt` → `prompt.txt` → your chosen writer → `draft.txt` → local check. The [from-zero CLI guide](methods/semantic-reconstitution/README.md) explains how to create every file and what each result means.
 
 ```bash
 git clone https://github.com/danilolapegna/claude-watermark-toolkit.git
@@ -131,16 +138,16 @@ node bin/watermark-toolkit.js start examples/fixtures/source-en.txt
 Prepare the same structured prompt from a local file:
 
 ```bash
-node bin/watermark-toolkit.js prompt source.txt --out prompt.json
+node bin/watermark-toolkit.js prompt source.txt --out prompt.txt
 ```
 
-Give the saved prompt to the non-Anthropic system you choose, save its answer as `candidate.txt`, then restore exact values and inspect it locally:
+Open `prompt.txt` and copy all of it into the hosted or local writer you choose. Create `draft.txt`, paste the writer's answer into it, then restore exact values and inspect the returned draft locally:
 
 ```bash
-node bin/watermark-toolkit.js check source.txt candidate.txt
+node bin/watermark-toolkit.js check source.txt draft.txt
 ```
 
-The CLI makes no model call and never overwrites the source or candidate. That narrower contract survived testing. The automatic local batch did not, so it was removed.
+The CLI makes no model call and never overwrites the source or draft. `prepare` only previews the exact values it will protect. `compare` only puts two or more existing drafts side by side. They are optional controls, not extra steps in the normal route.
 
 ---
 

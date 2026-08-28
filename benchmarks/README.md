@@ -6,17 +6,17 @@ It does not test Anthropic's detector. It tests the part this repository can obs
 
 ## Current result
 
-The admitted run used gpt-oss 20B Q4_K_M locally across four English and Italian cases.
+The admitted run used Qwen3.8 27B MLX 8-bit locally across eight English and Italian cases. The corpus includes statistical qualification, causality, conditional scope, conversational voice, fixed technical terms, exact policy language and ordered roles.
 
 | Measure | Banal paraphrase | Rewrite Room prompt |
 |---|---:|---:|
-| Cases retaining every exact value | 1 of 4 | 4 of 4 |
-| Mean four-word survival | 27.4% | 23.7% |
-| Mean longest shared run | 10 words | 9 words |
+| Cases retaining every exact value | 6 of 8 | 8 of 8 |
+| Mean four-word survival | 10.1% | 7.1% |
+| Mean longest shared run | 6.4 words | 5.4 words |
 
-The prompt won the deterministic independence comparison in three of four cases and protected every exact-value set. The corpus is small, so the result supports this release only after a person reads the drafts. It does not support a universal claim about every model or text.
+Seven of eight cases met the per-case mechanical independence rule and every structured-prompt draft retained its exact-value set. The rigid technical case did not improve, and one Italian draft became more formal than its source. The aggregate result passes, but the exceptions are part of the result. They are why the UI asks for a human meaning-and-voice check instead of showing a green semantic verdict.
 
-Raw source, drafts, scorecards, blind labels and judge reasons are in [`results/local-gpt-oss-20b.json`](results/local-gpt-oss-20b.json).
+Read the case-by-case [manual semantic review](MANUAL-REVIEW-2026-08-28.md). Raw source, drafts, scorecards, blind labels and judge reasons are in [`results/local-qwen3.8-27b-mlx-2026-08-28-v3.json`](results/local-qwen3.8-27b-mlx-2026-08-28-v3.json).
 
 ## Reproduce it
 
@@ -40,14 +40,14 @@ In another terminal:
 node benchmarks/run-local-benchmark.mjs
 ```
 
-Set `BENCHMARK_BASE_URL` if the local endpoint uses another address. The runner alternates the blind A/B labels, uses the same seed for both drafting prompts in each case and writes the complete result to `benchmarks/results/local-gpt-oss-20b.json`.
+Set `BENCHMARK_BASE_URL` if the local endpoint uses another address. Set `BENCHMARK_MODEL` to select one model when the server exposes several. Set `BENCHMARK_OUTPUT` to choose the JSON filename. The runner alternates the blind A/B labels, uses the same seed for both drafting prompts in each case and otherwise writes a model-derived filename inside `benchmarks/results/`.
 
 ## Mechanical admission gate
 
 The repeatable gate passes only when:
 
 - every structured-prompt draft retains every exact-value set after local placeholder restoration;
-- the structured prompt wins deterministic four-word survival in at least three quarters of the cases;
+- in at least three quarters of the cases, the structured prompt either improves four-word survival by more than one percentage point or both prompts are already below the strong 8% survival floor;
 - mean four-word survival improves by at least two percentage points and the longest shared run does not worsen.
 
 The model-assisted fidelity and voice scores are advisory. Repeated runs showed that the same local judge could change those scores for identical drafts, so they are deliberately excluded from the automatic gate. Read every draft against the source. Semantic release status remains `REQUIRES_MANUAL_SEMANTIC_REVIEW`.
