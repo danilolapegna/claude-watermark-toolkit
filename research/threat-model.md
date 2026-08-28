@@ -34,6 +34,8 @@ The adaptive method lowers phrase overlap by producing unnatural language. Mitig
 
 Sensitive text is sent to an endpoint the user did not understand. Mitigation: offline preparation is the default, provider calls are explicit and local Ollama is documented first.
 
+The static Rewrite Room makes no provider request, stores no source by default and renders user input with text nodes rather than executable HTML. Closing or reloading the tab clears its in-memory state.
+
 ### Vendor boundary drift
 
 An adapter, base URL or local model name routes work back to Anthropic. Mitigation: provider and model strings fail closed on Anthropic and Claude identifiers, with tests.
@@ -45,4 +47,3 @@ Someone uses the toolkit to misrepresent work they did not author. Mitigation: t
 ## Security boundary
 
 No source file is overwritten. No key is stored by the tool. API keys come from process environment or an explicit command option and are sent only to the chosen base URL. Results are ordinary files controlled by the user.
-

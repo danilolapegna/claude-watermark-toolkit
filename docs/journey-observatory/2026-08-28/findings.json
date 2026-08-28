@@ -1,0 +1,154 @@
+{
+  "schema_version": 2,
+  "product": "Rewrite Room",
+  "mode": "delta-check",
+  "generated_at": "2026-08-28T12:00:00+02:00",
+  "journeys": [
+    {
+      "id": "J-001",
+      "persona": "Skeptical non-technical writer",
+      "intent": "Rebuild owned text without installation",
+      "entry_state": "First visit with source ready",
+      "outcome": "Checked new draft",
+      "criticality": "critical",
+      "coverage_status": "MAPPED"
+    },
+    {
+      "id": "J-002",
+      "persona": "Curious first-time reader",
+      "intent": "Choose an effort and privacy level",
+      "entry_state": "README or direct link",
+      "outcome": "Method selected",
+      "criticality": "high",
+      "coverage_status": "MAPPED"
+    },
+    {
+      "id": "J-003",
+      "persona": "Hurried writer",
+      "intent": "Recover from empty or accidental input",
+      "entry_state": "Empty or sealed state",
+      "outcome": "Control restored",
+      "criticality": "high",
+      "coverage_status": "MAPPED"
+    },
+    {
+      "id": "J-004",
+      "persona": "Careful writer",
+      "intent": "Repair a fact-losing or highly overlapping draft",
+      "entry_state": "Candidate ready",
+      "outcome": "Actionable revision",
+      "criticality": "critical",
+      "coverage_status": "MAPPED"
+    }
+  ],
+  "explorations": [
+    {
+      "id": "NX-001",
+      "persona": "Skeptical non-technical writer",
+      "knowledge_state": "Owns the ideas and facts, understands no detector internals or product routes.",
+      "task_wording": "I want a genuinely new version of this text without installing something or sending it to another mystery service, and I cannot afford to lose the facts.",
+      "journeys": ["J-001", "J-003"],
+      "mode": "goal",
+      "contamination": "Prospective route knowledge; runtime confidence reduced.",
+      "attempts": [
+        {
+          "step": "NX-001-A01",
+          "hypothesis": "The opening should explain privacy and limits before asking for source text.",
+          "action": "Read the opening contract.",
+          "expected": "A local-processing statement and no certification claim.",
+          "actual": "The opening states the local boundary and rejects private-detector certification before the source field.",
+          "evidence": ["EV-004"]
+        },
+        {
+          "step": "NX-001-A02",
+          "hypothesis": "The prominent source field should start the preparation flow.",
+          "action": "Paste a source and inspect protected values.",
+          "expected": "Facts appear before source sealing.",
+          "actual": "Date and price appeared as protected values before sealing, with no external request during the journey.",
+          "evidence": ["EV-004"]
+        }
+      ],
+      "outcome": "critical local path completed with recovery",
+      "evidence_boundary": "Behavior is observed in automated local browser runs. Felt trust still requires human research."
+    },
+    {
+      "id": "NX-002",
+      "persona": "Curious first-time reader",
+      "knowledge_state": "Understands AI writing but not watermark sampling or this repository.",
+      "task_wording": "Show me every sensible way to handle this and tell me which one is worth my time.",
+      "journeys": ["J-002", "J-004"],
+      "mode": "exploration",
+      "contamination": "Prospective route knowledge; runtime confidence reduced.",
+      "attempts": [
+        {
+          "step": "NX-002-A01",
+          "hypothesis": "A complete ladder should expose effort, privacy, strength and weakness together.",
+          "action": "Scan the method comparison.",
+          "expected": "Choose a route without reading the research dossier first.",
+          "actual": "README and method ladder expose obvious, browser, agent, local, algorithmic and human routes with explicit costs.",
+          "evidence": ["EV-004"]
+        }
+      ],
+      "outcome": "method set and comparison language observed",
+      "evidence_boundary": "Content and runtime are observed. Fastest label comprehension still requires user research."
+    }
+  ],
+  "findings": [
+    {
+      "id": "JO-001",
+      "status": "NO_CHANGE",
+      "severity": "high",
+      "confidence": "high",
+      "title": "Source separation must stay visible and reversible",
+      "affected_journeys": ["J-001", "J-003"],
+      "evidence": [
+        {
+          "type": "OBSERVED_BEHAVIOR",
+          "ref": "EV-004",
+          "supports": "Empty recovery, source sealing, unsealing and deliberate two-click reset passed in the local browser journey."
+        }
+      ],
+      "user_impact": "An opaque transition could look like data loss or leave the writer copying the old wording.",
+      "target_behavior": "Sealing creates a visible brief, keeps protected facts visible and offers unseal or reset.",
+      "acceptance_criteria": [
+        "Empty input cannot seal and receives a text instruction.",
+        "Unseal restores the current-session source.",
+        "No source is uploaded or persisted by default."
+      ],
+      "verification": ["Walk J-001 and J-003 by keyboard at desktop and mobile widths."],
+      "implementation": {
+        "surfaces": ["Rewrite Room source and brief steps"],
+        "instructions": ["Use an explicit reversible seal action and retain source in memory only."],
+        "dependencies": ["Browser-safe preparation core"]
+      }
+    },
+    {
+      "id": "JO-002",
+      "status": "NO_CHANGE",
+      "severity": "high",
+      "confidence": "high",
+      "title": "Comparison must explain trade-offs without detector theater",
+      "affected_journeys": ["J-004"],
+      "evidence": [
+        {
+          "type": "OBSERVED_BEHAVIOR",
+          "ref": "EV-004",
+          "supports": "The fact-loss fixture named the missing date and showed separate comparison signals without detector certification."
+        }
+      ],
+      "user_impact": "A single magic score would create false certainty and hide fact loss.",
+      "target_behavior": "Name each local check, list missing facts and recommend a concrete revision.",
+      "acceptance_criteria": [
+        "Missing protected values are listed exactly.",
+        "Similarity measures remain separate.",
+        "No private-detector conclusion is shown."
+      ],
+      "verification": ["Run clean, highly overlapping and fact-losing candidate fixtures."],
+      "implementation": {
+        "surfaces": ["Rewrite Room comparison step"],
+        "instructions": ["Render plain-language checks and revision actions separately."],
+        "dependencies": ["Browser-safe comparison core"]
+      }
+    }
+  ]
+}

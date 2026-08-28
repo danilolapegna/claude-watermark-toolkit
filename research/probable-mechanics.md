@@ -41,15 +41,22 @@ The project offers two targeting modes:
 
 The proxy is deliberately labeled. Rare words can be facts, so protected values are removed from the rewrite queue before a suggestion is accepted.
 
+Watermark Smoothing Attacks adds a related clue. The authors report that lower-confidence positions can carry stronger watermark signal and selectively resample them instead of paraphrasing everything. This does not reveal Claude's private detector, but it supports a careful “micro-surgery” route: protect facts first, then spend edits where a suitable local reference model is least confident. [Source: EMNLP Findings 2025](https://aclanthology.org/2025.findings-emnlp.264/).
+
 ## Why adaptive search may help
 
 TSAPA treats rewriting as a multi-objective search instead of a single paraphrase. Its reported results combine attack success and semantic quality across studied schemes. [Source: TSAPA](https://aclanthology.org/2026.findings-acl.459/).
 
 Our clean-room implementation uses objectives we can measure without Anthropic's detector: invariant retention, phrase change, length fit and readability. A public surrogate can be added in the research lab, but it never becomes the hidden definition of quality.
 
+B4 frames the same broad problem under strict black-box access as constrained optimization. TSAPA uses a population, mutations and a Pareto front. The practical lesson is not “run a genetic algorithm because it sounds clever”. It is to keep several candidates with different trade-offs, reject fact loss first and refuse to compress quality into one number. [Source: NAACL 2025](https://aclanthology.org/2025.naacl-long.460/).
+
+## Why repeated independent rewrites are a last resort
+
+Chainwash reports that repeated independent rewriting can erode studied watermark signals more than a single rewrite. The evidence comes from diffusion language-model watermarks, not Claude, so the method stays experimental here. It also compounds meaning drift on every pass. If used at all, each pass should receive the checked brief rather than the previous wording, and every candidate should return through the protected-fact and human-quality gates. [Source: Chainwash preprint](https://arxiv.org/abs/2605.05503).
+
 ## The quality trap
 
 An attack can reduce a detector score by damaging the text. A quality-aware study of random-walk attacks found a much lower success rate after human review than automated metrics alone suggested. [Source: ACL 2025](https://aclanthology.org/2025.acl-long.1436/).
 
 This is why the toolkit rejects missing facts before ranking candidates and still asks a person to choose the final draft.
-

@@ -1,94 +1,95 @@
-# Start here: pick one route and finish it
+# Start from zero: do not install anything yet
 
-You have a Claude-assisted text and want a genuinely new version that keeps your ideas and facts.
+You have a Claude-assisted text. The ideas and facts are yours, but you want a version that no longer depends on Claude's wording.
 
-**If you are in a hurry, use Route 1.** You do not need to read the whole repository first. You do not need a detector.
+If you are not technical, this page is for you. Start with the browser route. The terminal comes much later and only if you want it.
 
-[Back to the main page](../../README.md) · [Italian version](../it/README.md)
+[Back to the main page](../../README.md) · [Italian version](../it/README.md) · [See every method](../../METHODS.md)
 
----
+## The easiest guided route
 
-## Route 1: I want the simplest method
+Open [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/).
 
-- **Time:** 10 to 30 minutes
-- **Software:** none
-- **Privacy:** the text stays with you
+You may be thinking, “I have no idea who hosts that page or where my text goes.” The page has no text-processing server. Its JavaScript runs in your browser tab. If you want to remove even the hosting question, download this repository and open `docs/index.html` while offline.
 
-### 1. Make a fact sheet
+### Step 1: paste the source
 
-Read the source once. On a blank page, fill in this small template:
+Use text whose ideas and final responsibility are yours. The page finds common exact values such as dates, numbers, URLs, email addresses, quoted phrases and acronyms.
 
-```text
-PURPOSE:
-What should the reader understand or do?
+If it misses a name or a term that must remain exact, add it manually. Automatic extraction is a starting list, not an oracle.
 
-MUST KEEP:
-- Main idea
-- Fact, number, name, date or URL
-- Exact quote or citation
-- Important condition or exception
+### Step 2: prepare the two envelopes
 
-MY VOICE:
-- One sentence about how I normally write
-- One thing I would never say
-```
+Envelope 1 contains facts and meaning:
 
-Use short notes. Do not copy full sentences unless they are exact quotations.
+- what the reader should understand or do;
+- one claim or idea per line;
+- the audience;
+- exact values that must survive.
 
-### 2. Close the source
+Envelope 2 contains your voice:
 
-This is the important part. Do not keep it beside your blank page.
+- sentence rhythm;
+- level of formality;
+- connectors you use naturally;
+- words and phrases you would never use;
+- format and length constraints.
 
-### 3. Choose a new order
+This may feel slower than asking for a paraphrase. It is. Those few minutes are what stop the drafting stage from copying the old structure blindly.
 
-Ask what your reader needs first. Move the points into that order instead of following the old paragraphs.
+### Step 3: seal the source
 
-### 4. Write again
+The page hides the original text and creates a source-free prompt. It does not delete the source from the current tab, so you can unseal it and correct the brief.
 
-Write from the fact sheet in words you would actually use. If a sentence feels too polished to be yours, simplify it.
+Write manually from the two envelopes, or copy the prompt into a non-Anthropic system. The writing system should never receive the source.
 
-### 5. Check facts, not phrasing
+### Step 4: compare the draft
 
-Reopen the source. Verify every number, name, link, quotation and qualification. Then read the new draft aloud.
+Paste the new draft back into Rewrite Room. You will see separate checks for protected facts, shared phrases, sentence openings, structure and length.
 
-You are done. See the [full manual method](../../methods/human-redraft/README.md) if you want its failure modes and final checks.
+If a fact is missing, fix that first. If a long phrase survives, rewrite the whole passage rather than swapping a few words. If the structure remains close, move the claims into a different order.
 
----
+The page cannot tell you that Anthropic's private detector will accept the result. It tells you what it can actually measure.
 
-## Route 2: I want another AI system to help
+## The manual route, if even a form feels unnecessary
 
-- **Time:** 10 to 20 minutes
-- **Software:** any non-Anthropic AI system
-- **Privacy:** depends on the system you choose
+Yes, the method can be a blank page.
 
-Use two separate conversations. Not two messages in the same conversation.
+1. Read the source once.
+2. Write short notes for its purpose, claims, evidence and exact values.
+3. Add three concrete notes about your voice.
+4. Close the source.
+5. Choose the order your reader needs, not the order already on the page.
+6. Write again.
+7. Reopen the source and compare facts only.
+8. Read the result aloud and remove sentences you would never say.
 
-### Conversation 1: make the brief
+This is the full method, not a weaker fallback. Its cost is your time. [See its common failure modes](../../methods/human-redraft/README.md).
+
+## I want another system to write from the brief
+
+Use two separate contexts in a non-Anthropic system. Not two messages in the same conversation.
+
+### Research context
 
 1. Open the [research prompt](../../prompts/en/research-pass.md).
-2. Copy the whole prompt.
-3. Paste it into a non-Anthropic system together with your source.
-4. Check the resulting brief against the source. Correct missing or wrong facts.
+2. Paste it with the source into a non-Anthropic system.
+3. Check the resulting brief against the source.
+4. Correct missing facts, invented claims and flattened qualifications.
 
-### Conversation 2: write the new draft
+### Writing context
 
 1. Start a completely new conversation.
-2. Open and copy the [drafting prompt](../../prompts/en/drafting-pass.md).
-3. Paste the checked brief into the marked place.
-4. Do not paste the original text.
-5. Ask for two structures if the first one still feels too close to the source.
+2. Open the [drafting prompt](../../prompts/en/drafting-pass.md).
+3. Paste the checked brief, never the source.
+4. Ask for two different claim orders if the first draft still feels too close.
+5. Check every fact yourself.
 
-Finish by checking every fact and reading the result aloud. Fluency is not proof that a sentence is true.
+If you already work with agents, copy the [ready-made skill](../../skills/non-anthropic-text-rewrite/SKILL.md). It includes the same provider boundary and stop rules.
 
----
+## I want the local CLI
 
-## Route 3: I want the local tool
-
-- **Time:** about 15 minutes for setup
-- **Software:** Node.js 20 or newer
-- **Privacy:** analysis and prompt creation stay on your computer
-
-If a terminal feels like unnecessary work, use Route 1 or 2. You do not lose the central method.
+If a terminal sounds like unnecessary punishment, stop here and use one of the routes above. The CLI exists for repeated work and machine-readable reports.
 
 ### 1. Download the toolkit
 
@@ -99,20 +100,20 @@ The easiest option is GitHub's ZIP download:
 3. Select **Download ZIP**.
 4. Extract the downloaded file.
 
-If you already use Git, you can clone it instead:
+If you already use Git:
 
 ```bash
 git clone https://github.com/danilolapegna/claude-watermark-toolkit.git
 cd claude-watermark-toolkit
 ```
 
-### 2. Open a terminal in that folder
+### 2. Open a terminal in the folder
 
 **Windows:** open the extracted folder in File Explorer, click the address bar, type `powershell`, then press Enter.
 
 **macOS:** open Terminal, type `cd ` with a space after it, drag the extracted folder into the Terminal window, then press Enter.
 
-**Linux:** open the extracted folder in your file manager, right-click inside it and choose **Open in Terminal**. The wording may vary by desktop.
+**Linux:** open the extracted folder in your file manager, right-click inside it and choose **Open in Terminal**. The wording varies by desktop.
 
 ### 3. Check Node.js
 
@@ -122,7 +123,7 @@ Run:
 node --version
 ```
 
-If you see `v20` or a higher number, continue. If the command is not found or the number is lower, install the current LTS version from [nodejs.org](https://nodejs.org/), then reopen the terminal.
+If you see `v20` or a higher number, continue. Otherwise install the current LTS version from [nodejs.org](https://nodejs.org/) and reopen the terminal.
 
 ### 4. Check the toolkit
 
@@ -130,35 +131,25 @@ If you see `v20` or a higher number, continue. If the command is not found or th
 npm test
 ```
 
-You should see a list of passing tests and zero failures.
+You should see passing tests and zero failures.
 
 ### 5. Add your text
 
-Create a plain text file named `source.txt` inside the toolkit folder. Paste your source into it and save.
-
-Then run:
+Create `source.txt` in the toolkit folder, paste the source and save it. Then run:
 
 ```bash
 node bin/watermark-toolkit.js start source.txt
 ```
 
-The tool recommends a route and counts values that must survive.
-
-### 6. Create the two prompts
+Create the two prompts:
 
 ```bash
 node bin/watermark-toolkit.js prompt source.txt --out prompts.json
 ```
 
-Open `prompts.json` in any text editor. It contains the research and drafting instructions for the two-conversation method.
+### 6. Keep the rewrite local too
 
----
-
-## Route 4: I want everything local, including the rewrite
-
-Install [Ollama](https://ollama.com/) and choose a local model that is not from Anthropic. Confirm the model runs in Ollama first.
-
-Then use the exact model name in this command:
+Install [Ollama](https://ollama.com/) and choose a local model that is not from Anthropic. Confirm the model runs in Ollama, then use its exact name:
 
 ```bash
 node bin/watermark-toolkit.js rewrite source.txt \
@@ -167,38 +158,40 @@ node bin/watermark-toolkit.js rewrite source.txt \
   --out result.json
 ```
 
-Replace `YOUR_LOCAL_MODEL` with the name shown by Ollama. Your text is sent to that local Ollama process, not to this repository or to Anthropic.
+The source goes to the Ollama process on your computer. It does not go to this repository or to Anthropic.
 
----
+## I want the advanced routes
 
-## Read the result without guessing
+You may be thinking, “If the simple method is strong, why does the repository contain targeting and a Pareto set?” Because long or repeated work changes the cost equation.
 
-- `valid: true` means the draft kept every automatically protected value and stayed within the default length range.
-- `ngramSurvival` shows how many four-word phrases still match the source. Lower means more surface change, not automatically better writing.
-- `readability` is a rough reading-ease signal from 0 to 100. It is not a quality grade.
-- `recommended` is the candidate that best balances the public objectives. Read the other candidates in the Pareto set too. They are the drafts with different trade-offs and no single clear winner.
+- [Confidence-aware micro-surgery](../../methods/information-targeted/README.md) spends a limited edit budget on selected passages after facts are protected.
+- [Candidate tournaments](../../methods/adaptive-search/README.md) generate several structures and keep non-dominated trade-offs visible.
+- [Independent rewrite chains](../../methods/independent-rewrite-chain/README.md) repeat from the same checked brief, never from the previous draft.
 
-No score proves that Anthropic's private detector would accept a text. The scores help you compare drafts while protecting facts.
+These are experimental or expensive routes. Read the evidence boundary before using them.
 
----
+## Read the CLI result without guessing
+
+- `valid: true` means the candidate kept automatically protected values and stayed within the default length range.
+- `ngramSurvival` measures surviving four-word sequences. Lower means more surface change, not better writing.
+- `readability` is a rough reading-ease signal, not a quality grade.
+- `recommended` is the public weighted choice from the Pareto set. You can inspect and choose another candidate.
+
+No local score proves a result against Anthropic's private detector.
 
 ## If something goes wrong
 
 ### `node` is not recognized or not found
 
-Install Node.js LTS from [nodejs.org](https://nodejs.org/), close the terminal, open it again in the toolkit folder and repeat `node --version`.
+Install Node.js LTS, close the terminal, open it again in the toolkit folder and repeat `node --version`.
 
 ### `Source text is empty`
 
-Open `source.txt` and check that it contains plain text. Save it, then run the command again.
+Check that `source.txt` contains plain text, save it and run the command again.
 
 ### `Blocked provider configuration`
 
 The provider address or model name refers to Anthropic or Claude. Choose a non-Anthropic model.
-
-### `Provider timed out`
-
-Your local model may still be loading. Try once more. If it keeps failing, use the offline `prompt` command from Route 3.
 
 ### A name or exact value disappeared
 
@@ -208,10 +201,8 @@ Protect it explicitly:
 node bin/watermark-toolkit.js prepare source.txt --protect "Exact Name" --out case.json
 ```
 
----
-
 ## Before you publish
 
-Check every fact. Read the text aloud. Remove sentences you would never say. Take responsibility for the final wording.
+Check every fact. Read the text aloud. Remove sentences that do not sound like you. Then make the editorial decision yourself.
 
-[See a complete worked example](../../examples/walkthrough.md) · [Compare all methods](../../LIMITS.md) · [Read what is actually known](../../CLAIMS.md)
+[See a complete example](../../examples/walkthrough.md) · [Compare every method](../../METHODS.md) · [Read what is known](../../CLAIMS.md)
