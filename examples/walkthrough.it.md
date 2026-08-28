@@ -1,5 +1,9 @@
 # Esempio completo
 
+Questa pagina mostra che cosa lo strumento di confronto locale può decidere e che cosa, invece, deve restare nelle mani di chi legge. Segue una fonte, i valori protetti, una scheda controllata e due bozze valide, così diventa visibile la differenza fra “meno parole copiate” e “testo migliore”.
+
+In un caso reale, idee e prove devono essere tue e utilizzabili. Qui la fonte è inventata e l'obiettivo è volutamente stretto: ripetere il controllo, guardare le prove e poi prendere personalmente la decisione sul significato.
+
 Testo di partenza: [`examples/fixtures/source-it.txt`](fixtures/source-it.txt).
 
 ## Valori da proteggere
@@ -46,4 +50,4 @@ node bin/watermark-toolkit.js compare \
   --json
 ```
 
-Entrambe le schede restituiscono `valid: true` e `missingInvariants: []`. Il numero esatto di leggibilità può cambiare se la formula viene aggiornata, quindi non viene fissato in questa pagina. Il confronto utile resta chiaro: la versione B cambia di più la struttura, mentre la versione A conserva meglio il tono iniziale.
+Entrambe le schede restituiscono `mechanicallyValid: true`, `semanticStatus: "requires-manual-review"` e `missingInvariants: []`. Lo strumento lascia anche `recommended` vuoto. La versione B cambia la struttura in modo più netto. La A resta più vicina al tono iniziale. Soltanto chi legge può verificare quale conservi ogni precisazione e suoni davvero come l'autore.

@@ -24,12 +24,11 @@ Last updated: 2026-08-28.
 
 - [x] Build the immutable rewrite case and invariant extractor.
 - [x] Build semantic reconstitution and offline prompt export.
-- [x] Add Ollama and generic OpenAI-compatible providers.
-- [x] Reject Anthropic endpoints and Claude model identifiers.
+- [x] Build and test local provider adapters, then remove them after the real candidate batch failed the practical-value gate.
 - [x] Build candidate validation and plain-language scorecards.
-- [x] Build information-targeted rewriting.
-- [x] Build adaptive candidate search and Pareto selection.
-- [x] Test one full mock workflow and offline edge cases.
+- [x] Build and red-team information-targeted rewriting, then remove it after the proxy failed the practical-value gate.
+- [x] Build and red-team adaptive candidate search, reduce it to an honest independent batch, then remove the batch when real-model results failed the practical-value gate.
+- [x] Test the retained prompt, restoration, check and comparison workflow plus offline edge cases.
 
 ## 3. Human entry points
 
@@ -76,15 +75,21 @@ Last updated: 2026-08-28.
 
 ## 8. Rewrite Room and definitive guide expansion
 
-- [x] Replace the short method list with a complete route ladder from disclosure to human editing.
+- [x] Replace the short method list with a five-route ladder whose remaining entries each publish a contract, test and limit.
 - [x] Add the two-envelope clean-room method in native English and Italian.
-- [x] Add the independent rewrite chain with its narrower evidence boundary.
+- [x] Test and remove draft-to-draft chains because they compound drift; retain only independent drafts from one checked brief.
 - [x] Build a bilingual, no-install Rewrite Room with no backend, provider or text upload.
-- [x] Protect exact values, seal and restore the source, export a source-free prompt and compare a candidate locally.
+- [x] Protect exact values with local PV placeholders, export a tested structured prompt and retain the source-free clean-room route as the higher-effort option.
 - [x] Require a deliberate second click before clearing the current session.
 - [x] Rewrite the repository entry points around likely reader objections and actual next actions.
-- [x] Rewrite only the Italian website guide in Danilo's native style and prove that the English body is unchanged.
-- [x] Pass unit, static, prose, link, journey, accessibility, desktop and mobile browser checks.
+- [x] Rewrite the Italian website guide in Danilo's native style and align the English guide to the same admitted methods without machine translation.
+- [x] Remove targeting, the pseudo-adaptive tournament and automatic recommendations after red-team failure.
+- [x] Remove the automated local batch after real gpt-oss trials produced JSON, close copying and false stops.
+- [x] Benchmark the primary prompt against a banal paraphrase on a local non-Anthropic model and retain the raw evidence.
+- [x] Replace the stale website methods 6 and 7 with one explicit research post-mortem that tells the reader there is no action to take.
+- [x] Add a shared explanation contract: reader situation, exact next action, expected result, cost or privacy trade-off, limit and stop condition before research jargon.
+- [x] Add regression tests that reject removed CLI commands, targeting-as-instruction, tournament-as-instruction and inflated Rewrite Room claims across both languages.
+- [ ] Re-run unit, static, prose, link, journey, accessibility, desktop and mobile browser checks on the final v2 surface.
 - [ ] Merge and verify Rewrite Room on GitHub Pages.
 - [ ] Merge and verify the definitive Italian guide on danilolapegna.com.
 

@@ -24,11 +24,22 @@ test("measures phrase survival", () => {
   assert.equal(ngramSurvival(source, "seven six five four three two one", 4), 0);
 });
 
-test("selects a valid candidate from the Pareto set", () => {
+test("shortlists mechanically sound candidates without pretending to choose for the author", () => {
   const rewriteCase = fixtureCase();
   const weak = scoreCandidate(rewriteCase, rewriteCase.source);
   const fresh = scoreCandidate(rewriteCase, "On 2026-08-28, 120 participants entered a focused investigation. Its public record is https://example.com. The finding is useful because the researchers kept the question narrow and avoided broader claims.");
   const selection = selectCandidates([weak, fresh]);
   assert.ok(selection.pareto.length >= 1);
-  assert.ok(selection.recommended);
+  assert.equal(selection.recommended, null);
+  assert.equal(selection.requiresManualChoice, true);
+  assert.ok(selection.mechanicalShortlist.length > 0);
+});
+
+test("does not mark semantic inversions as release-ready", () => {
+  const rewriteCase = fixtureCase();
+  const inverted = "The study did not begin on 2026-08-28. It excluded 120 people, while https://example.com remained the public record. The result does not matter because the question was broad.";
+  const score = scoreCandidate(rewriteCase, inverted);
+  assert.equal(score.mechanicallyValid, true);
+  assert.equal(score.semanticStatus, "requires-manual-review");
+  assert.equal(score.releaseReady, false);
 });

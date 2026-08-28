@@ -1,20 +1,18 @@
 #!/usr/bin/env node
 
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, realpath, writeFile } from "node:fs/promises";
+import { resolve } from "node:path";
 import process from "node:process";
 import {
-  adaptiveSearch,
-  assertRewriteCase,
+  buildPrecisionRewritePrompt,
   createManualBrief,
-  createProvider,
   createRewriteCase,
   explainScore,
   extractInvariants,
   buildPromptPair,
-  rankRewriteTargets,
   scoreCandidate,
   selectCandidates,
-  semanticReconstitution,
+  restoreProtectedPlaceholders,
 } from "../src/index.js";
 
 const VERSION = "1.0.0";
@@ -28,27 +26,48 @@ function fail(message, code = 1) {
   process.exitCode = code;
 }
 
-function help() {
+function help(language = "en") {
+  if (language === "it") return `Claude Watermark Toolkit ${VERSION}
+
+Le idee non dovrebbero portare watermark. Questa CLI serve a ricostruire la formulazione di testi dei quali idee, fatti e responsabilità sono tuoi.
+Non scrive e non chiama alcun modello: prepara prompt, protegge valori esatti e confronta le bozze che ricevi altrove.
+
+Uso:
+  watermark-toolkit start <source.txt> [--lang en|it] [--json]
+  watermark-toolkit prepare <source.txt> [--lang en|it] [--protect VALUE] [--out case.json]
+  watermark-toolkit prompt <source.txt> [--lang en|it] [--clean-room] [--out prompt.json]
+  watermark-toolkit check <source.txt> <candidate.txt> [--lang en|it] [--json]
+  watermark-toolkit compare <source.txt> <candidate-a.txt> <candidate-b.txt...> [--lang en|it] [--json]
+
+Da dove partire:
+  start     ti indica la strada in base a tempo e separazione desiderata
+  prepare   inventaria i valori che devono restare identici
+  prompt    esporta il prompt rapido o la coppia separata dalla fonte
+  check     ripristina i valori e controlla una sola bozza
+  compare   mostra gli stessi controlli su due o più bozze, senza scegliere al posto tuo
+
+I file di partenza e le bozze non vengono mai modificati. Il risultato descrive fatti e somiglianze osservabili, non certifica il responso di un detector privato.`;
+
   return `Claude Watermark Toolkit ${VERSION}
+
+Ideas shouldn't carry watermarks. This CLI prepares prompts and checks drafts for texts whose ideas, facts and final responsibility are yours.
+It does not write or call a model: it prepares prompts, protects exact values and compares drafts you receive elsewhere.
 
 Usage:
   watermark-toolkit start <source.txt> [--lang en|it] [--json]
   watermark-toolkit prepare <source.txt> [--lang en|it] [--protect VALUE] [--out case.json]
-  watermark-toolkit prompt <source.txt> [--lang en|it] [--out prompts.json]
-  watermark-toolkit targets <source.txt> [--scores token-scores.json] [--json]
+  watermark-toolkit prompt <source.txt> [--lang en|it] [--clean-room] [--out prompt.json]
   watermark-toolkit check <source.txt> <candidate.txt> [--lang en|it] [--json]
-  watermark-toolkit compare <source.txt> <candidate.txt...> [--lang en|it] [--json]
-  watermark-toolkit rewrite <source.txt> --provider ollama|openai-compatible --model MODEL [options]
+  watermark-toolkit compare <source.txt> <candidate-a.txt> <candidate-b.txt...> [--lang en|it] [--json]
 
-Rewrite options:
-  --method semantic|adaptive
-  --count N
-  --generations N
-  --base-url URL
-  --api-key KEY
-  --out result.json
+Where to start:
+  start     choose a route by time and desired wording separation
+  prepare   inventory values that must remain exact
+  prompt    export the quick prompt or the source-separated pair
+  check     restore exact values and inspect one draft
+  compare   show the same evidence for two or more drafts, without choosing for you
 
-The source file is never modified.`;
+Source and candidate files are never modified. Output describes observable facts and similarities. It is not a private-detector verdict.`;
 }
 
 function parse(argv) {
@@ -61,8 +80,8 @@ function parse(argv) {
       continue;
     }
     const name = value.slice(2);
-    if (name === "json") {
-      options.json = true;
+    if (name === "json" || name === "help" || name === "clean-room") {
+      options[name.replace(/-([a-z])/gu, (_, letter) => letter.toUpperCase())] = true;
       continue;
     }
     const next = rest[index + 1];
@@ -85,8 +104,23 @@ async function loadSource(file, language, protect = []) {
   return rewriteCase;
 }
 
-async function saveOrPrint(value, options, human) {
+async function pathIdentity(file) {
+  try {
+    return await realpath(file);
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+    return resolve(file);
+  }
+}
+
+async function saveOrPrint(value, options, human, protectedFiles = []) {
   if (options.out) {
+    const outputPath = await pathIdentity(options.out);
+    for (const file of protectedFiles) {
+      if (outputPath === await pathIdentity(file)) {
+        throw new Error(`Refusing to overwrite input file: ${file}. Choose a different --out path.`);
+      }
+    }
     await writeFile(options.out, `${JSON.stringify(value, null, 2)}\n`, "utf8");
     output(`Wrote ${options.out}`);
     return;
@@ -94,76 +128,75 @@ async function saveOrPrint(value, options, human) {
   output(options.json ? value : human, Boolean(options.json));
 }
 
-function providerFrom(options) {
-  return createProvider({
-    provider: options.provider,
-    model: options.model || process.env.OPENAI_COMPATIBLE_MODEL || process.env.OLLAMA_MODEL,
-    baseUrl: options.baseUrl || (options.provider === "ollama" ? process.env.OLLAMA_BASE_URL : process.env.OPENAI_COMPATIBLE_BASE_URL),
-    apiKey: options.apiKey || process.env.OPENAI_COMPATIBLE_API_KEY,
-  });
-}
-
 async function run() {
   const { command, options } = parse(process.argv.slice(2));
-  if (!command || command === "help" || command === "--help") return output(help());
+  if (!command || command === "help" || command === "--help") return output(help(options.lang));
   if (command === "version" || command === "--version") return output(VERSION);
+  if (options.help) return output(help(options.lang));
   const language = options.lang || "en";
 
   if (command === "start") {
     if (options._.length !== 1) throw new Error("start needs one source file.");
     const rewriteCase = await loadSource(options._[0], language, options.protect);
     const wordCount = rewriteCase.source.trim().split(/\s+/u).length;
-    const targets = rankRewriteTargets(rewriteCase.source).slice(0, 3);
-    const method = wordCount < 250 ? "fresh human redraft" : "semantic reconstitution";
-    const result = { language: rewriteCase.language, wordCount, protectedValues: rewriteCase.invariants.length, recommendedMethod: method, firstTargets: targets };
-    return saveOrPrint(result, options, `Start with ${method}. I found ${rewriteCase.invariants.length} protected values in ${wordCount} words. Run "prompt" for the two-pass workflow.`);
+    const sourceFile = options._[0];
+    const result = {
+      language: rewriteCase.language,
+      wordCount,
+      protectedValues: rewriteCase.invariants.length,
+      choices: {
+        fastest: `watermark-toolkit prompt ${sourceFile}`,
+        strongestSeparation: `watermark-toolkit prompt ${sourceFile} --clean-room`,
+        repeatedLocalWork: `watermark-toolkit prompt ${sourceFile} --out prompt.json`,
+      },
+      note: "No command can certify a private detector result. Choose by time, privacy and review effort.",
+    };
+    const human = rewriteCase.language === "it"
+      ? `Ho trovato ${rewriteCase.invariants.length} valori da conservare identici in ${wordCount} parole. Strada più rapida: "prompt ${sourceFile}". Separazione più forte: aggiungi "--clean-room". Per lavoro ripetuto puoi salvare il prompt e controllare ogni bozza con "check". Nessuna strada certifica il responso di un detector privato.`
+      : `I found ${rewriteCase.invariants.length} exact values to protect in ${wordCount} words. Fastest route: "prompt ${sourceFile}". Stronger separation: add "--clean-room". For repeated work, save the prompt and inspect every draft with check. No route certifies a private detector result.`;
+    return saveOrPrint(result, options, human, options._);
   }
 
   if (command === "prepare") {
     if (options._.length !== 1) throw new Error("prepare needs one source file.");
     const rewriteCase = await loadSource(options._[0], language, options.protect);
-    return saveOrPrint(rewriteCase, options, `Prepared ${rewriteCase.invariants.length} protected values. Use --out case.json to save the full case.`);
+    const human = rewriteCase.language === "it"
+      ? `Inventario pronto: ${rewriteCase.invariants.length} valori protetti. Non ho riscritto, caricato o modificato il testo. Usa --json per controllare l'inventario oppure --out case.json per salvarlo.`
+      : `Inventory ready: ${rewriteCase.invariants.length} protected values. The text was not rewritten, uploaded or modified. Use --json to inspect the inventory or --out case.json to save it.`;
+    return saveOrPrint(rewriteCase, options, human, options._);
   }
 
   if (command === "prompt") {
     if (options._.length !== 1) throw new Error("prompt needs one source file.");
     const rewriteCase = await loadSource(options._[0], language, options.protect);
-    const pair = buildPromptPair(rewriteCase);
-    return saveOrPrint(pair, options, `${pair.step1.instruction}\n\n${pair.step1.prompt}\n\n${pair.step2.instruction}\n\n${pair.step2.prompt}`);
-  }
-
-  if (command === "targets") {
-    if (options._.length !== 1) throw new Error("targets needs one source file.");
-    const rewriteCase = await loadSource(options._[0], language, options.protect);
-    const externalTokenScores = options.scores ? JSON.parse(await readFile(options.scores, "utf8")) : [];
-    const targets = rankRewriteTargets(rewriteCase.source, { externalTokenScores });
-    return saveOrPrint(targets, options, targets.map((target) => `${target.id} ${target.score.toFixed(3)} ${target.scoreType}: ${target.text}`).join("\n"));
+    if (options.cleanRoom) {
+      const pair = buildPromptPair(rewriteCase);
+      const human = `${pair.step1.instruction}\n\n${pair.step1.prompt}\n\n${pair.step2.instruction}\n\n${pair.step2.prompt}`;
+      return saveOrPrint(pair, options, human, options._);
+    }
+    const prompt = buildPrecisionRewritePrompt(rewriteCase);
+    return saveOrPrint({ mode: "precision", prompt }, options, prompt, options._);
   }
 
   if (command === "check" || command === "compare") {
-    const minimum = command === "check" ? 2 : 2;
-    if (options._.length < minimum) throw new Error(`${command} needs a source file and at least one candidate file.`);
+    if (command === "check" && options._.length !== 2) throw new Error("check needs exactly one source file and one candidate file.");
+    if (command === "compare" && options._.length < 3) throw new Error("compare needs one source file and at least two candidate files.");
     const rewriteCase = await loadSource(options._[0], language, options.protect);
-    const candidates = await Promise.all(options._.slice(1).map((file) => readFile(file, "utf8")));
+    const rawCandidates = await Promise.all(options._.slice(1).map((file) => readFile(file, "utf8")));
+    const candidates = rawCandidates.map((candidate) => restoreProtectedPlaceholders(candidate, rewriteCase.invariants));
     const scorecards = candidates.map((candidate) => scoreCandidate(rewriteCase, candidate));
-    const result = { scorecards, selection: selectCandidates(scorecards) };
-    const human = scorecards.map((scorecard, index) => `Candidate ${index + 1}: ${explainScore(scorecard, rewriteCase.language)}`).join("\n");
-    return saveOrPrint(result, options, human);
+    const result = { finalizedCandidates: candidates, scorecards, selection: selectCandidates(scorecards) };
+    const summaries = scorecards.map((scorecard, index) => `Candidate ${index + 1}: ${explainScore(scorecard, rewriteCase.language)}`).join("\n");
+    const restored = rawCandidates.some((candidate, index) => candidate !== candidates[index]);
+    const human = command === "check" && restored
+      ? (rewriteCase.language === "it"
+        ? `Valori esatti ripristinati in locale. Il file originale non è stato modificato.\n\nBOZZA FINALIZZATA\n${candidates[0]}\n\nCONTROLLO\n${summaries}`
+        : `Exact values restored locally. The original file was not modified.\n\nFINALIZED DRAFT\n${candidates[0]}\n\nCHECK\n${summaries}`)
+      : summaries;
+    return saveOrPrint(result, options, human, options._);
   }
 
-  if (command === "rewrite") {
-    if (options._.length !== 1) throw new Error("rewrite needs one source file.");
-    if (!options.provider) throw new Error("rewrite needs --provider ollama or --provider openai-compatible.");
-    const rewriteCase = await loadSource(options._[0], language, options.protect);
-    rewriteCase.brief = null;
-    const provider = providerFrom(options);
-    const method = options.method || "semantic";
-    const result = method === "adaptive"
-      ? await adaptiveSearch(rewriteCase, provider, { population: Number(options.count || 4), generations: Number(options.generations || 2) })
-      : await semanticReconstitution(rewriteCase, provider, { count: Number(options.count || 3) });
-    assertRewriteCase({ ...rewriteCase, brief: result.brief, candidates: result.candidates, scorecards: result.scorecards });
-    return saveOrPrint(result, options, `Generated ${result.candidates.length} candidates. Recommended candidate: ${result.selection.recommended || "none passed"}.`);
-  }
+  if (command === "targets") throw new Error("targets was removed because its public lexical proxy did not identify Claude's private watermark positions reliably. Use prompt, check or compare instead.");
 
   throw new Error(`Unknown command: ${command}. Run watermark-toolkit help.`);
 }

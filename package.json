@@ -7,6 +7,8 @@
     "watermark-toolkit": "./bin/watermark-toolkit.js"
   },
   "scripts": {
+    "benchmark:local": "node benchmarks/run-local-benchmark.mjs",
+    "benchmark:clean-room": "node benchmarks/run-clean-room-smoke.mjs",
     "test": "node --test",
     "check:workbench": "node scripts/check-workbench.mjs",
     "check:prose": "node scripts/check-prose.mjs",

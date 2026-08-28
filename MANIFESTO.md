@@ -10,7 +10,13 @@ A statistical watermark can indicate that a particular generator probably shaped
 
 The danger begins when institutions erase that distinction.
 
-## Enforcement by proxy is the real accessibility problem
+## Provenance must not become a witch-hunt verdict
+
+A detector may flag statistical influence. The moment an institution treats that flag as automatic proof of authorship, fraud, cheating or intellectual laziness, it has stopped analyzing provenance and started outsourcing judgment to a score.
+
+That is not a minor misuse of a sound instrument. It changes the instrument's job. A probabilistic trace becomes a disciplinary shortcut, the person loses the right to explain how the work was made and uncertainty quietly disappears from the decision.
+
+## Enforcement punishes the people writing tools help most
 
 The watermark itself does not make a paragraph harder to read for a person with dyslexia. That is not our claim.
 
@@ -20,9 +26,11 @@ For those people, AI may function as an assistive layer. It can organize dictate
 
 That is a poor proxy for intellectual work and a predictable source of unfairness.
 
-## Regulate the harmful act, not the statistical texture of language
+## Mark synthetic evidence, not ideas
 
-Fraud, impersonation, fabricated sources, undisclosed public-interest influence and automated spam are real harms. They should be addressed through evidence, responsibility and context.
+An image can be mistaken for a camera's record of an event that never happened. In that case, provenance answers a concrete question about apparent evidence: did a camera record this scene?
+
+Words are symbols and the primary carrier of ideas. A text can contain a false claim, but it does not masquerade as sensory evidence. The harm lies in the false claim, fraud, impersonation or fabricated source, not in the software that helped shape a sentence. A text watermark cannot distinguish a true idea from a false one, or responsible assistance from abuse. It marks the carrier instead of judging the act.
 
 The presence of AI is not itself the harm. A hidden pattern in word selection cannot replace an inquiry into what happened:
 
@@ -32,7 +40,7 @@ The presence of AI is not itself the harm. A hidden pattern in word selection ca
 - Was a duty of disclosure clear and proportionate?
 - Was anyone deceived about a fact that mattered?
 
-A detector result may start a careful question. It should not end one.
+A detector result may start a careful question. It should not end one. Computing should help people express, test and verify ideas, not watermark the symbolic channel through which people share them.
 
 ## Our position
 

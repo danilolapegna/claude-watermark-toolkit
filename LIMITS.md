@@ -1,67 +1,53 @@
-# Method limits and honest trade-offs
+# Limits you should know before choosing a route
 
-No method wins on every dimension. Choose based on authorship, privacy, time and how much wording must change.
+No method wins on every dimension. Choose by authorship, privacy, time, stakes and how much of the old wording must disappear.
 
-| Method | Likely change strength | Meaning risk | Privacy | Cost | Main failure |
-|---|---|---|---|---|---|
-| Leave it alone or disclose | none | none | best | none | does not help when detectable assistance itself triggers enforcement |
-| Fresh human redraft | high | low when the author knows the material | best | time | looking back at the original and copying its structure |
-| Two-envelope clean room | high | low to medium | depends on writer | low | unchecked brief loses a fact or the voice notes stay generic |
-| Rewrite Room | high when the method is followed | low to medium | local preparation and comparison | low | guides and checks but does not generate the prose |
-| Independent draft from an outline | high | medium | depends on tool | low | outline omits a fact or the model adds one |
-| Semantic reconstitution | high | low to medium | local option | medium | research brief preserves hidden structure or loses nuance |
-| Information-targeted rewrite | medium to high | medium | local option | medium | proxy targets unusual facts rather than sampling choices |
-| Adaptive candidate search | high within its budget | medium | local option | highest | optimizing the available proxies instead of real writing quality |
-| Independent rewrite chain | potentially very high | high without repeated validation | depends on writer | high | meaning drift compounds across passes |
-| Human editor from the brief | high | low to medium | depends on agreement | paid time | cost, availability and confidentiality |
-| Backtranslation | unpredictable | high | usually remote | low | meaning drift and awkward language |
-| Light synonyms | low | medium | varies | low | too little structural change |
-| Unicode cleanup | none for a statistical mark | low | local | low | solving the wrong problem |
+| Method | Likely wording change | Meaning risk | Privacy | Main failure |
+|---|---|---|---|---|
+| Leave it alone or disclose | none | none | best | does not help when detectable assistance itself triggers enforcement |
+| Human redraft from a fact sheet | high | low when the author knows the material | best | peeking at the source and copying its structure |
+| Rewrite Room prompt builder | high when followed | medium | local preparation; external writing provider varies | the model can flatten nuance or add a claim |
+| Source-separated clean room | high | low to medium | depends on writer | an unchecked brief loses a fact or voice notes stay generic |
+| Another system from the checked brief | high | medium | depends on provider | provider memory breaks isolation or the model invents |
+| Human editor from the brief | high | low to medium | depends on agreement | money, availability and confidentiality |
+| Backtranslation | unpredictable | high | usually remote | meaning drift and awkward language |
+| Light synonyms | low | medium | varies | too little structural change |
+| Unicode cleanup | none for a statistical mark | low | local | solving the wrong problem |
 
-## Fresh human redraft
+## Rewrite Room
 
-This is the strongest default when the text is yours and short enough to rewrite. It uses your knowledge as the semantic validator. Its weakness is effort. It also fails if you keep the original open and follow the same sentence order.
+Rewrite Room is a prompt builder with local mechanical checks. It does not write the draft, upload the source, judge meaning or consume AI credits. The external writing model does the writing, can charge and may apply its own provenance system.
 
-## Independent draft
+The comparison reports exact-value retention and visible surface properties. Those are useful revision clues. They do not read causal meaning, verify every claim or reproduce Anthropic's detector.
 
-Give a new writer only claims, evidence, constraints and voice notes. A separate conversation matters. If the drafting system sees the original, it can preserve more phrasing and structure than intended.
+## Protected values
 
-Check every number, URL, quote and citation. A fluent sentence can still be false.
+Automatic extraction covers common values, not every proper name, legal formula or scientific term. Add anything important that the page or CLI misses.
 
-## Two envelopes and Rewrite Room
+The check is intentionally character for character. `API` and `api` are different. So are one space and two. That strictness catches exact-value drift but can also flag a harmless formatting choice. A human decides whether the exact form truly matters.
 
-The two-envelope method separates factual meaning from voice because they fail differently. Rewrite Room makes that separation visible, finds protected values, hides the source during drafting and compares the candidate locally.
+## Source-separated reconstruction
 
-The tool does not generate prose, upload the text or certify Anthropic's detector. Its structure and phrase measures are editorial warnings, not proof that a private watermark is present or absent.
+The research pass may see the source. The drafting pass should not. Two messages in one conversation do not create isolation, and some providers share memory across conversations.
 
-## Semantic reconstitution
+The method is only as good as the checked brief. A vague brief produces generic prose. An over-detailed brief can smuggle old sentence structure into the new draft. Keep claims atomic, relationships explicit and voice notes concrete.
 
-The research pass may see the source. The drafting pass should not. This separates meaning extraction from word choice.
+## The prompt and agent skill
 
-The method is only as good as the brief. A vague brief produces generic prose. An over-detailed brief can smuggle the source structure into the new draft. Keep claims atomic and voice notes practical.
+Contract tests verify that the public prompts define inert-data boundaries, a structured brief, exact-value rules and a fail-closed `BRIEF_ERROR`. The skill adds source protection, provider exclusion, isolation and semantic stop rules.
 
-## Information targeting
+Those tests inspect the instructions. They cannot force an arbitrary third-party model or agent to obey. If a runtime cannot isolate the drafting context, stop after the brief and move it manually into a new context.
 
-Public watermark research suggests that tokens with high self-information are useful attack targets. This repository supports supplied token scores, but its default offline proxy measures lexical novelty and diversity. The proxy is not token probability and does not claim to be one.
+## Why targeting and the tournament were removed
 
-Protect names and exact facts first. Rare words are often important facts. Rewriting them blindly is a quality failure.
+Published watermark attacks make token confidence, self-information and multi-objective search worth researching. That does not make every related implementation useful against Claude.
 
-## Adaptive search
+The toolkit's lexical target score measured unusual words, not Anthropic's sampling confidence or keyed greenlist. It could point straight at names and technical facts. The optional local-model score came from the wrong probability distribution. Both were scientifically interesting and practically misleading.
 
-The algorithm generates a bounded population, validates hard facts and retains non-dominated candidates. It does not optimize a Claude detector score. Its objectives are protected-fact retention, phrase change, length fit and readability.
+The tournament produced candidates under different instructions, but its numerical feedback referred to source overlap that the source-separated writer could not see. It was a batch wearing an adaptive label. A later honest-batch design also failed the practical-value gate on a real local model, so the automatic batch was removed too.
 
-The pro is visibility: you can see why one candidate beats another. The con is proxy gaming. A draft can achieve low phrase overlap and still be dull, evasive or tonally wrong. A human remains the final judge.
+## Why no guarantee appears here
 
-## Independent chains
+A private keyed detector can change without notice. Anthropic has not published its detector threshold, key, model-by-model coverage or error rates. Public SynthID experiments can challenge an algorithmic idea. They cannot certify a Claude result.
 
-Repeated independent drafts can replace more of a source's sampling path, but every pass creates another chance to lose a qualification. Restart each candidate from the same checked brief. Do not feed one paraphrase into the next. Chainwash studies a narrower diffusion-language-model watermark family, so this route remains experimental for Claude.
-
-## Human editor
-
-A good editor brings judgment that no overlap metric provides. Give the editor the checked brief first and the source only for final fact checking. Agree on confidentiality when the material is sensitive.
-
-## Why we reject guarantees
-
-A private keyed detector can change without notice. Anthropic has not published its detector threshold, model coverage or error rates. Public SynthID tests can challenge an algorithmic idea, but they cannot certify a Claude result.
-
-The strongest responsible statement is narrower: a genuinely independent reconstruction replaces far more of the original generator's sampling path than cosmetic editing does, while protected-fact checks reduce the risk of changing the substance.
+The strongest responsible statement is narrower: a genuinely independent reconstruction replaces much more of the original sampling path than cosmetic editing, while explicit fact checks reduce the risk of changing the substance.

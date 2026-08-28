@@ -1,0 +1,26 @@
+[
+  {
+    "id": "en-qualification",
+    "language": "en",
+    "source": "The 12-week pilot involved 64 employees and ended on 2026-08-28. It did not show that a four-day week increased productivity. The observed change was 3.1%, but the 95% confidence interval crossed zero. We can say the schedule was workable for this team. We cannot say it caused better performance, and we certainly cannot generalize from one team to an entire company.",
+    "focus": "Preserve the negative finding, the narrow workable conclusion, the causal exclusion and the ban on generalizing."
+  },
+  {
+    "id": "it-policy-voice",
+    "language": "it",
+    "source": "Il punto, molto banalmente, non è fingere che l'assistenza non sia esistita. È evitare che un segnale tecnico diventi una sentenza sulla persona. Nel campione di 320 testi, il detector ha segnalato il 18,4%. Quel numero non dimostra chi abbia avuto l'idea, chi abbia verificato le fonti o chi si assuma la responsabilità. Può aprire un controllo. Non può chiuderlo da solo.",
+    "focus": "Preserve the author's plain, slightly emphatic voice, the 320 and 18,4% values, and the distinction between opening and closing a review."
+  },
+  {
+    "id": "en-causality",
+    "language": "en",
+    "source": "DL Solutions published the protocol at https://example.com/protocol before reading the outcomes. Error reports fell from 41 to 23 after the new checklist was introduced. The sequence is suggestive, not decisive: staffing also changed in the same month. The evidence supports another controlled test, not the claim that the checklist caused the entire reduction.",
+    "focus": "Preserve chronology, figures, URL, the staffing confound and the narrow next-step conclusion without turning sequence into causation."
+  },
+  {
+    "id": "it-exact-boundaries",
+    "language": "it",
+    "source": "La regola interna dice “nessuna pubblicazione automatica”. Il 28 agosto 2026, API-OPS ha preparato una bozza da 1.200,50 € per il cliente, ma non l'ha inviata. Il responsabile può approvarla, correggerla oppure scartarla. Finché non sceglie, il file resta una bozza e non una comunicazione ufficiale.",
+    "focus": "Preserve the exact quotation, date, acronym, amount, non-send event and three available human decisions."
+  }
+]

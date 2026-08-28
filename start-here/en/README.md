@@ -10,7 +10,16 @@ If you are not technical, this page is for you. Start with the browser route. Th
 
 Open [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/).
 
-You may be thinking, “I have no idea who hosts that page or where my text goes.” The page has no text-processing server. Its JavaScript runs in your browser tab. If you want to remove even the hosting question, download this repository and open `docs/index.html` while offline.
+Rewrite Room is not an AI writer. It is a simple, direct prompt builder with a local comparison step. The non-Anthropic model you choose does all the writing.
+
+You may be thinking, “I have no idea who hosts that page, where my text goes or what I am supposed to do once it opens.” Fair. Here is the whole journey before you click anything:
+
+1. Paste your source.
+2. Select **Prepare my rewrite prompt**.
+3. Copy the prompt into a non-Anthropic writing model.
+4. Bring the model's draft back and select **Check the new draft**.
+
+The page itself uses no AI and no AI credits. Its JavaScript builds the prompt, protects exact values and compares visible surface properties inside your browser tab. It does not check meaning. The external writing model may use its normal free plan, subscription or credits. If you want to remove even the hosting question, download this repository and open `docs/index.html` while offline.
 
 ### Step 1: paste the source
 
@@ -18,38 +27,27 @@ Use text whose ideas and final responsibility are yours. The page finds common e
 
 If it misses a name or a term that must remain exact, add it manually. Automatic extraction is a starting list, not an oracle.
 
-### Step 2: prepare the two envelopes
+### Step 2: prepare and copy the prompt
 
-Envelope 1 contains facts and meaning:
+Select **Prepare my rewrite prompt**. The page produces one complete prompt with the source and protected values already inserted.
 
-- what the reader should understand or do;
-- one claim or idea per line;
-- the audience;
-- exact values that must survive.
+This is more rigorous than “paraphrase this.” It asks the other model to preserve claims, qualifications, tone and approximate length while rebuilding ordinary wording, sentence openings and transitions throughout. Copy the whole prompt. Do not copy only the source section.
 
-Envelope 2 contains your voice:
+### Step 3: use a non-Anthropic model
 
-- sentence rhythm;
-- level of formality;
-- connectors you use naturally;
-- words and phrases you would never use;
-- format and length constraints.
+Open the model you prefer, paste the prompt as one message and send it. Another hosted provider may apply its own watermark or provenance system. If you need zero hosted credits and no provider-side watermark, use a local open model. That route needs installation and is explained below.
 
-This may feel slower than asking for a paraphrase. It is. Those few minutes are what stop the drafting stage from copying the old structure blindly.
-
-### Step 3: seal the source
-
-The page hides the original text and creates a source-free prompt. It does not delete the source from the current tab, so you can unseal it and correct the brief.
-
-Write manually from the two envelopes, or copy the prompt into a non-Anthropic system. The writing system should never receive the source.
-
-### Step 4: compare the draft
+### Step 4: compare the new draft
 
 Paste the new draft back into Rewrite Room. You will see separate checks for protected facts, shared phrases, sentence openings, structure and length.
 
 If a fact is missing, fix that first. If a long phrase survives, rewrite the whole passage rather than swapping a few words. If the structure remains close, move the claims into a different order.
 
 The page cannot tell you that Anthropic's private detector will accept the result. It tells you what it can actually measure.
+
+### Want stronger separation?
+
+Expand the advanced clean-room section in Rewrite Room. It asks you to prepare two envelopes, one for facts and meaning, one for voice and limits. The writing model then receives those envelopes without the source wording. It takes longer, which is exactly why it is no longer the default route.
 
 ## The manual route, if even a form feels unnecessary
 
@@ -141,43 +139,39 @@ Create `source.txt` in the toolkit folder, paste the source and save it. Then ru
 node bin/watermark-toolkit.js start source.txt
 ```
 
-Create the two prompts:
+Create the primary prompt:
 
 ```bash
-node bin/watermark-toolkit.js prompt source.txt --out prompts.json
+node bin/watermark-toolkit.js prompt source.txt --out prompt.json
 ```
 
-### 6. Keep the rewrite local too
-
-Install [Ollama](https://ollama.com/) and choose a local model that is not from Anthropic. Confirm the model runs in Ollama, then use its exact name:
+If you want the advanced source-separated pair instead:
 
 ```bash
-node bin/watermark-toolkit.js rewrite source.txt \
-  --provider ollama \
-  --model YOUR_LOCAL_MODEL \
-  --out result.json
+node bin/watermark-toolkit.js prompt source.txt --clean-room --out prompts.json
 ```
 
-The source goes to the Ollama process on your computer. It does not go to this repository or to Anthropic.
+### 6. Check the returned draft locally
 
-## I want the advanced routes
+Give the exported prompt to the non-Anthropic system you choose. Save its response as `candidate.txt`, then run:
 
-You may be thinking, “If the simple method is strong, why does the repository contain targeting and a Pareto set?” Because long or repeated work changes the cost equation.
+```bash
+node bin/watermark-toolkit.js check source.txt candidate.txt
+```
 
-- [Confidence-aware micro-surgery](../../methods/information-targeted/README.md) spends a limited edit budget on selected passages after facts are protected.
-- [Candidate tournaments](../../methods/adaptive-search/README.md) generate several structures and keep non-dominated trade-offs visible.
-- [Independent rewrite chains](../../methods/independent-rewrite-chain/README.md) repeat from the same checked brief, never from the previous draft.
-
-These are experimental or expensive routes. Read the evidence boundary before using them.
+For two or more alternatives, use `compare` instead. The CLI makes no model call, uploads nothing and never chooses a winner. The automatic local batch was tested and removed because its results did not justify the setup.
 
 ## Read the CLI result without guessing
 
-- `valid: true` means the candidate kept automatically protected values and stayed within the default length range.
+- `mechanicallyValid: true` means the candidate kept automatically protected values and stayed inside the default length range. It says nothing about causal meaning, qualifications or tone.
+- `semanticStatus: "requires-manual-review"` remains in every report because a local metric cannot approve meaning.
 - `ngramSurvival` measures surviving four-word sequences. Lower means more surface change, not better writing.
-- `readability` is a rough reading-ease signal, not a quality grade.
-- `recommended` is the public weighted choice from the Pareto set. You can inspect and choose another candidate.
+- `longestSharedPhrase` shows the longest ordinary word run shared with the source.
+- `mechanicalShortlist` keeps candidates that passed the configured checks. `recommended` stays empty. You choose after reading.
 
 No local score proves a result against Anthropic's private detector.
+
+If you expected targeting or an adaptive tournament, those features were removed after red-team review. The targeting proxy could prioritize rare facts without locating Claude's private signal. The tournament did not truly adapt its generation. The [method guide](../../METHODS.md) explains the decision and the narrower contracts that remain.
 
 ## If something goes wrong
 

@@ -41,8 +41,8 @@ This file separates four kinds of statement:
 | SIRA reported near-total removal across seven studied watermark schemes | OFFICIAL result reported by its authors | [SIRA paper](https://arxiv.org/abs/2505.05190) | Does not prove success against Claude |
 | Evolutionary multi-objective attacks can preserve quality while reducing detection across studied schemes | OFFICIAL result reported by its authors | [TSAPA](https://aclanthology.org/2026.findings-acl.459/) | Does not prove success against Claude |
 | Selective resampling of lower-confidence positions can outperform broad paraphrasing across studied schemes | OFFICIAL result reported by its authors | [Watermark Smoothing Attacks](https://aclanthology.org/2025.findings-emnlp.264/) | Does not establish which Claude positions carry signal |
-| Strict black-box scrubbing can be treated as constrained optimization with fidelity checks | OFFICIAL method reported by its authors | [B4](https://aclanthology.org/2025.naacl-long.460/) | Inspires the candidate tournament, not a Claude result |
-| Repeated independent rewriting can outperform one pass in studied diffusion language-model watermarks | OFFICIAL result reported by its authors | [Chainwash](https://arxiv.org/abs/2605.05503) | Narrower model family; experimental route only |
+| Strict black-box scrubbing can be treated as constrained optimization with fidelity checks | OFFICIAL method reported by its authors | [B4](https://aclanthology.org/2025.naacl-long.460/) | Research reference only; the pseudo-adaptive public tournament was removed |
+| Repeated independent rewriting can outperform one pass in studied diffusion language-model watermarks | OFFICIAL result reported by its authors | [Chainwash](https://arxiv.org/abs/2605.05503) | Narrower model family; not a separate public route |
 | Any paraphrase that beats a detector remains good writing | CONTRADICTED | [Quality-aware random-walk evaluation](https://aclanthology.org/2025.acl-long.1436/) | Human quality review remains necessary |
 
 ## Accessibility and enforcement
@@ -60,7 +60,8 @@ The code tests reproduce these local properties:
 - protected values fail closed when a candidate drops them;
 - four-word phrase survival falls after independent restructuring;
 - public provider configuration rejects Anthropic hosts and Claude model names;
-- Pareto selection keeps trade-offs visible instead of hiding them in one score;
+- mechanically sound candidates remain visible without an automatic winner;
 - the two-pass drafting step receives a reconstruction brief rather than source wording.
+- semantic inversions remain blocked from release even when exact values pass.
 
 No Claude detector result is currently marked `REPRODUCED`.

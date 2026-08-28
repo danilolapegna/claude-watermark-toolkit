@@ -3,42 +3,73 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="A no-install, local browser workbench for rebuilding Claude-assisted text from meaning while protecting facts." />
-    <meta name="theme-color" content="#f3eddf" />
-    <title>Rewrite Room | Claude Watermark Toolkit</title>
-    <link rel="stylesheet" href="styles.css" />
+    <meta name="description" content="Prepare a rigorous rewrite prompt locally, use it in a non-Anthropic model, then check the new draft without uploading your text." />
+    <meta name="theme-color" content="#09090f" />
+    <title>Rewrite Room | DL Solutions</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css?v=1.0.16" />
   </head>
   <body>
-    <a class="skip-link" href="#workspace">Skip to the workbench</a>
+    <a class="skip-link" href="#workspace" data-copy="skipLink">Skip to Rewrite Room</a>
 
     <header class="masthead">
-      <a class="wordmark" href="https://github.com/danilolapegna/claude-watermark-toolkit">
-        <span class="wordmark-mark" aria-hidden="true">RR</span>
-        <span>Rewrite Room</span>
+      <a class="wordmark" href="https://danilolapegna.com" aria-label="DL Solutions home">
+        <span class="wordmark-mark" aria-hidden="true">DL</span>
+        <span class="wordmark-copy">
+          <strong>DL Solutions</strong>
+          <small>Rewrite Room · Prompt builder</small>
+        </span>
       </a>
-      <div class="language-switch" role="group" aria-label="Language">
-        <button class="language-button is-active" type="button" data-language="en" aria-pressed="true">EN</button>
-        <button class="language-button" type="button" data-language="it" aria-pressed="false">IT</button>
+      <div class="header-actions">
+        <a class="repo-link" href="https://github.com/danilolapegna/claude-watermark-toolkit" data-copy="repoLink">Open source</a>
+        <div class="language-switch" role="group" aria-label="Language" data-copy-aria="languageLabel">
+          <button class="language-button is-active" type="button" data-language="en" aria-pressed="true">EN</button>
+          <button class="language-button" type="button" data-language="it" aria-pressed="false">IT</button>
+        </div>
       </div>
     </header>
 
-    <main id="workspace">
+    <main id="workspace" tabindex="-1">
       <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow" data-copy="eyebrow">No account. No upload. No installation.</p>
-        <h1 id="page-title" data-copy="title">Put the meaning in. Leave the old wording out.</h1>
-        <p class="hero-copy" data-copy="intro">This page will not hand you a magic detector score. It helps you separate facts and ideas from the original phrasing, then checks the new draft without sending either text anywhere.</p>
-        <div class="trust-strip" aria-label="Privacy and scope">
-          <span><strong data-copy="localLabel">Local:</strong> <span data-copy="localValue">your text stays in this browser tab</span></span>
-          <span><strong data-copy="promiseLabel">Promise:</strong> <span data-copy="promiseValue">useful comparison, not private-detector certification</span></span>
+        <div class="hero-lead">
+          <p class="eyebrow" data-copy="eyebrow">A simple, direct prompt builder</p>
+          <h1 id="page-title" data-copy="title">Paste. Build. Check.</h1>
+          <p class="hero-copy" data-copy="intro">Have a Claude-assisted draft built from your ideas? Rewrite Room masks exact values and builds a prompt locally. A non-Anthropic model does the writing. Paste its draft back here for mechanical checks.</p>
         </div>
+
+        <section class="manifesto-panel" aria-labelledby="manifesto-title">
+          <div class="manifesto-topline">
+            <p class="eyebrow" data-copy="manifestoEyebrow">Why this</p>
+            <a class="manifesto-link" id="manifesto-link" href="https://github.com/danilolapegna/claude-watermark-toolkit/blob/main/MANIFESTO.md" data-copy="manifestoLink">Full manifesto</a>
+          </div>
+          <div class="manifesto-heading">
+            <h2 id="manifesto-title" data-copy="manifestoTitle">Ideas shouldn't carry watermarks.</h2>
+            <p class="manifesto-intro" data-copy="manifestoIntro">Rewrite Room changes nothing by itself. It builds a prompt and checks surface differences. The target is wording, never thought. A statistical trace cannot tell who formed an idea or took responsibility for it.</p>
+          </div>
+
+          <div class="manifesto-rows">
+            <details>
+              <summary><span aria-hidden="true">01</span><strong data-copy="manifesto1Title">Provenance must not become a witch-hunt verdict.</strong><span class="details-icon" aria-hidden="true"></span></summary>
+              <p data-copy="manifesto1Body">A detector may flag statistical influence. Turning that flag into proof of authorship, fraud or intellectual laziness is judgment outsourced to a score.</p>
+            </details>
+            <details>
+              <summary><span aria-hidden="true">02</span><strong data-copy="manifesto2Title">Enforcement punishes the people writing tools help most.</strong><span class="details-icon" aria-hidden="true"></span></summary>
+              <p data-copy="manifesto2Body">Dyslexia, dysgraphia, motor limitations and second-language writing can separate the quality of an idea from the ease of typing it. Treating detectable assistance as cheating measures surface production, not intellectual contribution.</p>
+            </details>
+            <details>
+              <summary><span aria-hidden="true">03</span><strong data-copy="manifesto3Title">Mark synthetic evidence. Not ideas.</strong><span class="details-icon" aria-hidden="true"></span></summary>
+              <p data-copy="manifesto3Body">An image can pretend to be a camera record. Text is a symbolic carrier: a false claim is harmful because of the claim, not because software helped phrase it.</p>
+            </details>
+          </div>
+        </section>
+
       </section>
 
-      <nav class="step-rail" aria-label="Rewrite steps">
+      <nav class="step-rail" aria-label="Rewrite steps" data-copy-aria="stepsLabel">
         <ol>
-          <li class="is-current" data-step-indicator="1"><span>1</span><span data-copy="step1Short">Source</span></li>
-          <li data-step-indicator="2"><span>2</span><span data-copy="step2Short">Meaning</span></li>
-          <li data-step-indicator="3"><span>3</span><span data-copy="step3Short">New draft</span></li>
-          <li data-step-indicator="4"><span>4</span><span data-copy="step4Short">Check</span></li>
+          <li class="is-current" data-step-indicator="1"><span>1</span><span data-copy="step1Short">Your text</span></li>
+          <li data-step-indicator="2"><span>2</span><span data-copy="step2Short">Your prompt</span></li>
+          <li data-step-indicator="3"><span>3</span><span data-copy="step3Short">Your check</span></li>
         </ol>
       </nav>
 
@@ -47,135 +78,151 @@
           <div class="step-heading">
             <span class="step-number" aria-hidden="true">01</span>
             <div>
-              <p class="step-kicker" data-copy="step1Kicker">First, the obvious bit</p>
-              <h2 id="step-source-title" data-copy="step1Title">Paste the source</h2>
+              <p class="step-kicker" data-copy="step1Kicker">Start here. Really.</p>
+              <h2 id="step-source-title" data-copy="step1Title">Paste the text you want to rebuild</h2>
             </div>
           </div>
 
-          <p class="reader-thought" data-copy="step1Thought">“So I paste a text into a random web page?” Fair question. This one has no server call. You can download the repository, open this file offline and get the same tool.</p>
+            <p class="reader-thought" data-copy="step1Thought">“Am I about to upload a private text?” No. This page costs €0, has no server call and stores nothing. If you still do not trust it, download the repository and open this exact page offline.</p>
 
           <div class="field-stack">
             <label for="source-text" data-copy="sourceLabel">Source text</label>
-            <p class="field-help" id="source-help" data-copy="sourceHelp">Use text you own and are prepared to stand behind. Nothing is saved when you close the tab.</p>
-            <textarea id="source-text" rows="12" aria-describedby="source-help source-error" required></textarea>
+            <p class="field-help" id="source-help" data-copy="sourceHelp">Use text you own and can stand behind. The next button prepares a prompt. It does not send or rewrite anything.</p>
+            <textarea id="source-text" rows="14" aria-describedby="source-help source-error" required></textarea>
             <p class="field-error" id="source-error" role="alert"></p>
           </div>
 
-          <details class="manual-values">
-            <summary data-copy="extraSummary">Add names or exact phrases the automatic check may miss</summary>
+          <details class="optional-values">
+            <summary data-copy="extraSummary">Optional: add names or phrases that must remain letter-for-letter identical</summary>
             <label for="extra-values" data-copy="extraLabel">One protected value per line</label>
             <textarea id="extra-values" rows="4"></textarea>
           </details>
 
-          <button class="primary-action" id="prepare-button" type="button" data-copy="prepareAction">Find the facts to protect</button>
+          <button class="primary-action" id="prepare-button" type="button" data-copy="prepareAction">Prepare my rewrite prompt</button>
         </section>
 
-        <section class="work-step" id="step-meaning" aria-labelledby="step-meaning-title" hidden>
+        <section class="work-step prompt-step" id="step-prompt" aria-labelledby="step-prompt-title" hidden>
           <div class="step-heading">
             <span class="step-number" aria-hidden="true">02</span>
             <div>
-              <p class="step-kicker" data-copy="step2Kicker">Now build the part that is actually yours</p>
-              <h2 id="step-meaning-title" data-copy="step2Title">Make the two envelopes</h2>
+              <p class="step-kicker" data-copy="step2Kicker">The useful part is ready</p>
+              <h2 id="step-prompt-title" data-copy="step2Title">Copy this entire prompt</h2>
             </div>
           </div>
 
-          <p class="reader-thought" data-copy="step2Thought">“This sounds like office theatre.” It is really just a clean break: one envelope holds facts and meaning, the other holds your voice. The old sentences go into neither.</p>
+          <p class="reader-thought" data-copy="step2Thought">“Couldn’t I just ask another model to paraphrase it?” You could. That often means lazy synonym swaps, lost nuance and long copied sequences. This prompt forces two things at once: fidelity to your meaning and independence from the old token sequence.</p>
 
-          <div class="envelope-layout">
-            <fieldset class="envelope envelope-facts">
-              <legend><span data-copy="factsEnvelope">Envelope 1: facts and meaning</span></legend>
-              <div class="field-stack">
-                <label for="purpose" data-copy="purposeLabel">What should the reader understand or do?</label>
-                <textarea id="purpose" rows="3" required></textarea>
-              </div>
-              <div class="field-stack">
-                <label for="claims" data-copy="claimsLabel">Ideas and claims, one per line</label>
-                <textarea id="claims" rows="7" required></textarea>
-              </div>
-              <div class="field-stack">
-                <label for="audience" data-copy="audienceLabel">Who is this for?</label>
-                <input id="audience" type="text" />
-              </div>
-              <div class="protected-sheet" aria-labelledby="protected-title">
-                <h3 id="protected-title" data-copy="protectedTitle">Values to keep exact</h3>
-                <ul id="protected-list"></ul>
-                <p id="protected-empty" data-copy="protectedEmpty">No automatic values found. Add any important names yourself.</p>
-              </div>
-            </fieldset>
-
-            <fieldset class="envelope envelope-voice">
-              <legend><span data-copy="voiceEnvelope">Envelope 2: your voice</span></legend>
-              <div class="field-stack">
-                <label for="voice" data-copy="voiceLabel">How do you actually write?</label>
-                <p class="field-help" data-copy="voiceHelp">Use concrete notes: short or crowded sentences, favorite connectors, level of formality, words you would never use.</p>
-                <textarea id="voice" rows="7" required></textarea>
-              </div>
-              <div class="field-stack">
-                <label for="constraints" data-copy="constraintsLabel">Length, format and other constraints</label>
-                <textarea id="constraints" rows="5"></textarea>
-              </div>
-            </fieldset>
+          <div class="prompt-explainer">
+            <div>
+              <p class="truth-label" data-copy="promptDoesLabel">What the prompt does</p>
+              <p data-copy="promptDoesBody">It masks exact values as PV markers, asks the model to rebuild from a fact ledger and keeps those markers unchanged. When you paste the draft back, this page restores the original values character for character before checking anything.</p>
+            </div>
+            <div class="protected-sheet" aria-labelledby="protected-title">
+              <h3 id="protected-title" data-copy="protectedTitle">Values it must keep exact</h3>
+              <ul id="protected-list"></ul>
+              <p id="protected-empty" data-copy="protectedEmpty">No automatic values found. That is normal for text without dates, figures, links or quoted phrases.</p>
+            </div>
           </div>
 
-          <p class="field-error" id="brief-error" role="alert"></p>
+          <label for="prepared-prompt" data-copy="promptLabel">Your prepared rewrite prompt</label>
+          <textarea id="prepared-prompt" rows="24" readonly></textarea>
           <div class="action-row">
             <button class="secondary-action" id="back-to-source" type="button" data-copy="backSource">Edit the source</button>
-            <button class="primary-action seal-action" id="seal-button" type="button" data-copy="sealAction">Seal the source</button>
+            <button class="secondary-action" id="download-button" type="button" data-copy="downloadAction">Download prompt</button>
+            <button class="primary-action" id="copy-button" type="button" data-copy="copyAction">Copy the entire prompt</button>
           </div>
-        </section>
 
-        <section class="work-step sealed-step" id="step-draft" aria-labelledby="step-draft-title" hidden>
-          <div class="step-heading">
-            <span class="step-number" aria-hidden="true">03</span>
-            <div>
-              <p class="step-kicker" data-copy="step3Kicker">The source is out of sight</p>
-              <h2 id="step-draft-title" data-copy="step3Title">Write from the brief</h2>
+          <div class="handoff" aria-labelledby="handoff-title">
+            <p class="truth-label" data-copy="handoffKicker">What you do now</p>
+            <h3 id="handoff-title" data-copy="handoffTitle">Open a non-Anthropic model and paste</h3>
+            <ol>
+              <li data-copy="handoff1">Open the writing model you prefer.</li>
+              <li data-copy="handoff2">Paste the full prompt and send it as one message.</li>
+              <li data-copy="handoff3">Copy its answer and paste it below. If you see [PV-01] markers, good. Do not replace them yourself; this page will.</li>
+            </ol>
+            <p class="model-boundary" data-copy="modelBoundary">One caveat worth knowing: another hosted provider may apply its own watermark or provenance mechanism. For zero hosted credits and no provider-side watermark, use a local open model.</p>
+          </div>
+
+          <details class="advanced-route">
+            <summary>
+              <span data-copy="advancedTitle">Want more separation? Build without showing the old wording.</span>
+              <small data-copy="advancedSubtitle">More work and a cleaner boundary. This was the old default and, yes, it was too much for the entrance.</small>
+            </summary>
+            <div class="advanced-body">
+              <p data-copy="advancedIntro">Here the other model never receives the source. You give it only facts, ideas and your voice. Choose this when maximum wording separation matters more than speed.</p>
+              <div class="envelope-layout">
+                <fieldset class="envelope">
+                  <legend data-copy="factsEnvelope">Meaning and facts</legend>
+                  <div class="field-stack">
+                    <label for="purpose" data-copy="purposeLabel">What should the reader understand or do?</label>
+                    <textarea id="purpose" rows="3"></textarea>
+                  </div>
+                  <div class="field-stack">
+                    <label for="claims" data-copy="claimsLabel">Ideas and claims, one per line</label>
+                    <textarea id="claims" rows="7"></textarea>
+                  </div>
+                  <div class="field-stack">
+                    <label for="audience" data-copy="audienceLabel">Who is this for?</label>
+                    <input id="audience" type="text" />
+                  </div>
+                </fieldset>
+                <fieldset class="envelope">
+                  <legend data-copy="voiceEnvelope">Voice and limits</legend>
+                  <div class="field-stack">
+                    <label for="voice" data-copy="voiceLabel">How do you actually write?</label>
+                    <p class="field-help" data-copy="voiceHelp">Be concrete: sentence rhythm, formality, favorite connectors and words you would never use.</p>
+                    <textarea id="voice" rows="7"></textarea>
+                  </div>
+                  <div class="field-stack">
+                    <label for="constraints" data-copy="constraintsLabel">Length, format and other constraints</label>
+                    <textarea id="constraints" rows="5"></textarea>
+                  </div>
+                </fieldset>
+              </div>
+              <p class="field-error" id="brief-error" role="alert"></p>
+              <div class="action-row">
+                <button class="secondary-action" id="quick-prompt-button" type="button" data-copy="quickPromptAction">Restore the quick prompt</button>
+                <button class="primary-action" id="clean-prompt-button" type="button" data-copy="cleanPromptAction">Build the source-free prompt</button>
+              </div>
             </div>
-          </div>
+          </details>
 
-          <p class="reader-thought" data-copy="step3Thought">“But I wanted the tool to rewrite it for me.” You still have that option. Copy the prompt into any non-Anthropic system. The important bit is that the writing conversation receives your two envelopes, not the old wording.</p>
-
-          <div class="sealed-notice">
-            <span class="seal-mark" aria-hidden="true">✓</span>
-            <div>
-              <strong data-copy="sealedTitle">Source sealed in this tab</strong>
-              <p data-copy="sealedBody">It is hidden, not deleted or uploaded. Unseal it whenever you need to correct the brief.</p>
-            </div>
-          </div>
-
-          <label for="clean-prompt" data-copy="promptLabel">Source-free writing prompt</label>
-          <textarea id="clean-prompt" rows="18" readonly></textarea>
-          <div class="action-row">
-            <button class="secondary-action" id="unseal-button" type="button" data-copy="unsealAction">Unseal and edit</button>
-            <button class="secondary-action" id="download-button" type="button" data-copy="downloadAction">Download the brief</button>
-            <button class="primary-action" id="copy-button" type="button" data-copy="copyAction">Copy the clean-room prompt</button>
-          </div>
-
-          <div class="manual-bridge">
-            <p data-copy="manualBridge">Writing it yourself? Good. Keep this brief visible and the source closed, then come back with the draft.</p>
-          </div>
-
-          <div class="field-stack candidate-field">
-            <label for="candidate-text" data-copy="candidateLabel">Paste the new draft</label>
-            <textarea id="candidate-text" rows="12"></textarea>
+          <div class="candidate-field field-stack">
+            <label for="candidate-text" data-copy="candidateLabel">Paste the model's new draft here</label>
+            <p class="field-help" data-copy="candidateHelp">Leave any [PV-01] markers exactly as they are. The check restores their original values locally, then measures exact values and surface overlap. It cannot read meaning like a human editor.</p>
+            <textarea id="candidate-text" rows="14"></textarea>
             <p class="field-error" id="candidate-error" role="alert"></p>
           </div>
-          <button class="primary-action" id="compare-button" type="button" data-copy="compareAction">Compare facts and wording</button>
+          <button class="primary-action" id="compare-button" type="button" data-copy="compareAction">Restore exact values and check</button>
         </section>
       </form>
 
       <section class="work-step results-step" id="step-results" aria-labelledby="step-results-title" hidden>
         <div class="step-heading">
-          <span class="step-number" aria-hidden="true">04</span>
+          <span class="step-number" aria-hidden="true">03</span>
           <div>
-            <p class="step-kicker" data-copy="step4Kicker">No magic score here</p>
-            <h2 id="step-results-title" data-copy="step4Title">See what survived</h2>
+            <p class="step-kicker" data-copy="step3Kicker">Evidence you can actually use</p>
+            <h2 id="step-results-title" data-copy="step3Title">See what changed and what survived</h2>
           </div>
         </div>
 
-        <p class="reader-thought" data-copy="step4Thought">“Can you just tell me whether the watermark is gone?” No, and neither can a public tool honestly certify Anthropic's private detector. These checks answer narrower questions you can actually act on.</p>
+        <p class="reader-thought" data-copy="step3Thought">“So is the watermark gone?” Nobody outside Anthropic can certify that from this page. What you can see is whether exact facts survived and whether too much of the old wording, openings or structure remains.</p>
 
         <div class="verdict" id="verdict" role="status" aria-live="polite"></div>
+
+        <section class="restored-draft" aria-labelledby="restored-draft-title">
+          <div class="restored-draft-heading">
+            <div>
+              <p class="truth-label" data-copy="restoredDraftKicker">The usable output</p>
+              <h3 id="restored-draft-title" data-copy="restoredDraftTitle">Your draft, with exact values restored</h3>
+            </div>
+            <button class="secondary-action" id="copy-draft-button" type="button" data-copy="copyDraftAction">Copy restored draft</button>
+          </div>
+          <p class="field-help" id="restored-draft-help" data-copy="restoredDraftHelp">This is the external model's draft with every surviving [PV-XX] marker replaced locally by the exact original value. Read it for meaning, tone and unsupported claims before you use it.</p>
+          <label class="sr-only" for="restored-draft" data-copy="restoredDraftLabel">Restored draft</label>
+          <textarea id="restored-draft" rows="14" aria-describedby="restored-draft-help" readonly></textarea>
+        </section>
+
         <div class="result-grid" id="result-grid"></div>
         <div class="next-edits">
           <h3 data-copy="nextTitle">What I would fix next</h3>
@@ -188,19 +235,20 @@
       </section>
 
       <aside class="boundary-note" aria-labelledby="boundary-title">
-        <p class="eyebrow" data-copy="boundaryKicker">One useful boundary</p>
-        <h2 id="boundary-title" data-copy="boundaryTitle">This helps with your own writing. It does not manufacture authorship.</h2>
-        <p data-copy="boundaryBody">Use it when the ideas, judgment and final responsibility are yours. If the underlying work belongs to somebody else, changing its surface does not make it yours.</p>
+        <p class="eyebrow" data-copy="boundaryKicker">The line is simple</p>
+        <h2 id="boundary-title" data-copy="boundaryTitle">Use it for ideas and work you can honestly defend.</h2>
+        <p data-copy="boundaryBody">A rewrite can change a text's surface. It cannot turn somebody else's work into yours, repair false claims or replace your responsibility for what you publish.</p>
       </aside>
     </main>
 
     <footer>
-      <p><span data-copy="footerText">Part of the open-source Claude Watermark Toolkit.</span> <a href="https://github.com/danilolapegna/claude-watermark-toolkit" data-copy="footerLink">Read the methods and research.</a></p>
+      <div class="footer-brand"><span aria-hidden="true">DL</span><strong>DL Solutions</strong></div>
+      <p><span data-copy="footerText">Rewrite Room is part of the open-source Claude Watermark Toolkit.</span> <a href="https://github.com/danilolapegna/claude-watermark-toolkit" data-copy="footerLink">Read the methods and research.</a></p>
     </footer>
 
     <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
-    <script src="core.js"></script>
-    <script src="app.js"></script>
+    <script src="core.js?v=1.0.16"></script>
+    <script src="app.js?v=1.0.16"></script>
   </body>
 </html>
