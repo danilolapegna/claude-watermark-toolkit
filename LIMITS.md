@@ -48,6 +48,8 @@ The tournament produced candidates under different instructions, but its numeric
 
 ## Why no guarantee appears here
 
-A private keyed detector can change without notice. Anthropic has not published its detector threshold, key, model-by-model coverage or error rates. Public SynthID experiments can challenge an algorithmic idea. They cannot certify a Claude result.
+Anthropic now publishes a current model-by-model table and offers its detection API in private preview to eligible organizations. This public toolkit has no access to that preview. The detector key, thresholds, error rates and detailed deployed configuration remain undisclosed, and both coverage and implementation can change.
+
+The table tells you which model rows Anthropic currently marks. It does not certify that one particular passage carries enough signal to detect: Anthropic says marking can be sparse in factual text, code and light proofreading, and short text may not provide enough evidence. Public SynthID experiments can challenge an algorithmic idea. They still cannot certify a Claude result.
 
 The strongest responsible statement is narrower: a genuinely independent reconstruction replaces much more of the original sampling path than cosmetic editing, while explicit fact checks reduce the risk of changing the substance.

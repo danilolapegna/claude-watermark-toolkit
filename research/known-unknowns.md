@@ -4,7 +4,7 @@ These questions stay open until a primary source or reproducible test answers th
 
 ## Claude deployment
 
-- Which model snapshots are marked today?
+- How quickly will the official table reflect patch releases and rollout changes?
 - Does coverage vary by product, account, geography or rollout cohort?
 - Are short answers skipped or treated with a different threshold?
 - How are tool results, quoted text and retrieved passages handled?
@@ -33,10 +33,10 @@ These questions stay open until a primary source or reproducible test answers th
 
 ## Policy
 
-- Who can use the detector and under what due-process rules?
+- How does Anthropic select organizations within the published private-preview eligibility groups?
+- What use restrictions and audit duties apply to private-preview detector access?
 - Will a person be able to challenge a result?
 - Will institutions be told the detector's error rates for the relevant language and text type?
 - Will accessibility and assistive-writing use be protected in enforcement guidance?
 
 Do not fill these gaps with confidence. Record the missing evidence and update [CLAIMS.md](../CLAIMS.md) when the answer becomes public.
-

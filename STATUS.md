@@ -1,6 +1,6 @@
 # Project status
 
-Last checked: 2026-08-28.
+Last checked: 2026-09-29.
 
 ## Stable in version 1.0
 
@@ -14,6 +14,7 @@ Last checked: 2026-08-28.
 - Static bilingual Rewrite Room prompt builder and local comparison page that works on GitHub Pages or from a downloaded `docs/index.html`.
 - Browser-only prompt preparation and comparison with no model call, account, upload or AI credits.
 - Public prose, static asset and local-link gates.
+- A dated, machine-readable snapshot of Anthropic's current model table and detector-access status.
 
 ## Tested boundaries
 
@@ -46,10 +47,15 @@ The suite proves pipeline behavior and failure handling. It does not prove that 
 
 Research-only means the setup can test a mechanism or a hypothesis. It does not turn the result into a claim about Claude.
 
+## Available only outside this public toolkit
+
+- Anthropic now has a detection API in private preview for eligible organizations. This toolkit has no access to it.
+- Anthropic now publishes a current model-by-model table. The repository stores a dated snapshot in [`research/claude-coverage.json`](research/claude-coverage.json), but future releases can change it.
+
 ## Not available
 
-- Anthropic's detector API.
-- A verified model-by-model Claude coverage table.
+- Generally public access to Anthropic's detection API.
+- Anthropic's detector key, thresholds, error rates or detailed deployed configuration.
 - A guarantee against a private detector.
 - Automatic semantic approval.
 - A hosted text-processing service. Rewrite Room has no backend and never receives user text.

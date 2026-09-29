@@ -26,7 +26,7 @@ You probably arrived with one practical question: **how do I remove a possible C
 
 The short answer is not to disguise the old wording. Extract what must remain, put the source out of sight and write a genuinely new draft from a checked brief.
 
-If you were hoping for one button that says “watermark gone”, I understand. That button cannot honestly exist while Anthropic's detector, key and threshold remain private. What we can give you is a much better workflow, from a blank page to a local browser tool to a source-separated writing method, with facts protected before any sentence changes.
+If you were hoping for one button that says “watermark gone”, I understand. Anthropic now offers a detection API in private preview, but ordinary users and this toolkit cannot access it. Its key, thresholds and error rates are still undisclosed. So no honest one-click verdict exists here. What we can give you is a much better workflow, from a blank page to a local browser tool to a source-separated writing method, with facts protected before any sentence changes.
 
 This is for text whose ideas, judgment and final responsibility are yours. Changing the surface of somebody else's work does not make it yours.
 
@@ -110,11 +110,16 @@ That table is the quick version. [The complete method guide](METHODS.md) explain
 
 ## “Fine, but is Claude already watermarking everything?”
 
-The current official record is more specific than either extreme.
+No. Anthropic now publishes a model-by-model table, so we do not have to guess.
 
-Anthropic says supported models launched in the EU on or after 2 August 2026 include the mark at launch and that supported use across Claude products and the API is marked worldwide. It also says the rollout to earlier models is still in progress. There is no public model-by-model inventory.
+> **Official status checked on 29 September 2026**<br />
+> **Listed as text-watermarked:** Claude Fable 5.1, Mythos 5.1, Opus 5.5, Opus 5 and Sonnet 5.5.<br />
+> **Listed without text watermarking:** Claude Fable 5, Mythos 5, Opus 4.8/4.7/4.6/4.5, Sonnet 5/4.6/4.5 and Haiku 4.5.<br />
+> Anthropic says the planned deadline for covered older models is **2 December 2026**. Its detection API is in private preview for eligible organizations, not generally available to the public.
 
-So we should not claim that every Claude output has been marked since 14 August. We should not claim that older models are unmarked either.
+Read the [current Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content). Treat the list above as a dated snapshot: a model update or rollout can change it.
+
+The table also does not mean every answer from a listed model contains enough signal to detect. Anthropic says marking can be sparse in factual passages, code and light proofreading, and short text may not provide enough evidence.
 
 Anthropic describes the mark as a statistical pattern in token choices, not hidden characters. It says light edits are unlikely to be enough and a complete rewrite that replaces every word removes the signal. A Claude-made translation receives its own watermark.
 
@@ -175,7 +180,7 @@ Image provenance can answer a useful question when a synthetic image may be mist
 
 ## What this project will not pretend
 
-- It cannot certify a result against Anthropic's private detector.
+- It cannot certify a result against Anthropic's detection API, because that API is available only in private preview and this public toolkit cannot access it.
 - A public SynthID implementation does not possess Anthropic's key.
 - Low phrase overlap does not prove good writing.
 - A fluent candidate can still be factually wrong.

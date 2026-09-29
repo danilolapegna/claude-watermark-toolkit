@@ -1,6 +1,6 @@
 # Claim ledger
 
-Last checked: 2026-08-28.
+Last checked: 2026-09-29.
 
 This file separates four kinds of statement:
 
@@ -13,11 +13,20 @@ This file separates four kinds of statement:
 
 | Claim | Status | Evidence | What we say |
 |---|---|---|---|
-| Anthropic announced a SynthID Text variant for future Claude models on 14 August 2026 | OFFICIAL | [Anthropic announcement](https://www.anthropic.com/news/claude-text-watermark) | Yes |
-| Older Claude models would receive the watermark over the following months | OFFICIAL | [Anthropic announcement](https://www.anthropic.com/news/claude-text-watermark) | Yes |
-| Supported models launched on or after 2 August carry the watermark at launch | OFFICIAL | [Anthropic help center](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) | Yes, with the word supported |
-| Every Claude output has been watermarked since 14 August 2026 | UNKNOWN | No public model-by-model table or public detector | Never state as fact |
-| No Claude output before a future launch is watermarked | UNKNOWN | Rollout to existing models is in progress | Never state as fact |
+| Anthropic announced a SynthID Text variant for Claude on 14 August 2026 | OFFICIAL | [Anthropic announcement](https://www.anthropic.com/news/claude-text-watermark) | Historical announcement date, not a universal coverage date |
+| Fable 5.1, Mythos 5.1, Opus 5.5, Opus 5 and Sonnet 5.5 are currently listed as text-watermarked | OFFICIAL, DATED | [Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) | Snapshot checked 2026-09-29; first-party and cloud-partner rows |
+| Fable 5, Mythos 5, Opus 4.8/4.7/4.6/4.5, Sonnet 5/4.6/4.5 and Haiku 4.5 are currently listed without text watermarking | OFFICIAL, DATED | [Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) | Snapshot checked 2026-09-29; recheck before relying on it |
+| Covered older models are planned by 2 December 2026 | OFFICIAL PLAN | [Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) | A target, not proof of completed rollout |
+| Every Claude output has been watermarked since 14 August 2026 | CONTRADICTED | The current official table lists several models without text watermarking | Never state as fact |
+
+## Detector access
+
+| Claim | Status | Evidence | What we say |
+|---|---|---|---|
+| Anthropic has a watermark detection API in private preview | OFFICIAL | [Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) | Yes |
+| The private preview includes eligible regulators, law enforcement, media, fact-checkers, independent researchers, educational organizations, EU civil-society groups and similarly obligated enterprises | OFFICIAL | [Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) | Describe as eligibility, not automatic access |
+| The detector is generally available to ordinary users or this toolkit | CONTRADICTED | Access is a private preview | Never imply public access |
+| Anthropic has published its detector key, thresholds, error rates or detailed deployed configuration | UNKNOWN / NOT PUBLISHED | Current official sources | Do not invent or infer them |
 
 ## Mechanics
 

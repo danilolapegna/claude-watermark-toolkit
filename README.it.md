@@ -26,7 +26,7 @@ Parto dalla domanda che con ogni probabilità ti ha portato qui: **come si rimuo
 
 La risposta breve è che non conviene travestire la vecchia formulazione. Tiri fuori ciò che deve restare, metti la fonte fuori vista e scrivi una versione nuova da una scheda controllata.
 
-Se speravi nel pulsante unico con scritto “watermark sparito”, ti capisco pure. Il problema è che quel pulsante, finché detector, chiave e soglia di Anthropic restano privati, non può esistere onestamente. Quello che possiamo fare è offrirti un percorso molto più solido, dalla pagina bianca allo strumento nel browser fino ai controlli locali, proteggendo i fatti prima di cambiare anche solo una frase.
+Se speravi nel pulsante unico con scritto “watermark sparito”, ti capisco pure. Anthropic offre ora un'API di rilevazione in anteprima privata, ma né una persona qualsiasi né questo toolkit possono usarla. Chiave, soglie e tassi di errore restano riservati. Quindi non esiste ancora un pulsante che possa darti onestamente quel verdetto. Quello che possiamo fare è offrirti un percorso molto più solido, dalla pagina bianca allo strumento nel browser fino ai controlli locali, proteggendo i fatti prima di cambiare anche solo una frase.
 
 Questa guida serve per testi nei quali idee, giudizio e responsabilità finale sono tuoi. Cambiare la superficie del lavoro di qualcun altro non lo rende tuo.
 
@@ -110,11 +110,16 @@ Questa è la versione rapida. [La guida completa ai metodi](METHODS.it.md) dice 
 
 ## “Va bene, ma Claude sta già watermarkando tutto?”
 
-La situazione ufficiale attuale è più precisa di entrambe le risposte estreme.
+No. Anthropic adesso pubblica una tabella modello per modello, quindi non serve più tirare a indovinare.
 
-Anthropic dice che i modelli supportati lanciati nell'Unione europea dal 2 agosto 2026 includono il watermark al lancio e che gli usi supportati nei prodotti Claude e via API vengono marcati a livello mondiale. Dice anche che il rollout sui modelli precedenti è ancora in corso. Una lista pubblica modello per modello non c'è.
+> **Stato ufficiale controllato il 29 settembre 2026**<br />
+> **Indicati come watermarkati:** Claude Fable 5.1, Mythos 5.1, Opus 5.5, Opus 5 e Sonnet 5.5.<br />
+> **Indicati senza watermark testuale:** Claude Fable 5, Mythos 5, Opus 4.8/4.7/4.6/4.5, Sonnet 5/4.6/4.5 e Haiku 4.5.<br />
+> Anthropic indica il **2 dicembre 2026** come termine previsto per i modelli precedenti che rientrano nel rollout. L'API di rilevazione è in anteprima privata per alcune organizzazioni ammesse, non disponibile a chiunque.
 
-Quindi io non scriverei che ogni output Claude è watermarkato dal 14 agosto. Ma non scriverei nemmeno che i modelli precedenti sono puliti. Semplicemente, quel livello di certezza non è pubblico.
+Qui trovi la [tabella aggiornata di Anthropic](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content). La lista sopra è una fotografia datata, non una promessa su ciò che succederà al prossimo rilascio.
+
+La presenza di un modello nella tabella non significa nemmeno che ogni sua risposta contenga abbastanza segnale da rilevare. Anthropic dice che la marcatura può essere scarsa nei passaggi fattuali, nel codice e nelle semplici revisioni, e che un testo breve può non offrire prove sufficienti.
 
 Anthropic descrive il watermark come un pattern statistico nelle scelte dei token, non come una manciata di caratteri nascosti. Dice che i ritocchi leggeri difficilmente bastano e che una riscrittura completa, nella quale ogni parola viene sostituita, rimuove il segnale. Una traduzione fatta da Claude riceve un watermark proprio.
 
@@ -175,7 +180,7 @@ La provenienza delle immagini può rispondere a una domanda utile quando un'imma
 
 ## Che cosa questo progetto non fingerà mai
 
-- Non può certificare il risultato sul detector privato di Anthropic.
+- Non può certificare il risultato tramite l'API di rilevazione di Anthropic, perché l'API è disponibile soltanto in anteprima privata e questo toolkit pubblico non può usarla.
 - Un'implementazione pubblica di SynthID non possiede la chiave di Anthropic.
 - Una bassa sovrapposizione di frasi non dimostra che il testo sia buono.
 - Una bozza fluida può essere comunque falsa.

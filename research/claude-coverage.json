@@ -1,0 +1,32 @@
+{
+  "checked": "2026-09-29",
+  "source": "https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content",
+  "rolloutTarget": "2026-12-02",
+  "detector": {
+    "access": "private-preview",
+    "generallyPublic": false,
+    "keyPublished": false,
+    "thresholdsPublished": false,
+    "errorRatesPublished": false
+  },
+  "textWatermarked": [
+    "Claude Fable 5.1",
+    "Claude Mythos 5.1",
+    "Claude Opus 5.5",
+    "Claude Opus 5",
+    "Claude Sonnet 5.5"
+  ],
+  "notTextWatermarked": [
+    "Claude Fable 5",
+    "Claude Mythos 5",
+    "Claude Opus 4.8",
+    "Claude Opus 4.7",
+    "Claude Opus 4.6",
+    "Claude Opus 4.5",
+    "Claude Sonnet 5",
+    "Claude Sonnet 4.6",
+    "Claude Sonnet 4.5",
+    "Claude Haiku 4.5"
+  ],
+  "scope": "Official first-party and cloud-partner table as displayed on the checked date. This is a dated snapshot, not a forecast for later releases."
+}

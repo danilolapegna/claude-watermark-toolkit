@@ -6,6 +6,34 @@ async function text(path) {
   return readFile(new URL(path, import.meta.url), "utf8");
 }
 
+test("Claude coverage stays dated, machine-readable and linked to the official table", async () => {
+  const coverage = JSON.parse(await text("../research/claude-coverage.json"));
+  const surfaces = await Promise.all([
+    text("../README.md"),
+    text("../README.it.md"),
+    text("../CLAIMS.md"),
+    text("../STATUS.md"),
+    text("../LIMITS.md"),
+    text("../research/probable-mechanics.md"),
+  ]);
+
+  assert.equal(coverage.checked, "2026-09-29");
+  assert.equal(coverage.rolloutTarget, "2026-12-02");
+  assert.equal(coverage.detector.access, "private-preview");
+  assert.equal(coverage.detector.generallyPublic, false);
+  assert.ok(coverage.textWatermarked.includes("Claude Sonnet 5.5"));
+  assert.ok(coverage.notTextWatermarked.includes("Claude Haiku 4.5"));
+
+  for (const surface of surfaces) {
+    assert.doesNotMatch(surface, /no public model-by-model (?:inventory|table)|has not published (?:a )?(?:complete )?model-by-model/iu);
+    assert.doesNotMatch(surface, /Anthropic(?:'s)? detector API(?: is|'s)? not available/iu);
+  }
+
+  assert.match(surfaces[0], /private preview/iu);
+  assert.match(surfaces[1], /anteprima privata/iu);
+  assert.match(surfaces[2], /support\.claude\.com\/en\/articles\/16266773/iu);
+});
+
 test("copyable research prompts define inert source boundaries and a checkable schema", async () => {
   for (const language of ["en", "it"]) {
     const prompt = await text(`../prompts/${language}/research-pass.md`);

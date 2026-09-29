@@ -14,13 +14,13 @@ The relevant detector may have:
 - a configuration that differs from public SynthID;
 - future updates that invalidate a successful public test.
 
-We assume no detector API and no access to the key.
+Anthropic now offers a detection API in private preview to eligible organizations. We assume the ordinary reader and this public toolkit have no authorized access to that API or its key.
 
 ## Failure modes
 
 ### False confidence
 
-A public surrogate reports a low score, so the user believes Claude's private detector must agree. Mitigation: surrogate results stay in the research lab and every report names the exact implementation, key and configuration.
+A public surrogate reports a low score, so the user believes Anthropic's private-preview detector must agree. Mitigation: surrogate results stay in the research lab and every report names the exact implementation, key and configuration. Private-preview access elsewhere does not turn our proxy into Anthropic's result.
 
 ### Meaning damage
 

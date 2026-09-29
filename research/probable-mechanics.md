@@ -8,7 +8,9 @@ This is the research layer. It explains the public mechanics, the attack ideas w
 
 Anthropic says Claude uses a variant of SynthID Text. The signal is statistical and does not rely on hidden characters. Anthropic also says small edits are unlikely to remove it, a complete rewrite replacing every word does, and a translation made by Claude carries a watermark of its own. [Source: Anthropic](https://www.anthropic.com/news/claude-text-watermark).
 
-Anthropic has not published its secret key, detector, threshold, context window, sampling configuration or complete model-by-model coverage table. Anything more specific about Claude is an inference, not a known implementation detail.
+Anthropic now publishes a current model-by-model coverage table and offers its detection API in private preview to eligible organizations. That does not make the detector public: this toolkit has no access, and Anthropic has not disclosed the secret key, threshold, context window, sampling configuration, error rates or detailed deployed setup. Anything more specific about Claude's implementation is still an inference.
+
+The dated model snapshot used by this repository lives in [`claude-coverage.json`](claude-coverage.json). Anthropic also warns that marking can be sparse in factual text, code and light proofreading, and that short text may not contain enough evidence for detection.
 
 ## The public SynthID mechanism, in plain language
 
@@ -58,6 +60,8 @@ If several drafts are useful, they should start independently from the same chec
 ## The quality trap
 
 An attack can reduce a detector score by damaging the text. A quality-aware study of random-walk attacks found a much lower success rate after human review than automated metrics alone suggested. [Source: ACL 2025](https://aclanthology.org/2025.acl-long.1436/).
+
+MarkSec reaches the same practical warning from a broader capability-aware evaluation: general rewriting remains a strong baseline once attack capability and output quality are compared fairly. A large raw score change is not enough if the result is worse writing or the attacker had more information than a normal user. [Source: MarkSec](https://arxiv.org/abs/2609.16681).
 
 This is the release rule that survived the research:
 
