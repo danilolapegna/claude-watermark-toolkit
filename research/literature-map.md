@@ -1,11 +1,11 @@
 # Literature and source map
 
-Last checked: 2026-09-29.
+Last checked: 2026-11-03.
 
 ## Primary product sources
 
 - [Anthropic announcement](https://www.anthropic.com/news/claude-text-watermark): product description, planned coverage, robustness statements and detector plans.
-- [Anthropic help center](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content): current model-by-model table, rollout target, sparse-signal caveats and private-preview detector eligibility.
+- [Anthropic help center](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content): current model-by-model table, sparse-signal caveats and private-preview detector eligibility. The current page does not publish a completion date for the remaining models.
 
 ## Mechanism
 
@@ -23,6 +23,9 @@ Last checked: 2026-09-29.
 - [Quality-aware random-walk evaluation](https://aclanthology.org/2025.acl-long.1436/): evidence that automated attack success can collapse under human quality review.
 - [Forensic reliability analysis](https://arxiv.org/abs/2607.16010): public watermark configurations and the danger of interpreting attack removal without false-negative context.
 - [Chainwash](https://arxiv.org/abs/2605.05503): repeated independent rewriting in studied diffusion language-model watermarks. Its model family is narrower than Claude, so this project treats the chain pattern as experimental.
+- [SynthID text watermark attacks](https://github.com/natzir/synthid-text-watermark-attacks): public replication on an open SynthID configuration. Unicode cleanup left all studied samples detected; model rewriting and SIRA reduced the public detector score. It does not contain Anthropic's key or detector.
+- [Reflip](https://github.com/nerln/reflip): local rewriting, fact-diff checks and an open-SynthID surrogate benchmark. Its browser route is the only 2026-11-03 candidate admitted as a bounded experiment because it is usable without an account and publishes its factual-drift cost.
+- [TextSeal](https://github.com/facebookresearch/TextSeal): Meta research toolkit for text watermarking and removal studies. Useful as an implementation reference, too heavy and research-oriented for the beginner route.
 - [MarkSec](https://arxiv.org/abs/2609.16681): capability-aware attack evaluation showing why rewriting remains a strong baseline and why quality-constrained comparisons matter. It does not provide a Claude detector result.
 
 ## Accessibility and detector governance

@@ -1,6 +1,6 @@
 # Project status
 
-Last checked: 2026-09-29.
+Last checked: 2026-11-03.
 
 ## Stable in version 1.0
 
@@ -15,6 +15,7 @@ Last checked: 2026-09-29.
 - Browser-only prompt preparation and comparison with no model call, account, upload or AI credits.
 - Public prose, static asset and local-link gates.
 - A dated, machine-readable snapshot of Anthropic's current model table and detector-access status.
+- A bounded link to Reflip as an experimental third-party browser route, with its measured download, surrogate result and factual-drift limit stated before use.
 
 ## Tested boundaries
 
@@ -46,6 +47,8 @@ The suite proves pipeline behavior and failure handling. It does not prove that 
 - Comparisons with watermark schemes that have an official runnable implementation.
 
 Research-only means the setup can test a mechanism or a hypothesis. It does not turn the result into a claim about Claude.
+
+The 2026-11-03 solution review also tested current external candidates. Reflip earned a bounded experimental link because it provides an actual on-device automatic rewrite and publishes reproducible measurements. It was not imported into the toolkit, made the default or presented as a Claude checker. Other inspected engines remained research-only because their setup, keys, GPU needs or product surface did not beat the simpler routes for an ordinary reader.
 
 ## Available only outside this public toolkit
 

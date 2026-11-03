@@ -99,6 +99,7 @@ The part people often skip is what makes it work:
 | Short text, maximum privacy | [Manual redraft](methods/human-redraft/README.md) | 10 to 60 min | your time |
 | No installation, guided workflow | [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/) | 2 to 5 min to prepare, plus model time | the external model may charge or apply its own provenance mechanism |
 | No hosted writer or hosted credits | [Rewrite Room with LM Studio or Ollama](methods/local-model/README.md) | one-time model download, then model time | needs enough computer memory; quality depends on the model |
+| One-click local experiment | [Try Reflip in the browser](methods/experimental-reflip/README.md) | about 800 MB download, then local model time | third-party small model; factual drift is common and it cannot test Claude's watermark |
 | Help from another system | [Two-envelope clean room](methods/two-envelope-clean-room/README.md) | 15 to 40 min | provider privacy and brief quality |
 | A ready-made agent workflow | [Copy the prompt](prompts/en/research-pass.md) or [the skill](skills/non-anthropic-text-rewrite/SKILL.md) | 10 to 30 min | model fact errors still need review |
 | Repeatable local preparation and checks | [Local CLI](methods/semantic-reconstitution/README.md) | setup plus a few minutes per text | it prepares and measures, but does not write |
@@ -112,10 +113,10 @@ That table is the quick version. [The complete method guide](METHODS.md) explain
 
 No. Anthropic now publishes a model-by-model table, so we do not have to guess.
 
-> **Official status checked on 29 September 2026**<br />
-> **Listed as text-watermarked:** Claude Fable 5.1, Mythos 5.1, Opus 5.5, Opus 5 and Sonnet 5.5.<br />
-> **Listed without text watermarking:** Claude Fable 5, Mythos 5, Opus 4.8/4.7/4.6/4.5, Sonnet 5/4.6/4.5 and Haiku 4.5.<br />
-> Anthropic says the planned deadline for covered older models is **2 December 2026**. Its detection API is in private preview for eligible organizations, not generally available to the public.
+> **Official status checked on 3 November 2026**<br />
+> **Listed as text-watermarked:** Claude Fable 5.1 and 5, Mythos 5.1, Opus 5.5, 5 and 4.8, Sonnet 5.5 and 5, and Haiku 5.5.<br />
+> **Listed without text watermarking:** Claude Mythos 5, Opus 4.7/4.6/4.5, Sonnet 4.6/4.5 and Haiku 4.5.<br />
+> The current page gives no future completion date. Its detection API remains in private preview for eligible organizations, not generally available to the public.
 
 Read the [current Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content). Treat the list above as a dated snapshot: a model update or rollout can change it.
 

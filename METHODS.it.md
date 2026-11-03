@@ -12,6 +12,7 @@ La scelta utile è più piccola di quanto sembri. Devi capire chi scriverà la n
 | Il testo è breve o deve restare completamente privato | [Riscrivi da una scheda dei fatti](methods/human-redraft/README.it.md) | 10-60 min | una bozza scritta da te senza invii |
 | Vuoi la strada guidata più semplice | [Usa Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it) | 2-5 min più il tempo di scrittura | un prompt pronto e controlli locali sulla bozza ricevuta |
 | Vuoi far girare il modello sul tuo computer | [Usa LM Studio oppure Ollama](methods/local-model/README.it.md) | installazione più tempo di scrittura | lo stesso prompt eseguito senza un writer ospitato |
+| Vuoi provare una riscrittura locale automatica senza installare un'app | [Prova Reflip nel browser](methods/experimental-reflip/README.it.md) | circa 800 MB, poi il tempo del modello locale | una bozza automatica da un piccolo modello di terzi, seguita da un controllo obbligatorio dei fatti |
 | Chi scrive non deve vedere le vecchie frasi | [Usa la camera stagna](methods/two-envelope-clean-room/README.it.md) | 15-40 min | una bozza nata soltanto da fatti e voce controllati |
 | Usi già un agente non Anthropic | [Installa la skill](skills/non-anthropic-text-rewrite/README.it.md) | 10-30 min | il percorso separato eseguito dall'agente, con due approvazioni umane |
 | Ripeti spesso il lavoro o vuoi file salvati | [Usa la CLI facoltativa](methods/semantic-reconstitution/README.it.md) | preparazione più pochi minuti | file con i prompt e resoconti meccanici ripetibili |
@@ -52,6 +53,14 @@ Il browser controlla soltanto ciò che può osservare: valori protetti, lunghe s
 
 [Apri Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it) oppure [prepara il modello locale partendo da zero](methods/local-model/README.it.md).
 
+### L'esperimento automatico con meno preparazione
+
+“Non posso premere un pulsante e far fare la riscrittura al mio computer?” Adesso esiste una risposta sperimentale seria. [Reflip](https://nerln.github.io/reflip/app/?lang=it) scarica un piccolo modello nel browser, riscrive sul dispositivo e mostra un confronto essenziale dei fatti. Non richiede un account né l'installazione di un'app.
+
+Il compromesso conta più del pulsante. Il modello del browser pesa circa 800 MB e, nel benchmark pubblicato da Reflip, ha cambiato circa 14 fatti contati ogni mille parole. Il controllo ha intercettato soltanto il 60% delle modifiche provate su numeri, nomi, negazioni e quantificatori, mentre altri cambiamenti di significato sono rimasti fuori. Sul surrogato SynthID aperto, il modello più piccolo ha portato 22 testi su 24 sotto la soglia scelta dallo studio. È una prova utile su un surrogato pubblico, non un risultato del detector Claude.
+
+Usalo per una bozza a basso rischio che sei disposto a controllare riga per riga. Per un testo importante, Rewrite Room con un writer capace oppure la camera stagna ti danno più controllo. [Segui il percorso Reflip da zero](methods/experimental-reflip/README.it.md).
+
 ## Percorso 3: la camera stagna
 
 “Due buste per un paragrafo sembrano decisamente troppo.” Lo sono. Per un paragrafo non usarle.
@@ -83,7 +92,7 @@ Il percorso normale è `sorgente.txt -> prompt.txt -> writer -> bozza.txt -> che
 
 ## Scorciatoie che non meritano un percorso
 
-Punteggiatura, pulitori di caratteri invisibili e pochi sinonimi colpiscono il livello sbagliato. Retrotraduzione e riscritture ripetute possono aggiungere errori. Il codice pubblico di SynthID non possiede la chiave privata di Anthropic. Ricerche chiamate SIRA, B4 e TSAPA hanno informato i test, ma non sono azioni che chi legge dovrebbe eseguire.
+Punteggiatura, pulitori di caratteri invisibili e pochi sinonimi colpiscono il livello sbagliato. Una replica pubblica recente ha trovato il 100% dei campioni SynthID aperti ancora rilevabile dopo la pulizia Unicode. Retrotraduzione e riscritture ripetute possono aggiungere errori. Il codice pubblico di SynthID non possiede la chiave privata di Anthropic. Ricerche chiamate SIRA, B4 e TSAPA hanno informato i test, ma non sono azioni che chi legge dovrebbe eseguire.
 
 I prototipi di targeting e torneo sono stati eliminati perché i proxy locali non sapevano individuare il segnale privato di Claude e potevano incoraggiare modifiche proprio al linguaggio fattuale più raro. Anche il writer locale automatico è stato tolto dopo esecuzioni reali che restituivano JSON, copiavano troppo e rifiutavano schede valide. La ricerca resta pubblica in [meccanica probabile](research/probable-mechanics.md) e nel [resoconto di red-team](REDTEAM.md), separata dal prodotto.
 

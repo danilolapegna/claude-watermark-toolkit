@@ -99,10 +99,11 @@ Se la tieni davanti, in realtà è facilissimo conservare la stessa logica dei p
 | Testo breve, privacy massima | [Riscrittura manuale](methods/human-redraft/README.it.md) | 10-60 min | il tuo tempo |
 | Niente installazione e guida passo passo | [Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/?lang=it) | 2-5 min per preparare, più il tempo del modello | il modello esterno può costare o applicare un proprio sistema di provenienza |
 | Nessun writer o credito ospitato | [Rewrite Room con LM Studio o Ollama](methods/local-model/README.it.md) | un download iniziale, poi il tempo del modello | serve memoria sufficiente; la qualità dipende dal modello |
+| Esperimento locale con un solo pulsante | [Prova Reflip nel browser](methods/experimental-reflip/README.it.md) | circa 800 MB da scaricare, poi il tempo del modello locale | modello piccolo di terzi; gli errori fattuali sono frequenti e non verifica il watermark Claude |
 | Vuoi l'aiuto di un altro sistema | [Metodo delle due buste](methods/two-envelope-clean-room/README.it.md) | 15-40 min | privacy del provider e qualità della scheda |
 | Vuoi un flusso già pronto per un agente | [Copia il prompt](prompts/it/research-pass.md) o [la skill spiegata in italiano](skills/non-anthropic-text-rewrite/README.it.md) | 10-30 min | gli errori fattuali vanno comunque controllati |
 | Preparazione e controlli locali ripetibili | [CLI locale](methods/semantic-reconstitution/README.it.md) | preparazione più pochi minuti per testo | prepara e misura, ma non scrive |
-| Testo ad alta posta e un budget | Editor umano dalla scheda controllata | tempo pagato | soldi, disponibilità e riservatezza |
+| Testo delicato e un budget | Editor umano dalla scheda controllata | tempo pagato | soldi, disponibilità e riservatezza |
 
 Questa è la versione rapida. [La guida completa ai metodi](METHODS.it.md) dice che cosa compra davvero ogni percorso, dove si rompe e perché doppia traduzione, trucchi Unicode e sinonimi leggeri non meritano lo stesso peso delle soluzioni forti.
 
@@ -112,10 +113,10 @@ Questa è la versione rapida. [La guida completa ai metodi](METHODS.it.md) dice 
 
 No. Anthropic adesso pubblica una tabella modello per modello, quindi non serve più tirare a indovinare.
 
-> **Stato ufficiale controllato il 29 settembre 2026**<br />
-> **Indicati come watermarkati:** Claude Fable 5.1, Mythos 5.1, Opus 5.5, Opus 5 e Sonnet 5.5.<br />
-> **Indicati senza watermark testuale:** Claude Fable 5, Mythos 5, Opus 4.8/4.7/4.6/4.5, Sonnet 5/4.6/4.5 e Haiku 4.5.<br />
-> Anthropic indica il **2 dicembre 2026** come termine previsto per i modelli precedenti che rientrano nel rollout. L'API di rilevazione è in anteprima privata per alcune organizzazioni ammesse, non disponibile a chiunque.
+> **Stato ufficiale controllato il 3 novembre 2026**<br />
+> **Indicati come watermarkati:** Claude Fable 5.1 e 5, Mythos 5.1, Opus 5.5, 5 e 4.8, Sonnet 5.5 e 5, Haiku 5.5.<br />
+> **Indicati senza watermark testuale:** Claude Mythos 5, Opus 4.7/4.6/4.5, Sonnet 4.6/4.5 e Haiku 4.5.<br />
+> La pagina attuale non indica una futura data di completamento. L'API di rilevazione resta in anteprima privata per alcune organizzazioni ammesse, non disponibile a chiunque.
 
 Qui trovi la [tabella aggiornata di Anthropic](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content). La lista sopra è una fotografia datata, non una promessa su ciò che succederà al prossimo rilascio.
 

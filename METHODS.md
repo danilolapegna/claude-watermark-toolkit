@@ -12,6 +12,7 @@ The useful choice is smaller than it looks. You need to know who will write the 
 | The text is short or must stay entirely private | [Write again from a fact sheet](methods/human-redraft/README.md) | 10-60 min | a draft written by you with no upload |
 | You want the easiest guided path | [Use Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/) | 2-5 min plus writing time | a prepared prompt, then local checks on the returned draft |
 | The writing model must run on your computer | [Use LM Studio or Ollama](methods/local-model/README.md) | setup plus writing time | the same prepared prompt executed without a hosted writer |
+| You want an automatic local experiment without installing an app | [Try Reflip in the browser](methods/experimental-reflip/README.md) | about 800 MB, then local model time | an automatic draft from a small third-party model, followed by a mandatory fact review |
 | The writer must not see the old sentences | [Use the two-envelope clean room](methods/two-envelope-clean-room/README.md) | 15-40 min | a draft created from checked facts and voice notes only |
 | You already use a non-Anthropic agent | [Install the skill](skills/non-anthropic-text-rewrite/README.md) | 10-30 min | the source-separated workflow run by the agent, with two human approvals |
 | You repeat the work or need saved files | [Use the optional CLI](methods/semantic-reconstitution/README.md) | setup plus a few minutes | prompt files and repeatable mechanical reports |
@@ -52,6 +53,14 @@ What the browser checks is deliberately narrow: protected values, long shared ph
 
 [Open Rewrite Room](https://danilolapegna.github.io/claude-watermark-toolkit/) or [set up the local writer from zero](methods/local-model/README.md).
 
+### The lower-friction automatic experiment
+
+“Can I just press one button and have my computer do the rewrite?” Now there is a serious experimental answer. [Reflip](https://nerln.github.io/reflip/app/) downloads a small model into a compatible browser, runs the rewrite on the device and shows a basic fact comparison. There is no account or app installation.
+
+The catch matters more than the button. Its browser model is about 800 MB and changed about 14 counted facts per 1,000 words in Reflip's benchmark. The fact check caught only 60% of the tested changes in numbers, names, negations and quantifiers, while other meaning changes remained outside that check. Its open SynthID surrogate fell below the study's threshold in 22 of 24 texts with the smaller browser model. That is useful evidence about an open surrogate, not a Claude detector result.
+
+Use it for a low-stakes draft you are willing to check line by line. For important text, Rewrite Room with a capable writer or the source-separated clean room gives you more control. [Follow the Reflip route from zero](methods/experimental-reflip/README.md).
+
 ## Route 3: the source-separated clean room
 
 “Two envelopes sounds like a lot for one paragraph.” It is. Do not use this for one paragraph.
@@ -83,7 +92,7 @@ Its normal loop is `source.txt -> prompt.txt -> writer -> draft.txt -> check`. T
 
 ## Shortcuts that do not earn a route
 
-Punctuation changes, invisible-character cleaners and a few synonyms target the wrong layer. Backtranslation and repeated rewriting can add factual drift. Public SynthID code does not possess Anthropic's private key. Research attacks called SIRA, B4 and TSAPA informed testing, but they are not actions a reader should perform here.
+Punctuation changes, invisible-character cleaners and a few synonyms target the wrong layer. A current public replication found Unicode cleanup still detected in every tested open-SynthID sample. Backtranslation and repeated rewriting can add factual drift. Public SynthID code does not possess Anthropic's private key. Research attacks called SIRA, B4 and TSAPA informed testing, but they are not actions a reader should perform here.
 
 The targeting and tournament prototypes were removed because their local proxies could not identify Claude's private signal and could encourage changes to rare factual language. The automatic local writer was removed after real runs returned JSON, copied too closely and rejected valid briefs. That research remains public in [probable mechanics](research/probable-mechanics.md) and [the red-team report](REDTEAM.md), clearly separated from the product.
 

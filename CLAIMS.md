@@ -1,6 +1,6 @@
 # Claim ledger
 
-Last checked: 2026-09-29.
+Last checked: 2026-11-03.
 
 This file separates four kinds of statement:
 
@@ -14,9 +14,9 @@ This file separates four kinds of statement:
 | Claim | Status | Evidence | What we say |
 |---|---|---|---|
 | Anthropic announced a SynthID Text variant for Claude on 14 August 2026 | OFFICIAL | [Anthropic announcement](https://www.anthropic.com/news/claude-text-watermark) | Historical announcement date, not a universal coverage date |
-| Fable 5.1, Mythos 5.1, Opus 5.5, Opus 5 and Sonnet 5.5 are currently listed as text-watermarked | OFFICIAL, DATED | [Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) | Snapshot checked 2026-09-29; first-party and cloud-partner rows |
-| Fable 5, Mythos 5, Opus 4.8/4.7/4.6/4.5, Sonnet 5/4.6/4.5 and Haiku 4.5 are currently listed without text watermarking | OFFICIAL, DATED | [Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) | Snapshot checked 2026-09-29; recheck before relying on it |
-| Covered older models are planned by 2 December 2026 | OFFICIAL PLAN | [Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) | A target, not proof of completed rollout |
+| Fable 5.1 and 5, Mythos 5.1, Opus 5.5, 5 and 4.8, Sonnet 5.5 and 5, and Haiku 5.5 are currently listed as text-watermarked | OFFICIAL, DATED | [Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) | Snapshot checked 2026-11-03; first-party and cloud-partner rows |
+| Mythos 5, Opus 4.7/4.6/4.5, Sonnet 4.6/4.5 and Haiku 4.5 are currently listed without text watermarking | OFFICIAL, DATED | [Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) | Snapshot checked 2026-11-03; recheck before relying on it |
+| The current support page gives a future completion date for the remaining rollout | NOT PRESENT IN CURRENT SOURCE | [Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) | Do not repeat an older target as current guidance |
 | Every Claude output has been watermarked since 14 August 2026 | CONTRADICTED | The current official table lists several models without text watermarking | Never state as fact |
 
 ## Detector access
@@ -47,6 +47,8 @@ This file separates four kinds of statement:
 | Claude-made translations carry a watermark | OFFICIAL wording from Anthropic | [Anthropic announcement](https://www.anthropic.com/news/claude-text-watermark) | This project does not use Claude for translation |
 | Light synonym replacement is a dependable solution | CONTRADICTED by the mechanism and vendor guidance | Primary sources above | Listed as insufficient |
 | Unicode cleanup removes a statistical watermark | CONTRADICTED by the mechanism | Primary sources above | Useful only for unrelated hidden-character cleanup |
+| A public SynthID replication found Unicode cleanup still detected in all tested samples, while model rewriting and SIRA sharply reduced its open detector score | REPRODUCED BY THIRD-PARTY PUBLIC CODE | [SynthID text watermark attacks](https://github.com/natzir/synthid-text-watermark-attacks) | Open SynthID with the researcher's key; not Claude's private detector |
+| Reflip's browser writer brought 22 of 24 open-SynthID surrogate texts below its chosen threshold, while its small models changed counted facts | REPORTED BY AUTHORS, TEST SUITE REPRODUCED | [Reflip](https://github.com/nerln/reflip) | Experimental third-party route; no Claude verdict and line-by-line factual review required |
 | SIRA reported near-total removal across seven studied watermark schemes | OFFICIAL result reported by its authors | [SIRA paper](https://arxiv.org/abs/2505.05190) | Does not prove success against Claude |
 | Evolutionary multi-objective attacks can preserve quality while reducing detection across studied schemes | OFFICIAL result reported by its authors | [TSAPA](https://aclanthology.org/2026.findings-acl.459/) | Does not prove success against Claude |
 | Selective resampling of lower-confidence positions can outperform broad paraphrasing across studied schemes | OFFICIAL result reported by its authors | [Watermark Smoothing Attacks](https://aclanthology.org/2025.findings-emnlp.264/) | Does not establish which Claude positions carry signal |

@@ -17,21 +17,52 @@ test("Claude coverage stays dated, machine-readable and linked to the official t
     text("../research/probable-mechanics.md"),
   ]);
 
-  assert.equal(coverage.checked, "2026-09-29");
-  assert.equal(coverage.rolloutTarget, "2026-12-02");
+  assert.equal(coverage.checked, "2026-11-03");
+  assert.equal("rolloutTarget" in coverage, false);
   assert.equal(coverage.detector.access, "private-preview");
   assert.equal(coverage.detector.generallyPublic, false);
-  assert.ok(coverage.textWatermarked.includes("Claude Sonnet 5.5"));
-  assert.ok(coverage.notTextWatermarked.includes("Claude Haiku 4.5"));
+  assert.deepEqual(coverage.textWatermarked, [
+    "Claude Fable 5.1",
+    "Claude Fable 5",
+    "Claude Mythos 5.1",
+    "Claude Opus 5.5",
+    "Claude Opus 5",
+    "Claude Opus 4.8",
+    "Claude Sonnet 5.5",
+    "Claude Sonnet 5",
+    "Claude Haiku 5.5",
+  ]);
+  assert.deepEqual(coverage.notTextWatermarked, [
+    "Claude Mythos 5",
+    "Claude Opus 4.7",
+    "Claude Opus 4.6",
+    "Claude Opus 4.5",
+    "Claude Sonnet 4.6",
+    "Claude Sonnet 4.5",
+    "Claude Haiku 4.5",
+  ]);
 
   for (const surface of surfaces) {
     assert.doesNotMatch(surface, /no public model-by-model (?:inventory|table)|has not published (?:a )?(?:complete )?model-by-model/iu);
     assert.doesNotMatch(surface, /Anthropic(?:'s)? detector API(?: is|'s)? not available/iu);
+    assert.doesNotMatch(surface, /29 September 2026|29 settembre 2026|2 December 2026|2 dicembre 2026/iu);
   }
 
   assert.match(surfaces[0], /private preview/iu);
   assert.match(surfaces[1], /anteprima privata/iu);
   assert.match(surfaces[2], /support\.claude\.com\/en\/articles\/16266773/iu);
+});
+
+test("the experimental automatic route is bounded before it is linked", async () => {
+  const english = await text("../methods/experimental-reflip/README.md");
+  const italian = await text("../methods/experimental-reflip/README.it.md");
+  for (const route of [english, italian]) {
+    assert.match(route, /800 MB/iu);
+    assert.match(route, /22 (?:of|testi su) 24/iu);
+    assert.match(route, /Claude/iu);
+    assert.match(route, /fact|fatt/iu);
+    assert.doesNotMatch(route, /guarantee|garantisce/iu);
+  }
 });
 
 test("copyable research prompts define inert source boundaries and a checkable schema", async () => {

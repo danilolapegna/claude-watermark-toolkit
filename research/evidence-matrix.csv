@@ -1,8 +1,8 @@
 claim_id,claim,status,source,project_use,last_checked
-COV-01,Claude uses a SynthID Text variant,official,https://www.anthropic.com/news/claude-text-watermark,claim ledger,2026-09-29
-COV-02,Every Claude output has been marked since 14 August 2026,contradicted,https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content,never state as fact,2026-09-29
-COV-03,Anthropic publishes a current model-by-model text-watermark table,official-dated,https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content,dated coverage snapshot,2026-09-29
-COV-04,Covered older models are planned by 2 December 2026,official-plan,https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content,recheck after target date,2026-09-29
+COV-01,Claude uses a SynthID Text variant,official,https://www.anthropic.com/news/claude-text-watermark,claim ledger,2026-11-03
+COV-02,Every Claude output has been marked since 14 August 2026,contradicted,https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content,never state as fact,2026-11-03
+COV-03,Anthropic publishes a current model-by-model text-watermark table,official-dated,https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content,dated coverage snapshot,2026-11-03
+COV-04,The current Anthropic support page gives a future rollout completion date,not-present-current-source,https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content,do not repeat older target,2026-11-03
 DET-01,Anthropic offers a watermark detection API in private preview,official,https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content,access boundary,2026-09-29
 DET-02,The detector key thresholds error rates and detailed configuration are public,unsupported,https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content,never state,2026-09-29
 MEC-01,Public SynthID uses keyed context-dependent token scores,official-public-synthid,https://www.nature.com/articles/s41586-024-08025-4,probable mechanics,2026-09-29
@@ -17,3 +17,5 @@ GOV-01,Verification access and accountability remain material governance problem
 QLT-01,Automated attack scores can overstate useful human-quality success,research-evidence,https://aclanthology.org/2025.acl-long.1436/,human review gate,2026-09-29
 ACC-01,AI writing support can help some adults with dyslexia,research-evidence,https://arxiv.org/abs/2207.02308,manifesto boundary,2026-09-29
 ACC-02,Generic detector bias proves Anthropic detector bias,unsupported,,never state,2026-09-29
+SOL-01,Unicode cleanup leaves the open SynthID surrogate detectable while model rewriting and SIRA reduce it,third-party-reproduced-code,https://github.com/natzir/synthid-text-watermark-attacks,surrogate only,2026-11-03
+SOL-02,Reflip browser writer brought 22 of 24 open-SynthID surrogate texts below z4 but changed counted facts,reported-by-authors-tests-reproduced,https://github.com/nerln/reflip,experimental route with mandatory fact review,2026-11-03
