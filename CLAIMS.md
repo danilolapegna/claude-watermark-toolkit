@@ -1,6 +1,6 @@
 # Claim ledger
 
-Last checked: 2026-11-03.
+Last checked: 2026-11-24.
 
 This file separates four kinds of statement:
 
@@ -14,10 +14,10 @@ This file separates four kinds of statement:
 | Claim | Status | Evidence | What we say |
 |---|---|---|---|
 | Anthropic announced a SynthID Text variant for Claude on 14 August 2026 | OFFICIAL | [Anthropic announcement](https://www.anthropic.com/news/claude-text-watermark) | Historical announcement date, not a universal coverage date |
-| Fable 5.1 and 5, Mythos 5.1, Opus 5.5, 5 and 4.8, Sonnet 5.5 and 5, and Haiku 5.5 are currently listed as text-watermarked | OFFICIAL, DATED | [Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) | Snapshot checked 2026-11-03; first-party and cloud-partner rows |
-| Mythos 5, Opus 4.7/4.6/4.5, Sonnet 4.6/4.5 and Haiku 4.5 are currently listed without text watermarking | OFFICIAL, DATED | [Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) | Snapshot checked 2026-11-03; recheck before relying on it |
+| All 19 model rows are marked for text on Anthropic services | OFFICIAL, DATED | [Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) | Snapshot checked 2026-11-24; partner and sampling exceptions are recorded in claude-coverage.json |
+| Opus 3 has a blank cloud-partner cell; four models carry a Bedrock rollout caveat; six carry a non-default sampling caveat | OFFICIAL, DATED | [Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) | A blank cell or caveat does not establish an unmarked output |
 | The current support page gives a future completion date for the remaining rollout | NOT PRESENT IN CURRENT SOURCE | [Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) | Do not repeat an older target as current guidance |
-| Every Claude output has been watermarked since 14 August 2026 | CONTRADICTED | The current official table lists several models without text watermarking | Never state as fact |
+| Every Claude output has been watermarked since 14 August 2026 | UNSUPPORTED UNIVERSAL CLAIM | Current model rows do not establish historical coverage or detectability of every passage; the source states platform, sampling and content limitations | Never state as fact |
 
 ## Detector access
 

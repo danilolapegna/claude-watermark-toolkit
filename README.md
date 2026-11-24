@@ -113,10 +113,9 @@ That table is the quick version. [The complete method guide](METHODS.md) explain
 
 No. Anthropic now publishes a model-by-model table, so we do not have to guess.
 
-> **Official status checked on 3 November 2026**<br />
-> **Listed as text-watermarked:** Claude Fable 5.1 and 5, Mythos 5.1, Opus 5.5, 5 and 4.8, Sonnet 5.5 and 5, and Haiku 5.5.<br />
-> **Listed without text watermarking:** Claude Mythos 5, Opus 4.7/4.6/4.5, Sonnet 4.6/4.5 and Haiku 4.5.<br />
-> The current page gives no future completion date. Its detection API remains in private preview for eligible organizations, not generally available to the public.
+> **Status checked on 24 November 2026.** The [official table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) lists text watermarking on Anthropic's own services for Fable 5.2, 5.1 and 5; Mythos 5.2, 5.1 and 5; Opus 5.5, 5, 4.8, 4.7, 4.6, 4.5 and 3; Sonnet 5.5, 5, 4.6 and 4.5; and Haiku 5.5 and 4.5. Its cloud-partner column is marked for the same models except Opus 3, whose cell is blank. A blank cell is not a guarantee of unmarked output.
+>
+> For Opus 4.6, Opus 4.5, Opus 3, Sonnet 4.6, Sonnet 4.5 and Haiku 4.5, Anthropic says non-default `temperature`, `top_p` or `top_k` can make text watermarking unreliable. That caveat does not guarantee removal or an unmarked response. The table also warns that rollout on Amazon Bedrock may take a few additional days for Opus 4.6, Opus 4.5, Sonnet 4.5 and Haiku 4.5; it gives no completion date. Check the current row for your model and platform before relying on it.
 
 Read the [current Anthropic support table](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content). Treat the list above as a dated snapshot: a model update or rollout can change it.
 

@@ -1,6 +1,6 @@
 # Project status
 
-Last checked: 2026-11-03.
+Last checked: 2026-11-24.
 
 ## Stable in version 1.0
 
@@ -14,7 +14,7 @@ Last checked: 2026-11-03.
 - Static bilingual Rewrite Room prompt builder and local comparison page that works on GitHub Pages or from a downloaded `docs/index.html`.
 - Browser-only prompt preparation and comparison with no model call, account, upload or AI credits.
 - Public prose, static asset and local-link gates.
-- A dated, machine-readable snapshot of Anthropic's current model table and detector-access status.
+- A dated, machine-readable snapshot of Anthropic's model table, platform and sampling exceptions, and detector-access status.
 - A bounded link to Reflip as an experimental third-party browser route, with its measured download, surrogate result and factual-drift limit stated before use.
 
 ## Tested boundaries

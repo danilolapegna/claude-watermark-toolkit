@@ -17,30 +17,49 @@ test("Claude coverage stays dated, machine-readable and linked to the official t
     text("../research/probable-mechanics.md"),
   ]);
 
-  assert.equal(coverage.checked, "2026-11-03");
+  assert.equal(coverage.checked, "2026-11-24");
   assert.equal("rolloutTarget" in coverage, false);
   assert.equal(coverage.detector.access, "private-preview");
   assert.equal(coverage.detector.generallyPublic, false);
   assert.deepEqual(coverage.textWatermarked, [
-    "Claude Fable 5.1",
-    "Claude Fable 5",
-    "Claude Mythos 5.1",
-    "Claude Opus 5.5",
-    "Claude Opus 5",
-    "Claude Opus 4.8",
-    "Claude Sonnet 5.5",
-    "Claude Sonnet 5",
-    "Claude Haiku 5.5",
-  ]);
-  assert.deepEqual(coverage.notTextWatermarked, [
-    "Claude Mythos 5",
-    "Claude Opus 4.7",
-    "Claude Opus 4.6",
-    "Claude Opus 4.5",
-    "Claude Sonnet 4.6",
-    "Claude Sonnet 4.5",
-    "Claude Haiku 4.5",
-  ]);
+  "Claude Fable 5.2",
+  "Claude Fable 5.1",
+  "Claude Fable 5",
+  "Claude Mythos 5.2",
+  "Claude Mythos 5.1",
+  "Claude Mythos 5",
+  "Claude Opus 5.5",
+  "Claude Opus 5",
+  "Claude Opus 4.8",
+  "Claude Opus 4.7",
+  "Claude Opus 4.6",
+  "Claude Opus 4.5",
+  "Claude Opus 3",
+  "Claude Sonnet 5.5",
+  "Claude Sonnet 5",
+  "Claude Sonnet 4.6",
+  "Claude Sonnet 4.5",
+  "Claude Haiku 5.5",
+  "Claude Haiku 4.5"
+]);
+  assert.deepEqual(coverage.notTextWatermarked, []);
+  const opus3 = coverage.coverageByModel.find(row => row.model === "Claude Opus 3");
+  assert.equal(opus3.firstPartyTextWatermark, true);
+  assert.equal(opus3.cloudPartnerTextWatermark, null);
+  assert.deepEqual(coverage.samplingCaveat.models, [
+  "Claude Opus 4.6",
+  "Claude Opus 4.5",
+  "Claude Opus 3",
+  "Claude Sonnet 4.6",
+  "Claude Sonnet 4.5",
+  "Claude Haiku 4.5"
+]);
+  assert.deepEqual(coverage.bedrockRolloutCaveat.models, [
+  "Claude Opus 4.6",
+  "Claude Opus 4.5",
+  "Claude Sonnet 4.5",
+  "Claude Haiku 4.5"
+]);
 
   for (const surface of surfaces) {
     assert.doesNotMatch(surface, /no public model-by-model (?:inventory|table)|has not published (?:a )?(?:complete )?model-by-model/iu);

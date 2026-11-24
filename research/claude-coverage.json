@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-03",
+  "checked": "2026-11-24",
   "source": "https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content",
   "detector": {
     "access": "private-preview",
@@ -9,24 +9,186 @@
     "errorRatesPublished": false
   },
   "textWatermarked": [
+    "Claude Fable 5.2",
     "Claude Fable 5.1",
     "Claude Fable 5",
+    "Claude Mythos 5.2",
     "Claude Mythos 5.1",
+    "Claude Mythos 5",
     "Claude Opus 5.5",
     "Claude Opus 5",
     "Claude Opus 4.8",
-    "Claude Sonnet 5.5",
-    "Claude Sonnet 5",
-    "Claude Haiku 5.5"
-  ],
-  "notTextWatermarked": [
-    "Claude Mythos 5",
     "Claude Opus 4.7",
     "Claude Opus 4.6",
     "Claude Opus 4.5",
+    "Claude Opus 3",
+    "Claude Sonnet 5.5",
+    "Claude Sonnet 5",
     "Claude Sonnet 4.6",
     "Claude Sonnet 4.5",
+    "Claude Haiku 5.5",
     "Claude Haiku 4.5"
   ],
-  "scope": "Official first-party and cloud-partner table as displayed on the checked date. The current page does not give a future completion date. This is a dated snapshot, not a forecast for later releases."
+  "notTextWatermarked": [],
+  "scope": "Dated snapshot of the official table. textWatermarked and notTextWatermarked refer to first-party rows. A null partner value means the official cell is blank, not that output is guaranteed unmarked. A model-level mark does not prove detectability of each passage.",
+  "coverageByModel": [
+    {
+      "model": "Claude Fable 5.2",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": false,
+      "bedrockRolloutCaveat": false
+    },
+    {
+      "model": "Claude Fable 5.1",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": false,
+      "bedrockRolloutCaveat": false
+    },
+    {
+      "model": "Claude Fable 5",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": false,
+      "bedrockRolloutCaveat": false
+    },
+    {
+      "model": "Claude Mythos 5.2",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": false,
+      "bedrockRolloutCaveat": false
+    },
+    {
+      "model": "Claude Mythos 5.1",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": false,
+      "bedrockRolloutCaveat": false
+    },
+    {
+      "model": "Claude Mythos 5",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": false,
+      "bedrockRolloutCaveat": false
+    },
+    {
+      "model": "Claude Opus 5.5",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": false,
+      "bedrockRolloutCaveat": false
+    },
+    {
+      "model": "Claude Opus 5",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": false,
+      "bedrockRolloutCaveat": false
+    },
+    {
+      "model": "Claude Opus 4.8",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": false,
+      "bedrockRolloutCaveat": false
+    },
+    {
+      "model": "Claude Opus 4.7",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": false,
+      "bedrockRolloutCaveat": false
+    },
+    {
+      "model": "Claude Opus 4.6",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": true,
+      "bedrockRolloutCaveat": true
+    },
+    {
+      "model": "Claude Opus 4.5",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": true,
+      "bedrockRolloutCaveat": true
+    },
+    {
+      "model": "Claude Opus 3",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": null,
+      "nonDefaultSamplingCaveat": true,
+      "bedrockRolloutCaveat": false
+    },
+    {
+      "model": "Claude Sonnet 5.5",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": false,
+      "bedrockRolloutCaveat": false
+    },
+    {
+      "model": "Claude Sonnet 5",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": false,
+      "bedrockRolloutCaveat": false
+    },
+    {
+      "model": "Claude Sonnet 4.6",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": true,
+      "bedrockRolloutCaveat": false
+    },
+    {
+      "model": "Claude Sonnet 4.5",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": true,
+      "bedrockRolloutCaveat": true
+    },
+    {
+      "model": "Claude Haiku 5.5",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": false,
+      "bedrockRolloutCaveat": false
+    },
+    {
+      "model": "Claude Haiku 4.5",
+      "firstPartyTextWatermark": true,
+      "cloudPartnerTextWatermark": true,
+      "nonDefaultSamplingCaveat": true,
+      "bedrockRolloutCaveat": true
+    }
+  ],
+  "samplingCaveat": {
+    "models": [
+      "Claude Opus 4.6",
+      "Claude Opus 4.5",
+      "Claude Opus 3",
+      "Claude Sonnet 4.6",
+      "Claude Sonnet 4.5",
+      "Claude Haiku 4.5"
+    ],
+    "parameters": [
+      "temperature",
+      "top_p",
+      "top_k"
+    ],
+    "statement": "Outputs may not reliably carry the text watermark when any of these parameters is set to a non-default value. This is not a guarantee of an unmarked output."
+  },
+  "bedrockRolloutCaveat": {
+    "models": [
+      "Claude Opus 4.6",
+      "Claude Opus 4.5",
+      "Claude Sonnet 4.5",
+      "Claude Haiku 4.5"
+    ],
+    "statement": "Rollout on Amazon Bedrock may take a few additional days; no completion date is provided."
+  }
 }
